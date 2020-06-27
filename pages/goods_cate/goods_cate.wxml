@@ -1,0 +1,8 @@
+<view class="layout">
+	<view class="menu">
+  <view class="listItem {{index == currentIndex?'listItemActive':''}}" wx:for="{{menulist}}" wx:for-index="index" wx:for-item="item" bindtap='switchMenu' data-index='{{index}}'>{{item.name}}</view>
+	</view>
+	<view class="main">
+		<text>2222</text>
+	</view>
+</view>

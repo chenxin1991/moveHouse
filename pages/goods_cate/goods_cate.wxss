@@ -1,0 +1,33 @@
+/* pages/goods_cate/goods_cate.wxss */
+.layout .menu {
+  position: fixed;
+  top: 0;
+  width: 180rpx;
+  bottom: 0;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.layout .main {
+  position: fixed;
+  background: #fff;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  left: 180rpx;
+  z-index: 1001;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.listItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80rpx;
+}
+
+.listItemActive {
+  background: #fff;
+}
