@@ -14,20 +14,10 @@
 		<scroll-view scroll-y="true" scroll-into-view="{{toView}}" style='height:{{height}}rpx;' bindscroll="scroll" scroll-with-animation='true'>
 			<block wx:for="{{productList}}" wx:key>
 				<view class='listw' id="b{{index}}">
-					<view class='title acea-row row-center-wrapper'>
-						<view class='line'></view>
+					<view class='title acea-row row-left row-middle'>
 						<view class='name'>{{item.cate_name}}</view>
-						<view class='line'></view>
 					</view>
-					<view class='list acea-row'>
-						<navigator hover-class='none' url='/pages/goods_list/goods_list?sid=' class='item acea-row row-column row-middle'>
-							<view class='picture'>
-								<image src='{{item.pic}}'></image>
-							</view>
-							<view class='name line1'>测试</view>
-              							<view class='name line1'>测试</view>
-						</navigator>
-					</view>
+       <goodList bastList="{{item.goods}}"></goodList>
 				</view>
 			</block>
       <view style='height:{{height-300}}rpx;' ></view>

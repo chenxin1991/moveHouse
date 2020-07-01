@@ -1,0 +1,22 @@
+       <view class='goodList'>
+       	<block wx:for="{{bastList}}" wx:key>
+       		<view class='item acea-row'>
+       			<navigator url='/pages/goods_details/index?id={{item.id}}'>
+       				<view class='pictrue'>
+       					<image src='{{item.image}}'></image>
+       				</view>
+       			</navigator>
+       			<view class='underline'>
+       				<view class='text'>
+       					<view class='title'>{{item.store_name}}</view>
+       					<view style="height:60rpx;display:flex;align-items:flex-end;justify-content:space-between;margin-top:40rpx;">
+       						<view class='money font-color' style="display:flex;align-items:center;">￥<text class='num'>{{item.price}}</text></view>
+       						<view style="width:160rpx;display:flex;justify-content:flex-end;align-items:center;">
+       							<image class='icon' catchtap='addCart' data-index='{{index}}' src='/images/add.png' style="width:40rpx;height:40rpx;"></image>
+       						</view>
+       					</view>
+       				</view>
+       			</view>
+       		</view>
+       	</block>
+       </view>

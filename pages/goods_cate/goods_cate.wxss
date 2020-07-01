@@ -9,7 +9,7 @@ page{background-color:#fff!important;}
 .productSort .aside .item.on{background-color:#fff;border-left:4rpx solid #fc4141;width:100%;text-align:center;color:#fc4141;font-weight:bold;}
 .productSort .conter{padding:98rpx 0 0 180rpx;}
 .productSort .conter .listw{padding-top:20rpx;}
-.productSort .conter .listw .title{height:90rpx;}
+.productSort .conter .listw .title{height:60rpx;}
 .productSort .conter .listw .title .line{width:100rpx;height:2rpx;background-color:#999;}
 .productSort .conter .listw .title .name{font-size:28rpx;color:#333;margin:0 30rpx;font-weight:bold;}
 .productSort .conter .list{flex-wrap:wrap;}

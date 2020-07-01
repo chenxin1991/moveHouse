@@ -9,23 +9,125 @@ Page({
         cate_name: "用车",
         goods: [{
           id: 1,
-          title: '货车',
-          type: '载重2吨，长宽高4.2*2.0*1.9米',
-          price: 400.00,
-          image_url: '/images/car1.png'
+          cate_id: "4",
+          image: "/images/car1.png",
+          ot_price: "400",
+          price: "400",
+          sales: "73",
+          store_name: "4.2米货车 载重2吨 长宽高4.2*2.0*1.9米",
+          unit_name: "件",
+          vip_price: "79.20"
+        },
+        {
+          id: 2,
+          cate_id: "4",
+          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+          ot_price: "80.00",
+          price: "80.00",
+          sales: "73",
+          store_name: "依维柯",
+          unit_name: "件",
+          vip_price: "79.20"
         }]
       },
       {
         id: 19,
-        cate_name: "拆装"
+        cate_name: "拆装",
+        goods: [{
+          id: 1,
+          cate_id: "4",
+          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+          ot_price: "80.00",
+          price: "80.00",
+          sales: "73",
+          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
+          unit_name: "件",
+          vip_price: "79.20"
+        },
+        {
+          id: 2,
+          cate_id: "4",
+          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+          ot_price: "80.00",
+          price: "80.00",
+          sales: "73",
+          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
+          unit_name: "件",
+          vip_price: "79.20"
+        }]
       },
       {
         id: 20,
-        cate_name: "大件"
+        cate_name: "大件",
+        goods: [{
+          id: 1,
+          cate_id: "4",
+          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+          ot_price: "80.00",
+          price: "80.00",
+          sales: "73",
+          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
+          unit_name: "件",
+          vip_price: "79.20"
+        },
+        {
+          id: 2,
+          cate_id: "4",
+          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+          ot_price: "80.00",
+          price: "80.00",
+          sales: "73",
+          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
+          unit_name: "件",
+          vip_price: "79.20"
+        }]
       },
       {
         id: 21,
-        cate_name: "材料"
+        cate_name: "材料",
+        goods: [{
+          id: 1,
+          cate_id: "4",
+          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+          ot_price: "80.00",
+          price: "80.00",
+          sales: "73",
+          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
+          unit_name: "件",
+          vip_price: "79.20"
+        },
+        {
+          id: 2,
+          cate_id: "4",
+          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+          ot_price: "80.00",
+          price: "80.00",
+          sales: "73",
+          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
+          unit_name: "件",
+          vip_price: "79.20"
+        },{
+          id: 1,
+          cate_id: "4",
+          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+          ot_price: "80.00",
+          price: "80.00",
+          sales: "73",
+          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
+          unit_name: "件",
+          vip_price: "79.20"
+        },
+        {
+          id: 2,
+          cate_id: "4",
+          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+          ot_price: "80.00",
+          price: "80.00",
+          sales: "73",
+          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
+          unit_name: "件",
+          vip_price: "79.20"
+        }]
       }
     ],
     navActive: 0
@@ -35,6 +137,9 @@ Page({
    */
   onLoad: function (res) {
     this.infoScroll();
+  },
+  addCart:function(event){
+    console.log('addCart')
   },
   infoScroll: function () {
     let that = this;
@@ -56,7 +161,6 @@ Page({
       query.select(idView).boundingClientRect();
       query.exec(function (res) {
         var top = res[0].top;
-        console.log(top)
         hightArr.push(top);
         that.setData({
           hightArr: hightArr
