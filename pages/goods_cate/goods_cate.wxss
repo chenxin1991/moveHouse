@@ -17,3 +17,17 @@ page{background-color:#fff!important;}
 .productSort .conter .list .item .picture{width:120rpx;height:120rpx;border-radius:50%;}
 .productSort .conter .list .item .picture image{width:100%;height:100%;border-radius:50%;}
 .productSort .conter .list .item .name{font-size:24rpx;color:#333;height:56rpx;line-height:56rpx;width:120rpx;text-align:center;}
+@import '/app.wxss';
+.goodList .item{padding:15rpx 0rpx 15rpx 30rpx;}
+.goodList .item .pictrue{width:180rpx;height:180rpx;}
+.goodList .item .pictrue image{width:100%;height:100%;border-radius:6rpx;}
+.goodList .item .underline{padding-left:20rpx;}
+.goodList .item .text{font-size:30rpx;color:#222;width:310rpx;}
+.goodList .item .text .title{font-size: 26rpx;color: #333;font-weight: bold;position:relative;line-height:40rpx;height:80rpx;overflow:hidden;}
+.goodList .item .text .money{font-size:26rpx;font-weight:bold;}
+.goodList .item .text .money .num{font-size:30rpx;}
+.goodList .item .text .vip-money{font-size:24rpx;color:#282828;font-weight:bold;margin-top:15rpx;}
+.goodList .item .text .vip-money image{width:46rpx;height:21rpx;margin-left:5rpx;}
+.goodList .item .text .vip-money .num{font-size:22rpx;color:#aaa;font-weight:normal;margin:-2rpx 0 0 22rpx;}
+.goodList .item .iconfont{position:absolute;right:30rpx;width:50rpx;height:50rpx;border-radius:50%;font-size:30rpx;bottom:38rpx;}
+

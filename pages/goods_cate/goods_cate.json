@@ -1,5 +1,4 @@
 {
-  "usingComponents": {
-    "goodList": "/components/goodList/index"
-  }
+  "navigationBarTitleText":"居民搬家",
+  "enablePullDownRefresh": false
 }

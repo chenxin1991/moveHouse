@@ -8,138 +8,147 @@ Page({
         id: 18,
         cate_name: "用车",
         goods: [{
-          id: 1,
-          cate_id: "4",
-          image: "/images/car1.png",
-          ot_price: "400",
-          price: "400",
-          sales: "73",
-          store_name: "4.2米货车 载重2吨 长宽高4.2*2.0*1.9米",
-          unit_name: "件",
-          vip_price: "79.20"
-        },
-        {
-          id: 2,
-          cate_id: "4",
-          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-          ot_price: "80.00",
-          price: "80.00",
-          sales: "73",
-          store_name: "依维柯",
-          unit_name: "件",
-          vip_price: "79.20"
-        }]
+            id: 1,
+            cate_id: "1",
+            title: "4.2米货车 载重2吨 长宽高4.2*2.0*1.9米",
+            image: "/images/car1.png",
+            price: "400"
+          },
+          {
+            id: 2,
+            cate_id: "1",
+            title: "依维柯 载重1.5吨 长宽高3.8*1.9*1.8米",
+            image: "/images/car2.png",
+            price: "300"
+          },
+          {
+            id: 3,
+            cate_id: "1",
+            title: "面包车 载重0.55吨 长宽高2.0*1.3*1.1米",
+            image: "/images/car3.png",
+            price: "150"
+          }
+        ]
       },
       {
         id: 19,
         cate_name: "拆装",
         goods: [{
-          id: 1,
-          cate_id: "4",
-          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-          ot_price: "80.00",
-          price: "80.00",
-          sales: "73",
-          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
-          unit_name: "件",
-          vip_price: "79.20"
-        },
-        {
-          id: 2,
-          cate_id: "4",
-          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-          ot_price: "80.00",
-          price: "80.00",
-          sales: "73",
-          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
-          unit_name: "件",
-          vip_price: "79.20"
-        }]
+            id: 4,
+            cate_id: "2",
+            title: '2门衣柜',
+            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+            price: "100"
+          },
+          {
+            id: 5,
+            cate_id: "2",
+            title: '桌子/餐桌',
+            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+            price: "50"
+          },
+          {
+            id: 6,
+            cate_id: "2",
+            title: '圆筒用电热水器',
+            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+            price: "100"
+          }
+        ]
       },
       {
         id: 20,
         cate_name: "大件",
         goods: [{
-          id: 1,
-          cate_id: "4",
-          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-          ot_price: "80.00",
-          price: "80.00",
-          sales: "73",
-          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
-          unit_name: "件",
-          vip_price: "79.20"
-        },
-        {
-          id: 2,
-          cate_id: "4",
-          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-          ot_price: "80.00",
-          price: "80.00",
-          sales: "73",
-          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
-          unit_name: "件",
-          vip_price: "79.20"
-        }]
+            id: 7,
+            cate_id: "3",
+            title: '大理石餐桌',
+            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+            price: "100"
+          },
+          {
+            id: 8,
+            cate_id: "3",
+            title: '跑步机',
+            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+            price: "100"
+          }
+        ]
       },
       {
         id: 21,
         cate_name: "材料",
         goods: [{
-          id: 1,
-          cate_id: "4",
-          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-          ot_price: "80.00",
-          price: "80.00",
-          sales: "73",
-          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
-          unit_name: "件",
-          vip_price: "79.20"
-        },
-        {
-          id: 2,
-          cate_id: "4",
-          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-          ot_price: "80.00",
-          price: "80.00",
-          sales: "73",
-          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
-          unit_name: "件",
-          vip_price: "79.20"
-        },{
-          id: 1,
-          cate_id: "4",
-          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-          ot_price: "80.00",
-          price: "80.00",
-          sales: "73",
-          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
-          unit_name: "件",
-          vip_price: "79.20"
-        },
-        {
-          id: 2,
-          cate_id: "4",
-          image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-          ot_price: "80.00",
-          price: "80.00",
-          sales: "73",
-          store_name: "伊利酸奶畅轻整箱装乳酸菌燕麦黄桃草莓早餐奶250克9瓶风味发酵乳",
-          unit_name: "件",
-          vip_price: "79.20"
-        }]
+            id: 9,
+            cate_id: "4",
+            title: "纸箱",
+            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+            price: "13"
+          },
+          {
+            id: 10,
+            cate_id: "4",
+            title: "纸箱2",
+            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
+            price: "13"
+          }
+        ]
       }
     ],
-    navActive: 0
+    navActive: 0,
+    cartNum: 0,
+    cart: []
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (res) {
     this.infoScroll();
+    let cart = wx.getStorageSync('cart') || []; //判断cart存不存在
+    this.setData({
+      cart: cart
+    });
   },
-  addCart:function(event){
-    console.log('addCart')
+  addCart: function (res) {
+    let cart = wx.getStorageSync('cart') || []; //判断cart存不存在
+    let exist = cart.find(function (ele) { //find遍历cart数组
+      return ele.id === res.currentTarget.dataset.id;
+    })
+    if (exist) {
+      exist.num = parseInt(exist.num) + 1; //如果加入购物车的商品存在就增加数量
+    } else {
+      res.currentTarget.dataset.num = 1;
+      cart.push(res.currentTarget.dataset);
+    }
+    wx.setStorage({
+      key: 'cart',
+      data: cart,
+      success: function (res) {
+        //添加购物车的消息提示框
+        wx.showToast({
+          title: "添加成功",
+          icon: "success",
+          durantion: 2000
+        })
+      }
+    })
+    //购物车的图标右上方提示购物车中有多少商品
+    let total = 0;
+    cart.find(function (ele) {
+      total += parseInt(ele.num);
+    })
+    this.setData({
+      cart: cart,
+      cartNum: total
+    });
+    wx.setStorage({
+      data: total.toString(),
+      key: 'cartNum',
+    })
+    wx.setTabBarBadge({
+      index: 2,
+      text: total.toString()
+    })
   },
   infoScroll: function () {
     let that = this;

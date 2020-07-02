@@ -7,7 +7,10 @@
 	</view>
 	<view class='aside' style='margin-top:98rpx'>
 		<block wx:for="{{productList}}" wx:for-item="item" wx:key>
-			<view class='item acea-row row-center-wrapper {{index==navActive?"on":""}}' data-index='{{index}}' data-id='b{{index}}' bindtap='tap'><text>{{item.cate_name}}</text></view>
+			<view class='item acea-row row-center-wrapper {{index==navActive?"on":""}}' data-index='{{index}}' data-id='b{{index}}' bindtap='tap'>
+				<text>{{item.cate_name}}</text>
+				<text style="color: #fff;position:relative;top:-20rpx;right:-40rpx;border-radius: 200rpx;padding: 0rpx 10rpx;background-color: #e93323!important;font-size: 20rpx;">1</text>
+			</view>
 		</block>
 	</view>
 	<view class='conter'>
@@ -17,10 +20,37 @@
 					<view class='title acea-row row-left row-middle'>
 						<view class='name'>{{item.cate_name}}</view>
 					</view>
-       <goodList bastList="{{item.goods}}"></goodList>
+					<view class='goodList'>
+						<block wx:for="{{item.goods}}" wx:key>
+							<view class='item acea-row'>
+								<navigator url='/pages/goods_details/index?id={{item.id}}'>
+									<view class='pictrue'>
+										<image src='{{item.image}}'></image>
+									</view>
+								</navigator>
+								<view class='underline'>
+									<view class='text'>
+										<view class='title'>{{item.title}}</view>
+										<view style="height:60rpx;display:flex;align-items:flex-end;justify-content:space-between;margin-top:40rpx;">
+											<view class='money font-color' style="display:flex;align-items:center;">￥<text class='num'>{{item.price}}</text></view>
+											<view style="width:160rpx;display:flex;justify-content:flex-end;align-items:center;">
+												<block wx:for="{{cart}}" wx:for-item="cartItem">
+													<block wx:if="{{cartItem.id==item.id}}">
+														<image class='icon' catchtap='reduceCart' data-id='{{item.id}}' src='/images/reduce.png' style="width:40rpx;height:40rpx;"></image>
+														<span style="width:60rpx;text-align:center;">{{cartItem.num}}</span>
+													</block>
+												</block>
+												<image class='icon' catchtap='addCart' data-id='{{item.id}}' data-title='{{item.title}}' data-image='{{item.image}}' data-price='{{item.price}}' src='/images/add.png' style="width:40rpx;height:40rpx;"></image>
+											</view>
+										</view>
+									</view>
+								</view>
+							</view>
+						</block>
+					</view>
 				</view>
 			</block>
-      <view style='height:{{height-300}}rpx;' ></view>
+			<view style='height:{{height-300}}rpx;'></view>
 		</scroll-view>
 	</view>
 </view>

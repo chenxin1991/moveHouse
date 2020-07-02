@@ -5,7 +5,12 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    if(wx.getStorageSync('cartNum')){
+      wx.setTabBarBadge({
+        index: 2,
+        text: wx.getStorageSync('cartNum')
+      })
+    }
     // 登录
     wx.login({
       success: res => {
