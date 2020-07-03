@@ -197,7 +197,6 @@ Page({
         index: 2
       })
     }
-
   },
   infoScroll: function () {
     let that = this;
@@ -279,6 +278,20 @@ Page({
     this.setData({
       cart: cart
     });
+    let total = 0;
+    cart.find(function (ele) {
+      total += parseInt(ele.num);
+    })
+    if (total > 0) {
+      wx.setTabBarBadge({
+        index: 2,
+        text: total.toString()
+      })
+    } else {
+      wx.removeTabBarBadge({
+        index: 2
+      })
+    }
     let productOrder = JSON.parse(JSON.stringify(this.data.productList));
     let len = productOrder.length;
     for (let i = 0; i < len; i++) {
