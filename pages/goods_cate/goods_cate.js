@@ -5,96 +5,87 @@ Page({
    */
   data: {
     productList: [{
-        id: 18,
-        cate_name: "用车",
+        id: 1,
+        name: "用车",
         goods: [{
             id: 1,
-            cate_id: "1",
-            title: "4.2米货车 载重2吨 长宽高4.2*2.0*1.9米",
+            name: "4.2米货车 载重2吨 长宽高4.2*2.0*1.9米",
             image: "/images/car1.png",
             price: "400"
           },
           {
             id: 2,
-            cate_id: "1",
-            title: "依维柯 载重1.5吨 长宽高3.8*1.9*1.8米",
+            name: "依维柯 载重1.5吨 长宽高3.8*1.9*1.8米",
             image: "/images/car2.png",
             price: "300"
           },
           {
             id: 3,
-            cate_id: "1",
-            title: "面包车 载重0.55吨 长宽高2.0*1.3*1.1米",
+            name: "面包车 载重0.55吨 长宽高2.0*1.3*1.1米",
             image: "/images/car3.png",
             price: "150"
           }
         ]
       },
       {
-        id: 19,
-        cate_name: "拆装",
+        id: 2,
+        name: "拆装",
         goods: [{
             id: 4,
-            cate_id: "2",
-            title: '2门衣柜',
+            name: '2门衣柜',
             image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
             price: "100"
           },
           {
             id: 5,
-            cate_id: "2",
-            title: '桌子/餐桌',
+            name: '桌子/餐桌',
             image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
             price: "50"
           },
           {
             id: 6,
-            cate_id: "2",
-            title: '圆筒用电热水器',
+            name: '圆筒用电热水器',
             image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
             price: "100"
           }
         ]
       },
       {
-        id: 20,
-        cate_name: "大件",
+        id: 3,
+        name: "大件",
         goods: [{
             id: 7,
-            cate_id: "3",
-            title: '大理石餐桌',
+            name: '大理石餐桌',
             image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
             price: "100"
           },
           {
             id: 8,
-            cate_id: "3",
-            title: '跑步机',
+            name: '跑步机',
             image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
             price: "100"
           }
         ]
       },
       {
-        id: 21,
-        cate_name: "材料",
+        id: 4,
+        name: "材料",
         goods: [{
             id: 9,
-            cate_id: "4",
-            title: "纸箱",
+            name: "纸箱",
             image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
             price: "13"
           },
           {
             id: 10,
-            cate_id: "4",
-            title: "纸箱2",
+            name: "纸箱2",
             image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
             price: "13"
           }
         ]
       }
     ],
+    productOrder:[],
     navActive: 0,
     cartNum: 0,
     cart: []
@@ -103,13 +94,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (res) {
-    this.infoScroll();
-    let cart = wx.getStorageSync('cart') || []; //判断cart存不存在
-    this.setData({
-      cart: cart
-    });
+
   },
   addCart: function (res) {
+    let productOrder = this.data.productOrder;
+    let index = res.currentTarget.dataset.index;
+    for (let j = 0; j < productOrder[index].goods.length; j++) {
+      if (productOrder[index].goods[j].id == res.currentTarget.dataset.id) {
+        if (productOrder[index].hasOwnProperty("num")) {
+          productOrder[index].num += 1;
+        } else {
+          productOrder[index].num = 1
+        }
+        if (productOrder[index].goods[j].hasOwnProperty("num")) {
+          productOrder[index].goods[j].num += 1;
+        } else {
+          productOrder[index].goods[j].num = 1
+        }
+      }
+    }
+    this.setData({
+      productOrder: productOrder
+    });
     let cart = wx.getStorageSync('cart') || []; //判断cart存不存在
     let exist = cart.find(function (ele) { //find遍历cart数组
       return ele.id === res.currentTarget.dataset.id;
@@ -120,27 +126,15 @@ Page({
       res.currentTarget.dataset.num = 1;
       cart.push(res.currentTarget.dataset);
     }
-    wx.setStorage({
-      key: 'cart',
-      data: cart,
-      success: function (res) {
-        //添加购物车的消息提示框
-        wx.showToast({
-          title: "添加成功",
-          icon: "success",
-          durantion: 2000
-        })
-      }
-    })
     //购物车的图标右上方提示购物车中有多少商品
     let total = 0;
     cart.find(function (ele) {
       total += parseInt(ele.num);
     })
-    this.setData({
-      cart: cart,
-      cartNum: total
-    });
+    wx.setStorage({
+      key: 'cart',
+      data: cart
+    })
     wx.setStorage({
       data: total.toString(),
       key: 'cartNum',
@@ -149,6 +143,61 @@ Page({
       index: 2,
       text: total.toString()
     })
+  },
+  reduceCart: function (res) {
+    let productOrder = this.data.productOrder;
+    let index = res.currentTarget.dataset.index;
+    for (let j = 0; j < productOrder[index].goods.length; j++) {
+      if (productOrder[index].goods[j].id == res.currentTarget.dataset.id) {
+        if (productOrder[index].hasOwnProperty("num")) {
+          productOrder[index].num -= 1;
+        } else {
+          productOrder[index].num = 0
+        }
+        if (productOrder[index].goods[j].hasOwnProperty("num")) {
+          productOrder[index].goods[j].num -= 1;
+        } else {
+          productOrder[index].goods[j].num = 0
+        }
+      }
+    }
+    this.setData({
+      productOrder: productOrder
+    });
+    let cart = wx.getStorageSync('cart') || []; //判断cart存不存在
+    let exist = cart.find(function (ele) { //find遍历cart数组
+      return ele.id === res.currentTarget.dataset.id;
+    })
+    if (exist) {
+      exist.num = parseInt(exist.num) - 1; //如果加入购物车的商品存在就增加数量
+      if (exist.num == 0) {
+        cart.splice(cart.findIndex(item => item.id === res.currentTarget.dataset.id), 1)
+      }
+    }
+    //购物车的图标右上方提示购物车中有多少商品
+    let total = 0;
+    cart.find(function (ele) {
+      total += parseInt(ele.num);
+    })
+    wx.setStorage({
+      key: 'cart',
+      data: cart
+    })
+    wx.setStorage({
+      data: total.toString(),
+      key: 'cartNum',
+    })
+    if (total > 0) {
+      wx.setTabBarBadge({
+        index: 2,
+        text: total.toString()
+      })
+    } else {
+      wx.removeTabBarBadge({
+        index: 2
+      })
+    }
+
   },
   infoScroll: function () {
     let that = this;
@@ -226,7 +275,30 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let cart = wx.getStorageSync('cart') || []; //判断cart存不存在
+    this.setData({
+      cart: cart
+    });
+    let productOrder = JSON.parse(JSON.stringify(this.data.productList));
+    let len = productOrder.length;
+    for (let i = 0; i < len; i++) {
+      for (let j = 0; j < productOrder[i].goods.length; j++) {
+        for (let k = 0; k < cart.length; k++) {
+          if (productOrder[i].goods[j].id == cart[k].id) {
+            productOrder[i].goods[j].num = cart[k].num;
+            if (productOrder[i].hasOwnProperty("num")) {
+              productOrder[i].num += cart[k].num;
+            } else {
+              productOrder[i].num = cart[k].num;
+            }
+          }
+        }
+      }
+    }
+    this.setData({
+      productOrder: productOrder
+    });
+    this.infoScroll();
   },
 
   /**
