@@ -185,7 +185,7 @@ Page({
     })
     wx.setStorage({
       data: total.toString(),
-      key: 'cartNum',
+      key: 'cartNum'
     })
     if (total > 0) {
       wx.setTabBarBadge({
