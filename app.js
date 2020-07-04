@@ -5,7 +5,7 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    if (wx.getStorageSync('cartNum')) {
+    if (wx.getStorageSync('cartNum')>0) {
       wx.setTabBarBadge({
         index: 2,
         text: wx.getStorageSync('cartNum')
@@ -43,6 +43,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    url: 'http://demo.tp6.cn'
   }
 })

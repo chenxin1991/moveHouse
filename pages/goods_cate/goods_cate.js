@@ -1,10 +1,41 @@
+import {
+  getCategoryList
+} from '../../api/basic.js';
+
 const app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    productList: [{
+    productList: [],
+    productOrder: [],
+    navActive: 0
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (res) {
+    this.getAllCategory();
+  },
+  getAllCategory: function () {
+    var that = this;
+    // getCategoryList().then(res => {
+    //   that.setData({
+    //     productList: res.data
+    //   });
+    //   let cart = wx.getStorageSync('cart');
+    //   if (cart && cart.length > 0) {
+    //     that.refreshGoods(that.data.productList, cart);
+    //   }else{
+    //     this.setData({
+    //       productOrder: that.data.productList
+    //     });
+    //   }
+    //   that.infoScroll();
+    // })
+    that.setData({
+      productList: [{
         id: 1,
         name: "用车",
         goods: [{
@@ -84,20 +115,59 @@ Page({
           }
         ]
       }
-    ],
-    productOrder:[],
-    navActive: 0,
-    cartNum: 0,
-    cart: []
+    ]
+    });
+    let cart = wx.getStorageSync('cart');
+    if (cart && cart.length > 0) {
+      let product = JSON.parse(JSON.stringify(that.data.productList));
+      that.refreshGoods(product, cart);
+    } else {
+      this.setData({
+        productOrder: that.data.productList
+      });
+    }
+    that.infoScroll();
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (res) {
-
+  refreshGoods: function (product, cart) {
+    let refreshCart = [];
+    let len = product.length;
+    for (let i = 0; i < len; i++) {
+      for (let j = 0; j < product[i].goods.length; j++) {
+        for (let k = 0; k < cart.length; k++) {
+          if (product[i].goods[j].id == cart[k].id) {
+            refreshCart.push(cart[k]);
+            product[i].goods[j].num = cart[k].num;
+            if (product[i].hasOwnProperty("num")) {
+              product[i].num += cart[k].num;
+            } else {
+              product[i].num = cart[k].num;
+            }
+          }
+        }
+      }
+    }
+    let total = 0;
+    refreshCart.find(function (ele) {
+      total += parseInt(ele.num);
+    })
+    this.setData({
+      productOrder: product
+    });
+    wx.setStorage({
+      key: 'cart',
+      data: refreshCart
+    })
+    wx.setStorage({
+      key: 'cartNum',
+      data: total.toString()
+    })
+    wx.setTabBarBadge({
+      index: 2,
+      text: total.toString()
+    })
   },
   addCart: function (res) {
-    let productOrder = this.data.productOrder;
+    let productOrder = JSON.parse(JSON.stringify(this.data.productOrder));
     let index = res.currentTarget.dataset.index;
     for (let j = 0; j < productOrder[index].goods.length; j++) {
       if (productOrder[index].goods[j].id == res.currentTarget.dataset.id) {
@@ -136,8 +206,8 @@ Page({
       data: cart
     })
     wx.setStorage({
-      data: total.toString(),
       key: 'cartNum',
+      data: total.toString()
     })
     wx.setTabBarBadge({
       index: 2,
@@ -145,16 +215,16 @@ Page({
     })
   },
   reduceCart: function (res) {
-    let productOrder = this.data.productOrder;
+    let productOrder = JSON.parse(JSON.stringify(this.data.productOrder));
     let index = res.currentTarget.dataset.index;
     for (let j = 0; j < productOrder[index].goods.length; j++) {
       if (productOrder[index].goods[j].id == res.currentTarget.dataset.id) {
-        if (productOrder[index].hasOwnProperty("num")) {
+        if (productOrder[index].hasOwnProperty("num") > 0) {
           productOrder[index].num -= 1;
         } else {
           productOrder[index].num = 0
         }
-        if (productOrder[index].goods[j].hasOwnProperty("num")) {
+        if (productOrder[index].goods[j].hasOwnProperty("num") > 0) {
           productOrder[index].goods[j].num -= 1;
         } else {
           productOrder[index].goods[j].num = 0
@@ -168,7 +238,7 @@ Page({
     let exist = cart.find(function (ele) { //find遍历cart数组
       return ele.id === res.currentTarget.dataset.id;
     })
-    if (exist) {
+    if (exist && exist.num > 0) {
       exist.num = parseInt(exist.num) - 1; //如果加入购物车的商品存在就增加数量
       if (exist.num == 0) {
         cart.splice(cart.findIndex(item => item.id === res.currentTarget.dataset.id), 1)
@@ -183,18 +253,21 @@ Page({
       key: 'cart',
       data: cart
     })
-    wx.setStorage({
-      data: total.toString(),
-      key: 'cartNum'
-    })
     if (total > 0) {
       wx.setTabBarBadge({
         index: 2,
         text: total.toString()
       })
+      wx.setStorage({
+        key: 'cartNum',
+        data: total.toString()
+      })
     } else {
       wx.removeTabBarBadge({
         index: 2
+      })
+      wx.removeStorage({
+        key: 'cartNum',
       })
     }
   },
@@ -274,44 +347,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let cart = wx.getStorageSync('cart') || []; //判断cart存不存在
-    this.setData({
-      cart: cart
-    });
-    let total = 0;
-    cart.find(function (ele) {
-      total += parseInt(ele.num);
-    })
-    if (total > 0) {
-      wx.setTabBarBadge({
-        index: 2,
-        text: total.toString()
-      })
-    } else {
-      wx.removeTabBarBadge({
-        index: 2
-      })
+    let that = this;
+    let productList = JSON.parse(JSON.stringify(this.data.productList));
+    let cart = wx.getStorageSync('cart');
+    if (cart && cart.length > 0) {
+      that.refreshGoods(productList, cart);
     }
-    let productOrder = JSON.parse(JSON.stringify(this.data.productList));
-    let len = productOrder.length;
-    for (let i = 0; i < len; i++) {
-      for (let j = 0; j < productOrder[i].goods.length; j++) {
-        for (let k = 0; k < cart.length; k++) {
-          if (productOrder[i].goods[j].id == cart[k].id) {
-            productOrder[i].goods[j].num = cart[k].num;
-            if (productOrder[i].hasOwnProperty("num")) {
-              productOrder[i].num += cart[k].num;
-            } else {
-              productOrder[i].num = cart[k].num;
-            }
-          }
-        }
-      }
-    }
-    this.setData({
-      productOrder: productOrder
-    });
-    this.infoScroll();
   },
 
   /**
