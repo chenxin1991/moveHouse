@@ -1,0 +1,5 @@
+<view class='shoppingCart'>
+  <view class='noCart'>
+     <view class='pictrue'><image src='/images/noCart.png'></image></view>
+  </view>
+</view>
