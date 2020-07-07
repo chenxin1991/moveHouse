@@ -1,5 +1,53 @@
-<view class='shoppingCart'>
-  <view class='noCart'>
-     <view class='pictrue'><image src='/images/noCart.png'></image></view>
-  </view>
+<view wx:if="{{cartList.length}}">
+	<view class='shoppingCart'>
+		<view class='list'>
+			<checkbox-group bindchange="checkboxChange">
+				<block wx:for="{{cartList}}" wx:key>
+					<view class='item acea-row row-between-wrapper'>
+						<checkbox value="{{item.id}}" checked="{{item.checked}}" />
+						<navigator url='/pages/goods_details/index?id={{item.id}}' hover-class='none' class='picTxt acea-row row-between-wrapper'>
+							<view class='pictrue'>
+								<image src='{{item.image}}'></image>
+							</view>
+							<view class='text'>
+								<view class='title'>{{item.name}}</view>
+								<view style="height:60rpx;display:flex;align-items:flex-end;justify-content:space-between;margin-top:40rpx;">
+									<view class='money font-color' style="display:flex;align-items:center;font-size:26rpx;font-weight:bold;">￥<text class='num' style="font-size:30rpx;">{{item.price}}</text></view>
+									<view style="width:160rpx;display:flex;justify-content:flex-end;align-items:center;">
+										<block wx:if="{{item.num}}">
+											<image class='icon' catchtap='reduceCart' data-id='{{item.id}}' data-name='{{item.name}}' data-idx='{{idx}}' data-idy="{{idy}}" data-image='{{item.image}}' data-price='{{item.price}}' src='/images/reduce.png' style="width:45rpx;height:45rpx;"></image>
+											<span style="width:60rpx;text-align:center;">{{item.num}}</span>
+										</block>
+										<image class='icon' catchtap='addCart' data-id='{{item.id}}' data-name='{{item.name}}' data-idx='{{idx}}' data-idy="{{idy}}" data-image='{{item.image}}' data-price='{{item.price}}' src='/images/add.png' style="width:45rpx;height:45rpx;"></image>
+									</view>
+								</view>
+							</view>
+						</navigator>
+					</view>
+				</block>
+			</checkbox-group>
+		</view>
+		<view style='height:120rpx;'></view>
+		<view class='footer acea-row row-between-wrapper'>
+			<view>
+				<checkbox-group bindchange="checkboxAllChange">
+					<checkbox value="all" checked="{{isAllSelect}}" /><text class='checkAll'>全选</text>
+				</checkbox-group>
+			</view>
+			<view class='money acea-row row-middle'>
+				<text class='font-color'>￥{{selectCountPrice}}</text>
+				<form bindsubmit="subOrder" report-submit='true'>
+					<button class='placeOrder bg-color' formType="submit">去结算</button>
+				</form>
+			</view>
+		</view>
+	</view>
+
+</view>
+<view wx:else>
+	<view class='noCart'>
+		<text class="iconfont icon-kong"></text>
+		<text class="cont">亲，还没有选择任何物品哦</text>
+		<view bindtap="goShopping" class="flow-btn-min">去逛逛</view>
+	</view>
 </view>

@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    cartList: []
   },
 
   /**
@@ -13,6 +13,15 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  /**
+   * 去购物
+   */
+  goShopping() {
+    wx.switchTab({
+      url: '../goods_cate/goods_cate',
+    });
   },
 
   /**
@@ -26,7 +35,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(wx.getStorageSync('cart'));
+    this.setData({
+      cartList: wx.getStorageSync('cart')
+    });
   },
 
   /**

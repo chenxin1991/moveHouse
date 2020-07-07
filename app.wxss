@@ -1,7 +1,6 @@
 /**app.wxss**/
 @import '/font/iconfont.wxss';
 @import '/css/style.wxss';
-@import '/css/animate.wxss';
 
 .start {
   width: 122rpx;
