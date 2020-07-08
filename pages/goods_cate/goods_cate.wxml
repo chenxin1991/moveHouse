@@ -6,7 +6,7 @@
 		</view>
 	</view>
 	<view class='aside' style='margin-top:98rpx'>
-		<block wx:for="{{productOrder}}" wx:for-item="item" wx:key>
+		<block wx:for="{{products}}" wx:for-item="item" wx:key>
 			<view class='item acea-row row-center-wrapper {{index==navActive?"on":""}}' data-index='{{index}}' data-id='b{{index}}' bindtap='tap'>
 				<text>{{item.name}}</text>
 				<text wx:if="{{item.num}}" style="color: #fff;position:absolute;border-radius: 200rpx;right:0rpx;padding: 0rpx 10rpx;background-color: #e93323!important;font-size: 20rpx;">{{item.num}}</text>
@@ -15,7 +15,7 @@
 	</view>
 	<view class='conter'>
 		<scroll-view scroll-y="true" scroll-into-view="{{toView}}" style='height:{{height}}rpx;' bindscroll="scroll" scroll-with-animation='true'>
-			<block wx:for="{{productOrder}}" wx:for-item="product" wx:for-index="idx">
+			<block wx:for="{{products}}" wx:for-item="product" wx:for-index="idx">
 				<view class='listw' id="b{{idx}}">
 					<view class='title acea-row row-left row-middle'>
 						<view class='name'>{{product.name}}</view>

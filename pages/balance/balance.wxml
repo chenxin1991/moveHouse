@@ -11,14 +11,14 @@
 							</view>
 							<view class='text'>
 								<view class='title'>{{item.name}}</view>
-								<view style="height:60rpx;display:flex;align-items:flex-end;justify-content:space-between;margin-top:40rpx;">
+								<view style="height:60rpx;display:flex;align-items:flex-end;justify-content:space-between;margin-top:20rpx;">
 									<view class='money font-color' style="display:flex;align-items:center;font-size:26rpx;font-weight:bold;">￥<text class='num' style="font-size:30rpx;">{{item.price}}</text></view>
 									<view style="width:160rpx;display:flex;justify-content:flex-end;align-items:center;">
 										<block wx:if="{{item.num}}">
-											<image class='icon' catchtap='reduceCart' data-id='{{item.id}}' data-name='{{item.name}}' data-idx='{{idx}}' data-idy="{{idy}}" data-image='{{item.image}}' data-price='{{item.price}}' src='/images/reduce.png' style="width:45rpx;height:45rpx;"></image>
+											<image class='icon' catchtap='reduceCart' data-id='{{item.id}}' src='/images/reduce.png' style="width:45rpx;height:45rpx;"></image>
 											<span style="width:60rpx;text-align:center;">{{item.num}}</span>
 										</block>
-										<image class='icon' catchtap='addCart' data-id='{{item.id}}' data-name='{{item.name}}' data-idx='{{idx}}' data-idy="{{idy}}" data-image='{{item.image}}' data-price='{{item.price}}' src='/images/add.png' style="width:45rpx;height:45rpx;"></image>
+										<image class='icon' catchtap='addCart' data-id='{{item.id}}' src='/images/add.png' style="width:45rpx;height:45rpx;"></image>
 									</view>
 								</view>
 							</view>
