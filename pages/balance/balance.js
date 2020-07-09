@@ -275,7 +275,6 @@ Page({
         this.setData({
           isAllSelect: false
         });
-        break;
       } else {
         selectCountPrice = selectCountPrice + parseFloat(cartList[i].price * cartList[i].num);
       }
