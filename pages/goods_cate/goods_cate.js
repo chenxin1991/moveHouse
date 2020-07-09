@@ -337,19 +337,6 @@ Page({
    */
   onShow: function () {
     this.getAllCategory();
-    //console.log('进来了');
-    // let products = this.data.products;
-    // let len = products.length;
-    // let cart = wx.getStorageSync('cart')
-    // for (let i = 0; i < len; i++) {
-    //   for (let j = 0; j < products[i].goods.length; j++) {
-    //     for (let k = 0; k < cart.length; k++) {
-    //       if(products[i].goods[j].id == cart[k].id){
-
-    //       }
-    //     }
-    //   }
-    // }
   },
 
   /**

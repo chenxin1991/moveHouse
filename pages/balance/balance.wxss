@@ -229,6 +229,7 @@
   height: 60rpx;
   text-align: center;
   line-height: 60rpx;
+  padding: 0;
 }
 
 .shoppingCart .footer .button form~form {

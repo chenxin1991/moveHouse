@@ -1,10 +1,10 @@
 <view wx:if="{{cartList.length}}">
 	<view class='shoppingCart'>
 		<view class='list'>
-			<checkbox-group bindchange="checkboxChange">
+			<checkbox-group>
 				<block wx:for="{{cartList}}" wx:key>
 					<view class='item acea-row row-between-wrapper'>
-						<checkbox value="{{item.id}}" checked="{{item.checked}}" />
+						<checkbox value="{{item.id}}" checked="{{item.checked}}" data-index="{{index}}" data-id="{{item.id}}" data-checked="{{item.checked}}" catchtap='checkboxClick' />
 						<navigator url='/pages/goods_details/index?id={{item.id}}' hover-class='none' class='picTxt acea-row row-between-wrapper'>
 							<view class='pictrue'>
 								<image src='{{item.image}}'></image>
@@ -31,11 +31,11 @@
 		<view class='footer acea-row row-between-wrapper'>
 			<view>
 				<checkbox-group bindchange="checkboxAllChange">
-					<checkbox value="all" checked="{{isAllSelect}}" /><text class='checkAll'>全选</text>
+					<checkbox value="all" checked="{{isAllSelect}}" /><text class='checkAll'>全选</text><text catchtap="delItem" style="padding-left:25rpx;color:blue;">删除</text>
 				</checkbox-group>
 			</view>
 			<view class='money acea-row row-middle'>
-				<text class='font-color'>￥{{selectCountPrice}}</text>
+				<text style="font-size:25rpx;">合计：</text><text class='font-color' style="font-weight: bold;font-size:35rpx;">￥{{selectCountPrice}}</text>
 				<form bindsubmit="subOrder" report-submit='true'>
 					<button class='placeOrder bg-color' formType="submit">去结算</button>
 				</form>
