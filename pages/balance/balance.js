@@ -233,14 +233,23 @@ Page({
             key: 'cart',
             data: cartList
           })
-          wx.setStorage({
-            key: 'cartNum',
-            data: total.toString()
-          })
-          wx.setTabBarBadge({
-            index: 2,
-            text: total.toString()
-          })
+          if (total > 0) {
+            wx.setTabBarBadge({
+              index: 2,
+              text: total.toString()
+            })
+            wx.setStorage({
+              key: 'cartNum',
+              data: total.toString()
+            })
+          } else {
+            wx.removeTabBarBadge({
+              index: 2
+            })
+            wx.removeStorage({
+              key: 'cartNum',
+            })
+          }
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
