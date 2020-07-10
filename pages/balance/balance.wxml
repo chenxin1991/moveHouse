@@ -36,9 +36,7 @@
 			</view>
 			<view class='money acea-row row-middle'>
 				<text style="font-size:25rpx;">合计：</text><text class='font-color' style="font-weight: bold;font-size:35rpx;">￥{{selectCountPrice}}</text>
-				<form bindsubmit="subOrder" report-submit='true'>
-					<button class='placeOrder bg-color' formType="submit">去结算</button>
-				</form>
+					<button class='placeOrder bg-color' catchtap="toOrder">去结算</button>
 			</view>
 		</view>
 	</view>

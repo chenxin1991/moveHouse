@@ -1,0 +1,60 @@
+/* pages/order/order.wxss */
+.btn-normal {
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  font-size: unset;
+  text-align: unset;
+  overflow: visible;
+}
+
+.menus-list .menus-item {
+  position: relative;
+  padding: 28rpx 28rpx;
+}
+
+.dis-flex {
+  display: flex !important;
+}
+
+.b-f {
+  background: #fff;
+}
+
+.flex-y-center {
+  align-items: center;
+}
+
+.flex-box {
+  flex: 1;
+}
+
+.menus-list .menus-item .menus-item__name {
+  color: #444;
+  margin-left: 20rpx;
+}
+
+.f-30 {
+  font-size: 30rpx;
+}
+
+.f-35 {
+  font-size: 35rpx;
+}
+
+.flex-y-center {
+  align-items: center;
+}
+
+.flex-x-end {
+  justify-content: flex-end;
+}
+
+.flex-box {
+  flex: 1;
+}

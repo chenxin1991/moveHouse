@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/goods_cate/goods_cate",
     "pages/balance/balance",
+    "pages/order/order",
     "pages/logs/logs"
   ],
   "window": {
@@ -18,7 +19,8 @@
     "color": "#282828",
     "selectedColor": "#e93323",
     "borderStyle": "white",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "iconPath": "images/1-001.png",
         "selectedIconPath": "images/1-002.png",
@@ -44,6 +46,5 @@
       }
     ]
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

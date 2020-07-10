@@ -65,6 +65,7 @@
   line-height: 40rpx;
   height: 80rpx;
   overflow: hidden;
+  font-weight: bold;
 }
 
 .shoppingCart .list .item .picTxt .text .money {

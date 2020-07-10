@@ -37,19 +37,19 @@ Page({
         name: "用车",
         goods: [{
             id: 1,
-            name: "4.2米货车 载重2吨 长宽高4.2*2.0*1.9米",
+            name: "4.2米货车 载重2吨 长宽高4.2*2.0*1.9米 2-3名工人",
             image: "/images/car1.png",
             price: "400"
           },
           {
             id: 2,
-            name: "依维柯 载重1.5吨 长宽高3.8*1.9*1.8米",
+            name: "依维柯 载重1.5吨 长宽高3.8*1.9*1.8米 2-3名工人",
             image: "/images/car2.png",
             price: "300"
           },
           {
             id: 3,
-            name: "面包车 载重0.55吨 长宽高2.0*1.3*1.1米",
+            name: "面包车 载重0.55吨 长宽高2.0*1.3*1.1米 1-2名工人",
             image: "/images/car3.png",
             price: "150"
           }
@@ -130,8 +130,9 @@ Page({
       for (let j = 0; j < products[i].goods.length; j++) {
         for (let k = 0; k < cart.length; k++) {
           if (products[i].goods[j].id == cart[k].id) {
-            refreshCart.push(cart[k]);
             products[i].goods[j].num = cart[k].num;
+            products[i].goods[j].checked = cart[k].checked;
+            refreshCart.push(products[i].goods[j]);
             if (products[i].hasOwnProperty("num")) {
               products[i].num += cart[k].num;
             } else {

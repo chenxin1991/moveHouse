@@ -1,0 +1,28 @@
+  <view class="menus-list m-top20">
+  	<form bindsubmit="onTargetMenus" data-url="pages/address/index">
+  		<button formType="submit" class="btn-normal">
+  			<view class="menus-item dis-flex b-f">
+  				<view class="menus-item__left flex-box dis-flex flex-y-center">
+  					<image src='/images/qidian.png' style='width:45rpx;height:45rpx;'></image>
+  					<text class="menus-item__name f-30">请选择从哪里搬出</text>
+  				</view>
+  				<view class="menus-item__right flex-box dis-flex flex-x-end flex-y-center">
+  					<image src='/images/dayu.png' style='width:26rpx;height:26rpx;'></image>
+  				</view>
+  			</view>
+  		</button>
+  	</form>
+  	<form bindsubmit="onTargetMenus" data-url="pages/user/help">
+  		<button formType="submit" class="btn-normal">
+  			<view class="menus-item dis-flex b-f">
+  				<view class="menus-item__left flex-box dis-flex flex-y-center">
+  					<image src='/images/zhongdian.png' style='width:45rpx;height:45rpx;'></image>
+  					<text class="menus-item__name f-30">请选择搬到哪里</text>
+  				</view>
+  				<view class="menus-item__right flex-box dis-flex flex-x-end flex-y-center">
+  					<image src='/images/dayu.png' style='width:26rpx;height:26rpx;'></image>
+  				</view>
+  			</view>
+  		</button>
+  	</form>
+  </view>
