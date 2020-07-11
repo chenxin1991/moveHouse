@@ -15,7 +15,8 @@
 
 .menus-list .menus-item {
   position: relative;
-  padding: 28rpx 28rpx;
+  padding: 32rpx 28rpx;
+  border-bottom: 1rpx solid #eee;
 }
 
 .dis-flex {
@@ -35,12 +36,15 @@
 }
 
 .menus-list .menus-item .menus-item__name {
-  color: #444;
   margin-left: 20rpx;
+  font-weight: bold;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(156, 156, 156, 1);
 }
 
 .f-30 {
-  font-size: 30rpx;
+  font-size: 32rpx;
 }
 
 .f-35 {

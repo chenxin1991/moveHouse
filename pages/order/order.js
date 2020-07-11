@@ -1,13 +1,29 @@
 // pages/order/order.js
+const util = require('../../utils/util.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    appointDate: '',
+    appointTime: '',
+    startDate: util.getToday(),
+    endDate: util.maxAppointDate(6),
+    array: ['08:00', '09:00', '10:00', '11:00','12:00','13:00','14:00','15:00']
   },
-
+  bindDateChange: function (e) {
+    this.setData({
+      appointDate: e.detail.value
+    })
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      appointTime: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

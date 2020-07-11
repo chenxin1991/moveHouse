@@ -1,28 +1,44 @@
-  <view class="menus-list m-top20">
-  	<form bindsubmit="onTargetMenus" data-url="pages/address/index">
-  		<button formType="submit" class="btn-normal">
-  			<view class="menus-item dis-flex b-f">
-  				<view class="menus-item__left flex-box dis-flex flex-y-center">
-  					<image src='/images/qidian.png' style='width:45rpx;height:45rpx;'></image>
-  					<text class="menus-item__name f-30">请选择从哪里搬出</text>
+  <view>
+  	<view class="menus-list" style="margin-bottom: 16rpx;">
+  		<form bindsubmit="onTargetMenus" data-url="pages/address/index">
+  			<button formType="submit" class="btn-normal">
+  				<view class="menus-item dis-flex b-f">
+  					<view class="menus-item__left flex-box dis-flex flex-y-center">
+  						<image src='/images/qidian.png' style='width:45rpx;height:45rpx;'></image>
+  						<text class="menus-item__name f-30">请选择从哪里搬出</text>
+  					</view>
+  					<view class="menus-item__right flex-box dis-flex flex-x-end flex-y-center">
+  						<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+  					</view>
   				</view>
-  				<view class="menus-item__right flex-box dis-flex flex-x-end flex-y-center">
-  					<image src='/images/dayu.png' style='width:26rpx;height:26rpx;'></image>
+  			</button>
+  		</form>
+  		<form bindsubmit="onTargetMenus" data-url="pages/user/help">
+  			<button formType="submit" class="btn-normal">
+  				<view class="menus-item dis-flex b-f">
+  					<view class="menus-item__left flex-box dis-flex flex-y-center">
+  						<image src='/images/zhongdian.png' style='width:45rpx;height:45rpx;'></image>
+  						<text class="menus-item__name f-30">请选择搬到哪里</text>
+  					</view>
+  					<view class="menus-item__right flex-box dis-flex flex-x-end flex-y-center">
+  						<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+  					</view>
   				</view>
+  			</button>
+  		</form>
+  	</view>
+  	<view style="height:300rpx;background: white;">
+  		<view style="padding:0rpx 30rpx;height:100%;width:100%;">
+  			<view style="height:100rpx;display:flex;align-items:center;justify-content:flex-start;">
+  				<text style="font-size: 30rpx;color: #999;">预约时间</text>
+  				<picker mode="date" value="{{appointDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+  					<input style="background: #f1f1f1;height:60rpx;width:200rpx;text-align:center;margin-left:10rpx;font-size:30rpx;" disabled="true" placeholder="请选择日期" value="{{appointDate}}" />
+  				</picker>
+  				<picker bindchange="bindPickerChange" value="{{appointTime}}" range="{{array}}">
+  					<input style="background: #f1f1f1;height:60rpx;width:180rpx;text-align:center;margin-left:10rpx;font-size:30rpx;" disabled="true" placeholder="请选择时间" value="{{array[appointTime]}}" />
+  				</picker>
   			</view>
-  		</button>
-  	</form>
-  	<form bindsubmit="onTargetMenus" data-url="pages/user/help">
-  		<button formType="submit" class="btn-normal">
-  			<view class="menus-item dis-flex b-f">
-  				<view class="menus-item__left flex-box dis-flex flex-y-center">
-  					<image src='/images/zhongdian.png' style='width:45rpx;height:45rpx;'></image>
-  					<text class="menus-item__name f-30">请选择搬到哪里</text>
-  				</view>
-  				<view class="menus-item__right flex-box dis-flex flex-x-end flex-y-center">
-  					<image src='/images/dayu.png' style='width:26rpx;height:26rpx;'></image>
-  				</view>
-  			</view>
-  		</button>
-  	</form>
+  			<view style="height:180rpx;background: #f1f1f1;"></view>
+  		</view>
+  	</view>
   </view>

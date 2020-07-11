@@ -14,33 +14,33 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
-const refreshGoods = (text, num) =>{
-  let strLength = 0;
-  let rows = 1;
-  let str = 0;
-  let arr = [];
-  for (let j = 0; j < text.length; j++) {
-    if (text.charCodeAt(j) > 255) {
-      strLength += 2;
-      if (strLength > rows * num) {
-        strLength++;
-        arr.push(text.slice(str, j));
-        str = j;
-        rows++;
-      }
-    } else {
-      strLength++;
-      if (strLength > rows * num) {
-        arr.push(text.slice(str, j));
-        str = j;
-        rows++;
-      }
-    }
-  }
-  arr.push(text.slice(str, text.length));
-  return [strLength, arr, rows]   //  [处理文字的总字节长度，每行显示内容的数组，行数]
+const getToday = d => {
+  d = d ? d : new Date();
+  let y = d.getFullYear();
+  let m = d.getMonth() * 1 + 1;
+  let to = d.getDate();
+  return ([y, m, to]).map(function (n) {
+    n = n.toString()
+    return n[1] ? n : '0' + n
+  }).join('-')
+}
+
+
+const maxAppointDate = n => {
+  let startDate = getToday();
+  let endDate = new Date();
+  let s = startDate.split("-");
+  let yy = parseInt(s[0]);
+  let mm = parseInt(s[1]);
+  let dd = parseInt(s[2]);
+  endDate.setFullYear(yy);
+  endDate.setMonth(mm - 1 + n);
+  endDate.setDate(dd);
+  return endDate.getFullYear()+"-"+(endDate.getMonth()+1)+"-"+endDate.getDate();
 }
 
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  getToday: getToday,
+  maxAppointDate: maxAppointDate
 }

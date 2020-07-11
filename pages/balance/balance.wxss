@@ -59,13 +59,14 @@
 }
 
 .shoppingCart .list .item .picTxt .text .title {
-  font-size: 26rpx;
+  font-size: 28rpx;
   color: #333;
   position: relative;
   line-height: 40rpx;
   height: 80rpx;
   overflow: hidden;
-  font-weight: bold;
+  height: 80rpx;
+  font-size: 26rpx;
 }
 
 .shoppingCart .list .item .picTxt .text .money {
