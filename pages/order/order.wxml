@@ -27,9 +27,9 @@
   			</button>
   		</form>
   	</view>
-  	<view style="height:300rpx;background: white;">
-  		<view style="padding:0rpx 30rpx;height:100%;width:100%;">
-  			<view style="height:100rpx;display:flex;align-items:center;justify-content:flex-start;">
+  	<view style="background: white;padding-bottom:20rpx;">
+  		<view style="padding:0rpx 20rpx;">
+  			<view style="height:100rpx;display:flex;align-items:center;justify-content:flex-start;margin-bottom:10rpx;">
   				<text style="font-size: 30rpx;color: #999;">预约时间</text>
   				<picker mode="date" value="{{appointDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
   					<input style="background: #f1f1f1;height:60rpx;width:200rpx;text-align:center;margin-left:10rpx;font-size:30rpx;" disabled="true" placeholder="请选择日期" value="{{appointDate}}" />
@@ -38,7 +38,15 @@
   					<input style="background: #f1f1f1;height:60rpx;width:180rpx;text-align:center;margin-left:10rpx;font-size:30rpx;" disabled="true" placeholder="请选择时间" value="{{array[appointTime]}}" />
   				</picker>
   			</view>
-  			<view style="height:180rpx;background: #f1f1f1;"></view>
+  			<view style="height:140rpx;display:flex;align-items:center;flex-direction:row;">
+  				<view style="height:100%;">
+  					<image src='/images/car2.png' style='width:140rpx;height:140rpx;margin-right:8rpx;'></image>
+  					<image src='/images/car1.png' style='width:140rpx;height:140rpx;margin-right:8rpx;'></image>
+  					<image src='/images/car2.png' style='width:140rpx;height:140rpx;margin-right:8rpx;'></image>
+  					<image src='http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg' style='width:140rpx;height:140rpx;margin-right:8rpx;'></image>
+  				</view>
+  				<view style="width:100rpx;height:100%;display:flex;align-items:center;">共4件</view>
+  			</view>
   		</view>
   	</view>
   </view>
