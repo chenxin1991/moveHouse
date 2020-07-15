@@ -1,0 +1,37 @@
+<form bindsubmit="formSubmit" report-submit='true'>
+	<view style="background: white;padding-left:20rpx;margin-top:20rpx;font-size:28rpx;">
+		<view style="height:100rpx;display:flex;flex-direction:row;align-items:center;border-bottom: 1rpx solid #eee;">
+			<view style="width:22%;"><text>搬入点</text></view>
+			<view style="width:78%;display:flex;flex-direction:row;justify-content:space-between;align-items:center;" bindtap='choosePlace'>
+				<input placeholder="小区/写字楼/学校" disabled="true" />
+				<image src='/images/dayu.png' style='width:16rpx;height:26rpx;padding-right:20rpx;'></image>
+			</view>
+		</view>
+		<view style="height:100rpx;display:flex;flex-direction:row;align-items:center;border-bottom: 1rpx solid #eee;">
+			<view style="width:22%;"><text>门牌号</text></view>
+			<view style="width:78%;"><input placeholder="例：8楼290号" /></view>
+		</view>
+		<view style="height:100rpx;display:flex;flex-direction:row;align-items:center;border-bottom: 1rpx solid #eee;">
+			<view style="width:22%;"><text>楼梯类型</text></view>
+			<view style="width:78%;display:flex;flex-direction:row;">
+				<view style="background: #f4f4f4;color: #666;height: 50rpx;line-height: 50rpx;padding: 0 20rpx;border-radius: 20rpx;display: inline-block;margin-right: 20rpx;">电梯</view>
+				<view style="background: #f4f4f4;color: #666;height: 50rpx;line-height: 50rpx;padding: 0 20rpx;border-radius: 20rpx;display: inline-block;margin-right: 20rpx;">楼梯</view>
+			</view>
+		</view>
+		<view style="height:100rpx;display:flex;flex-direction:row;align-items:center;border-bottom: 1rpx solid #eee;">
+			<view style="width:22%;"><text>楼层数</text></view>
+			<view style="width:78%;"><input type="number" placeholder="第几层" max="30" /></view>
+		</view>
+		<view style="display:flex;flex-direction:row;align-items:center;">
+			<view style="width:22%;"><text>停车位距离</text></view>
+			<view style="width:78%;display:flex;flex-direction:row;flex-wrap:wrap;padding-top:20rpx;">
+				<view style="background: #f4f4f4;color: #666;height: 50rpx;line-height: 50rpx;padding: 0 20rpx;border-radius: 20rpx;display: inline-block;margin-right: 20rpx;margin-bottom:20rpx;">低于30米</view>
+				<view style="background: #f4f4f4;color: #666;height: 50rpx;line-height: 50rpx;padding: 0 20rpx;border-radius: 20rpx;display: inline-block;margin-right: 20rpx;margin-bottom:20rpx;">30-50米</view>
+				<view style="background: #f4f4f4;color: #666;height: 50rpx;line-height: 50rpx;padding: 0 20rpx;border-radius: 20rpx;display: inline-block;margin-right: 20rpx;margin-bottom:20rpx;">50-100米</view>
+				<view style="background: #f4f4f4;color: #666;height: 50rpx;line-height: 50rpx;padding: 0 20rpx;border-radius: 20rpx;display: inline-block;margin-right: 20rpx;margin-bottom:20rpx;">100米以上</view>
+				<view style="background: #f4f4f4;color: #666;height: 50rpx;line-height: 50rpx;padding: 0 20rpx;border-radius: 20rpx;display: inline-block;margin-right: 20rpx;margin-bottom:20rpx;">地下室出入</view>
+			</view>
+		</view>
+	</view>
+</form>
+<button style="width: 690rpx;height: 86rpx;border-radius: 50rpx;text-align: center;line-height: 86rpx;margin: 50rpx auto;font-size: 32rpx;color: #fff;background-color: #e93323!important;" formType="submit">确认</button>

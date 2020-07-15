@@ -4,7 +4,9 @@
     "pages/goods_cate/goods_cate",
     "pages/balance/balance",
     "pages/order/order",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/addressFrom/addressFrom",
+    "pages/addressTo/addressTo"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -12,7 +14,8 @@
     "navigationBarTitleText": "万家灯火搬家公司",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true,
-    "onReachBottomDistance": 50
+    "onReachBottomDistance": 50,
+    "backgroundColor": "#f5f5f5"
   },
   "tabBar": {
     "backgroundColor": "#ffffff",

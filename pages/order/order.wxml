@@ -1,6 +1,6 @@
   <view>
   	<view class="menus-list" style="margin-bottom: 16rpx;">
-  		<form bindsubmit="onTargetMenus" data-url="pages/address/index">
+  		<view catchtap='addFrom' data-url="pages/addressFrom/addressFrom">
   			<button formType="submit" class="btn-normal">
   				<view class="menus-item dis-flex b-f">
   					<view class="menus-item__left flex-box dis-flex flex-y-center">
@@ -12,8 +12,8 @@
   					</view>
   				</view>
   			</button>
-  		</form>
-  		<form bindsubmit="onTargetMenus" data-url="pages/user/help">
+  		</view>
+  		<form catchtap='addTo' data-url="pages/addressTo/addressTo">
   			<button formType="submit" class="btn-normal">
   				<view class="menus-item dis-flex b-f">
   					<view class="menus-item__left flex-box dis-flex flex-y-center">
@@ -56,7 +56,7 @@
   			</view>
   		</view>
   	</view>
-  	<view style="background:white;margin-bottom:16rpx;height:100rpx;display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:20rpx 20rpx;font-size:30rpx;">
+  	<view style="background:white;margin-bottom:16rpx;height:100rpx;display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:0rpx 20rpx;font-size:30rpx;">
   		<text>发票</text>
   		<view style="display:flex;align-items:center;">
   			<text style="margin-right:20rpx;">不开发票</text>
@@ -66,19 +66,19 @@
   	<view style="background:white;padding:0rpx 20rpx;font-size:30rpx;">
   		<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
   			<text>用车、拆装、大件及材料费用</text>
-  			<text>￥400</text>
+  			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">400</text></view>
   		</view>
   		<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
   			<text>行驶距离费用</text>
-  			<text>￥50</text>
+  			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">50</text></view>
   		</view>
   		<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
   			<text>楼层费用</text>
-  			<text>￥400</text>
+  			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">400</text></view>
   		</view>
   		<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
   			<text>停车位距离费用</text>
-  			<text>￥400</text>
+  			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">400</text></view>
   		</view>
   		<view style="border-top:2rpx solid #eee;margin-top:10rpx;display:flex;align-items:center;padding:10rpx 0rpx;">
   			<text style="font-size:26rpx;color:red;">温馨提示：车辆行驶超过15公里，按照10元/公里收费，面包车按照6元/公里收费，电梯不收费，楼梯超过2层开始收费，停车位距离少于30米不收费，超过30米收费</text>
