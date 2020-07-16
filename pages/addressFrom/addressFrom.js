@@ -16,60 +16,81 @@ Page({
   },
   choosePlace(e) {
     let that = this
-    console.log(e);
-    var obj = e.target.dataset;
-    wx.getSetting({
-      success(res) {
-        console.log(res)
-        if (!res.authSetting['scope.userLocation']) {
-          wx.openSetting({
-            success(res) {
-              console.log(res.authSetting)
-            }
-          })
+
+    wx.chooseLocation({
+      success: res => {
+        if (!res.address || !res.name) {
+          alert('未选择地址');
         } else {
-          wx.chooseLocation({
-            success: res => {
-              if (!res.address || !res.name) {
-                alert('未选择地址');
-              } else {
-                var carAddress = that.data.carAddress;
-                carAddress[obj.id].name = res.name;
-                carAddress[obj.id].latitude = res.latitude;
-                carAddress[obj.id].longitude = res.longitude;
-                carAddress[obj.id].address = res.address;
-                // 起终点同时存在时访问
-                if (carAddress.start.longitude && carAddress.end.longitude) {
-                  var url = `https://restapi.amap.com/v3/direction/driving?origin=${carAddress.start.longitude},${carAddress.start.latitude}&destination=${carAddress.end.longitude},${carAddress.end.latitude}&extensions=all&output=json&key=50b0843d96197bd1e8ce4532bcf1ab37`
-                  wx.request({
-                    url: url,
-                    method: "GET",
-                    success: res => {
-                      var distance = that.data.distance;
-                      distance.distance = Math.round(res.data.route.paths[0].distance / 1000);
-                      that.setData({
-                        distance
-                      });
-                      that.getMoney();
-                    }
-                  })
-                }
-                console.log('ceshi',carAddress);
+          var carAddress = that.data.carAddress;
+          carAddress[obj.id].name = res.name;
+          carAddress[obj.id].latitude = res.latitude;
+          carAddress[obj.id].longitude = res.longitude;
+          carAddress[obj.id].address = res.address;
+          // 起终点同时存在时访问
+          if (carAddress.start.longitude && carAddress.end.longitude) {
+            var url = `https://restapi.amap.com/v3/direction/driving?origin=${carAddress.start.longitude},${carAddress.start.latitude}&destination=${carAddress.end.longitude},${carAddress.end.latitude}&extensions=all&output=json&key=50b0843d96197bd1e8ce4532bcf1ab37`
+            wx.request({
+              url: url,
+              method: "GET",
+              success: res => {
+                var distance = that.data.distance;
+                distance.distance = Math.round(res.data.route.paths[0].distance / 1000);
                 that.setData({
-                  carAddress
-                })
+                  distance
+                });
+                that.getMoney();
               }
-            },
-            fail: res => {
-              console.log(res, 'xxx')
-              if (res.errMsg == 'chooseLocation:fail:auth denied') {
-                that.setData({
-                  shouquan: true,
-                })
-              }
-            }
+            })
+          }
+          console.log('ceshi', carAddress);
+          that.setData({
+            carAddress
           })
         }
+      },
+      fail: res => {
+        wx.getSetting({
+          success: function (res) {
+            var statu = res.authSetting;
+            if (!statu['scope.userLocation']) {
+              wx.showModal({
+                title: '是否授权当前位置',
+                content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+                success: function (tip) {
+                  if (tip.confirm) {
+                    wx.openSetting({
+                      success: function (data) {
+                        if (data.authSetting["scope.userLocation"] === true) {
+                          wx.showToast({
+                            title: '授权成功',
+                            icon: 'success',
+                            duration: 1000
+                          })
+                          //授权成功之后，再调用chooseLocation选择地方
+                         
+                        } else {
+                          wx.showToast({
+                            title: '授权失败',
+                            icon: 'none',
+                            duration: 1000
+                          })
+                        }
+                      }
+                    })
+                  }
+                }
+              })
+            }
+          },
+          fail: function (res) {
+            wx.showToast({
+              title: '调用授权窗口失败',
+              icon: 'none',
+              duration: 1000
+            })
+          }
+        })
       }
     })
 
