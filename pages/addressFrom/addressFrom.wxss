@@ -1,1 +1,89 @@
-/* pages/addressFrom/addressFrom.wxss */
+.address {
+  background: white;
+  padding-left: 20rpx;
+  margin-top: 20rpx;
+  font-size: 28rpx;
+}
+
+.address .from {
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+}
+
+.address .from .left {
+  width: 22%;
+}
+
+.address .from .right {
+  width: 78%;
+}
+
+.address .from .map {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.address .from .map .dayu {
+  width: 16rpx;
+  height: 26rpx;
+  padding-right: 20rpx;
+}
+
+.address .from .stairs_or_elevators {
+  display: flex;
+  flex-direction: row;
+}
+
+.address .from .stairs_or_elevators .item {
+  background: #f4f4f4;
+  color: #666;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 20rpx;
+  border-radius: 20rpx;
+  display: inline-block;
+  margin-right: 20rpx;
+}
+
+.address .from .parking_distance {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 20rpx;
+}
+
+.address .from .parking_distance .item {
+  background: #f4f4f4;
+  color: #666;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 20rpx;
+  border-radius: 20rpx;
+  display: inline-block;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.sure {
+  width: 690rpx;
+  height: 86rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 86rpx;
+  margin: 50rpx auto;
+  font-size: 32rpx;
+  color: #fff;
+  background-color: #e93323 !important;
+}
+
+.address .from .item.active {
+background: #ff5151;
+  color: #fff;
+  
+  }
+  

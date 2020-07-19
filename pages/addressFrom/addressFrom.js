@@ -5,9 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    address: {},
+    stairs_or_elevators: ['楼梯', '电梯'],
+    parking_distance: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入'],
+    active1: '',
+    active2: ''
   },
-
+  formSubmit: function(e) {
+    console.info('表单提交携带数据', e.detail.value)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -20,32 +26,13 @@ Page({
     wx.chooseLocation({
       success: res => {
         if (!res.address || !res.name) {
-          alert('未选择地址');
+          wx.showToast({
+            title: '请选择地址',
+            duration: 2000
+          });
         } else {
-          var carAddress = that.data.carAddress;
-          carAddress[obj.id].name = res.name;
-          carAddress[obj.id].latitude = res.latitude;
-          carAddress[obj.id].longitude = res.longitude;
-          carAddress[obj.id].address = res.address;
-          // 起终点同时存在时访问
-          if (carAddress.start.longitude && carAddress.end.longitude) {
-            var url = `https://restapi.amap.com/v3/direction/driving?origin=${carAddress.start.longitude},${carAddress.start.latitude}&destination=${carAddress.end.longitude},${carAddress.end.latitude}&extensions=all&output=json&key=50b0843d96197bd1e8ce4532bcf1ab37`
-            wx.request({
-              url: url,
-              method: "GET",
-              success: res => {
-                var distance = that.data.distance;
-                distance.distance = Math.round(res.data.route.paths[0].distance / 1000);
-                that.setData({
-                  distance
-                });
-                that.getMoney();
-              }
-            })
-          }
-          console.log('ceshi', carAddress);
           that.setData({
-            carAddress
+            address: res
           })
         }
       },
@@ -68,7 +55,7 @@ Page({
                             duration: 1000
                           })
                           //授权成功之后，再调用chooseLocation选择地方
-                         
+
                         } else {
                           wx.showToast({
                             title: '授权失败',
@@ -94,6 +81,16 @@ Page({
       }
     })
 
+  },
+  setType(e) {
+    this.setData({
+      active1: e.currentTarget.dataset.index
+    });
+  },
+  setType2(e) {
+    this.setData({
+      active2: e.currentTarget.dataset.index
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
