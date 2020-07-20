@@ -7,11 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    addressFrom: {},
+    addressTo: {},
     appointDate: '',
     appointTime: '',
     startDate: util.getToday(),
     endDate: util.maxAppointDate(6),
-    array: ['08:00', '09:00', '10:00', '11:00','12:00','13:00','14:00','15:00']
+    array: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00']
   },
   bindDateChange: function (e) {
     this.setData({
@@ -28,7 +30,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (options.hasOwnProperty("addressFrom")) {
+      this.setData({
+        addressFrom: JSON.parse(options.addressFrom)
+      })
+    }
   },
   addFrom(e) {
     wx.navigateTo({

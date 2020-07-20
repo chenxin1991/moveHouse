@@ -1,17 +1,15 @@
   <view>
   	<view class="menus-list" style="margin-bottom: 16rpx;">
   		<view catchtap='addFrom' data-url="pages/addressFrom/addressFrom">
-  			<button formType="submit" class="btn-normal">
-  				<view class="menus-item dis-flex b-f">
-  					<view class="menus-item__left flex-box dis-flex flex-y-center">
-  						<image src='/images/qidian.png' style='width:45rpx;height:45rpx;'></image>
-  						<text class="menus-item__name f-30">请选择从哪里搬出</text>
-  					</view>
-  					<view class="menus-item__right flex-box dis-flex flex-x-end flex-y-center">
-  						<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
-  					</view>
+  			<view class="menus-item dis-flex b-f">
+  				<view class="menus-item__left flex-box dis-flex flex-y-center">
+  					<image src='/images/qidian.png' style='width:45rpx;height:45rpx;'></image>
   				</view>
-  			</button>
+  				<view class="menus-item__right flex-box dis-flex flex-x-end flex-y-center">
+  					<text class="menus-item__name f-30">请选择从哪里搬出</text>
+  					<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+  				</view>
+  			</view>
   		</view>
   		<form catchtap='addTo' data-url="pages/addressTo/addressTo">
   			<button formType="submit" class="btn-normal">

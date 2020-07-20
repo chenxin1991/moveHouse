@@ -1,30 +1,30 @@
-<form bindsubmit="formSubmit" report-submit='true'>
+<form catchsubmit="formSubmit" data-url="pages/order/order">
 	<view class="address">
 		<view class="from">
 			<view class="left"><text>搬出点</text></view>
-			<view class="right map" bindtap='choosePlace'>
+			<view class="right map" catchtap='choosePlace' style="height:100rpx;">
 				<input placeholder="小区/写字楼/学校" disabled="true" value="{{address.name}}" style="width:100%;" />
 				<image src='/images/dayu.png' class="dayu"></image>
 			</view>
 		</view>
 		<view class="from">
 			<view class="left"><text>门牌号</text></view>
-			<view class="right"><input placeholder="例：8楼290号" /></view>
+			<view class="right"><input placeholder="例：8楼290号" name="room_number" /></view>
 		</view>
 		<view class="from">
 			<view class="left"><text>楼梯类型</text></view>
 			<view class="right stairs_or_elevators">
-				<view class="item {{index === active1?'active':''}}" wx:for="{{stairs_or_elevators}}" wx:for-item="item" catchtap='setType' data-index='{{index}}'>{{item}}</view>
+				<view class="item {{index === stairs_or_elevators?'active':''}}" wx:for="{{array1}}" wx:for-item="item" catchtap='setType' data-index='{{index}}'>{{item}}</view>
 			</view>
 		</view>
 		<view class="from">
 			<view class="left"><text>楼层数</text></view>
-			<view class="right"><input type="number" placeholder="第几层" /></view>
+			<view class="right"><input type="number" placeholder="第几层" name="floor" /></view>
 		</view>
 		<view class="from" style="height:160rpx;">
 			<view class="left"><text>停车位距离</text></view>
 			<view class="right parking_distance">
-				<view class="item {{index === active2?'active':''}}" wx:for="{{parking_distance}}" wx:for-item="item" catchtap='setType2' data-index='{{index}}'>{{item}}</view>
+				<view class="item {{index === parking_distance?'active':''}}" wx:for="{{array2}}" wx:for-item="item" catchtap='setType2' data-index='{{index}}'>{{item}}</view>
 			</view>
 		</view>
 	</view>

@@ -5,14 +5,71 @@ Page({
    * 页面的初始数据
    */
   data: {
+    addressFrom: {},
     address: {},
-    stairs_or_elevators: ['楼梯', '电梯'],
-    parking_distance: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入'],
-    active1: '',
-    active2: ''
+    room_number: '',
+    stairs_or_elevators: '',
+    floor_num: '',
+    parking_distance: '',
+    array1: ['电梯', '楼梯'],
+    array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入']
   },
-  formSubmit: function(e) {
-    console.info('表单提交携带数据', e.detail.value)
+  formSubmit: function (e) {
+    let address = this.data.address;
+    if (JSON.stringify(address) === "{}") {
+      wx.showToast({
+        title: '请选择搬出点',
+        icon: 'none',
+        duration: 1000
+      });
+      return false;
+    }
+    let room_number = e.detail.value.room_number;
+    if (room_number === "") {
+      wx.showToast({
+        title: '请填写门牌号',
+        icon: 'none',
+        duration: 1000
+      });
+      return false;
+    }
+    let stairs_or_elevators = this.data.stairs_or_elevators;
+    if (stairs_or_elevators === "") {
+      wx.showToast({
+        title: '请选择楼梯类型',
+        icon: 'none',
+        duration: 1000
+      });
+      return false;
+    }
+    let floor = e.detail.value.floor;
+    if (floor === "") {
+      wx.showToast({
+        title: '请填写楼层数',
+        icon: 'none',
+        duration: 1000
+      });
+      return false;
+    }
+    let parking_distance = this.data.parking_distance;
+    if (parking_distance === "") {
+      wx.showToast({
+        title: '请选择停车位距离',
+        icon: 'none',
+        duration: 1000
+      });
+      return false;
+    }
+
+    let addressFrom = {};
+    addressFrom.address = address;
+    addressFrom.stairs_or_elevators = stairs_or_elevators;
+    addressFrom.parking_distance = parking_distance;
+    addressFrom.room_number = room_number;
+    addressFrom.floor = floor;
+    wx.navigateTo({
+      url: '/' + e.currentTarget.dataset.url + '?addressFrom=' + JSON.stringify(addressFrom)
+    });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -22,13 +79,13 @@ Page({
   },
   choosePlace(e) {
     let that = this
-
     wx.chooseLocation({
       success: res => {
         if (!res.address || !res.name) {
           wx.showToast({
             title: '请选择地址',
-            duration: 2000
+            icon: 'none',
+            duration: 1000
           });
         } else {
           that.setData({
@@ -84,12 +141,12 @@ Page({
   },
   setType(e) {
     this.setData({
-      active1: e.currentTarget.dataset.index
+      stairs_or_elevators: e.currentTarget.dataset.index
     });
   },
   setType2(e) {
     this.setData({
-      active2: e.currentTarget.dataset.index
+      parking_distance: e.currentTarget.dataset.index
     });
   },
   /**
