@@ -1,3 +1,4 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText":"填写搬入点",
+  "enablePullDownRefresh": false
 }

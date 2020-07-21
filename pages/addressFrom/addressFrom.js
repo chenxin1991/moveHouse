@@ -1,11 +1,11 @@
 // pages/addressFrom/addressFrom.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    addressFrom: {},
     address: {},
     room_number: '',
     stairs_or_elevators: '',
@@ -42,8 +42,8 @@ Page({
       });
       return false;
     }
-    let floor = e.detail.value.floor;
-    if (floor === "") {
+    let floor_num = e.detail.value.floor_num;
+    if (floor_num === "") {
       wx.showToast({
         title: '请填写楼层数',
         icon: 'none',
@@ -66,16 +66,26 @@ Page({
     addressFrom.stairs_or_elevators = stairs_or_elevators;
     addressFrom.parking_distance = parking_distance;
     addressFrom.room_number = room_number;
-    addressFrom.floor = floor;
-    wx.navigateTo({
-      url: '/' + e.currentTarget.dataset.url + '?addressFrom=' + JSON.stringify(addressFrom)
-    });
+    addressFrom.floor_num = floor_num;
+    app.globalData.addressFrom = addressFrom;
+    wx.navigateBack({
+      delta: 1
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (JSON.stringify(app.globalData.addressFrom) !== "{}") {
+      let addressFrom = app.globalData.addressFrom;
+      this.setData({
+        address: addressFrom.address,
+        room_number: addressFrom.room_number,
+        stairs_or_elevators: addressFrom.stairs_or_elevators,
+        floor_num: addressFrom.floor_num,
+        parking_distance: addressFrom.parking_distance
+      })
+    }
   },
   choosePlace(e) {
     let that = this

@@ -1,4 +1,4 @@
-<form catchsubmit="formSubmit" data-url="pages/order/order">
+<form catchsubmit="formSubmit">
 	<view class="address">
 		<view class="from">
 			<view class="left"><text>搬出点</text></view>
@@ -9,7 +9,7 @@
 		</view>
 		<view class="from">
 			<view class="left"><text>门牌号</text></view>
-			<view class="right"><input placeholder="例：8楼290号" name="room_number" /></view>
+			<view class="right"><input placeholder="例：8楼290号" name="room_number" value="{{room_number}}"/></view>
 		</view>
 		<view class="from">
 			<view class="left"><text>楼梯类型</text></view>
@@ -19,7 +19,7 @@
 		</view>
 		<view class="from">
 			<view class="left"><text>楼层数</text></view>
-			<view class="right"><input type="number" placeholder="第几层" name="floor" /></view>
+			<view class="right"><input type="number" placeholder="第几层" name="floor_num" value="{{floor_num}}"/></view>
 		</view>
 		<view class="from" style="height:160rpx;">
 			<view class="left"><text>停车位距离</text></view>

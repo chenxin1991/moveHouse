@@ -20,12 +20,13 @@
   flex: 1;
 }
 
-.menus-list .menus-item .menus-item__name {
+.item_name {
   margin-left: 20rpx;
   font-weight: bold;
   font-family: PingFang-SC-Medium;
   font-weight: 500;
   color: rgba(156, 156, 156, 1);
+  font-size: 32rpx;
 }
 
 .f-30 {

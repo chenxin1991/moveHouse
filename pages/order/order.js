@@ -1,6 +1,6 @@
 // pages/order/order.js
 const util = require('../../utils/util.js')
-
+const app = getApp();
 Page({
 
   /**
@@ -9,11 +9,15 @@ Page({
   data: {
     addressFrom: {},
     addressTo: {},
+    flagFrom: false,
+    flagTo: false,
     appointDate: '',
     appointTime: '',
     startDate: util.getToday(),
     endDate: util.maxAppointDate(6),
-    array: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00']
+    array: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
+    array1: ['电梯', '楼梯'],
+    array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入']
   },
   bindDateChange: function (e) {
     this.setData({
@@ -21,7 +25,6 @@ Page({
     })
   },
   bindPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       appointTime: e.detail.value
     })
@@ -30,11 +33,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.hasOwnProperty("addressFrom")) {
-      this.setData({
-        addressFrom: JSON.parse(options.addressFrom)
-      })
-    }
+
   },
   addFrom(e) {
     wx.navigateTo({
@@ -57,7 +56,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (JSON.stringify(app.globalData.addressFrom) !== "{}") {
+      this.setData({
+        addressFrom: app.globalData.addressFrom,
+        flagFrom: true
+      })
+    }
+    if (JSON.stringify(app.globalData.addressTo) !== "{}") {
+      this.setData({
+        addressTo: app.globalData.addressTo,
+        flagTo: true
+      })
+    }
   },
 
   /**

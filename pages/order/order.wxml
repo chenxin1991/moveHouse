@@ -1,91 +1,99 @@
-  <view>
-  	<view class="menus-list" style="margin-bottom: 16rpx;">
-  		<view catchtap='addFrom' data-url="pages/addressFrom/addressFrom">
-  			<view class="menus-item dis-flex b-f">
-  				<view class="menus-item__left flex-box dis-flex flex-y-center">
-  					<image src='/images/qidian.png' style='width:45rpx;height:45rpx;'></image>
-  				</view>
-  				<view class="menus-item__right flex-box dis-flex flex-x-end flex-y-center">
-  					<text class="menus-item__name f-30">请选择从哪里搬出</text>
-  					<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
-  				</view>
-  			</view>
-  		</view>
-  		<form catchtap='addTo' data-url="pages/addressTo/addressTo">
-  			<button formType="submit" class="btn-normal">
-  				<view class="menus-item dis-flex b-f">
-  					<view class="menus-item__left flex-box dis-flex flex-y-center">
-  						<image src='/images/zhongdian.png' style='width:45rpx;height:45rpx;'></image>
-  						<text class="menus-item__name f-30">请选择搬到哪里</text>
-  					</view>
-  					<view class="menus-item__right flex-box dis-flex flex-x-end flex-y-center">
-  						<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
-  					</view>
-  				</view>
-  			</button>
-  		</form>
-  	</view>
-  	<view style="background: white;margin-bottom: 16rpx;">
-  		<view style="padding:0rpx 20rpx;">
-  			<view style="height:100rpx;display:flex;align-items:center;justify-content:flex-start;">
-  				<text style="font-size: 30rpx;">预约时间</text>
-  				<picker mode="date" value="{{appointDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
-  					<input style="background: #f1f1f1;height:60rpx;width:200rpx;text-align:center;margin-left:10rpx;font-size:30rpx;" disabled="true" placeholder="请选择日期" value="{{appointDate}}" />
-  				</picker>
-  				<picker bindchange="bindPickerChange" value="{{appointTime}}" range="{{array}}">
-  					<input style="background: #f1f1f1;height:60rpx;width:180rpx;text-align:center;margin-left:10rpx;font-size:30rpx;" disabled="true" placeholder="请选择时间" value="{{array[appointTime]}}" />
-  				</picker>
-  			</view>
-  			<view style="height:150rpx;display:flex;align-items:center;flex-direction:row;background: #f1f1f1;padding:15rpx 15rpx;">
-  				<view style="height:100%;width:80%;">
-  					<image src='/images/car2.png' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
-  					<image src='/images/car1.png' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
-  					<image src='/images/car2.png' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
-  					<image src='http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
-  				</view>
-  				<view style="display:flex;align-items:center;height:100%;width:20%;justify-content:space-between;">
-  					<text>共4件</text>
-  					<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
-  				</view>
-  			</view>
-  			<view style="display:flex;flex-direction: row;padding:20rpx 0rpx;">
-  				<text style="margin-right:20rpx;width:20%;font-size: 30rpx;">客户留言</text>
-  				<input style="width:80%;font-size:30rpx;" placeholder="点击可填写留言" />
-  			</view>
-  		</view>
-  	</view>
-  	<view style="background:white;margin-bottom:16rpx;height:100rpx;display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:0rpx 20rpx;font-size:30rpx;">
-  		<text>发票</text>
-  		<view style="display:flex;align-items:center;">
-  			<text style="margin-right:20rpx;">不开发票</text>
-  			<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
-  		</view>
-  	</view>
-  	<view style="background:white;padding:0rpx 20rpx;font-size:30rpx;">
-  		<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
-  			<text>用车、拆装、大件及材料费用</text>
-  			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">400</text></view>
-  		</view>
-  		<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
-  			<text>行驶距离费用</text>
-  			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">50</text></view>
-  		</view>
-  		<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
-  			<text>楼层费用</text>
-  			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">400</text></view>
-  		</view>
-  		<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
-  			<text>停车位距离费用</text>
-  			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">400</text></view>
-  		</view>
-  		<view style="border-top:2rpx solid #eee;margin-top:10rpx;display:flex;align-items:center;padding:10rpx 0rpx;">
-  			<text style="font-size:26rpx;color:red;">温馨提示：车辆行驶超过15公里，按照10元/公里收费，面包车按照6元/公里收费，电梯不收费，楼梯超过2层开始收费，停车位距离少于30米不收费，超过30米收费</text>
-  		</view>
-  	</view>
-  	<view style="width: 100%;height: 96rpx;background-color: #fafafa;position: fixed;bottom: 0;padding: 0 30rpx;box-sizing: border-box;border-top: 1rpx solid #eee;display:flex;align-items: center;justify-content:flex-end;">
-  		<view class='money acea-row row-middle'>
-  			<text style="font-size:25rpx;">合计：</text><text class='font-color' style="font-weight: bold;font-size:35rpx;">￥1200</text>
-  			<button style="color: #fff;font-size: 30rpx;width: 180rpx;height: 60rpx;border-radius: 50rpx;text-align: center;line-height: 60rpx;margin-left: 22rpx;padding: 0;background-color: #e93323 !important;" catchtap="toOrder">提交订单</button>
-  		</view>
-  	</view>
-  </view>
+<view style="margin-bottom: 16rpx;">
+	<view catchtap='addFrom' data-url="pages/addressFrom/addressFrom">
+		<view style="display:flex;justify-content:space-between;align-items:center;padding:30rpx 20rpx;background: white;border-bottom: 2rpx solid #eee;">
+			<view style="display:flex;flex-direction:row;align-items:center;">
+				<image src='/images/qidian.png' style='width:45rpx;height:45rpx;'></image>
+				<block wx:if="{{flagFrom}}">
+					<view style="display:flex;flex-direction:column;">
+						<view style="display:flex;justify-content:flex-start;"><text style="margin-left: 20rpx;font-weight: bold;">{{addressFrom.address.name}} {{addressFrom.room_number}}</text></view>
+						<view style="margin-left: 20rpx;padding-top:10rpx;"><text>{{array1[addressFrom.stairs_or_elevators]}}：{{addressFrom.floor_num}}层</text><text style="padding-left:30rpx;">停车位距离：{{array2[addressFrom.parking_distance]}}</text></view>
+					</view>
+				</block>
+				<block wx:else><text class="item_name">请选择从哪里搬出</text></block>
+			</view>
+			<view style="display:flex;align-items:center;">
+				<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+			</view>
+		</view>
+	</view>
+	<view catchtap='addTo' data-url="pages/addressTo/addressTo">
+		<view style="display:flex;justify-content:space-between;align-items:center;padding:30rpx 20rpx;background: white;border-bottom: 2rpx solid #eee;">
+			<view style="display:flex;flex-direction:row;align-items:center;">
+				<image src='/images/zhongdian.png' style='width:45rpx;height:45rpx;'></image>
+				<block wx:if="{{flagTo}}">
+					<view style="display:flex;flex-direction:column;">
+						<view style="display:flex;justify-content:flex-start;"><text style="margin-left: 20rpx;font-weight: bold;">{{addressTo.address.name}} {{addressTo.room_number}}</text></view>
+						<view style="margin-left: 20rpx;padding-top:10rpx;"><text>{{array1[addressTo.stairs_or_elevators]}}：{{addressTo.floor_num}}层</text><text style="padding-left:30rpx;">停车位距离：{{array2[addressTo.parking_distance]}}</text></view>
+					</view>
+				</block>
+				<block wx:else><text class="item_name">请选择搬到哪里</text></block>
+			</view>
+			<view style="display:flex;align-items:center;">
+				<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+			</view>
+		</view>
+	</view>
+</view>
+<view style="background: white;margin-bottom: 16rpx;">
+	<view style="padding:0rpx 20rpx;">
+		<view style="height:100rpx;display:flex;align-items:center;justify-content:flex-start;">
+			<text style="font-size: 30rpx;">预约时间</text>
+			<picker mode="date" value="{{appointDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+				<input style="background: #f1f1f1;height:60rpx;width:200rpx;text-align:center;margin-left:10rpx;font-size:30rpx;" disabled="true" placeholder="请选择日期" value="{{appointDate}}" />
+			</picker>
+			<picker bindchange="bindPickerChange" value="{{appointTime}}" range="{{array}}">
+				<input style="background: #f1f1f1;height:60rpx;width:180rpx;text-align:center;margin-left:10rpx;font-size:30rpx;" disabled="true" placeholder="请选择时间" value="{{array[appointTime]}}" />
+			</picker>
+		</view>
+		<view style="height:150rpx;display:flex;align-items:center;flex-direction:row;background: #f1f1f1;padding:15rpx 15rpx;">
+			<view style="height:100%;width:80%;">
+				<image src='/images/car2.png' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
+				<image src='/images/car1.png' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
+				<image src='/images/car2.png' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
+				<image src='http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
+			</view>
+			<view style="display:flex;align-items:center;height:100%;width:20%;justify-content:space-between;">
+				<text>共4件</text>
+				<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+			</view>
+		</view>
+		<view style="display:flex;flex-direction: row;padding:20rpx 0rpx;">
+			<text style="margin-right:20rpx;width:20%;font-size: 30rpx;">客户留言</text>
+			<input style="width:80%;font-size:30rpx;" placeholder="点击可填写留言" />
+		</view>
+	</view>
+</view>
+<view style="background:white;margin-bottom:16rpx;height:100rpx;display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:0rpx 20rpx;font-size:30rpx;">
+	<text>发票</text>
+	<view style="display:flex;align-items:center;">
+		<text style="margin-right:20rpx;">不开发票</text>
+		<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+	</view>
+</view>
+<view style="background:white;padding:0rpx 20rpx;font-size:30rpx;">
+	<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
+		<text>用车、拆装、大件及材料费用</text>
+		<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">400</text></view>
+	</view>
+	<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
+		<text>行驶距离费用</text>
+		<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">50</text></view>
+	</view>
+	<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
+		<text>楼层费用</text>
+		<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">400</text></view>
+	</view>
+	<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
+		<text>停车位距离费用</text>
+		<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">400</text></view>
+	</view>
+	<!-- <view style="border-top:2rpx solid #eee;margin-top:10rpx;display:flex;align-items:center;padding:10rpx 0rpx;">
+		<text style="font-size:26rpx;color:red;">温馨提示：车辆行驶超过15公里，按照10元/公里收费，面包车按照6元/公里收费，电梯不收费，楼梯超过2层开始收费，停车位距离少于30米不收费，超过30米收费</text>
+	</view> -->
+</view>
+<view style="width: 100%;height: 96rpx;background-color: #fafafa;position: fixed;bottom: 0;padding: 0 30rpx;box-sizing: border-box;border-top: 1rpx solid #eee;display:flex;align-items: center;justify-content:flex-end;">
+	<view class='money acea-row row-middle'>
+		<text style="font-size:25rpx;">合计：</text><text class='font-color' style="font-weight: bold;font-size:35rpx;">￥1200</text>
+		<button style="color: #fff;font-size: 30rpx;width: 180rpx;height: 60rpx;border-radius: 50rpx;text-align: center;line-height: 60rpx;margin-left: 22rpx;padding: 0;background-color: #e93323 !important;" catchtap="toOrder">提交订单</button>
+	</view>
+</view>

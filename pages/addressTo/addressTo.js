@@ -1,78 +1,163 @@
-// pages/addressTo/addressTo.js
+// pages/addressFrom/addressFrom.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    address: {},
+    room_number: '',
+    stairs_or_elevators: '',
+    floor_num: '',
+    parking_distance: '',
+    array1: ['电梯', '楼梯'],
+    array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入']
   },
+  formSubmit: function (e) {
+    let address = this.data.address;
+    if (JSON.stringify(address) === "{}") {
+      wx.showToast({
+        title: '请选择搬入点',
+        icon: 'none',
+        duration: 1000
+      });
+      return false;
+    }
+    let room_number = e.detail.value.room_number;
+    if (room_number === "") {
+      wx.showToast({
+        title: '请填写门牌号',
+        icon: 'none',
+        duration: 1000
+      });
+      return false;
+    }
+    let stairs_or_elevators = this.data.stairs_or_elevators;
+    if (stairs_or_elevators === "") {
+      wx.showToast({
+        title: '请选择楼梯类型',
+        icon: 'none',
+        duration: 1000
+      });
+      return false;
+    }
+    let floor_num = e.detail.value.floor_num;
+    if (floor_num === "") {
+      wx.showToast({
+        title: '请填写楼层数',
+        icon: 'none',
+        duration: 1000
+      });
+      return false;
+    }
+    let parking_distance = this.data.parking_distance;
+    if (parking_distance === "") {
+      wx.showToast({
+        title: '请选择停车位距离',
+        icon: 'none',
+        duration: 1000
+      });
+      return false;
+    }
 
+    let addressTo = {};
+    addressTo.address = address;
+    addressTo.stairs_or_elevators = stairs_or_elevators;
+    addressTo.parking_distance = parking_distance;
+    addressTo.room_number = room_number;
+    addressTo.floor_num = floor_num;
+    app.globalData.addressTo = addressTo;
+    wx.navigateBack({
+      delta: 1
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (JSON.stringify(app.globalData.addressTo) !== "{}") {
+      let addressTo = app.globalData.addressTo;
+      this.setData({
+        address: addressTo.address,
+        room_number: addressTo.room_number,
+        stairs_or_elevators: addressTo.stairs_or_elevators,
+        floor_num: addressTo.floor_num,
+        parking_distance: addressTo.parking_distance
+      })
+    }
   },
   choosePlace(e) {
     let that = this
-    console.log(e);
-    var obj = e.target.dataset;
-    wx.getSetting({
-      success(res) {
-        console.log(res)
-        if (!res.authSetting['scope.userLocation']) {
-          wx.openSetting({
-            success(res) {
-              console.log(res.authSetting)
-            }
-          })
+    wx.chooseLocation({
+      success: res => {
+        if (!res.address || !res.name) {
+          wx.showToast({
+            title: '请选择地址',
+            icon: 'none',
+            duration: 1000
+          });
         } else {
-          wx.chooseLocation({
-            success: res => {
-              if (!res.address || !res.name) {
-                alert('未选择地址');
-              } else {
-                var carAddress = that.data.carAddress;
-                carAddress[obj.id].name = res.name;
-                carAddress[obj.id].latitude = res.latitude;
-                carAddress[obj.id].longitude = res.longitude;
-                carAddress[obj.id].address = res.address;
-                // 起终点同时存在时访问
-                if (carAddress.start.longitude && carAddress.end.longitude) {
-                  var url = `https://restapi.amap.com/v3/direction/driving?origin=${carAddress.start.longitude},${carAddress.start.latitude}&destination=${carAddress.end.longitude},${carAddress.end.latitude}&extensions=all&output=json&key=50b0843d96197bd1e8ce4532bcf1ab37`
-                  wx.request({
-                    url: url,
-                    method: "GET",
-                    success: res => {
-                      var distance = that.data.distance;
-                      distance.distance = Math.round(res.data.route.paths[0].distance / 1000);
-                      that.setData({
-                        distance
-                      });
-                      that.getMoney();
-                    }
-                  })
-                }
-                console.log('ceshi',carAddress);
-                that.setData({
-                  carAddress
-                })
-              }
-            },
-            fail: res => {
-              console.log(res, 'xxx')
-              if (res.errMsg == 'chooseLocation:fail:auth denied') {
-                that.setData({
-                  shouquan: true,
-                })
-              }
-            }
+          that.setData({
+            address: res
           })
         }
+      },
+      fail: res => {
+        wx.getSetting({
+          success: function (res) {
+            var statu = res.authSetting;
+            if (!statu['scope.userLocation']) {
+              wx.showModal({
+                title: '是否授权当前位置',
+                content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+                success: function (tip) {
+                  if (tip.confirm) {
+                    wx.openSetting({
+                      success: function (data) {
+                        if (data.authSetting["scope.userLocation"] === true) {
+                          wx.showToast({
+                            title: '授权成功',
+                            icon: 'success',
+                            duration: 1000
+                          })
+                          //授权成功之后，再调用chooseLocation选择地方
+
+                        } else {
+                          wx.showToast({
+                            title: '授权失败',
+                            icon: 'none',
+                            duration: 1000
+                          })
+                        }
+                      }
+                    })
+                  }
+                }
+              })
+            }
+          },
+          fail: function (res) {
+            wx.showToast({
+              title: '调用授权窗口失败',
+              icon: 'none',
+              duration: 1000
+            })
+          }
+        })
       }
     })
 
+  },
+  setType(e) {
+    this.setData({
+      stairs_or_elevators: e.currentTarget.dataset.index
+    });
+  },
+  setType2(e) {
+    this.setData({
+      parking_distance: e.currentTarget.dataset.index
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

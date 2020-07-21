@@ -44,6 +44,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    url: 'http://demo.tp6.cn'
+    url: 'http://demo.tp6.cn',
+    addressFrom: {},
+    addressTo: {}
   }
 })
