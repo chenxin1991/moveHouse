@@ -17,7 +17,10 @@ Page({
     endDate: util.maxAppointDate(6),
     array: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
     array1: ['电梯', '楼梯'],
-    array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入']
+    array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入'],
+    show: false,
+    cartList: [],
+    cartNum: 0
   },
   bindDateChange: function (e) {
     this.setData({
@@ -33,7 +36,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let cartList = wx.getStorageSync('cart');
+    let cartNum = wx.getStorageSync('cartNum');
+    console.log(cartList);
+    this.setData({
+      cartList: cartList,
+      cartNum: cartNum
+    });
   },
   addFrom(e) {
     wx.navigateTo({
@@ -44,6 +53,16 @@ Page({
     wx.navigateTo({
       url: '/' + e.currentTarget.dataset.url
     })
+  },
+  showProduct: function () {
+    this.setData({
+      show: true
+    });
+  },
+  closeProduct: function () {
+    this.setData({
+      show: false
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

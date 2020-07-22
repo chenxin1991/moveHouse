@@ -45,15 +45,14 @@
 				<input style="background: #f1f1f1;height:60rpx;width:180rpx;text-align:center;margin-left:10rpx;font-size:30rpx;" disabled="true" placeholder="请选择时间" value="{{array[appointTime]}}" />
 			</picker>
 		</view>
-		<view style="height:150rpx;display:flex;align-items:center;flex-direction:row;background: #f1f1f1;padding:15rpx 15rpx;">
+		<view style="height:150rpx;display:flex;align-items:center;flex-direction:row;background: #f1f1f1;padding:15rpx 15rpx;" catchtap='showProduct'>
 			<view style="height:100%;width:80%;">
-				<image src='/images/car2.png' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
-				<image src='/images/car1.png' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
-				<image src='/images/car2.png' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
-				<image src='http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
+				<block wx:for="{{cartList}}">
+					<image src='{{item.image}}' style='width:120rpx;height:120rpx;margin-right:15rpx;'></image>
+				</block>
 			</view>
 			<view style="display:flex;align-items:center;height:100%;width:20%;justify-content:space-between;">
-				<text>共4件</text>
+				<text>共{{cartNum}}件</text>
 				<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
 			</view>
 		</view>
@@ -97,3 +96,25 @@
 		<button style="color: #fff;font-size: 30rpx;width: 180rpx;height: 60rpx;border-radius: 50rpx;text-align: center;line-height: 60rpx;margin-left: 22rpx;padding: 0;background-color: #e93323 !important;" catchtap="toOrder">提交订单</button>
 	</view>
 </view>
+
+<view class="address-window {{show==true?'on':''}}">
+	<view class='title'>
+		<text>物品信息</text>
+		<image src='/images/close.png' style='width:28rpx;height:28rpx;position: absolute;left: 30rpx;top:26rpx;padding:10rpx 10rpx;' bindtap='closeProduct'></image>
+	</view>
+	<view style="padding:0rpx 30rpx;">
+		<view style="padding:20rpx 0rpx;"><text style="color:#999;font-size:30rpx;">共{{cartNum}}件商品</text></view>
+		<view wx:for="{{cartList}}">
+			<view style="height:180rpx;display:flex;align-items:center;flex-direction:row;background: #f1f1f1;padding:15rpx 15rpx;margin-bottom:20rpx;" catchtap='showProduct'>
+				<view style="height:100%;width:80%;display:flex;flex-direction: row;">
+					<view><image src='{{item.image}}' style='width:150rpx;height:150rpx;margin-right:15rpx;'></image></view>
+					<view style="word-wrap: break-word;word-break: normal;">{{item.name}}</view>
+				</view>
+				<view style="display:flex;align-items:center;height:100%;width:20%;justify-content:space-between;">
+					<text>共{{cartNum}}件</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class='mask' catchtouchmove="true" hidden='{{show==false}}' bindtap='closeProduct'></view>
