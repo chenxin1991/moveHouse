@@ -20,7 +20,7 @@ Page({
       wx.showToast({
         title: '请选择搬入点',
         icon: 'none',
-        duration: 1000
+        duration: 2000
       });
       return false;
     }
@@ -29,7 +29,7 @@ Page({
       wx.showToast({
         title: '请填写门牌号',
         icon: 'none',
-        duration: 1000
+        duration: 2000
       });
       return false;
     }
@@ -38,7 +38,7 @@ Page({
       wx.showToast({
         title: '请选择楼梯类型',
         icon: 'none',
-        duration: 1000
+        duration: 2000
       });
       return false;
     }
@@ -47,7 +47,7 @@ Page({
       wx.showToast({
         title: '请填写楼层数',
         icon: 'none',
-        duration: 1000
+        duration: 2000
       });
       return false;
     }
@@ -56,7 +56,7 @@ Page({
       wx.showToast({
         title: '请选择停车位距离',
         icon: 'none',
-        duration: 1000
+        duration: 2000
       });
       return false;
     }
@@ -95,7 +95,7 @@ Page({
           wx.showToast({
             title: '请选择地址',
             icon: 'none',
-            duration: 1000
+            duration: 2000
           });
         } else {
           that.setData({
@@ -119,7 +119,7 @@ Page({
                           wx.showToast({
                             title: '授权成功',
                             icon: 'success',
-                            duration: 1000
+                            duration: 2000
                           })
                           //授权成功之后，再调用chooseLocation选择地方
 
@@ -127,7 +127,7 @@ Page({
                           wx.showToast({
                             title: '授权失败',
                             icon: 'none',
-                            duration: 1000
+                            duration: 2000
                           })
                         }
                       }

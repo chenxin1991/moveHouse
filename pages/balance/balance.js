@@ -257,9 +257,27 @@ Page({
     })
   },
   toOrder: function () {
-    wx.navigateTo({
-      url: '../order/order'
-    });
+    let selectedGoods = [];
+    let selectedNum = 0;
+    let cartList = this.data.cartList;
+    let len = cartList.length;
+    for (let i = 0; i < len; i++) {
+      if (cartList[i].checked != "") {
+        selectedGoods.push(cartList[i]);
+        selectedNum += parseInt(cartList[i].num);
+      }
+    }
+    if (selectedGoods.length) {
+      wx.navigateTo({
+        url: '../order/order' + '?selectCountPrice=' + this.data.selectCountPrice + '&selectedGoods=' + JSON.stringify(selectedGoods) + '&selectedNum=' + selectedNum
+      });
+    } else {
+      wx.showToast({
+        title: '没有选中任何物品',
+        icon: 'none',
+        duration: 2000
+      });
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

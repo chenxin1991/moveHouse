@@ -19,8 +19,23 @@ Page({
     array1: ['电梯', '楼梯'],
     array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入'],
     show: false,
-    cartList: [],
-    cartNum: 0
+    selectedGoods: [],
+    selectedNum: 0,
+    selectCountPrice: 0,
+    distance: 0
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    let selectedGoods = JSON.parse(options.selectedGoods)
+    let selectedNum = options.selectedNum;
+    let selectCountPrice = options.selectCountPrice;
+    this.setData({
+      selectedGoods: selectedGoods,
+      selectedNum: selectedNum,
+      selectCountPrice: selectCountPrice
+    });
   },
   bindDateChange: function (e) {
     this.setData({
@@ -31,18 +46,6 @@ Page({
     this.setData({
       appointTime: e.detail.value
     })
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    let cartList = wx.getStorageSync('cart');
-    let cartNum = wx.getStorageSync('cartNum');
-    console.log(cartList);
-    this.setData({
-      cartList: cartList,
-      cartNum: cartNum
-    });
   },
   addFrom(e) {
     wx.navigateTo({
@@ -75,6 +78,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let that = this;
     if (JSON.stringify(app.globalData.addressFrom) !== "{}") {
       this.setData({
         addressFrom: app.globalData.addressFrom,
@@ -85,6 +89,22 @@ Page({
       this.setData({
         addressTo: app.globalData.addressTo,
         flagTo: true
+      })
+    }
+
+    // 起终点同时存在时访问
+    if (this.data.flagFrom && this.data.flagTo) {
+      let addressFrom = this.data.addressFrom;
+      let addressTo = this.data.addressTo;
+      let url = `https://apis.map.qq.com/ws/direction/v1/driving/?from=${addressFrom.address.latitude},${addressFrom.address.longitude}&to=${addressTo.address.latitude},${addressTo.address.longitude}&output=json&key=OI7BZ-EGOWU-H5YVZ-4HLVW-MDUUQ-ZCFGJ`;
+      wx.request({
+        url: url,
+        method: "GET",
+        success: res => {
+          that.setData({
+            distance: Math.round(res.data.result.routes[0].distance / 1000)
+          });
+        }
       })
     }
   },
