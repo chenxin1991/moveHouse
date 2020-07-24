@@ -8,7 +8,6 @@
 						<view style="display:flex;flex-direction:column;">
 							<view style="display:flex;justify-content:flex-start;"><text style="margin-left: 20rpx;font-weight: bold;">{{addressFrom.address.name}} {{addressFrom.room_number}}</text></view>
 							<view style="margin-left: 20rpx;padding-top:10rpx;"><text>{{array1[addressFrom.stairs_or_elevators]}}：{{addressFrom.floor_num}}层</text><text style="padding-left:30rpx;">停车位距离：{{array2[addressFrom.parking_distance]}}</text></view>
-							<view style="margin-left: 20rpx;padding-top:10rpx;"><text>楼层费用：80</text><text style="padding-left:30rpx;">停车位距离费用：100</text></view>
 						</view>
 					</block>
 					<block wx:else><text class="item_name">请选择从哪里搬出</text></block>
@@ -82,7 +81,7 @@
 			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{selectCountPrice}}</text></view>
 		</view>
 		<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
-			<text>行驶距离费</text>
+			<text>超公里数费</text>
 			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">50</text></view>
 		</view>
 		<view style="height:70rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:20rpx 0rpx;">
@@ -110,7 +109,7 @@
 		<text>物品信息</text>
 		<image src='/images/close.png' style='width:28rpx;height:28rpx;position: absolute;left: 30rpx;top:26rpx;padding:10rpx 10rpx;' bindtap='closeProduct'></image>
 	</view>
-	<view style="padding:20rpx 30rpx;"><text style="color:#999;font-size:30rpx;">共{{selectedNum}}件商品</text></view>
+	<view style="padding:20rpx 30rpx;"><text style="color:#999;font-size:30rpx;">共{{selectedNum}}件物品</text></view>
 	<scroll-view scroll-y="true" style="max-height: 800rpx;">
 		<view wx:for="{{selectedGoods}}" style="padding:0rpx 30rpx;">
 			<view style="height:180rpx;display:flex;align-items:center;flex-direction:row;background: #f1f1f1;padding:15rpx 15rpx;margin-bottom:20rpx;" catchtap='showProduct'>
