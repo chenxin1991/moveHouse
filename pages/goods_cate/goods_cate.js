@@ -18,110 +18,19 @@ Page({
 
   },
   getAllCategory: function () {
-    // getCategoryList().then(res => {
-    //   that.setData({
-    //     productList: res.data
-    //   });
-    //   let cart = wx.getStorageSync('cart');
-    //   if (cart && cart.length > 0) {
-    //     that.refreshGoods(that.data.productList, cart);
-    //   }else{
-    //     this.setData({
-    //       productOrder: that.data.productList
-    //     });
-    //   }
-    //   that.infoScroll();
-    // })
-    let products = [{
-        id: 1,
-        name: "用车",
-        goods: [{
-            id: 1,
-            name: "4.2米货车 载重2吨 长宽高4.2*2.0*1.9米 2-3名工人",
-            image: "/images/car1.png",
-            price: "400"
-          },
-          {
-            id: 2,
-            name: "依维柯 载重1.5吨 长宽高3.8*1.9*1.8米 2-3名工人",
-            image: "/images/car2.png",
-            price: "300"
-          },
-          {
-            id: 3,
-            name: "面包车 载重0.55吨 长宽高2.0*1.3*1.1米 1-2名工人",
-            image: "/images/car3.png",
-            price: "150"
-          }
-        ]
-      },
-      {
-        id: 2,
-        name: "拆装",
-        goods: [{
-            id: 4,
-            name: '2门衣柜',
-            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-            price: "100"
-          },
-          {
-            id: 5,
-            name: '桌子/餐桌',
-            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-            price: "50"
-          },
-          {
-            id: 6,
-            name: '圆筒用电热水器',
-            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-            price: "100"
-          }
-        ]
-      },
-      {
-        id: 3,
-        name: "大件",
-        goods: [{
-            id: 7,
-            name: '大理石餐桌',
-            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-            price: "100"
-          },
-          {
-            id: 8,
-            name: '跑步机',
-            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-            price: "100"
-          }
-        ]
-      },
-      {
-        id: 4,
-        name: "材料",
-        goods: [{
-            id: 9,
-            name: "纸箱",
-            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-            price: "13"
-          },
-          {
-            id: 10,
-            name: "纸箱2",
-            image: "http://activity.crmeb.net/public/uploads/attach/2019/05/30//0eecbfbca9ebc315c2882590fd55a209.jpg",
-            price: "13"
-          }
-        ]
+    let that = this;
+    getCategoryList().then(res => {
+      let cart = wx.getStorageSync('cart');
+      if (cart && cart.length > 0) {
+        that.refreshGoods(that.data.products, cart);
+      }else{
+        this.setData({
+          products: res.data
+        });
+        console.log(that.data.products);
       }
-    ];
-    let cart = wx.getStorageSync('cart');
-    if (cart && cart.length > 0) {
-      this.refreshGoods(products, cart);
-    } else {
-      this.setData({
-        products: products
-      });
-    }
-    this.infoScroll();
+      that.infoScroll();
+    })
   },
   refreshGoods: function (products, cart) {
     let refreshCart = [];

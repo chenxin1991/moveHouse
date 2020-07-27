@@ -10,6 +10,9 @@ export default function request(api, method, data, {noAuth = false, noVerify = f
     wx.request({
       url: Url + '/api/' + api,
       method: method || 'GET',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
       data: data || {},
       success: (res) => {
         if (noVerify)
