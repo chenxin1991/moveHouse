@@ -25,7 +25,7 @@
 							<view class='item acea-row'>
 								<navigator url='/pages/goods_details/index?id={{item.id}}'>
 									<view class='pictrue'>
-										<image src='{{item.image_url}}'></image>
+										<image src='{{url+item.image_url}}' mode='aspectFill'></image>
 									</view>
 								</navigator>
 								<view class='underline'>
