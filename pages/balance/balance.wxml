@@ -7,7 +7,7 @@
 						<checkbox value="{{item.id}}" checked="{{item.checked}}" data-index="{{index}}" data-id="{{item.id}}" data-checked="{{item.checked}}" catchtap='checkboxClick' />
 						<navigator url='/pages/goods_details/index?id={{item.id}}' hover-class='none' class='picTxt acea-row row-between-wrapper'>
 							<view class='pictrue'>
-								<image src='{{item.image}}'></image>
+								<image src='{{item.image_url}}'></image>
 							</view>
 							<view class='text'>
 								<view class='title'>{{item.name}}</view>

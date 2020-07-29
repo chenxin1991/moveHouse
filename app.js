@@ -44,7 +44,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    url: 'http://test.wjdhbq.com',
+    url: 'https://demo.wjdhbq.com',
     addressFrom: {},
     addressTo: {}
   }

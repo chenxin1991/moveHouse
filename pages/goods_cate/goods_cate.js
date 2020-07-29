@@ -23,12 +23,11 @@ Page({
     getCategoryList().then(res => {
       let cart = wx.getStorageSync('cart');
       if (cart && cart.length > 0) {
-        that.refreshGoods(that.data.products, cart);
+        that.refreshGoods(res.data, cart);
       }else{
         this.setData({
           products: res.data
         });
-        console.log(that.data.products);
       }
       that.infoScroll();
     })
