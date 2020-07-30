@@ -213,11 +213,11 @@
 .shoppingCart .footer .placeOrder {
   color: #fff;
   font-size: 30rpx;
-  width: 180rpx;
-  height: 60rpx;
+  width: 226rpx;
+  height: 70rpx;
   border-radius: 50rpx;
   text-align: center;
-  line-height: 60rpx;
+  line-height: 70rpx;
   margin-left: 22rpx;
   padding: 0;
 }

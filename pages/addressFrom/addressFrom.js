@@ -149,6 +149,12 @@ Page({
     })
 
   },
+  getInput(e) {
+    
+    // this.setData({
+    //   floor_num: e.detail.value
+    // });
+  },
   setType(e) {
     this.setData({
       stairs_or_elevators: e.currentTarget.dataset.index

@@ -1,4 +1,7 @@
-// pages/balance/balance.js
+import {
+  getCategoryList
+} from '../../api/basic.js';
+
 const app = getApp();
 Page({
 
@@ -261,16 +264,30 @@ Page({
     let selectedNum = 0;
     let cartList = this.data.cartList;
     let len = cartList.length;
+    let carSelect = false
     for (let i = 0; i < len; i++) {
       if (cartList[i].checked != "") {
+        let id = cartList[i].id.toString();
+        if (id.startsWith('car_')) {
+          carSelect = true;
+        }
         selectedGoods.push(cartList[i]);
         selectedNum += parseInt(cartList[i].num);
       }
     }
     if (selectedGoods.length) {
-      wx.navigateTo({
-        url: '../order/order' + '?selectCountPrice=' + this.data.selectCountPrice + '&selectedGoods=' + JSON.stringify(selectedGoods) + '&selectedNum=' + selectedNum
-      });
+      if (carSelect) {
+        wx.navigateTo({
+          url: '../order/order' + '?selectCountPrice=' + this.data.selectCountPrice + '&selectedGoods=' + JSON.stringify(selectedGoods) + '&selectedNum=' + selectedNum
+        });
+      } else {
+        wx.showToast({
+          title: '请选择用车',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+
     } else {
       wx.showToast({
         title: '没有选中任何物品',
@@ -290,24 +307,67 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let that = this;
     let cartList = wx.getStorageSync('cart');
     let len = cartList.length;
-    let selectCountPrice = 0;
-    for (let i = 0; i < len; i++) {
-      if (cartList[i].checked == "") {
+    if (len > 0) {
+      getCategoryList().then(res => {
+        that.refreshCart(res.data, cartList);
+        cartList = that.data.cartList;
+        let selectCountPrice = 0;
+        for (let i = 0; i < len; i++) {
+          if (cartList[i].checked == "") {
+            this.setData({
+              isAllSelect: false
+            });
+          } else {
+            selectCountPrice = selectCountPrice + parseFloat(cartList[i].price * cartList[i].num);
+          }
+        }
         this.setData({
-          isAllSelect: false
+          selectCountPrice: selectCountPrice
         });
-      } else {
-        selectCountPrice = selectCountPrice + parseFloat(cartList[i].price * cartList[i].num);
+      })
+    }
+  },
+  refreshCart: function (products, cart) {
+    let refreshCart = [];
+    let len = products.length;
+    for (let i = 0; i < len; i++) {
+      for (let j = 0; j < products[i].goods.length; j++) {
+        for (let k = 0; k < cart.length; k++) {
+          if (products[i].goods[j].id == cart[k].id) {
+            products[i].goods[j].num = cart[k].num;
+            products[i].goods[j].checked = cart[k].checked;
+            refreshCart.push(products[i].goods[j]);
+          }
+        }
       }
     }
+    let total = 0;
+    refreshCart.find(function (ele) {
+      total += parseInt(ele.num);
+    })
+    wx.setStorage({
+      key: 'cart',
+      data: refreshCart
+    })
     this.setData({
-      cartList: cartList,
-      selectCountPrice: selectCountPrice
+      cartList: refreshCart
     });
+    if (total > 0) {
+      wx.setStorage({
+        key: 'cartNum',
+        data: total.toString()
+      })
+    }
+    if (total > 0) {
+      wx.setTabBarBadge({
+        index: 2,
+        text: total.toString()
+      })
+    }
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
