@@ -9,7 +9,7 @@
 		</view>
 		<view class="from">
 			<view class="left"><text>门牌号</text></view>
-			<view class="right"><input placeholder="例：8楼290号" name="room_number" value="{{room_number}}" /></view>
+			<view class="right"><input placeholder="例：8楼290号" style="height:100rpx;" name="room_number" value="{{room_number}}" /></view>
 		</view>
 		<view class="from">
 			<view class="left"><text>楼梯类型</text></view>
@@ -19,7 +19,7 @@
 		</view>
 		<view class="from">
 			<view class="left"><text>楼层数</text></view>
-			<view class="right"><input type="number" bindinput='getInput' placeholder="第几层" name="floor_num" value="{{floor_num}}" /></view>
+			<view class="right"><input type="number" style="height:100rpx;" bindinput='getInput' placeholder="第几层" name="floor_num" value="{{floor_num}}" /></view>
 		</view>
 		<view class="from" style="height:160rpx;">
 			<view class="left"><text>停车位距离</text></view>
@@ -28,9 +28,8 @@
 			</view>
 		</view>
 		<view style="display:flex;flex-direction:column;align-items:flex-end;padding:20rpx 30rpx 20rpx 0rpx;">
-			<view style="display:flex;flex-direction:row;height:50rpx;">搬出楼层费用：<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">400</text></view></view>
-			<view style="display:flex;flex-direction:row;height:50rpx;">搬出停车位距离费用：<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">400</text></view></view>
-			<view style="display:flex;flex-direction:row;height:50rpx;">合计：<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">400</text></view></view>
+			<view style="display:flex;flex-direction:row;height:50rpx;">楼层费用：<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{floorCost}}</text></view></view>
+			<view style="display:flex;flex-direction:row;height:50rpx;">停车位距离费用：<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{parkingCost}}</text></view></view>
 		</view>
 	</view>
 	<button class="sure" formType="submit">确认</button>

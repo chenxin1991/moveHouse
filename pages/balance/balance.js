@@ -11,7 +11,7 @@ Page({
   data: {
     cartList: [],
     isAllSelect: true,
-    selectCountPrice: 0
+    selectGoodsPrice: 0
   },
 
   /**
@@ -29,18 +29,18 @@ Page({
 
   addCart: function (res) {
     let id = res.currentTarget.dataset.id;
-    let selectCountPrice = this.data.selectCountPrice;
+    let selectGoodsPrice = this.data.selectGoodsPrice;
     let cart = this.data.cartList;
     let exist = cart.find(function (ele) {
       return ele.id === id;
     })
     if (exist) {
       exist.num = parseInt(exist.num) + 1;
-      selectCountPrice = selectCountPrice + parseFloat(exist.price);
+      selectGoodsPrice = selectGoodsPrice + parseFloat(exist.price);
     }
     this.setData({
       cartList: cart,
-      selectCountPrice: selectCountPrice
+      selectGoodsPrice: selectGoodsPrice
     });
     //购物车的图标右上方提示购物车中有多少商品
     let total = 0;
@@ -62,19 +62,19 @@ Page({
   },
   reduceCart: function (option) {
     let that = this;
-    let selectCountPrice = this.data.selectCountPrice;
+    let selectGoodsPrice = this.data.selectGoodsPrice;
     let id = option.currentTarget.dataset.id;
     let cart = this.data.cartList;
     let exist = cart.find(function (ele) {
       return ele.id === id;
     })
     if (exist) {
-      selectCountPrice = selectCountPrice - parseFloat(exist.price);
+      selectGoodsPrice = selectGoodsPrice - parseFloat(exist.price);
       if (exist.num > 1) {
         exist.num = parseInt(exist.num) - 1;
         that.setData({
           cartList: cart,
-          selectCountPrice: selectCountPrice
+          selectGoodsPrice: selectGoodsPrice
         });
         let total = 0;
         cart.find(function (ele) {
@@ -101,7 +101,7 @@ Page({
               cart.splice(cart.findIndex(item => item.id === id), 1)
               that.setData({
                 cartList: cart,
-                selectCountPrice: selectCountPrice
+                selectGoodsPrice: selectGoodsPrice
               });
               let flag = true;
               let len = cart.length;
@@ -152,16 +152,16 @@ Page({
   checkboxClick: function (event) {
     let item = event.currentTarget.dataset;
     let cartList = this.data.cartList;
-    let selectCountPrice = this.data.selectCountPrice;
+    let selectGoodsPrice = this.data.selectGoodsPrice;
     if (item.checked == "true") {
       cartList[item.index].checked = "";
-      selectCountPrice = selectCountPrice - parseFloat(cartList[item.index].price * cartList[item.index].num);
+      selectGoodsPrice = selectGoodsPrice - parseFloat(cartList[item.index].price * cartList[item.index].num);
       this.setData({
         isAllSelect: false
       });
     } else {
       cartList[item.index].checked = "true";
-      selectCountPrice = selectCountPrice + parseFloat(cartList[item.index].price * cartList[item.index].num);
+      selectGoodsPrice = selectGoodsPrice + parseFloat(cartList[item.index].price * cartList[item.index].num);
       let flag = true;
       let len = cartList.length;
       for (let i = 0; i < len; i++) {
@@ -178,7 +178,7 @@ Page({
     }
     this.setData({
       cartList: cartList,
-      selectCountPrice: selectCountPrice
+      selectGoodsPrice: selectGoodsPrice
     });
     wx.setStorage({
       key: 'cart',
@@ -188,11 +188,11 @@ Page({
   checkboxAllChange: function (event) {
     let cartList = this.data.cartList;
     let len = cartList.length;
-    let selectCountPrice = 0;
+    let selectGoodsPrice = 0;
     if (event.detail.value.length > 0) {
       for (let i = 0; i < len; i++) {
         cartList[i].checked = "true";
-        selectCountPrice = selectCountPrice + parseFloat(cartList[i].price * cartList[i].num);
+        selectGoodsPrice = selectGoodsPrice + parseFloat(cartList[i].price * cartList[i].num);
       }
     } else {
       for (let i = 0; i < len; i++) {
@@ -201,7 +201,7 @@ Page({
     }
     this.setData({
       cartList: cartList,
-      selectCountPrice: selectCountPrice
+      selectGoodsPrice: selectGoodsPrice
     });
     wx.setStorage({
       key: 'cart',
@@ -212,7 +212,7 @@ Page({
     let that = this;
     let cartList = this.data.cartList;
     let len = cartList.length;
-    let selectCountPrice = this.data.selectCountPrice;
+    let selectGoodsPrice = this.data.selectGoodsPrice;
     wx.showModal({
       title: '删除物品',
       content: '确定删除选中的物品吗',
@@ -220,13 +220,13 @@ Page({
         if (res.confirm) {
           while (len--) {
             if (cartList[len].checked == "true") {
-              selectCountPrice = selectCountPrice - cartList[len].price * cartList[len].num;
+              selectGoodsPrice = selectGoodsPrice - cartList[len].price * cartList[len].num;
               cartList.splice(len, 1);
             }
           }
           that.setData({
             cartList: cartList,
-            selectCountPrice: selectCountPrice
+            selectGoodsPrice: selectGoodsPrice
           });
           let total = 0;
           cartList.find(function (ele) {
@@ -261,6 +261,7 @@ Page({
   },
   toOrder: function () {
     let selectedGoods = [];
+    let selectedCar = [];
     let selectedNum = 0;
     let cartList = this.data.cartList;
     let len = cartList.length;
@@ -269,6 +270,7 @@ Page({
       if (cartList[i].checked != "") {
         let id = cartList[i].id.toString();
         if (id.startsWith('car_')) {
+          selectedCar.push(cartList[i]);
           carSelect = true;
         }
         selectedGoods.push(cartList[i]);
@@ -277,8 +279,12 @@ Page({
     }
     if (selectedGoods.length) {
       if (carSelect) {
+        app.globalData.selectedGoods = selectedGoods;
+        app.globalData.selectedCar = selectedCar;
+        app.globalData.selectedNum = selectedNum;
+        app.globalData.selectGoodsPrice = this.data.selectGoodsPrice;
         wx.navigateTo({
-          url: '../order/order' + '?selectCountPrice=' + this.data.selectCountPrice + '&selectedGoods=' + JSON.stringify(selectedGoods) + '&selectedNum=' + selectedNum
+          url: '../order/order'
         });
       } else {
         wx.showToast({
@@ -314,18 +320,18 @@ Page({
       getCategoryList().then(res => {
         that.refreshCart(res.data, cartList);
         cartList = that.data.cartList;
-        let selectCountPrice = 0;
+        let selectGoodsPrice = 0;
         for (let i = 0; i < len; i++) {
           if (cartList[i].checked == "") {
             this.setData({
               isAllSelect: false
             });
           } else {
-            selectCountPrice = selectCountPrice + parseFloat(cartList[i].price * cartList[i].num);
+            selectGoodsPrice = selectGoodsPrice + parseFloat(cartList[i].price * cartList[i].num);
           }
         }
         this.setData({
-          selectCountPrice: selectCountPrice
+          selectGoodsPrice: selectGoodsPrice
         });
       })
     }

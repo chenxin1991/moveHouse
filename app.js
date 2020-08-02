@@ -46,6 +46,10 @@ App({
     userInfo: null,
     url: 'https://demo.wjdhbq.com',
     addressFrom: {},
-    addressTo: {}
+    addressTo: {},
+    selectedGoods: [],
+    selectedCar: [],
+    selectGoodsPrice: 0,
+    selectedNum: 0
   }
 })

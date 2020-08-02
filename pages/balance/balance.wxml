@@ -35,7 +35,7 @@
 				</checkbox-group>
 			</view>
 			<view class='money acea-row row-middle'>
-				<text style="font-size:25rpx;">合计：</text><text class='font-color' style="font-weight: bold;font-size:35rpx;">￥{{selectCountPrice}}</text>
+				<text style="font-size:25rpx;">合计：</text><text class='font-color' style="font-weight: bold;font-size:35rpx;">￥{{selectGoodsPrice}}</text>
 					<button class='placeOrder bg-color' catchtap="toOrder">去结算</button>
 			</view>
 		</view>

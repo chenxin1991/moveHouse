@@ -12,7 +12,10 @@ Page({
     floor_num: '',
     parking_distance: '',
     array1: ['电梯', '楼梯'],
-    array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入']
+    array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入'],
+    selectedCar: [],
+    floorCost: 0,
+    parkingCost: 0
   },
   formSubmit: function (e) {
     let address = this.data.address;
@@ -67,6 +70,8 @@ Page({
     addressTo.parking_distance = parking_distance;
     addressTo.room_number = room_number;
     addressTo.floor_num = floor_num;
+    addressTo.floorCost = this.data.floorCost;
+    addressTo.parkingCost = this.data.parkingCost;
     app.globalData.addressTo = addressTo;
     wx.navigateBack({
       delta: 1
@@ -76,6 +81,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      selectedCar: app.globalData.selectedCar
+    });
     if (JSON.stringify(app.globalData.addressTo) !== "{}") {
       let addressTo = app.globalData.addressTo;
       this.setData({
@@ -83,7 +91,9 @@ Page({
         room_number: addressTo.room_number,
         stairs_or_elevators: addressTo.stairs_or_elevators,
         floor_num: addressTo.floor_num,
-        parking_distance: addressTo.parking_distance
+        parking_distance: addressTo.parking_distance,
+        floorCost: addressTo.floorCost,
+        parkingCost: addressTo.parkingCost
       })
     }
   },
@@ -147,16 +157,69 @@ Page({
         })
       }
     })
-
+  },
+  getInput(e) {
+    this.setData({
+      floor_num: e.detail.value
+    });
+    this.getFloorCost();
   },
   setType(e) {
     this.setData({
       stairs_or_elevators: e.currentTarget.dataset.index
     });
+    this.getFloorCost();
   },
   setType2(e) {
     this.setData({
       parking_distance: e.currentTarget.dataset.index
+    });
+    this.getParkingCost();
+  },
+  getFloorCost() {
+    let floorCost = 0;
+    let selectedCar = [];
+    let floor_num = 0;
+    let len = 0;
+    selectedCar = this.data.selectedCar;
+    floor_num = this.data.floor_num;
+    len = selectedCar.length;
+    if (this.data.stairs_or_elevators == '1' && floor_num > 0) {
+      for (let i = 0; i < len; i++) {
+        floorCost = floorCost + (floor_num - selectedCar[i].floor_standard + 1) * selectedCar[i].floor_price * selectedCar[i].num
+      }
+    }
+    this.setData({
+      floorCost: Math.round(floorCost)
+    });
+  },
+  getParkingCost() {
+    let parkingCost = 0;
+    let selectedCar = [];
+    let len = 0;
+    selectedCar = this.data.selectedCar;
+    len = selectedCar.length;
+    for (let i = 0; i < len; i++) {
+      switch (this.data.parking_distance) {
+        case 0:
+          parkingCost = parkingCost + selectedCar[i].distance1 * selectedCar[i].num;
+          break;
+        case 1:
+          parkingCost = parkingCost + selectedCar[i].distance2 * selectedCar[i].num;
+          break;
+        case 2:
+          parkingCost = parkingCost + selectedCar[i].distance3 * selectedCar[i].num;
+          break;
+        case 3:
+        case 4:
+          parkingCost = parkingCost + selectedCar[i].distance4 * selectedCar[i].num;
+          break;
+        default:
+          break;
+      }
+    }
+    this.setData({
+      parkingCost: Math.round(parkingCost)
     });
   },
   /**

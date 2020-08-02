@@ -6,3 +6,11 @@ import request from "./../utils/request.js";
 export function getCategoryList(){
   return request.get('category', {}, { noAuth:true})
 }
+
+/**
+ * 参数配置
+ * 
+*/
+export function getConfig(){
+  return request.get('config', { id: 1 }, { noAuth:true})
+}
