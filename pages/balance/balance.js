@@ -334,6 +334,10 @@ Page({
           selectGoodsPrice: selectGoodsPrice
         });
       })
+    }else{
+      this.setData({
+        cartList: []
+      });
     }
   },
   refreshCart: function (products, cart) {
