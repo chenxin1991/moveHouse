@@ -49,3 +49,5 @@
 		<view bindtap="goShopping" class="flow-btn-min">去逛逛</view>
 	</view>
 </view>
+
+<authorize bind:onLoadFun='onLoadFun' bind:onCloseAuto='onCloseAuto' isGoIndex='{{isGoIndex}}' iShidden='{{iShidden}}'></authorize>
