@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="container">
+	<view class="userinfo" style="background: #ff5155;height:300rpx;">
+		<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+		<block wx:else>
+			<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+			<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+		</block>
+		<view style="margin-top:20rpx;"><text style="color:white;">绑定手机号 ></text></view>
+	</view>
+	<view style="background:white;margin-bottom:16rpx;">
+		<view style="height:100rpx;display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:0rpx 40rpx;font-size:30rpx;border-bottom: 1px solid #eee;">
+			<text>全部订单</text>
+			<view style="display:flex;align-items:center;">
+				<text style="margin-right:20rpx;">查看全部订单</text>
+				<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+			</view>
+		</view>
+		<view style="height:160rpx;display:flex;flex-direction:row;">
+		</view>
+	</view>
+</view>

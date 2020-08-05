@@ -4,9 +4,10 @@
     "pages/goods_cate/goods_cate",
     "pages/balance/balance",
     "pages/order/order",
-    "pages/logs/logs",
+    "pages/me/me",
     "pages/addressFrom/addressFrom",
-    "pages/addressTo/addressTo"
+    "pages/addressTo/addressTo",
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -42,7 +43,7 @@
         "text": "结算"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/me/me",
         "iconPath": "images/4-001.png",
         "selectedIconPath": "images/4-002.png",
         "text": "我的"

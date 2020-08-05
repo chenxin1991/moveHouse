@@ -1,13 +1,41 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view class='title'>主营业务</view>
+<view class="item">
+  <view id='left'>
+    <view class='pg1 child' catchtap="toMove">
+      <image src='/images/car.png'></image>
+      <view>居民搬家</view>
+    </view>
+    <view class='pg4 child'>
+      <image src='/images/orangeCar.png'></image>
+      <view>同城货运</view>
+      <navigator url="../jianshe/jianshe?name=货运"></navigator>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view id='right'>
+    <view class='pg2 child'>
+      <image src='/images/lou.png'></image>
+      <view>单位企业搬迁</view>
+      <navigator url="project_remove/project_remove"></navigator>
+    </view>
+    <view class='pg3 child'>
+      <image src='/images/plane.png'></image>
+      <view>国际搬家</view>
+      <navigator url="internation/internation?name=国际搬家"></navigator>
+    </view>
+    <view class='pg5 child'>
+      <image src='/images/ditie.png'></image>
+      <view>城际货运</view>
+      <navigator url="../jianshe/jianshe?name=货运"></navigator>
+    </view>
   </view>
+
+</view>
+<view class='title'>战略合作伙伴</view>
+<view class='bottom'>
+  <!-- <view wx:for="{{logoList}}" bindtap='toEnter' data-id='{{item.id}}'>
+    <view class="tu">
+        <image src='{{item.logo}}'></image>
+        <view class='{{item.id == -999 ? "aaa" : ""}}'>{{item.company_name}}</view>
+    </view>
+  </view> -->
 </view>

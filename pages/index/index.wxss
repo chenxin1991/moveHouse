@@ -1,21 +1,119 @@
-/**index.wxss**/
-.userinfo {
+page{
+  background: #fff
+}
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 15rpx;
+  margin-left: 16rpx;
+  box-sizing: border-box;
+
+}
+
+.item .child {
+  text-align: center;
+  width:220rpx;
+  height:200rpx;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 1;
+  border-radius: 10rpx;
+  position: relative;
+  /* margin-bottom: 15rpx; */
+}
+
+
+.item>view image {
+  width: 100%;
+  height: 100%;
+}
+
+.item>view view {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20rpx;
+}
+
+.item>view navigator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+/* --------------------- */
+.item .pg1{
+  width: 340rpx;
+  height: 276rpx;
+  margin-bottom: 8rpx;
+}
+.item .pg2{
+  width: 340rpx;
+  height: 132rpx;
+  margin-bottom: 8rpx;
+}
+.item .pg3{
+  width: 340rpx;
+  height: 136rpx;
+  margin-bottom: 8rpx;
+}
+.item .pg4{
+  width: 340rpx;
+  height: 136rpx;
+}
+.item .pg5{
+  width: 340rpx;
+  height: 136rpx;
+}
+#left{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  box-sizing: border-box;
+  margin-right: 8rpx;
+}
+.title{
+  padding: 30rpx;
+  box-sizing: border-box;
+  font-size: 36rpx;
+  color: #000;
+}
+.bottom{
+  /* width: 750rpx; */
+  display: flex;
+  flex-wrap:wrap;
+  margin-bottom: 15rpx;
+  /* justify-content: space-between;  */
+}
+.bottom .tu{
+  /* color: #7D7D7D; */
+  width: 186rpx;
+  height:192rpx;
+  border: 1rpx solid #E2E2E2;
+  margin-left: -1rpx;
+  margin-top: -1rpx;
+
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.bottom image{
+  /* width: 100%; */
+  width: 74rpx;
+  height: 72rpx;
+  box-sizing: border-box;
+  margin: 24rpx;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.bottom .tu view{
+  font-size: 24rpx;
+  text-align: center
 }
-
-.usermotto {
-  margin-top: 200px;
+.aaa{
+  color: #7D7D7D;
 }
