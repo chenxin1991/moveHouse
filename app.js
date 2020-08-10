@@ -44,7 +44,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    url: 'https://demo.wjdhbq.com',
+    url: 'http://demo.tp6.cn/index.php',
     addressFrom: {},
     addressTo: {},
     selectedGoods: [],

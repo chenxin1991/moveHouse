@@ -12,5 +12,5 @@ export function getCategoryList(){
  * 
 */
 export function getConfig(){
-  return request.get('config', { id: 1 }, { noAuth:true})
+  return request.get('setting', { id: 1 }, { noAuth:true})
 }

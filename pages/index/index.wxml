@@ -1,9 +1,10 @@
 <view class='title'>主营业务</view>
 <view class="item">
   <view id='left'>
-    <view class='pg1 child' catchtap="toMove">
+    <view class='pg1 child'>
       <image src='/images/car.png'></image>
       <view>居民搬家</view>
+       <navigator url="/pages/goods_cate/goods_cate" open-type="switchTab"></navigator>
     </view>
     <view class='pg4 child'>
       <image src='/images/orangeCar.png'></image>
