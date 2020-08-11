@@ -176,7 +176,7 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
-          height: (res.windowHeight) * (750 / res.windowWidth) - 98
+          height: (res.windowHeight) * (750 / res.windowWidth)
           //res.windowHeight:获取整个窗口高度为px，*2为rpx；98为头部占据的高度；
         })
       },
