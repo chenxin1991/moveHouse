@@ -22,7 +22,7 @@ page{background-color:#fff!important;}
 .goodList .item .pictrue image{border-radius:6rpx;width:100%;height:100%;}
 .goodList .item .underline{padding-left:20rpx;}
 .goodList .item .text{font-size:30rpx;color:#222;width:310rpx;}
-.goodList .item .text .title{font-size: 26rpx;color: #333;font-weight: bold;position:relative;line-height:40rpx;height:80rpx;overflow:hidden;}
+.goodList .item .text .title{font-size: 26rpx;color: #333;font-weight: bold;line-height:40rpx;height:80rpx;}
 .goodList .item .text .money{font-size:26rpx;font-weight:bold;}
 .goodList .item .text .money .num{font-size:30rpx;}
 .goodList .item .text .vip-money{font-size:24rpx;color:#282828;font-weight:bold;margin-top:15rpx;}

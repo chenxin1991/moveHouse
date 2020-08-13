@@ -82,7 +82,7 @@
 								</view>
 									</block>
 									<block wx:else>
-										<swiper class='pictrue' indicator-dots="true" >
+										<swiper class='pictrue' indicator-dots="true" autoplay="true" interval="3500">
 										<block wx:for="{{item.image_url}}" wx:key='index'> 
 											<swiper-item >
 												<image src="{{item.url}}" style="width:100%;height:100%;" ></image>

@@ -224,17 +224,6 @@ Page({
       }
     }
   },
-
-  searchSubmitValue: function (e) {
-    if (e.detail.value.length > 0)
-      wx.navigateTo({
-        url: '/pages/goods_list/goods_list?searchValue=' + e.detail.value
-      })
-    else
-      return app.Tips({
-        title: '请填写要搜索的产品信息'
-      });
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
