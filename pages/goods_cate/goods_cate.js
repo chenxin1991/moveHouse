@@ -9,21 +9,66 @@ Page({
    */
   data: {
     products: [],
-    navActive: 0
+    navActive: 0,
+    addressFrom: {},
+    addressTo: {},
+    flagFrom: false,
+    flagTo: false,
+    appointDate: '',
+    appointTime: '',
+    startDate: '',
+    endDate: '',
+    timeArray: [],
+    todayTimeArray: [],
+    nextTimeArray: ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00'],
+    currentHour: 0,
+    array1: ['电梯', '楼梯'],
+    array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入'],
+    distance: 0,
+    selectedCar: [],
+    floorCost: 0,
+    parkingCost: 0,
+    distanceCost: 0,
+    specialTimeCost: 0,
+    config: {},
+    cartList: [],
+    carNum: 0
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (res) {
-
+    let min_hour = 6;
+    let max_month = 1;
+    let startDate = this.getStartDate(min_hour);
+    let endDate = this.getEndDate(max_month);
+    this.setData({
+      startDate: startDate,
+      endDate: endDate,
+    });
   },
   getAllCategory: function () {
     let that = this;
     getCategoryList().then(res => {
+      let addressFrom = wx.getStorageSync('addressFrom');
+      if (addressFrom) {
+        this.setData({
+          addressFrom: addressFrom,
+          flagFrom: true
+        })
+      }
+      let addressTo = wx.getStorageSync('addressTo');
+      if (addressTo) {
+        this.setData({
+          addressTo: addressTo,
+          flagTo: true
+        })
+      }
       let cart = wx.getStorageSync('cart');
       if (cart && cart.length > 0) {
         that.refreshGoods(res.data, cart);
-      }else{
+        that.getCost();
+      } else {
         this.setData({
           products: res.data
         });
@@ -31,6 +76,145 @@ Page({
       that.infoScroll();
     })
   },
+  getCost: function () {
+    let carNum = 0;
+    let that = this;
+    let selectedCar = [];
+    let cartList = this.data.cartList;
+    let len2 = cartList.length;
+    for (let i = 0; i < len2; i++) {
+      let id = cartList[i].id.toString();
+      if (id.startsWith('car_')) {
+        selectedCar.push(cartList[i]);
+        carNum = carNum + cartList[i].num;
+      }
+    }
+    this.setData({
+      carNum: carNum
+    });
+    app.globalData.selectedCar = JSON.parse(JSON.stringify(selectedCar));
+    let floorCost = 0;
+    let parkingCost = 0;
+    let len = selectedCar.length;
+    if (this.data.flagFrom) {
+      let floorCostFrom = 0;
+      let parkingCostFrom = 0;
+      let floor_num = this.data.addressFrom.floor_num;
+      if (this.data.addressFrom.stairs_or_elevators == '1' && floor_num > 0) {
+        for (let i = 0; i < len; i++) {
+          floorCostFrom = floorCostFrom + (floor_num - selectedCar[i].floor_standard + 1) * selectedCar[i].floor_price * selectedCar[i].num
+        }
+      }
+      floorCost = floorCost + floorCostFrom;
+      for (let i = 0; i < len; i++) {
+        switch (this.data.addressFrom.parking_distance) {
+          case 0:
+            parkingCostFrom = parkingCostFrom + selectedCar[i].distance1 * selectedCar[i].num;
+            break;
+          case 1:
+            parkingCostFrom = parkingCostFrom + selectedCar[i].distance2 * selectedCar[i].num;
+            break;
+          case 2:
+            parkingCostFrom = parkingCostFrom + selectedCar[i].distance3 * selectedCar[i].num;
+            break;
+          case 3:
+          case 4:
+            parkingCostFrom = parkingCostFrom + selectedCar[i].distance4 * selectedCar[i].num;
+            break;
+          default:
+            break;
+        }
+      }
+      parkingCost = parkingCost + parkingCostFrom;
+    }
+    if (this.data.flagTo) {
+      let floorCostTo = 0;
+      let parkingCostTo = 0;
+      let floor_num = this.data.addressTo.floor_num;
+      if (this.data.addressTo.stairs_or_elevators == '1' && floor_num > 0) {
+        for (let i = 0; i < len; i++) {
+          floorCostTo = floorCostTo + (floor_num - selectedCar[i].floor_standard + 1) * selectedCar[i].floor_price * selectedCar[i].num
+        }
+      }
+      floorCost = floorCost + floorCostTo;
+      for (let i = 0; i < len; i++) {
+        switch (this.data.addressTo.parking_distance) {
+          case 0:
+            parkingCostTo = parkingCostTo + selectedCar[i].distance1 * selectedCar[i].num;
+            break;
+          case 1:
+            parkingCostTo = parkingCostTo + selectedCar[i].distance2 * selectedCar[i].num;
+            break;
+          case 2:
+            parkingCostTo = parkingCostTo + selectedCar[i].distance3 * selectedCar[i].num;
+            break;
+          case 3:
+          case 4:
+            parkingCostTo = parkingCostTo + selectedCar[i].distance4 * selectedCar[i].num;
+            break;
+          default:
+            break;
+        }
+      }
+      parkingCost = parkingCost + parkingCostTo;
+    }
+    this.setData({
+      floorCost: Math.round(floorCost)
+    });
+    this.setData({
+      parkingCost: Math.round(parkingCost)
+    });
+    // 起终点同时存在时访问
+    if (this.data.flagFrom && this.data.flagTo) {
+      if (this.data.distance > 0) {
+        let distanceCost = 0;
+
+        for (let i = 0; i < len; i++) {
+          if (this.data.distance > selectedCar[i].km_standard && this.data.distance <= 300) {
+            distanceCost = distanceCost + selectedCar[i].km_price * (this.data.distance - selectedCar[i].km_standard) * selectedCar[i].num
+          } else if (this.data.distance > 300 && this.data.distance <= 500) {
+            distanceCost = distanceCost + (selectedCar[i].km_price * (this.data.distance - selectedCar[i].km_standard) * selectedCar[i].num * this.data.config.discount1) / 10
+          } else if (this.data.distance > 500) {
+            distanceCost = distanceCost + (selectedCar[i].km_price * (this.data.distance - selectedCar[i].km_standard) * selectedCar[i].num * this.data.config.discount2) / 10
+          }
+        }
+        that.setData({
+          distanceCost: Math.round(distanceCost)
+        });
+      } else {
+        let addressFrom = this.data.addressFrom;
+        let addressTo = this.data.addressTo;
+        let url = `https://apis.map.qq.com/ws/direction/v1/driving/?from=${addressFrom.address.latitude},${addressFrom.address.longitude}&to=${addressTo.address.latitude},${addressTo.address.longitude}&output=json&key=OI7BZ-EGOWU-H5YVZ-4HLVW-MDUUQ-ZCFGJ`;
+        wx.request({
+          url: url,
+          method: "GET",
+          success: res => {
+            that.setData({
+              distance: Math.round(res.data.result.routes[0].distance / 1000)
+            });
+            let distanceCost = 0;
+
+            for (let i = 0; i < len; i++) {
+              if (that.data.distance > selectedCar[i].km_standard && that.data.distance <= 300) {
+                distanceCost = distanceCost + selectedCar[i].km_price * (that.data.distance - selectedCar[i].km_standard) * selectedCar[i].num
+              } else if (that.data.distance > 300 && that.distance <= 500) {
+                distanceCost = distanceCost + (selectedCar[i].km_price * (that.data.distance - selectedCar[i].km_standard) * selectedCar[i].num * that.data.config.discount1) / 10
+              } else if (that.data.distance > 500) {
+                distanceCost = distanceCost + (selectedCar[i].km_price * (that.data.distance - selectedCar[i].km_standard) * selectedCar[i].num * that.data.config.discount2) / 10
+              }
+            }
+            that.setData({
+              distanceCost: Math.round(distanceCost)
+            });
+          }
+        })
+      }
+
+
+    }
+
+  },
+
   refreshGoods: function (products, cart) {
     let refreshCart = [];
     let len = products.length;
@@ -40,12 +224,9 @@ Page({
           if (products[i].goods[j].id == cart[k].id) {
             products[i].goods[j].num = cart[k].num;
             products[i].goods[j].checked = cart[k].checked;
-            refreshCart.push(products[i].goods[j]);
-            if (products[i].hasOwnProperty("num")) {
-              products[i].num += cart[k].num;
-            } else {
-              products[i].num = cart[k].num;
-            }
+            cart[k].name = products[i].goods[j].name;
+            cart[k].price = products[i].goods[j].price;
+            refreshCart.push(cart[k]);
           }
         }
       }
@@ -61,43 +242,134 @@ Page({
       key: 'cart',
       data: refreshCart
     })
-    wx.setStorage({
-      key: 'cartNum',
-      data: total.toString()
+    this.setData({
+      cartList: refreshCart
+    });
+    if (total > 0) {
+      wx.setStorage({
+        key: 'cartNum',
+        data: total.toString()
+      })
+    }
+    if (total > 0) {
+      wx.setTabBarBadge({
+        index: 2,
+        text: total.toString()
+      })
+    }
+  },
+  getStartDate: function (h) {
+    let todayTimeArray = [];
+    let d = new Date();
+    let hh = d.getHours();
+    d.setHours(hh + h);
+    let hour = d.getHours();
+    for (let i = hour; i <= 23; i++) {
+      let t = i.toString();
+      t = t[1] ? t : '0' + t;
+      todayTimeArray.push(t + ':00');
+    }
+    this.setData({
+      todayTimeArray: todayTimeArray
+    });
+    let y = d.getFullYear();
+    let m = d.getMonth() * 1 + 1;
+    let to = d.getDate();
+    return ([y, m, to]).map(function (n) {
+      n = n.toString()
+      return n[1] ? n : '0' + n
+    }).join('-')
+  },
+  getEndDate: function (n) {
+    let d = new Date();
+    let mm = d.getMonth();
+    d.setMonth(mm + n);
+    let y = d.getFullYear();
+    let m = d.getMonth() * 1 + 1;
+    let to = d.getDate();
+    return ([y, m, to]).map(function (n) {
+      n = n.toString()
+      return n[1] ? n : '0' + n
+    }).join('-')
+  },
+  bindDateChange: function (e) {
+    if (e.detail.value > this.data.startDate) {
+      this.setData({
+        timeArray: this.data.nextTimeArray
+      });
+    } else {
+      this.setData({
+        timeArray: this.data.todayTimeArray
+      });
+    }
+    this.setData({
+      appointDate: e.detail.value,
+      appointTime: ''
     })
-    wx.setTabBarBadge({
-      index: 2,
-      text: total.toString()
+  },
+  bindPickerChange: function (e) {
+    let specialTimeCost = 0;
+    this.setData({
+      appointTime: e.detail.value
+    })
+    // if (this.data.timeArray.length > 0) {
+    //   let appointTime = this.data.timeArray[this.data.appointTime];
+    //   let totalCost = this.data.selectGoodsPrice + this.data.floorCost + this.data.parkingCost + this.data.distanceCost;
+    //   if (appointTime) {
+    //     if (appointTime >= '19:00' && appointTime <= '23:00') {
+    //       specialTimeCost = totalCost * (this.data.config.add_ratio1 / 100);
+    //     } else if (appointTime > '23:00' || appointTime <= '07:00') {
+    //       specialTimeCost = totalCost * (this.data.config.add_ratio2 / 100);
+    //     }
+    //     this.setData({
+    //       specialTimeCost: Math.round(specialTimeCost)
+    //     });
+
+    //   this.getTotalCost();
+    //   }
+    // }
+  },
+  addFrom(e) {
+    wx.navigateTo({
+      url: '/' + e.currentTarget.dataset.url
+    })
+  },
+  addTo(e) {
+    wx.navigateTo({
+      url: '/' + e.currentTarget.dataset.url
     })
   },
   addCart: function (res) {
     let products = this.data.products;
     let idx = res.currentTarget.dataset.idx;
     let idy = res.currentTarget.dataset.idy;
-    if (products[idx].hasOwnProperty("num")) {
-      products[idx].num += 1;
-    } else {
-      products[idx].num = 1
-    }
     if (products[idx].goods[idy].hasOwnProperty("num")) {
       products[idx].goods[idy].num += 1;
     } else {
+      products[idx].goods[idy].checked = "true";
       products[idx].goods[idy].num = 1
     }
     this.setData({
       products: products
     });
     let cart = wx.getStorageSync('cart') || [];
+    console.log(cart);
     let exist = cart.find(function (ele) {
-      return ele.id === res.currentTarget.dataset.id;
+      return (ele.id === res.currentTarget.dataset.id) && (ele.image.uid === products[idx].goods[idy].image.uid );
     })
     if (exist) {
       exist.num = parseInt(exist.num) + 1;
     } else {
-      res.currentTarget.dataset.num = 1;
-      cart.push(res.currentTarget.dataset);
+      let test = {};
+      test.id = products[idx].goods[idy].id;
+      test.name = products[idx].goods[idy].name;
+      test.price = products[idx].goods[idy].price;
+      test.image = products[idx].goods[idy].image;
+      test.num = 1;
+      test.checked = "true";
+      cart.push(test);
     }
-    //购物车的图标右上方提示购物车中有多少商品
+
     let total = 0;
     cart.find(function (ele) {
       total += parseInt(ele.num);
@@ -114,35 +386,36 @@ Page({
       index: 2,
       text: total.toString()
     })
+    this.setData({
+      cartList: cart
+    });
+    this.getCost();
   },
   reduceCart: function (res) {
     let products = this.data.products;
     let idx = res.currentTarget.dataset.idx;
     let idy = res.currentTarget.dataset.idy;
-    if (products[idx].hasOwnProperty("num") > 0) {
-      products[idx].num -= 1;
-    } else {
-      products[idx].num = 0
-    }
-    if (products[idx].goods[idy].hasOwnProperty("num") > 0) {
-      products[idx].goods[idy].num -= 1;
-    } else {
-      productOrder[idx].goods[idy].num = 0
+    if (products[idx].goods[idy].hasOwnProperty("num")) {
+      if (products[idx].goods[idy].num > 0) {
+        products[idx].goods[idy].num -= 1;
+      } else {
+        products[idx].goods[idy].num = 0;
+      }
     }
     this.setData({
       products: products
     });
-    let cart = wx.getStorageSync('cart') || []; //判断cart存不存在
-    let exist = cart.find(function (ele) { //find遍历cart数组
+    let cart = wx.getStorageSync('cart') || [];
+    let exist = cart.find(function (ele) {
       return ele.id === res.currentTarget.dataset.id;
     })
     if (exist && exist.num > 0) {
-      exist.num = parseInt(exist.num) - 1; //如果加入购物车的商品存在就增加数量
+      exist.num = parseInt(exist.num) - 1;
       if (exist.num == 0) {
         cart.splice(cart.findIndex(item => item.id === res.currentTarget.dataset.id), 1)
       }
     }
-    //购物车的图标右上方提示购物车中有多少商品
+
     let total = 0;
     cart.find(function (ele) {
       total += parseInt(ele.num);
@@ -168,6 +441,10 @@ Page({
         key: 'cartNum',
       })
     }
+    this.setData({
+      cartList: cart
+    });
+    this.getCost();
   },
   infoScroll: function () {
     let that = this;
@@ -256,5 +533,14 @@ Page({
    */
   onPullDownRefresh: function () {
 
+  },
+  test: function (e) {
+    let idx = e.currentTarget.dataset.idx;
+    let idy = e.currentTarget.dataset.idy;
+    let products = this.data.products;
+    products[idx].goods[idy].image  = products[idx].goods[idy].image_url[e.detail.current];
+    this.setData({
+      products: products
+    });
   }
 })

@@ -45,10 +45,9 @@ App({
   globalData: {
     userInfo: null,
     url: 'https://demo.wjdhbq.com/index.php',
-    addressFrom: {},
-    addressTo: {},
     selectedGoods: [],
     selectedCar: [],
+    distance: 0,
     selectGoodsPrice: 0,
     selectedNum: 0
   }

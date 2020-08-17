@@ -2,27 +2,27 @@
 	<view class='shoppingCart'>
 		<view class='list'>
 			<checkbox-group>
-				<block wx:for="{{cartList}}" wx:key>
-					<view class='item acea-row row-between-wrapper'>
+				<block wx:for="{{cartList}}">
+					<view class='item'>
 						<checkbox value="{{item.id}}" checked="{{item.checked}}" data-index="{{index}}" data-id="{{item.id}}" data-checked="{{item.checked}}" catchtap='checkboxClick' />
-						<navigator url='/pages/goods_details/index?id={{item.id}}' hover-class='none' class='picTxt acea-row row-between-wrapper'>
+						<view hover-class='none' class='picTxt'>
 							<view class='pictrue'>
-								<image src='{{item.image_url}}' mode='aspectFill'></image>
+								<image src='{{item.image.url}}' mode='aspectFill'></image>
 							</view>
 							<view class='text'>
 								<view class='title'>{{item.name}}</view>
-								<view style="height:60rpx;display:flex;align-items:flex-end;justify-content:space-between;margin-top:20rpx;">
-									<view class='money font-color' style="display:flex;align-items:center;font-size:26rpx;font-weight:bold;">￥<text class='num' style="font-size:30rpx;">{{item.price}}</text></view>
-									<view style="width:160rpx;display:flex;justify-content:flex-end;align-items:center;">
+								<view class="content">
+									<view class='money'>￥<text class='num'>{{item.price}}</text></view>
+									<view class="changeNum">
 										<block wx:if="{{item.num}}">
-											<image class='icon' catchtap='reduceCart' data-id='{{item.id}}' src='/images/reduce.png' style="width:45rpx;height:45rpx;"></image>
-											<span style="width:60rpx;text-align:center;">{{item.num}}</span>
+											<image class='icon' catchtap='reduceCart' data-id='{{item.id}}' src='/images/reduce.png'></image>
+											<span class="num">{{item.num}}</span>
 										</block>
-										<image class='icon' catchtap='addCart' data-id='{{item.id}}' src='/images/add.png' style="width:45rpx;height:45rpx;"></image>
+										<image class='icon' catchtap='addCart' data-id='{{item.id}}' src='/images/add.png'></image>
 									</view>
 								</view>
 							</view>
-						</navigator>
+						</view>
 					</view>
 				</block>
 			</checkbox-group>
@@ -36,7 +36,7 @@
 			</view>
 			<view class='money acea-row row-middle'>
 				<text style="font-size:25rpx;">合计：</text><text class='font-color' style="font-weight: bold;font-size:35rpx;">￥{{selectGoodsPrice}}</text>
-					<button class='placeOrder bg-color' catchtap="toOrder">去结算</button>
+				<button class='placeOrder bg-color' catchtap="toOrder">去结算</button>
 			</view>
 		</view>
 	</view>
@@ -49,5 +49,3 @@
 		<view bindtap="goShopping" class="flow-btn-min">去逛逛</view>
 	</view>
 </view>
-
-<authorize bind:onLoadFun='onLoadFun' bind:onCloseAuto='onCloseAuto' isGoIndex='{{isGoIndex}}' iShidden='{{iShidden}}'></authorize>

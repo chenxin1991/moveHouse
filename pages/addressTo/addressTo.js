@@ -70,9 +70,10 @@ Page({
     addressTo.parking_distance = parking_distance;
     addressTo.room_number = room_number;
     addressTo.floor_num = floor_num;
-    addressTo.floorCost = this.data.floorCost;
-    addressTo.parkingCost = this.data.parkingCost;
-    app.globalData.addressTo = addressTo;
+    wx.setStorage({
+      key: 'addressTo',
+      data: addressTo
+    })
     wx.navigateBack({
       delta: 1
     })
@@ -84,18 +85,18 @@ Page({
     this.setData({
       selectedCar: app.globalData.selectedCar
     });
-    if (JSON.stringify(app.globalData.addressTo) !== "{}") {
-      let addressTo = app.globalData.addressTo;
+    let addressTo = wx.getStorageSync('addressTo');
+    if (addressTo) {
       this.setData({
         address: addressTo.address,
         room_number: addressTo.room_number,
         stairs_or_elevators: addressTo.stairs_or_elevators,
         floor_num: addressTo.floor_num,
-        parking_distance: addressTo.parking_distance,
-        floorCost: addressTo.floorCost,
-        parkingCost: addressTo.parkingCost
+        parking_distance: addressTo.parking_distance
       })
     }
+    this.getFloorCost();
+    this.getParkingCost();
   },
   choosePlace(e) {
     let that = this

@@ -1,14 +1,8 @@
 <view class='productSort'>
-	<!-- <view class='header acea-row row-center-wrapper'>
-		<view class='acea-row row-between-wrapper input'>
-			<text class='iconfont icon-sousuo'></text>
-			<input type='text' placeholder='点击搜索您想要搬运的物品' bindconfirm="searchSubmitValue" confirm-type='search' name="search" placeholder-class='placeholder'></input>
-		</view>
-	</view> -->
 	<view class='aside'>
 		<block wx:for="{{products}}" wx:for-item="item" wx:key>
-			<view class='item acea-row row-center-wrapper {{index==navActive?"on":""}}' data-index='{{index}}' data-id='b{{index}}' bindtap='tap'>
-				<text>{{item.name}}</text>
+			<view class='item {{index==navActive?"on":""}}' data-index='{{index}}' data-id='b{{index}}' bindtap='tap'>
+				<text>{{item.name}}<block wx:if="{{item.is_free && carNum>0}}">（{{carNum}}车内免费）</block></text>
 			</view>
 		</block>
 	</view>
@@ -16,77 +10,139 @@
 		<scroll-view scroll-y="true" scroll-into-view="{{toView}}" style='height:{{height}}rpx;' bindscroll="scroll" scroll-with-animation='true'>
 			<block wx:for="{{products}}" wx:for-item="product" wx:for-index="idx">
 				<view class='listw' id="b{{idx}}">
-					<view class='title acea-row row-left row-middle'>
+					<view class='title'>
 						<view class='name'>{{product.name}}</view>
 					</view>
 					<block wx:if="{{idx == 1}}">
-						<view style="padding:0 20rpx 0 30rpx;">
-							<view style="height:100rpx;display:flex;align-items:center;justify-content:flex-start;">
+						<view class="special">
+							<view class="appoint">
 								<text>预约时间</text>
 								<picker mode="date" value="{{appointDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
-									<input style="background: #f1f1f1;height:60rpx;width:200rpx;text-align:center;margin-left:10rpx;font-size:30rpx;" disabled="true" placeholder="请选择日期" value="{{appointDate}}" />
+									<input class="date" disabled="true" placeholder="请选择日期" value="{{appointDate}}" />
 								</picker>
 								<picker bindchange="bindPickerChange" value="{{appointTime}}" range="{{timeArray}}">
-									<input style="background: #f1f1f1;height:60rpx;width:180rpx;text-align:center;margin-left:10rpx;font-size:30rpx;" disabled="true" placeholder="请选择时间" value="{{timeArray[appointTime]}}" />
+									<input class="time" disabled="true" placeholder="请选择时间" value="{{timeArray[appointTime]}}" />
 								</picker>
 							</view>
 							<view catchtap='addFrom' data-url="pages/addressFrom/addressFrom">
-								<view style="display:flex;justify-content:space-between;align-items:center;padding:26rpx 0;background: white;border-bottom: 2rpx solid #eee;">
-									<view style="display:flex;flex-direction:row;align-items:center;">
-										<image src='/images/qidian.png' style='width:45rpx;height:45rpx;'></image>
+								<view class="address">
+									<view class="left">
+										<view>
+											<image src='/images/qidian.png' class="icon"></image>
+										</view>
 										<block wx:if="{{flagFrom}}">
-											<view style="display:flex;flex-direction:column;">
-												<view style="display:flex;justify-content:flex-start;"><text style="margin-left: 20rpx;font-weight: bold;">{{addressFrom.address.name}} {{addressFrom.room_number}}</text></view>
-												<view style="margin-left: 20rpx;padding-top:10rpx;"><text>{{array1[addressFrom.stairs_or_elevators]}}：{{addressFrom.floor_num}}层</text><text style="padding-left:30rpx;">停车位距离：{{array2[addressFrom.parking_distance]}}</text></view>
+											<view class="detail">
+												<view class="detail1"><text class="name">{{addressFrom.address.name}} {{addressFrom.room_number}}</text></view>
+												<view class="detail2"><text>{{array1[addressFrom.stairs_or_elevators]}}：{{addressFrom.floor_num}}层</text><text class="pl30">停车位距离：{{array2[addressFrom.parking_distance]}}</text></view>
 											</view>
 										</block>
-										<block wx:else><text style="margin-left: 20rpx;font-weight: bold;font-family: PingFang-SC-Medium;font-weight: 500;color: rgba(156, 156, 156, 1);font-size: 32rpx;">请选择从哪里搬出</text></block>
+										<block wx:else>
+											<text class="choose">请选择从哪里搬出</text>
+										</block>
 									</view>
-									<view style="display:flex;align-items:center;">
-										<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+									<view class="right">
+										<image src='/images/dayu.png' class="dayu"></image>
 									</view>
 								</view>
 							</view>
 							<view catchtap='addTo' data-url="pages/addressTo/addressTo">
-								<view style="display:flex;justify-content:space-between;align-items:center;padding:26rpx 0;background: white;border-bottom: 2rpx solid #eee;">
-									<view style="display:flex;flex-direction:row;align-items:center;">
-										<image src='/images/zhongdian.png' style='width:45rpx;height:45rpx;'></image>
+								<view class="address">
+									<view class="left">
+										<view>
+											<image src='/images/zhongdian.png' class="icon"></image>
+										</view>
 										<block wx:if="{{flagTo}}">
-											<view style="display:flex;flex-direction:column;">
-												<view style="display:flex;justify-content:flex-start;"><text style="margin-left: 20rpx;font-weight: bold;">{{addressTo.address.name}} {{addressTo.room_number}}</text></view>
-												<view style="margin-left: 20rpx;padding-top:10rpx;"><text>{{array1[addressTo.stairs_or_elevators]}}：{{addressTo.floor_num}}层</text><text style="padding-left:30rpx;">停车位距离：{{array2[addressTo.parking_distance]}}</text></view>
+											<view class="detail">
+												<view class="detail1"><text class="name">{{addressTo.address.name}} {{addressTo.room_number}}</text></view>
+												<view class="detail2"><text>{{array1[addressTo.stairs_or_elevators]}}：{{addressTo.floor_num}}层</text><text class="pl30">停车位距离：{{array2[addressTo.parking_distance]}}</text></view>
 											</view>
 										</block>
-										<block wx:else><text style="margin-left: 20rpx;font-weight: bold;font-family: PingFang-SC-Medium;font-weight: 500;color: rgba(156, 156, 156, 1);font-size: 32rpx;">请选择搬到哪里</text></block>
+										<block wx:else>
+											<text class="choose">请选择搬到哪里</text>
+										</block>
 									</view>
-									<view style="display:flex;align-items:center;">
-										<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+									<view class="right">
+										<image src='/images/dayu.png' class="dayu"></image>
 									</view>
 								</view>
 							</view>
-							<view style="height:80rpx;display:flex;align-items:center;">
-								<text>行驶距离：<text style="font-size:30rpx;font-weight: bold;color: #fc4141 !important;">{{distance}}公里</text></text>
+							<view class="result">
+								<text>行驶距离：<text class="distance">{{distance}}公里</text></text>
+							</view>
+						</view>
+						<view class='goodList'>
+							<view class='item'>
+								<view class='pictrue'>
+									<image src='/images/distance.jpg' mode='aspectFill'></image>
+								</view>
+								<view class='underline'>
+									<view class='text'>
+										<view class='title'>超出公里数费</view>
+										<view class="content">
+											<view class='money'>￥<text class='num'>{{distanceCost}}</text></view>
+										</view>
+									</view>
+								</view>
+							</view>
+							<view class='item'>
+								<view class='pictrue'>
+									<image src='/images/floor.jpg' mode='aspectFill'></image>
+								</view>
+								<view class='underline'>
+									<view class='text'>
+										<view class='title'>楼层费</view>
+										<view class="content">
+											<view class='money'>￥<text class='num'>{{floorCost}}</text></view>
+										</view>
+									</view>
+								</view>
+							</view>
+							<view class='item'>
+								<view class='pictrue'>
+									<image src='/images/parking.jpg' mode='aspectFill'></image>
+								</view>
+								<view class='underline'>
+									<view class='text'>
+										<view class='title'>停车位距离费</view>
+										<view class="content">
+											<view class='money'>￥<text class='num'>{{parkingCost}}</text></view>
+										</view>
+									</view>
+								</view>
+							</view>
+							<view class='item'>
+								<view class='pictrue'>
+									<image src='/images/clock.jpg' mode='aspectFill'></image>
+								</view>
+								<view class='underline'>
+									<view class='text'>
+										<view class='title'>特殊时间段费</view>
+										<view class="content">
+											<view class='money'>￥<text class='num'>0.00</text></view>
+										</view>
+									</view>
+								</view>
 							</view>
 						</view>
 					</block>
 					<view class='goodList'>
 						<block wx:for="{{product.goods}}" wx:for-index="idy">
-							<view class='item acea-row'>
+							<view class='item'>
 								<view class='pictrue' wx:if="{{idx==0}}">
 									<image src='{{item.image_url}}' mode='aspectFill'></image>
 								</view>
 								<block wx:if="{{idx!=0}}">
 									<block wx:if="{{item.image_url.length==1}}">
-									<view class='pictrue'>
-									<image src='{{item.image_url[0].url}}' mode='aspectFill'></image>
-								</view>
+										<view class='pictrue'>
+											<image src='{{item.image_url[0].url}}' mode='aspectFill'></image>
+										</view>
 									</block>
 									<block wx:else>
-										<swiper class='pictrue' indicator-dots="true" autoplay="true" interval="3500">
-										<block wx:for="{{item.image_url}}" wx:key='index'> 
-											<swiper-item >
-												<image src="{{item.url}}" style="width:100%;height:100%;" ></image>
-											</swiper-item>
+										<swiper class='pictrue' indicator-dots="true" data-idx='{{idx}}' data-idy="{{idy}}" bindchange="test">
+											<block wx:for="{{item.image_url}}" wx:key='index'>
+												<swiper-item>
+													<image src="{{item.url}}"></image>
+												</swiper-item>
 											</block>
 										</swiper>
 									</block>
@@ -94,14 +150,14 @@
 								<view class='underline'>
 									<view class='text'>
 										<view class='title'>{{item.name}}</view>
-										<view style="height:60rpx;display:flex;align-items:flex-end;justify-content:space-between;margin-top:40rpx;">
-											<view class='money font-color' style="display:flex;align-items:center;">￥<text class='num'>{{item.price}}</text></view>
-											<view style="width:160rpx;display:flex;justify-content:flex-end;align-items:center;">
+										<view class="content">
+											<view class='money'>￥<text class='num'>{{item.price}}</text></view>
+											<view class="changeNum" wx:if="{{!product.is_free}}">
 												<block wx:if="{{item.num}}">
-													<image class='icon' catchtap='reduceCart' data-id='{{item.id}}' data-idx='{{idx}}' data-idy="{{idy}}" data-checked="true" src='/images/reduce.png' style="width:45rpx;height:45rpx;"></image>
-													<span style="width:60rpx;text-align:center;">{{item.num}}</span>
+													<image catchtap='reduceCart' data-id='{{item.id}}' data-idx='{{idx}}' data-idy="{{idy}}" src='/images/reduce.png' class="icon"></image>
+													<span class="num">{{item.num}}</span>
 												</block>
-												<image class='icon' catchtap='addCart' data-id='{{item.id}}' data-idx='{{idx}}' data-idy="{{idy}}" data-checked="true" src='/images/add.png' style="width:45rpx;height:45rpx;"></image>
+												<image catchtap='addCart' data-id='{{item.id}}' data-idx='{{idx}}' data-idy="{{idy}}" src='/images/add.png' class="icon"></image>
 											</view>
 										</view>
 									</view>

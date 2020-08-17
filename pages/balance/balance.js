@@ -315,6 +315,7 @@ Page({
   onShow: function () {
     let that = this;
     let cartList = wx.getStorageSync('cart');
+    console.log(cartList);
     let len = cartList.length;
     if (len > 0) {
       getCategoryList().then(res => {
@@ -349,11 +350,14 @@ Page({
           if (products[i].goods[j].id == cart[k].id) {
             products[i].goods[j].num = cart[k].num;
             products[i].goods[j].checked = cart[k].checked;
-            refreshCart.push(products[i].goods[j]);
+            cart[k].name = products[i].goods[j].name;
+            cart[k].price = products[i].goods[j].price;
+            refreshCart.push(cart[k]);
           }
         }
       }
     }
+    console.log(refreshCart);
     let total = 0;
     refreshCart.find(function (ele) {
       total += parseInt(ele.num);

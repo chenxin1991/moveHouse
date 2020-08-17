@@ -1,46 +1,18 @@
-.noCart {
-  margin: 130rpx 100rpx;
-}
-
-.noCart .iconfont {
-  font-size: 150rpx;
-  color: #ccc;
-  text-align: center;
-  display: block;
-  margin-bottom: 24rpx;
-}
-
-.noCart .cont {
-  display: block;
-  text-align: center;
-  font-size: 30rpx;
-  color: #999;
-  margin-top: 20rpx;
-}
-
-.noCart .flow-btn-min {
-  background: #fff;
-  border: 1rpx solid #ccc;
-  height: 30px;
-  line-height: 30px;
-  font-size: 28rpx;
-  width: 200rpx;
-  margin: 0 auto;
-  border-radius: 5px;
-  text-align: center;
-  color: #777;
-  margin-top: 25rpx;
-}
-
-
 .shoppingCart .list .item {
   padding: 25rpx 30rpx;
   background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .shoppingCart .list .item .picTxt {
   width: 627rpx;
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .shoppingCart .list .item .picTxt .pictrue {
@@ -61,54 +33,47 @@
 .shoppingCart .list .item .picTxt .text .title {
   font-size: 28rpx;
   color: #333;
-  position: relative;
   line-height: 40rpx;
   height: 80rpx;
   overflow: hidden;
-  height: 80rpx;
-  font-size: 26rpx;
 }
 
-.shoppingCart .list .item .picTxt .text .money {
-  font-size: 32rpx;
-  color: #282828;
-  margin-top: 28rpx;
+.shoppingCart .list .item .picTxt .text .content {
+  height: 60rpx;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 20rpx;
 }
 
-.shoppingCart .list .item .picTxt .carnum {
-  height: 47rpx;
-  position: absolute;
-  bottom: 7rpx;
-  right: 0;
+.shoppingCart .list .item .picTxt .text .content .changeNum {
+  width: 160rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-.shoppingCart .list .item .picTxt .carnum view {
-  border: 1rpx solid #a4a4a4;
-  width: 66rpx;
+.shoppingCart .list .item .picTxt .text .content .changeNum .num {
+  width: 60rpx;
   text-align: center;
-  height: 100%;
-  line-height: 40rpx;
-  font-size: 28rpx;
-  color: #a4a4a4;
 }
 
-.shoppingCart .list .item .picTxt .carnum .reduce {
-  border-right: 0;
-  border-radius: 3rpx 0 0 3rpx;
+.shoppingCart .list .item .picTxt .text .content .changeNum .icon {
+  width: 45rpx;
+  height: 45rpx;
 }
 
-.shoppingCart .list .item .picTxt .carnum .reduce.on {
-  border-color: #e3e3e3;
-  color: #dedede;
+.shoppingCart .list .item .picTxt .text .content .money {
+  margin-top: 28rpx;
+  color: #fc4141 !important;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  font-weight: bold;
 }
 
-.shoppingCart .list .item .picTxt .carnum .plus {
-  border-left: 0;
-  border-radius: 0 3rpx 3rpx 0;
-}
-
-.shoppingCart .list .item .picTxt .carnum .num {
-  color: #282828;
+.shoppingCart .list .item .picTxt .text .content .money .num {
+  font-size: 30rpx;
 }
 
 .shoppingCart .invalidGoods {
@@ -236,4 +201,38 @@
 
 .shoppingCart .footer .button form~form {
   margin-left: 17rpx;
+}
+
+.noCart {
+  margin: 130rpx 100rpx;
+}
+
+.noCart .iconfont {
+  font-size: 150rpx;
+  color: #ccc;
+  text-align: center;
+  display: block;
+  margin-bottom: 24rpx;
+}
+
+.noCart .cont {
+  display: block;
+  text-align: center;
+  font-size: 30rpx;
+  color: #999;
+  margin-top: 20rpx;
+}
+
+.noCart .flow-btn-min {
+  background: #fff;
+  border: 1rpx solid #ccc;
+  height: 30px;
+  line-height: 30px;
+  font-size: 28rpx;
+  width: 200rpx;
+  margin: 0 auto;
+  border-radius: 5px;
+  text-align: center;
+  color: #777;
+  margin-top: 25rpx;
 }
