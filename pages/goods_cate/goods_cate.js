@@ -31,13 +31,15 @@ Page({
     distanceCost: 0,
     specialTimeCost: 0,
     config: {},
-    cartList: [],
-    carNum: 0
+    cart: [],
+    carNum: 0,
+    total: 0
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (res) {
+    this.getAllCategory();
     let min_hour = 6;
     let max_month = 1;
     let startDate = this.getStartDate(min_hour);
@@ -67,7 +69,7 @@ Page({
       let cart = wx.getStorageSync('cart');
       if (cart && cart.length > 0) {
         that.refreshGoods(res.data, cart);
-        that.getCost();
+        //that.getCost();
       } else {
         this.setData({
           products: res.data
@@ -222,8 +224,7 @@ Page({
       for (let j = 0; j < products[i].goods.length; j++) {
         for (let k = 0; k < cart.length; k++) {
           if (products[i].goods[j].id == cart[k].id) {
-            products[i].goods[j].num = cart[k].num;
-            products[i].goods[j].checked = cart[k].checked;
+            products[i].goods[j].num += cart[k].num;
             cart[k].name = products[i].goods[j].name;
             cart[k].price = products[i].goods[j].price;
             refreshCart.push(cart[k]);
@@ -236,27 +237,14 @@ Page({
       total += parseInt(ele.num);
     })
     this.setData({
-      products: products
+      products: products,
+      cart: refreshCart,
+      total: total
     });
     wx.setStorage({
       key: 'cart',
       data: refreshCart
     })
-    this.setData({
-      cartList: refreshCart
-    });
-    if (total > 0) {
-      wx.setStorage({
-        key: 'cartNum',
-        data: total.toString()
-      })
-    }
-    if (total > 0) {
-      wx.setTabBarBadge({
-        index: 2,
-        text: total.toString()
-      })
-    }
   },
   getStartDate: function (h) {
     let todayTimeArray = [];
@@ -346,50 +334,40 @@ Page({
     if (products[idx].goods[idy].hasOwnProperty("num")) {
       products[idx].goods[idy].num += 1;
     } else {
-      products[idx].goods[idy].checked = "true";
       products[idx].goods[idy].num = 1
     }
     this.setData({
       products: products
     });
-    let cart = wx.getStorageSync('cart') || [];
+    let cart = this.data.cart;
+    let len = cart.length;
     console.log(cart);
-    let exist = cart.find(function (ele) {
-      return (ele.id === res.currentTarget.dataset.id) && (ele.image.uid === products[idx].goods[idy].image.uid );
-    })
-    if (exist) {
-      exist.num = parseInt(exist.num) + 1;
-    } else {
-      let test = {};
-      test.id = products[idx].goods[idy].id;
-      test.name = products[idx].goods[idy].name;
-      test.price = products[idx].goods[idy].price;
-      test.image = products[idx].goods[idy].image;
-      test.num = 1;
-      test.checked = "true";
-      cart.push(test);
-    }
+    // let exist = cart.find(function (ele) {
+    //   return (ele.id === res.currentTarget.dataset.id) && (ele.image.uid === products[idx].goods[idy].image.uid);
+    // })
+    // if (exist) {
+    //   exist.num = parseInt(exist.num) + 1;
+    // } else {
+    //   let test = {};
+    //   test.id = products[idx].goods[idy].id;
+    //   test.name = products[idx].goods[idy].name;
+    //   test.price = products[idx].goods[idy].price;
+    //   test.image = products[idx].goods[idy].image;
+    //   test.num = 1;
+    //   cart.push(test);
+    // }
 
-    let total = 0;
-    cart.find(function (ele) {
-      total += parseInt(ele.num);
-    })
-    wx.setStorage({
-      key: 'cart',
-      data: cart
-    })
-    wx.setStorage({
-      key: 'cartNum',
-      data: total.toString()
-    })
-    wx.setTabBarBadge({
-      index: 2,
-      text: total.toString()
-    })
-    this.setData({
-      cartList: cart
-    });
-    this.getCost();
+    // let total = 0;
+    // cart.find(function (ele) {
+    //   total += parseInt(ele.num);
+    // })
+    // wx.setStorage({
+    //   key: 'cart',
+    //   data: cart
+    // })
+    // this.setData({
+    //   cartList: cart
+    // });
   },
   reduceCart: function (res) {
     let products = this.data.products;
@@ -511,7 +489,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getAllCategory();
+
   },
 
   /**
@@ -534,13 +512,5 @@ Page({
   onPullDownRefresh: function () {
 
   },
-  test: function (e) {
-    let idx = e.currentTarget.dataset.idx;
-    let idy = e.currentTarget.dataset.idy;
-    let products = this.data.products;
-    products[idx].goods[idy].image  = products[idx].goods[idy].image_url[e.detail.current];
-    this.setData({
-      products: products
-    });
-  }
+  test: function (e) {}
 })

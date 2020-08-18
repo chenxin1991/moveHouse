@@ -1,20 +1,6 @@
 //app.js
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-    if (wx.getStorageSync('cartNum') > 0) {
-      wx.setTabBarBadge({
-        index: 2,
-        text: wx.getStorageSync('cartNum')
-      })
-    } else {
-      wx.removeTabBarBadge({
-        index: 2
-      })
-    }
     // 登录
     wx.login({
       success: res => {
