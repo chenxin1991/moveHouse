@@ -224,7 +224,11 @@ Page({
       for (let j = 0; j < products[i].goods.length; j++) {
         for (let k = 0; k < cart.length; k++) {
           if (products[i].goods[j].id == cart[k].id) {
-            products[i].goods[j].num += cart[k].num;
+            if (products[i].goods[i].hasOwnProperty("num")) {
+              products[i].goods[j].num += cart[k].num;
+            } else {
+              products[i].goods[j].num = cart[k].num;
+            }
             cart[k].name = products[i].goods[j].name;
             cart[k].price = products[i].goods[j].price;
             refreshCart.push(cart[k]);
@@ -331,7 +335,7 @@ Page({
     let products = this.data.products;
     let idx = res.currentTarget.dataset.idx;
     let idy = res.currentTarget.dataset.idy;
-    if (products[idx].goods[idy].hasOwnProperty("num")) {
+    if (products[idx].goods[idy].hasOwnProperty("num") && products[idx].goods[idy].num > 0) {
       products[idx].goods[idy].num += 1;
     } else {
       products[idx].goods[idy].num = 1
@@ -340,21 +344,63 @@ Page({
       products: products
     });
     let cart = this.data.cart;
-    let len = cart.length;
+    let exist = cart.find(function (ele) {
+      return (ele.id == products[idx].goods[idy].id) && (ele.image_url == products[idx].goods[idy].image_url);
+    })
+    if (exist) {
+      exist.num += 1;
+    } else {
+      cart.push({
+        id: products[idx].goods[idy].id,
+        name: products[idx].goods[idy].name,
+        price: products[idx].goods[idy].price,
+        image_url: products[idx].goods[idy].image_url,
+        num: 1
+      });
+    }
     console.log(cart);
+    wx.setStorage({
+      key: 'cart',
+      data: cart
+    })
+    this.setData({
+      cart: cart,
+      total: this.data.total + 1
+    });
+  },
+  reduceCart: function (res) {
+    let products = this.data.products;
+    let idx = res.currentTarget.dataset.idx;
+    let idy = res.currentTarget.dataset.idy;
+    if (products[idx].goods[idy].num > 1) {
+      wx.showToast({
+        title: '多图片请到购物车删除',
+        icon: 'none',
+        duration: 2000
+      });
+    }else{
+
+    }
+    console.log(products[idx].goods[idy]);
+    // if (products[idx].goods[idy].hasOwnProperty("num")) {
+    //   if (products[idx].goods[idy].num > 0) {
+    //     products[idx].goods[idy].num -= 1;
+    //   } else {
+    //     products[idx].goods[idy].num = 0;
+    //   }
+    // }
+    // this.setData({
+    //   products: products
+    // });
+    // let cart = wx.getStorageSync('cart') || [];
     // let exist = cart.find(function (ele) {
-    //   return (ele.id === res.currentTarget.dataset.id) && (ele.image.uid === products[idx].goods[idy].image.uid);
+    //   return ele.id === res.currentTarget.dataset.id;
     // })
-    // if (exist) {
-    //   exist.num = parseInt(exist.num) + 1;
-    // } else {
-    //   let test = {};
-    //   test.id = products[idx].goods[idy].id;
-    //   test.name = products[idx].goods[idy].name;
-    //   test.price = products[idx].goods[idy].price;
-    //   test.image = products[idx].goods[idy].image;
-    //   test.num = 1;
-    //   cart.push(test);
+    // if (exist && exist.num > 0) {
+    //   exist.num = parseInt(exist.num) - 1;
+    //   if (exist.num == 0) {
+    //     cart.splice(cart.findIndex(item => item.id === res.currentTarget.dataset.id), 1)
+    //   }
     // }
 
     // let total = 0;
@@ -365,64 +411,27 @@ Page({
     //   key: 'cart',
     //   data: cart
     // })
+    // if (total > 0) {
+    //   wx.setTabBarBadge({
+    //     index: 2,
+    //     text: total.toString()
+    //   })
+    //   wx.setStorage({
+    //     key: 'cartNum',
+    //     data: total.toString()
+    //   })
+    // } else {
+    //   wx.removeTabBarBadge({
+    //     index: 2
+    //   })
+    //   wx.removeStorage({
+    //     key: 'cartNum',
+    //   })
+    // }
     // this.setData({
     //   cartList: cart
     // });
-  },
-  reduceCart: function (res) {
-    let products = this.data.products;
-    let idx = res.currentTarget.dataset.idx;
-    let idy = res.currentTarget.dataset.idy;
-    if (products[idx].goods[idy].hasOwnProperty("num")) {
-      if (products[idx].goods[idy].num > 0) {
-        products[idx].goods[idy].num -= 1;
-      } else {
-        products[idx].goods[idy].num = 0;
-      }
-    }
-    this.setData({
-      products: products
-    });
-    let cart = wx.getStorageSync('cart') || [];
-    let exist = cart.find(function (ele) {
-      return ele.id === res.currentTarget.dataset.id;
-    })
-    if (exist && exist.num > 0) {
-      exist.num = parseInt(exist.num) - 1;
-      if (exist.num == 0) {
-        cart.splice(cart.findIndex(item => item.id === res.currentTarget.dataset.id), 1)
-      }
-    }
-
-    let total = 0;
-    cart.find(function (ele) {
-      total += parseInt(ele.num);
-    })
-    wx.setStorage({
-      key: 'cart',
-      data: cart
-    })
-    if (total > 0) {
-      wx.setTabBarBadge({
-        index: 2,
-        text: total.toString()
-      })
-      wx.setStorage({
-        key: 'cartNum',
-        data: total.toString()
-      })
-    } else {
-      wx.removeTabBarBadge({
-        index: 2
-      })
-      wx.removeStorage({
-        key: 'cartNum',
-      })
-    }
-    this.setData({
-      cartList: cart
-    });
-    this.getCost();
+    // this.getCost();
   },
   infoScroll: function () {
     let that = this;
@@ -512,5 +521,13 @@ Page({
   onPullDownRefresh: function () {
 
   },
-  test: function (e) {}
+  test: function (e) {
+    let idx = e.currentTarget.dataset.idx;
+    let idy = e.currentTarget.dataset.idy;
+    let products = this.data.products;
+    products[idx].goods[idy].image_url = products[idx].goods[idy].images[e.detail.current];
+    this.setData({
+      products: products
+    });
+  }
 })
