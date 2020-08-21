@@ -232,7 +232,7 @@ Page({
       show: false
     });
   },
-  clearProduct: function(){
+  clearProduct: function () {
     let that = this;
     try {
       wx.showModal({
@@ -242,7 +242,8 @@ Page({
             wx.removeStorageSync('cart');
             that.setData({
               cart: [],
-              total: 0
+              total: 0,
+              show: false
             });
           } else if (res.cancel) {
             console.log('用户点击取消')
@@ -386,8 +387,7 @@ Page({
       total: this.data.total + 1
     });
   },
-  reduceCart: function (res) {
-  },
+  reduceCart: function (res) {},
   infoScroll: function () {
     let that = this;
     let len = that.data.products.length;
