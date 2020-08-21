@@ -114,9 +114,9 @@
 			<view style='height:{{height-300}}rpx;'></view>
 		</scroll-view>
 	</view>
-	<view class='footer'>
+	<view class='footer' catchtouchmove="true" wx:if="{{total}}">
 		<view class="left">
-			<view class="cart">
+			<view class="cart" catchtap='showProduct'>
 				<view class="num">
 					<text>{{total}}</text>
 				</view>
@@ -131,3 +131,31 @@
 		</view>
 	</view>
 </view>
+
+<view class="address-window {{show==true?'on':''}}" catchtouchmove='ture' wx:if="{{total}}">
+	<!-- <view class='title'>
+		<text>物品信息</text>
+		<image src='/images/close.png' style='width:28rpx;height:28rpx;position: absolute;left: 30rpx;top:26rpx;padding:10rpx 10rpx;' bindtap='closeProduct'></image>
+	</view> -->
+	<view style="padding:20rpx 30rpx;display:flex;flex-wrap:wrap;justify-content:space-between;">
+		<view><text style="font-size:30rpx;">共{{total}}件物品</text></view>
+		<view style="color:#999;font-size:26rpx;" catchtap='clearProduct'>清空购物车</view>
+	</view>
+	<scroll-view scroll-y="true" style="max-height: 640rpx;">
+		<view wx:for="{{cart}}" style="padding:0rpx 30rpx;">
+			<view style="height:180rpx;display:flex;align-items:center;flex-direction:row;background: #f1f1f1;padding:15rpx 15rpx;margin-bottom:20rpx;" catchtap='showProduct'>
+				<view style="height:100%;width:80%;display:flex;flex-direction: row;">
+					<view>
+						<image src='{{item.image_url}}' mode='aspectFill' style='width:150rpx;height:150rpx;margin-right:15rpx;'></image>
+					</view>
+					<view style="word-wrap: break-word;word-break: normal;">{{item.name}}</view>
+				</view>
+				<view style="display:flex;height:100%;width:20%;flex-direction:column;align-items:flex-end;">
+					<text>￥{{item.price}}</text>
+					<text>x{{item.num}}</text>
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+</view>
+<view class='mask' catchtouchmove="true" hidden='{{show==false}}' bindtap='closeProduct'></view>
