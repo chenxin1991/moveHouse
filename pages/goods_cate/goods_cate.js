@@ -34,7 +34,8 @@ Page({
     config: {},
     cart: [],
     carNum: 0,
-    total: 0
+    total: 0,
+    hide_good_box: true
   },
   /**
    * 生命周期函数--监听页面加载
@@ -45,10 +46,54 @@ Page({
     let max_month = 1;
     let startDate = this.getStartDate(min_hour);
     let endDate = this.getEndDate(max_month);
+    this.busPos = {};
+    this.busPos['x'] = app.globalData.ww * 0.9;
+    this.busPos['y'] = app.globalData.hh * 0.9;
     this.setData({
       startDate: startDate,
       endDate: endDate,
     });
+  },
+  touchOnGoods: function (e) {
+    // 如果good_box正在运动
+    if (!this.data.hide_good_box) return;
+    this.finger = {};
+    var topPoint = {};
+    this.finger['x'] = app.globalData.ww - e.touches["0"].clientX;
+    this.finger['y'] = e.touches["0"].clientY;
+    if (this.finger['y'] < this.busPos['y']) {
+      topPoint['y'] = this.finger['y'] - 150;
+    } else {
+      topPoint['y'] = this.busPos['y'] - 150;
+    }
+    topPoint['x'] = Math.abs(this.finger['x'] - this.busPos['x']) / 2 + this.finger['x'];
+    this.linePos = app.bezier([this.finger, topPoint, this.busPos], 30);
+    this.startAnimation();
+  },
+  startAnimation: function () {
+    var index = 0,
+      that = this,
+      bezier_points = that.linePos['bezier_points'];
+    this.setData({
+      hide_good_box: false,
+      bus_x: that.finger['x'],
+      bus_y: that.finger['y']
+    })
+    this.timer = setInterval(function () {
+      index++;
+      that.setData({
+        bus_x: app.globalData.ww - bezier_points[index]['x'],
+        bus_y: bezier_points[index]['y']
+      })
+      if (index >= 29) {
+        clearInterval(that.timer);
+        that.setData({
+          hide_good_box: true,
+          hideCount: false,
+          total: that.data.total + 1
+        })
+      }
+    }, 33);
   },
   getAllCategory: function () {
     let that = this;
@@ -68,6 +113,7 @@ Page({
         })
       }
       let cart = wx.getStorageSync('cart');
+      console.log('onload', cart);
       let total = 0;
       //如果存在缓存
       if (cart && cart.length > 0) {
@@ -270,13 +316,12 @@ Page({
         }
       }
     }
-    this.setData({
-      cart: cart
-    });
-    wx.setStorageSync({
-      key: 'cart',
-      data: cart
-    })
+    try {
+      wx.setStorageSync('cart', cart);
+      this.setData({
+        cart: cart
+      });
+    } catch (e) {}
   },
   getStartDate: function (h) {
     let todayTimeArray = [];
@@ -360,34 +405,76 @@ Page({
     })
   },
   addCart: function (res) {
-    let products = this.data.products;
-    let idx = res.currentTarget.dataset.idx;
-    let idy = res.currentTarget.dataset.idy;
+    let item = res.currentTarget.dataset.item;
+    let source = res.currentTarget.dataset.source;
     let cart = this.data.cart;
     let exist = cart.find(function (ele) {
-      return (ele.id == products[idx].goods[idy].id) && (ele.image_url == products[idx].goods[idy].image_url);
+      return (ele.id == item.id) && (ele.image_url == item.image_url);
     })
     if (exist) {
       exist.num += 1;
     } else {
       cart.push({
-        id: products[idx].goods[idy].id,
-        name: products[idx].goods[idy].name,
-        price: products[idx].goods[idy].price,
-        image_url: products[idx].goods[idy].image_url,
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image_url: item.image_url,
         num: 1
       });
     }
-    wx.setStorageSync({
-      key: 'cart',
-      data: cart
-    })
-    this.setData({
-      cart: cart,
-      total: this.data.total + 1
-    });
+    try {
+      wx.setStorageSync('cart', cart);
+      //如果从产品界面添加则需要抛物线动画，在球进入购物篮后才增加购物车数量
+      if (source == 'product') {
+        this.touchOnGoods(res);
+      } else {
+        this.setData({
+          total: this.data.total + 1
+        })
+      }
+      this.setData({
+        cart: cart
+      });
+    } catch (e) {}
   },
-  reduceCart: function (res) {},
+  reduceCart: function (res) {
+    let item2 = res.currentTarget.dataset.item;
+    let cart = this.data.cart;
+    let exist = cart.find(function (ele) {
+      return (ele.id == item2.id) && (ele.image_url == item2.image_url);
+    });
+    if (exist) {
+      if (exist.num >= 1) {
+        exist.num = parseInt(exist.num) - 1;
+        if (exist.num == 0) {
+          wx.showModal({
+            title: '删除物品',
+            content: '确定删除该物品吗',
+            success(res) {
+              if (res.confirm) {
+                cart.splice(cart.findIndex(item => item.id === item2.id), 1);
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
+        try {
+          wx.setStorageSync('cart', cart);
+          this.setData({
+            cart: cart,
+            total: this.data.total - 1
+          });
+          if (this.data.total == 0) {
+            this.setData({
+              show: false
+            });
+          }
+        } catch (e) {}
+      }
+    }
+
+  },
   infoScroll: function () {
     let that = this;
     let len = that.data.products.length;
