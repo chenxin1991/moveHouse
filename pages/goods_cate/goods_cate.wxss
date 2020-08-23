@@ -298,7 +298,8 @@ page {
   line-height: 70rpx;
   margin-left: 22rpx;
   padding: 0;
-  background-color: #e93323 !important;
+  /* background-color: #e93323 !important; */
+  background-color: #B3B3B3;
 }
 
 .goods-window {
