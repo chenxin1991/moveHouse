@@ -3,7 +3,7 @@
 		<block wx:for="{{products}}" wx:for-item="item" wx:key>
 			<view class='item {{index==navActive?"on":""}}' data-index='{{index}}' data-id='b{{index}}' bindtap='tap'>
 				<text>{{item.name}}
-				<block wx:if="{{item.is_free && carNum>0}}">（{{carNum}}车内免费）</block>
+				<block wx:if="{{item.is_free && index!=1 && item.name!='其他大件' && carNum>0}}">（{{carNum}}车内免费）</block>
 				</text>
 			</view>
 		</block>
@@ -114,16 +114,16 @@
 			<view style='height:{{height-300}}rpx;'></view>
 		</scroll-view>
 	</view>
-	<view class='footer' catchtouchmove="true" wx:if="{{total}}">
+	<view class='footer' catchtouchmove="true" wx:if="{{goodsNum}}">
 		<view class="left">
 			<view class="cart" catchtap='showProduct'>
 				<view class="num">
-					<text>{{total}}</text>
+					<text>{{goodsNum}}</text>
 				</view>
 				<image src="/images/cart.png" style='width:60rpx;height:60rpx;'></image>
 			</view>
 			<view style="margin-left:20rpx;">
-				<text class='money'>￥100.00</text>
+				<text class='money'>￥{{totalCost}}</text>
 			</view>
 		</view>
 		<view>
@@ -131,14 +131,13 @@
 		</view>
 	</view>
 </view>
-
-<view class="goods-window {{show==true?'on':''}}" catchtouchmove='ture' wx:if="{{total}}">
+<view class="goods-window {{show==true?'on':''}}" catchtouchmove='ture' wx:if="{{goodsNum}}">
 	<!-- <view class='title'>
 		<text>物品信息</text>
 		<image src='/images/close.png' style='width:28rpx;height:28rpx;position: absolute;left: 30rpx;top:26rpx;padding:10rpx 10rpx;' bindtap='closeProduct'></image>
 	</view> -->
 	<view class="header">
-		<view><text style="font-size:30rpx;">共{{total}}件物品</text></view>
+		<view><text style="font-size:30rpx;">共{{goodsNum}}件物品</text></view>
 		<view style="color:#999;font-size:26rpx;" catchtap='clearProduct'>清空购物车</view>
 	</view>
 	<scroll-view scroll-y="true" style="max-height: 720rpx;">

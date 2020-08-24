@@ -26,14 +26,17 @@ Page({
     array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入'],
     show: false,
     distance: 0,
-    selectedCar: [],
-    floorCost: 0,
-    parkingCost: 0,
-    distanceCost: 0,
-    specialTimeCost: 0,
+    cars: [], //用车
+    goodsCost: 0, //物品总价
+    distanceCost: 0, //超公里数费
+    floorCost: 0, //楼层费
+    parkingCost: 0, //停车位距离费
+    specialTimeCost: 0, //特殊时间段费
+    totalCost: 0, //总报价
     config: {},
     cart: [],
-    total: 0,
+    carNum: 0,
+    goodsNum: 0,
     hide_good_box: true
   },
   /**
@@ -46,36 +49,27 @@ Page({
     let that = this;
     getCategoryList().then(res => {
       let cart = wx.getStorageSync('cart');
-      let total = 0;
+      let goodsNum = 0;
+      let carNum = 0;
       //如果存在缓存
       if (cart && cart.length > 0) {
         //购物车中，后台存在的有价格物品，刷新名称和单价；不存在的物品，不做改动。
         that.refreshCart(res.data, cart);
         cart.find(function (ele) {
-          total += parseInt(ele.num);
+          goodsNum += parseInt(ele.num);
+          let id = ele.id.toString();
+          if (id.startsWith('car_')) {
+            carNum += ele.num;
+          }
         })
       }
       this.setData({
         products: res.data,
-        total: total
+        goodsNum: goodsNum,
+        carNum: carNum
       });
       //初始化物品展示前端架构
       that.infoScroll();
-      //获取缓存起始地
-      let addressFrom = wx.getStorageSync('addressFrom');
-      if (addressFrom) {
-        this.setData({
-          addressFrom: addressFrom,
-          flagFrom: true
-        })
-      }
-      let addressTo = wx.getStorageSync('addressTo');
-      if (addressTo) {
-        this.setData({
-          addressTo: addressTo,
-          flagTo: true
-        })
-      }
       //初始化时间
       let min_hour = 6;
       let max_month = 1;
@@ -89,11 +83,18 @@ Page({
       this.busPos = {};
       this.busPos['x'] = app.globalData.ww * 0.9;
       this.busPos['y'] = app.globalData.hh * 0.9;
+      //获取缓存起始地
+      this.initAddress();
+      //初始化总报价
+      if (cart && cart.length > 0) {
+        this.getTotalCost();
+      }
     })
   },
   refreshCart: function (products, cart) {
     let cartLen = cart.length;
     let productsLen = products.length;
+    let cars = [];
     for (let i = 0; i < cartLen; i++) {
       for (let j = 0; j < productsLen; j++) {
         if (!products[j].is_free) {
@@ -102,6 +103,11 @@ Page({
             if (products[j].goods[k].id == cart[i].id) {
               cart[i].name = products[j].goods[k].name;
               cart[i].price = products[j].goods[k].price;
+              let id = cart[i].id.toString();
+              if (id.startsWith('car_')) {
+                products[j].goods[k].num = cart[i].num;
+                cars.push(products[j].goods[k]);
+              }
             }
           }
         }
@@ -110,18 +116,59 @@ Page({
     try {
       wx.setStorageSync('cart', cart);
       this.setData({
-        cart: cart
+        cart: cart,
+        cars: cars
       });
+      app.globalData.cars = cars;
     } catch (e) {}
   },
+  initAddress: function () {
+    let that = this;
+    let addressFrom = wx.getStorageSync('addressFrom');
+    app.globalData.addressFrom = addressFrom;
+    if (addressFrom) {
+      this.setData({
+        addressFrom: addressFrom,
+        flagFrom: true
+      });
+    }
+    let addressTo = wx.getStorageSync('addressTo');
+    app.globalData.addressTo = addressTo;
+    if (addressTo) {
+      this.setData({
+        addressTo: addressTo,
+        flagTo: true
+      });
+    }
+    if (this.data.flagFrom && this.data.flagTo) {
+      let addressFrom = this.data.addressFrom;
+      let addressTo = this.data.addressTo;
+      let url = `https://apis.map.qq.com/ws/direction/v1/driving/?from=${addressFrom.address.latitude},${addressFrom.address.longitude}&to=${addressTo.address.latitude},${addressTo.address.longitude}&output=json&key=OI7BZ-EGOWU-H5YVZ-4HLVW-MDUUQ-ZCFGJ`;
+      wx.request({
+        url: url,
+        method: "GET",
+        success: res => {
+          that.setData({
+            distance: Math.round(res.data.result.routes[0].distance / 1000)
+          });
+        }
+      });
+    }
+  },
   addCart: function (res) {
+    // 如果good_box正在运动,不允许继续添加
     if (!this.data.hide_good_box && res.currentTarget.dataset.source == 'product') return;
     let item = res.currentTarget.dataset.item;
     let source = res.currentTarget.dataset.source;
     let cart = this.data.cart;
+    let carNum = this.data.carNum;
+    let id = item.id.toString();
+    if (id.startsWith('car_')) {
+      carNum += 1;
+    }
     let exist = cart.find(function (ele) {
       return (ele.id == item.id) && (ele.image_url == item.image_url);
-    })
+    });
     if (exist) {
       exist.num += 1;
     } else {
@@ -140,17 +187,24 @@ Page({
         this.touchOnGoods(res);
       } else {
         this.setData({
-          total: this.data.total + 1
+          goodsNum: this.data.goodsNum + 1
         })
       }
       this.setData({
-        cart: cart
+        cart: cart,
+        carNum: carNum,
+        totalCost: parseFloat(this.data.totalCost) + parseFloat(item.price)
       });
     } catch (e) {}
   },
   reduceCart: function (res) {
     let item = res.currentTarget.dataset.item;
     let cart = this.data.cart;
+    let carNum = this.data.carNum;
+    let id = item.id.toString();
+    if (id.startsWith('car_')) {
+      carNum -= 1;
+    }
     let exist = cart.find(function (ele) {
       return (ele.id == item.id) && (ele.image_url == item.image_url);
     });
@@ -164,9 +218,11 @@ Page({
           wx.setStorageSync('cart', cart);
           this.setData({
             cart: cart,
-            total: this.data.total - 1
+            goodsNum: this.data.goodsNum - 1,
+            carNum: carNum,
+            totalCost: parseFloat(this.data.totalCost) - parseFloat(item.price)
           });
-          if (this.data.total == 0) {
+          if (this.data.goodsNum == 0) {
             this.setData({
               show: false
             });
@@ -174,6 +230,44 @@ Page({
         } catch (e) {}
       }
     }
+  },
+  clearProduct: function () {
+    let that = this;
+    try {
+      wx.showModal({
+        content: '确定要清空购物车吗？',
+        success(res) {
+          if (res.confirm) {
+            wx.removeStorageSync('cart');
+            that.setData({
+              cart: [],
+              goodsNum: 0,
+              show: false,
+              carNum: 0
+            });
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    } catch (e) {
+      // Do something when catch error
+    }
+  },
+  getTotalCost: function () {
+    let cart = this.data.cart;
+    let totalCost = 0;
+    cart.forEach(function (val) {
+      totalCost += parseFloat(val.price) * parseInt(val.num);
+    });
+    if (this.data.carNum > 0) {
+      if (this.data.flagFrom) {
+        console.log(this.data.addressFrom);
+      }
+    }
+    this.setData({
+      totalCost: totalCost
+    });
   },
   getCost: function () {
     let carNum = 0;
@@ -323,28 +417,6 @@ Page({
       show: false
     });
   },
-  clearProduct: function () {
-    let that = this;
-    try {
-      wx.showModal({
-        content: '确定要清空购物车吗？',
-        success(res) {
-          if (res.confirm) {
-            wx.removeStorageSync('cart');
-            that.setData({
-              cart: [],
-              total: 0,
-              show: false
-            });
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }
-      })
-    } catch (e) {
-      // Do something when catch error
-    }
-  },
   changeImage: function (e) {
     let idx = e.currentTarget.dataset.idx;
     let idy = e.currentTarget.dataset.idy;
@@ -432,7 +504,14 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    // if((this.data.addressFrom != app.globalData.addressFrom) ||  (this.data.addressTo != app.globalData.addressTo)){
+    //   console.log('改变了');
+    // }
+    console.log(app.globalData.addressFrom);
+    console.log(this.data.addressFrom);
+  },
+
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -510,7 +589,6 @@ Page({
     }
   },
   touchOnGoods: function (e) {
-    // 如果good_box正在运动
     this.finger = {};
     var topPoint = {};
     this.finger['x'] = app.globalData.ww - e.touches["0"].clientX;
@@ -544,7 +622,7 @@ Page({
         that.setData({
           hide_good_box: true,
           hideCount: false,
-          total: that.data.total + 1
+          goodsNum: that.data.goodsNum + 1
         })
       }
     }, 20);
