@@ -85,10 +85,6 @@ Page({
       this.busPos['y'] = app.globalData.hh * 0.9;
       //获取缓存起始地
       this.initAddress();
-      //初始化总报价
-      if (cart && cart.length > 0) {
-        this.getTotalCost();
-      }
     })
   },
   refreshCart: function (products, cart) {
@@ -124,6 +120,7 @@ Page({
   },
   initAddress: function () {
     let that = this;
+    let cart = this.data.cart;
     let flag = false;
     let addressFrom = wx.getStorageSync('addressFrom');
     if (addressFrom) {
@@ -155,6 +152,7 @@ Page({
     }
     //如果地址发生改变，需要重新计算距离
     if (this.data.flagFrom && this.data.flagTo && flag) {
+      console.log('进来了');
       let addressFrom = this.data.addressFrom;
       let addressTo = this.data.addressTo;
       let url = `https://apis.map.qq.com/ws/direction/v1/driving/?from=${addressFrom.address.latitude},${addressFrom.address.longitude}&to=${addressTo.address.latitude},${addressTo.address.longitude}&output=json&key=OI7BZ-EGOWU-H5YVZ-4HLVW-MDUUQ-ZCFGJ`;
@@ -165,8 +163,14 @@ Page({
           that.setData({
             distance: Math.round(res.data.result.routes[0].distance / 1000)
           });
+          that.getTotalCost();
         }
       });
+    } else {
+      //初始化总报价
+      if (cart && cart.length > 0) {
+        this.getTotalCost();
+      }
     }
   },
   addCart: function (res) {
@@ -303,9 +307,7 @@ Page({
   getDistanceCost: function () {
     let distanceCost = 0;
     let cars = this.data.cars;
-    console.log('cars', cars);
     let distance = this.data.distance;
-    console.log('distance', this.data.distance);
     if (this.data.flagFrom && this.data.flagTo) {
       if (distance > 0) {
         cars.forEach(function (val) {
@@ -317,7 +319,7 @@ Page({
             distanceCost += (val.km_price * (distance - val.km_standard) * val.num * this.data.config.discount2) / 10
           }
         });
-        that.setData({
+        this.setData({
           distanceCost: Math.round(distanceCost)
         });
         return distanceCost;
@@ -364,8 +366,7 @@ Page({
     cart.forEach(function (val) {
       totalCost += parseFloat(val.price) * parseInt(val.num);
     });
-    console.log('distanceCost', this.getDistanceCost());
-    //totalCost += this.getDistanceCost();
+    totalCost += this.getDistanceCost();
     if (this.data.carNum > 0) {
       if (this.data.flagFrom) {
         totalCost += this.getFloorCost(this.data.addressFrom);
