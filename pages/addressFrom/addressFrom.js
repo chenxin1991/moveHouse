@@ -70,7 +70,7 @@ Page({
     addressFrom.parking_distance = parking_distance;
     addressFrom.room_number = room_number;
     addressFrom.floor_num = floor_num;
-    app.globalData.addressFrom = addressFrom;
+    wx.setStorageSync('addressFrom', addressFrom);
     wx.navigateBack({
       delta: 1
     })
@@ -82,7 +82,7 @@ Page({
     this.setData({
       cars: app.globalData.cars
     });
-    let addressFrom = app.globalData.addressFrom;
+    let addressFrom = wx.getStorageSync('addressFrom', addressFrom);
     if (addressFrom) {
       this.setData({
         address: addressFrom.address,

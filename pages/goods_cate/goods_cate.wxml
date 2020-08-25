@@ -71,6 +71,9 @@
 							<view class="result">
 								<text>行驶距离：<text class="distance">{{distance}}公里</text></text>
 							</view>
+							<view class="result">
+								<text>超公里数费：<text class="distance">{{distance}}公里</text></text>
+							</view>
 						</view>
 					</block>
 					<view class='goodList'>

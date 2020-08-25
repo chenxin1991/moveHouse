@@ -124,23 +124,37 @@ Page({
   },
   initAddress: function () {
     let that = this;
+    let flag = false;
     let addressFrom = wx.getStorageSync('addressFrom');
-    app.globalData.addressFrom = addressFrom;
     if (addressFrom) {
+      if (JSON.stringify(this.data.addressFrom) !== "{}") {
+        if ((this.data.addressFrom.address.latitude != addressFrom.address.latitude) || (this.data.addressFrom.address.longitude != addressFrom.address.longitude)) {
+          flag = true;
+        }
+      } else {
+        flag = true;
+      }
       this.setData({
         addressFrom: addressFrom,
         flagFrom: true
       });
     }
     let addressTo = wx.getStorageSync('addressTo');
-    app.globalData.addressTo = addressTo;
     if (addressTo) {
+      if (JSON.stringify(this.data.addressTo) !== "{}") {
+        if ((this.data.addressTo.address.latitude != addressTo.address.latitude) || (this.data.addressTo.address.longitude != addressTo.address.longitude)) {
+          flag = true;
+        }
+      } else {
+        flag = true;
+      }
       this.setData({
         addressTo: addressTo,
         flagTo: true
       });
     }
-    if (this.data.flagFrom && this.data.flagTo) {
+    //如果地址发生改变，需要重新计算距离
+    if (this.data.flagFrom && this.data.flagTo && flag) {
       let addressFrom = this.data.addressFrom;
       let addressTo = this.data.addressTo;
       let url = `https://apis.map.qq.com/ws/direction/v1/driving/?from=${addressFrom.address.latitude},${addressFrom.address.longitude}&to=${addressTo.address.latitude},${addressTo.address.longitude}&output=json&key=OI7BZ-EGOWU-H5YVZ-4HLVW-MDUUQ-ZCFGJ`;
@@ -165,6 +179,20 @@ Page({
     let id = item.id.toString();
     if (id.startsWith('car_')) {
       carNum += 1;
+      let cars = this.data.cars;
+      let carExist = cars.find(function (ele) {
+        return (ele.id == item.id);
+      });
+      if (carExist) {
+        carExist.num += 1;
+      } else {
+        item.num = 1;
+        cars.push(item);
+      }
+      this.setData({
+        cars: cars
+      });
+      app.globalData.cars = cars;
     }
     let exist = cart.find(function (ele) {
       return (ele.id == item.id) && (ele.image_url == item.image_url);
@@ -192,10 +220,10 @@ Page({
       }
       this.setData({
         cart: cart,
-        carNum: carNum,
-        totalCost: parseFloat(this.data.totalCost) + parseFloat(item.price)
+        carNum: carNum
       });
     } catch (e) {}
+    this.getTotalCost();
   },
   reduceCart: function (res) {
     let item = res.currentTarget.dataset.item;
@@ -204,6 +232,22 @@ Page({
     let id = item.id.toString();
     if (id.startsWith('car_')) {
       carNum -= 1;
+      let cars = this.data.cars;
+      let carExist = cars.find(function (ele) {
+        return (ele.id == item.id);
+      });
+      if (carExist) {
+        if (carExist.num >= 1) {
+          carExist.num = parseInt(carExist.num) - 1;
+          if (carExist.num == 0) {
+            cars.splice(cars.findIndex(e => e.id === item.id), 1);
+          }
+        }
+      }
+      this.setData({
+        cars: cars
+      });
+      app.globalData.cars = cars;
     }
     let exist = cart.find(function (ele) {
       return (ele.id == item.id) && (ele.image_url == item.image_url);
@@ -219,8 +263,7 @@ Page({
           this.setData({
             cart: cart,
             goodsNum: this.data.goodsNum - 1,
-            carNum: carNum,
-            totalCost: parseFloat(this.data.totalCost) - parseFloat(item.price)
+            carNum: carNum
           });
           if (this.data.goodsNum == 0) {
             this.setData({
@@ -230,6 +273,7 @@ Page({
         } catch (e) {}
       }
     }
+    this.getTotalCost();
   },
   clearProduct: function () {
     let that = this;
@@ -243,8 +287,10 @@ Page({
               cart: [],
               goodsNum: 0,
               show: false,
-              carNum: 0
+              carNum: 0,
+              cars: []
             });
+            app.globalData.cars = [];
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
@@ -254,15 +300,80 @@ Page({
       // Do something when catch error
     }
   },
+  getDistanceCost: function () {
+    let distanceCost = 0;
+    let cars = this.data.cars;
+    console.log('cars', cars);
+    let distance = this.data.distance;
+    console.log('distance', this.data.distance);
+    if (this.data.flagFrom && this.data.flagTo) {
+      if (distance > 0) {
+        cars.forEach(function (val) {
+          if (distance > val.km_standard && distance <= 300) {
+            distanceCost += val.km_price * (distance - val.km_standard) * val.num
+          } else if (distance > 300 && distance <= 500) {
+            distanceCost += (val.km_price * (distance - val.km_standard) * val.num * this.data.config.discount1) / 10
+          } else if (this.data.distance > 500) {
+            distanceCost += (val.km_price * (distance - val.km_standard) * val.num * this.data.config.discount2) / 10
+          }
+        });
+        that.setData({
+          distanceCost: Math.round(distanceCost)
+        });
+        return distanceCost;
+      }
+    }
+  },
+  getFloorCost: function (address) {
+    let floorCost = 0;
+    let cars = this.data.cars;
+    if (address.stairs_or_elevators == '1' && address.floor_num > 0) {
+      cars.forEach(function (val) {
+        floorCost += (address.floor_num - val.floor_standard + 1) * val.floor_price * val.num;
+      });
+    }
+    return floorCost;
+  },
+  getParkingCost: function (address) {
+    let parkingCost = 0;
+    let cars = this.data.cars;
+    cars.forEach(function (val) {
+      switch (address.parking_distance) {
+        case 0:
+          parkingCost += val.distance1 * val.num;
+          break;
+        case 1:
+          parkingCost += val.distance2 * val.num;
+          break;
+        case 2:
+          parkingCost += val.distance3 * val.num;
+          break;
+        case 3:
+        case 4:
+          parkingCost += val.distance4 * val.num;
+          break;
+        default:
+          break;
+      }
+    });
+    return parkingCost;
+  },
   getTotalCost: function () {
     let cart = this.data.cart;
     let totalCost = 0;
     cart.forEach(function (val) {
       totalCost += parseFloat(val.price) * parseInt(val.num);
     });
+    console.log('distanceCost', this.getDistanceCost());
+    //totalCost += this.getDistanceCost();
     if (this.data.carNum > 0) {
       if (this.data.flagFrom) {
-        console.log(this.data.addressFrom);
+        totalCost += this.getFloorCost(this.data.addressFrom);
+        totalCost += this.getParkingCost(this.data.addressFrom);
+      }
+      if (this.data.flagTo) {
+        totalCost += this.getFloorCost(this.data.addressTo);
+        totalCost += this.getParkingCost(this.data.addressTo);
       }
     }
     this.setData({
@@ -505,11 +616,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // if((this.data.addressFrom != app.globalData.addressFrom) ||  (this.data.addressTo != app.globalData.addressTo)){
-    //   console.log('改变了');
-    // }
-    console.log(app.globalData.addressFrom);
-    console.log(this.data.addressFrom);
+    //获取缓存起始地
+    this.initAddress();
+    if (this.data.cart && this.data.cart.length > 0) {
+      this.getTotalCost();
+    }
   },
 
   /**

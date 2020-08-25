@@ -220,7 +220,7 @@ page {
 }
 
 .special .result {
-  height: 80rpx;
+  height: 60rpx;
   display: flex;
   align-items: center;
 }
