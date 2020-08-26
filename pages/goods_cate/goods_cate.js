@@ -33,7 +33,7 @@ Page({
     parkingCost: 0, //停车位距离费
     specialTimeCost: 0, //特殊时间段费
     totalCost: 0, //总报价
-    config: {},
+    setting: {},
     cart: [],
     carNum: 0,
     goodsNum: 0,
@@ -54,7 +54,7 @@ Page({
       //如果存在缓存
       if (cart && cart.length > 0) {
         //购物车中，后台存在的有价格物品，刷新名称和单价；不存在的物品，不做改动。
-        that.refreshCart(res.data, cart);
+        that.refreshCart(res.data.category, cart);
         cart.find(function (ele) {
           goodsNum += parseInt(ele.num);
           let id = ele.id.toString();
@@ -64,9 +64,10 @@ Page({
         })
       }
       this.setData({
-        products: res.data,
+        products: res.data.category,
         goodsNum: goodsNum,
-        carNum: carNum
+        carNum: carNum,
+        setting: res.data.setting
       });
       //初始化物品展示前端架构
       that.infoScroll();
@@ -85,7 +86,7 @@ Page({
       this.busPos['y'] = app.globalData.hh * 0.9;
       //获取缓存起始地
       this.initAddress();
-    })
+    });
   },
   refreshCart: function (products, cart) {
     let cartLen = cart.length;
@@ -152,7 +153,6 @@ Page({
     }
     //如果地址发生改变，需要重新计算距离
     if (this.data.flagFrom && this.data.flagTo && flag) {
-      console.log('进来了');
       let addressFrom = this.data.addressFrom;
       let addressTo = this.data.addressTo;
       let url = `https://apis.map.qq.com/ws/direction/v1/driving/?from=${addressFrom.address.latitude},${addressFrom.address.longitude}&to=${addressTo.address.latitude},${addressTo.address.longitude}&output=json&key=OI7BZ-EGOWU-H5YVZ-4HLVW-MDUUQ-ZCFGJ`;
@@ -308,15 +308,16 @@ Page({
     let distanceCost = 0;
     let cars = this.data.cars;
     let distance = this.data.distance;
+    let setting = this.data.setting;
     if (this.data.flagFrom && this.data.flagTo) {
       if (distance > 0) {
         cars.forEach(function (val) {
           if (distance > val.km_standard && distance <= 300) {
             distanceCost += val.km_price * (distance - val.km_standard) * val.num
           } else if (distance > 300 && distance <= 500) {
-            distanceCost += (val.km_price * (distance - val.km_standard) * val.num * this.data.config.discount1) / 10
-          } else if (this.data.distance > 500) {
-            distanceCost += (val.km_price * (distance - val.km_standard) * val.num * this.data.config.discount2) / 10
+            distanceCost += (val.km_price * (distance - val.km_standard) * val.num * setting.discount1) / 10
+          } else if (distance > 500) {
+            distanceCost += (val.km_price * (distance - val.km_standard) * val.num * setting.discount2) / 10
           }
         });
         this.setData({
