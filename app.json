@@ -37,12 +37,6 @@
         "text": "居民搬家"
       },
       {
-        "pagePath": "pages/balance/balance",
-        "iconPath": "images/3-001.png",
-        "selectedIconPath": "images/3-002.png",
-        "text": "结算"
-      },
-      {
         "pagePath": "pages/me/me",
         "iconPath": "images/4-001.png",
         "selectedIconPath": "images/4-002.png",
