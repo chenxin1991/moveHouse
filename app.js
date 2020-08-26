@@ -102,7 +102,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    url: 'http://demo.tp6.cn/index.php',
+    url: 'https://demo.wjdhbq.com/index.php',
     cars: [],
     addressFrom: {},
     addressTo: {}
