@@ -1,0 +1,23 @@
+{
+  "id": "2031962",
+  "name": "swiper",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4947575",
+      "name": "icon-zuo",
+      "font_class": "zuojiantou",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "7080191",
+      "name": "icon-zuo",
+      "font_class": "zuojiantou1",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    }
+  ]
+}

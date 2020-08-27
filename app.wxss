@@ -1,5 +1,5 @@
 /**app.wxss**/
-@import '/font/iconfont.wxss';
+/* @import '/font/iconfont.wxss'; */
 
 page {
   font-size: 28rpx;

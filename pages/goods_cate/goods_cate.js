@@ -38,7 +38,18 @@ Page({
     carNum: 0,
     goodsNum: 0,
     hide_good_box: true,
-    worksImgs:[]//上传图片
+    worksImgs:[],  //上传图片
+    swiperPoint:false,
+    swiper: {    
+      imgUrls: [],
+      indicatorDots: true,
+      autoplay: false,
+      circular:true,
+      interval: 5000,
+      duration: 1000,
+      current: 0,
+    },
+   
   },
   /**
    * 生命周期函数--监听页面加载
@@ -125,30 +136,34 @@ Page({
             })
             
             wx.setStorageSync('cart', cart);
-            // for (let i = 0; i < tempFilePaths.length; i++) {
-            //     wx.uploadFile({
-            //         url: 'url', //此处换上你的接口地址 
-            //         filePath: tempFilePaths[i],
-            //         name: 'upload_file',
-            //         header: {
-            //             "Content-Type": "multipart/form-data",
-            //             'accept': 'application/json',                 
-            //         },
-            //         success: function (res) {
-            //             console.log(res);
-            //             let data = JSON.parse(res.data); // 这个很关键
-            //             worksImgs.push(data.data.url);
-            //             that.setData({
-            //                 worksImgs: worksImgs
-            //             })
-            //         }
-            //     })
-            // }
+            that.getTotalCost();
+          
 
         }
     })
 },
+ //轮播箭头向左
+ prevImg: function(e) {
+  let swiper = e.currentTarget.dataset.item;
+  // var swiper = this.data.swiper;
+  var current = swiper.current;
+  swiper.current = current > 0 ? current - 1 : swiper.imgUrls.length - 1;
+  this.setData({
+    swiper: swiper,
+  })
+},
+//轮播箭头向右
+nextImg: function(e) {
+  console.log(2);
+  let swiper = e.currentTarget.dataset.item;
  
+  // var swiper = this.data.swiper;
+  var current = swiper.current;
+  swiper.current = current < (swiper.imgUrls.length - 1) ? current + 1 : 0;
+  this.setData({
+    swiper: swiper,
+  })
+},
   refreshCart: function (products, cart) {
     let cartLen = cart.length;
     let productsLen = products.length;
@@ -596,6 +611,7 @@ Page({
     let idy = e.currentTarget.dataset.idy;
     let products = this.data.products;
     products[idx].goods[idy].image_url = products[idx].goods[idy].images[e.detail.current].url;
+    products[idx].goods[idy].current = e.detail.current;
     this.setData({
       products: products
     });

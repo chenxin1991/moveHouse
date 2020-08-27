@@ -88,19 +88,45 @@
 											<image src='{{item.images[0].url}}' mode='aspectFill'></image>
 										</view>
 									</block>
+									<!-- 轮播 -->
 									<block wx:else>
-										<swiper class='pictrue' indicator-dots="true" data-idx='{{idx}}' data-idy="{{idy}}" bindchange="changeImage">
+
+
+         <view class='ceshi_swiper pictrue'>
+    <swiper class='read_swiper ' circular="{{swiper.circular}}" indicator-dots='{{swiper.indicatorDots}}' autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}" duration="{{swiper.duration}}" current="{{swiper.current}}">
+      <block wx:for="{{item.images}}" wx:key="index">
+        <swiper-item>
+          <image src="{{item.url}}" class="slide-image"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='ceshi_next' bindtap='prevImg'>
+      <text class='icon iconfont icon-zuojiantou1'></text>
+    </view>
+    <view class='ceshi_prew' bindtap='nextImg'>
+      <text class='icon iconfont icon-zuojiantou'></text>
+    </view>
+  </view>
+
+									 <!-- <view class="swiper-pictrue">
+									  	<swiper class='pictrue' :indicator-dots="false" data-idx="{{idx}}" data-idy="{{idy}}"  bindchange="changeImage">
 											<block wx:for="{{item.images}}" wx:key='index'>
 												<swiper-item>
-													<image src="{{item.url}}"></image>
+													<image src="{{item.url}}"></image>										
 												</swiper-item>
-											</block>
-										</swiper>
-									</block>
+											</block>																	
+										</swiper>	
+							  	<view class="iconfont icon-xiangzuo swiper-left swiper-arrows" wx:if="{{item.current >0}}" ></view>
+								   	<view class="iconfont icon-xiangyou swiper-right swiper-arrows"   wx:if="{{item.current < item.images.length -1 || item.current ==undefined}}"></view>
+									 </view>								 					  -->
+
+
+									</block>	
+
 								</block>
 								<view class='underline'>
 									<view class='text'>
-										<view class='title'>{{item.name}}</view>
+										<view class='title'>{{item.name}}</view>			
                    <view class="upload_pictures" data-item="{{item}}" bindtap="chooseImage">
                     上传图片
 									 </view>

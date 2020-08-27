@@ -1,3 +1,4 @@
+@import "../../iconfont/iconfont.wxss";
 page {
   background-color: #fff !important;
 }
@@ -404,3 +405,84 @@ page {
   padding: 0 10rpx;
   color: #999;
 }
+/* 轮播 左右滑动 */
+.swiper-pictrue{
+  display: flex;
+  width: 180rpx;
+  height: 180rpx;
+  flex-direction: row;
+   align-items: center;
+  justify-content:space-between;
+}
+.swiper-arrows{
+  display: block;
+  color: red;
+  width: 40rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: black;
+  opacity: 0.3;
+  font-size: 32rpx;
+  font-weight: 500;
+  z-index: 99;
+}
+/* .swiper-left{
+  position: relative;
+  left: 0rpx;
+  top: -110rpx;
+}
+.swiper-right{
+  position: relative;
+  left: 140rpx;
+  top: -170rpx;
+} */
+
+swiper.read_swiper{height: 180rpx;}
+.ceshi_swiper {
+  width: 180rpx;
+  margin: 0rpx auto;
+  position: relative;
+}
+
+.ceshi_prew text {
+  color: #fff;
+  font-size: 30rpx;
+  float: left;
+  margin-top: 15rpx;
+  text-align: center;
+}
+
+.ceshi_next text {
+  color: #fff;
+  font-size: 30rpx;
+  display: block;
+  float: right;
+  margin-top: 15rpx;
+}
+
+.ceshi_next {
+  width: 34rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 60rpx;  
+  right: 0rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 80rpx;
+  border-bottom-left-radius: 80rpx;
+}
+
+.ceshi_prew {
+  width: 34rpx;
+height: 60rpx;
+position: absolute;
+top: 60rpx;
+  left: 0rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-top-right-radius: 80rpx;
+  border-bottom-right-radius: 80rpx;
+}
+ 
+
+ 
+
+ 
