@@ -37,7 +37,8 @@ Page({
     cart: [],
     carNum: 0,
     goodsNum: 0,
-    hide_good_box: true
+    hide_good_box: true,
+    worksImgs:[]//上传图片
   },
   /**
    * 生命周期函数--监听页面加载
@@ -88,6 +89,66 @@ Page({
       this.initAddress();
     });
   },
+  //上传图片
+  chooseImage: function (e) {
+    let that = this;
+    // let worksImgs = that.data.worksImgs;
+    // let len = that.data.worksImgs.length;
+
+    let item = e.currentTarget.dataset.item;
+    let cart=that.data.cart;
+    console.log(item)
+    wx.chooseImage({
+        count: 1, //默认选择1张
+        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+        success: function (res) {
+            console.log(res);
+            // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+            if (res.tempFilePaths.count == 0) {
+                return;
+            }
+            let tempFilePaths = res.tempFilePaths[0]; //获取到的图片路径
+            console.log(tempFilePaths)
+            // let token = app.data.uptoken;
+            //上传图片 循环提交
+             cart.push({
+              id: item.id,
+              name: item.name,
+              price: item.price,
+              image_url: tempFilePaths,
+              num: 1
+            });
+            that.setData({
+              cart:cart,
+              goodsNum: that.data.goodsNum + 1
+            })
+            
+            wx.setStorageSync('cart', cart);
+            // for (let i = 0; i < tempFilePaths.length; i++) {
+            //     wx.uploadFile({
+            //         url: 'url', //此处换上你的接口地址 
+            //         filePath: tempFilePaths[i],
+            //         name: 'upload_file',
+            //         header: {
+            //             "Content-Type": "multipart/form-data",
+            //             'accept': 'application/json',                 
+            //         },
+            //         success: function (res) {
+            //             console.log(res);
+            //             let data = JSON.parse(res.data); // 这个很关键
+            //             worksImgs.push(data.data.url);
+            //             that.setData({
+            //                 worksImgs: worksImgs
+            //             })
+            //         }
+            //     })
+            // }
+
+        }
+    })
+},
+ 
   refreshCart: function (products, cart) {
     let cartLen = cart.length;
     let productsLen = products.length;

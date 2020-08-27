@@ -95,7 +95,6 @@ page {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-top: 40rpx;
 }
 
 .goodList .item .text .content .changeNum {
@@ -393,4 +392,15 @@ page {
   top: 50%;
   z-index: +99;
   background: red;
+}
+/* 上传图片 */
+.upload_pictures{
+  width: 137rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 1px solid #ddd;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+  padding: 0 10rpx;
+  color: #999;
 }

@@ -1,6 +1,6 @@
 <view class='productSort'>
 	<view class='aside'>
-		<block wx:for="{{products}}" wx:for-item="item" wx:key>
+		<block wx:for="{{products}}" wx:for-item="item" wx:key="index">
 			<view class='item {{index==navActive?"on":""}}' data-index='{{index}}' data-id='b{{index}}' bindtap='tap'>
 				<text>{{item.name}}
 				<block wx:if="{{item.is_free && index!=1 && item.name!='其他大件' && carNum>0}}">（{{carNum}}车内免费）</block>
@@ -10,7 +10,7 @@
 	</view>
 	<view class='conter'>
 		<scroll-view scroll-y="true" scroll-into-view="{{toView}}" style='height:{{height}}rpx;' bindscroll="scroll" scroll-with-animation='true'>
-			<block wx:for="{{products}}" wx:for-item="product" wx:for-index="idx">
+			<block wx:for="{{products}}" wx:for-item="product" wx:for-index="idx" wx:key="index">
 				<view class='listw' id="b{{idx}}">
 					<view class='title'>
 						<view class='name'>{{product.name}}</view>
@@ -77,7 +77,7 @@
 						</view>
 					</block>
 					<view class='goodList'>
-						<block wx:for="{{product.goods}}" wx:for-index="idy">
+						<block wx:for="{{product.goods}}" wx:for-index="idy"  wx:key="index">
 							<view class='item'>
 								<view class='pictrue' wx:if="{{idx==0}}">
 									<image src='{{item.image_url}}' mode='aspectFill'></image>
@@ -101,7 +101,11 @@
 								<view class='underline'>
 									<view class='text'>
 										<view class='title'>{{item.name}}</view>
+                   <view class="upload_pictures" data-item="{{item}}" bindtap="chooseImage">
+                    上传图片
+									 </view>
 										<view class="content">
+
 											<view class='money'>￥<text class='num'>{{item.price}}</text></view>
 											<view class="changeNum" wx:if="{{!product.is_free}}">
 												<image catchtap='addCart' data-item="{{item}}" data-source='product' src='/images/add.png' class="icon"></image>
@@ -145,7 +149,7 @@
 	</view>
 	<scroll-view scroll-y="true" style="max-height: 720rpx;">
 		<view style="padding:0rpx 30rpx;">
-			<view class="goodRow" wx:for="{{cart}}">
+			<view class="goodRow" wx:for="{{cart}}" wx:key="index">
 				<view class="left">
 					<image src='{{item.image_url}}' mode='aspectFill' style='width:120rpx;height:120rpx;'></image>
 				</view>
