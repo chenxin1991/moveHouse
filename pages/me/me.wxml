@@ -35,4 +35,19 @@
 			</view>
 		</view>
 	</view>
+		<view class="order">
+		<view class="header">
+			<text style="font-weight: bold;">我的服务</text>
+		</view>
+		<view class="content">
+			<view class="item">
+				<image src="/images/coupon.png" style="width:64rpx;height:64rpx;"></image>
+				<text style="margin-top:10rpx;">优惠券</text>
+			</view>
+			<navigator url="/pages/about_us/about_us" class="item">
+				<image src="/images/about.png" style="width:64rpx;height:64rpx;"></image>
+				<text style="margin-top:10rpx;">关于我们</text>
+			</navigator>
+		</view>
+	</view>
 </view>

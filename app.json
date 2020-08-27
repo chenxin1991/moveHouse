@@ -7,7 +7,8 @@
     "pages/me/me",
     "pages/addressFrom/addressFrom",
     "pages/addressTo/addressTo",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/about_us/about_us"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -19,7 +20,6 @@
     "backgroundColor": "#f5f5f5"
   },
   "tabBar": {
-    "backgroundColor": "#ffffff",
     "color": "#282828",
     "selectedColor": "#e93323",
     "borderStyle": "white",

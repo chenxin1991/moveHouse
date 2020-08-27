@@ -1,0 +1,12 @@
+<view>
+	<view style='text-align:center;background:#fff'>
+		<image src='/images/logo.png' style='width:128rpx;height:128rpx;border-radius:50%;border:1px solid #ddd;margin-top:40rpx;'></image>
+		<view style="font-size:32rpx;line-height:60rpx;">万家灯火搬家公司</view>
+		<view style='text-indent:2em;text-align:left;padding:1em 2em 2em;font-size: 24rpx;color: #999;line-height:2;'>深圳市万家灯火搬迁有限公司是一家以搬家为切入点，致力于打造搬迁、货运于一体的O2O共享平台。 起步于居民搬家，在单位企业搬迁、企业合作、同城货运、城际货运都有着远大目标，深耕搬迁、货运行业十多年，从实体到互联网+，从线下到线上，致力于打通司机/车辆到用户通道，让司机不再为找活发愁，用户不再为找车费劲。
+		</view>
+		<view style="display:flex;flex-direction:row;justify-content:center;align-items:center;height:100rpx;" bindtap='call' data-phone='400-700-8942'>
+          <image src='/images/about_us.png' class='mr2' style='width:50rpx;height:50rpx;'></image>
+      <text class='color6'>400-700-8942</text>
+		</view>
+	</view>
+</view>

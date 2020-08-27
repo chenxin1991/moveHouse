@@ -68,6 +68,20 @@
 					"id": -1,
 					"name": "pages/goods_cate/index",
 					"pathName": "pages/goods_cate/goods_cate",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/me/me",
+					"pathName": "pages/me/me",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/about_us/about_us",
+					"pathName": "pages/about_us/about_us",
 					"scene": null
 				}
 			]
