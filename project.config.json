@@ -82,6 +82,13 @@
 					"id": -1,
 					"name": "pages/about_us/about_us",
 					"pathName": "pages/about_us/about_us",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods_cate/goods_cate",
+					"pathName": "pages/goods_cate/goods_cate",
 					"scene": null
 				}
 			]

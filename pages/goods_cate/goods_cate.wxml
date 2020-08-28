@@ -77,7 +77,7 @@
 						</view>
 					</block>
 					<view class='goodList'>
-						<block wx:for="{{product.goods}}" wx:for-index="idy"  wx:key="index">
+						<block wx:for="{{product.goods}}" wx:for-index="idy" wx:key="index">
 							<view class='item'>
 								<view class='pictrue' wx:if="{{idx==0}}">
 									<image src='{{item.image_url}}' mode='aspectFill'></image>
@@ -90,25 +90,23 @@
 									</block>
 									<!-- 轮播 -->
 									<block wx:else>
+										<view class='ceshi_swiper pictrue'>
+											<swiper class='read_swiper' circular="true" indicator-dots="true" data-idx="{{idx}}" data-idy="{{idy}}" current="0" bindchange="changeImage">
+												<block wx:for="{{item.images}}" wx:key="index">
+													<swiper-item>
+														<image src="{{item.url}}" class="slide-image"></image>
+													</swiper-item>
+												</block>
+											</swiper>
+											<view class='ceshi_next' bindtap='prevImg'>
+												<text class='icon iconfont icon-zuojiantou1'></text>
+											</view>
+											<view class='ceshi_prew' bindtap='nextImg'>
+												<text class='icon iconfont icon-zuojiantou'></text>
+											</view>
+										</view>
 
-
-         <view class='ceshi_swiper pictrue'>
-    <swiper class='read_swiper ' circular="{{swiper.circular}}" indicator-dots='{{swiper.indicatorDots}}' autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}" duration="{{swiper.duration}}" current="{{swiper.current}}">
-      <block wx:for="{{item.images}}" wx:key="index">
-        <swiper-item>
-          <image src="{{item.url}}" class="slide-image"></image>
-        </swiper-item>
-      </block>
-    </swiper>
-    <view class='ceshi_next' bindtap='prevImg'>
-      <text class='icon iconfont icon-zuojiantou1'></text>
-    </view>
-    <view class='ceshi_prew' bindtap='nextImg'>
-      <text class='icon iconfont icon-zuojiantou'></text>
-    </view>
-  </view>
-
-									 <!-- <view class="swiper-pictrue">
+										<!-- <view class="swiper-pictrue">
 									  	<swiper class='pictrue' :indicator-dots="false" data-idx="{{idx}}" data-idy="{{idy}}"  bindchange="changeImage">
 											<block wx:for="{{item.images}}" wx:key='index'>
 												<swiper-item>
@@ -121,15 +119,15 @@
 									 </view>								 					  -->
 
 
-									</block>	
+									</block>
 
 								</block>
 								<view class='underline'>
 									<view class='text'>
-										<view class='title'>{{item.name}}</view>			
-                   <view class="upload_pictures" data-item="{{item}}" bindtap="chooseImage">
-                    上传图片
-									 </view>
+										<view class='title'>{{item.name}}</view>
+										<view class="upload_pictures" data-item="{{item}}" bindtap="chooseImage">
+											上传图片
+										</view>
 										<view class="content">
 
 											<view class='money'>￥<text class='num'>{{item.price}}</text></view>

@@ -1,4 +1,5 @@
 @import "../../iconfont/iconfont.wxss";
+
 page {
   background-color: #fff !important;
 }
@@ -394,8 +395,9 @@ page {
   z-index: +99;
   background: red;
 }
+
 /* 上传图片 */
-.upload_pictures{
+.upload_pictures {
   width: 137rpx;
   height: 60rpx;
   line-height: 60rpx;
@@ -405,16 +407,18 @@ page {
   padding: 0 10rpx;
   color: #999;
 }
+
 /* 轮播 左右滑动 */
-.swiper-pictrue{
+.swiper-pictrue {
   display: flex;
   width: 180rpx;
   height: 180rpx;
   flex-direction: row;
-   align-items: center;
-  justify-content:space-between;
+  align-items: center;
+  justify-content: space-between;
 }
-.swiper-arrows{
+
+.swiper-arrows {
   display: block;
   color: red;
   width: 40rpx;
@@ -426,6 +430,7 @@ page {
   font-weight: 500;
   z-index: 99;
 }
+
 /* .swiper-left{
   position: relative;
   left: 0rpx;
@@ -437,10 +442,12 @@ page {
   top: -170rpx;
 } */
 
-swiper.read_swiper{height: 180rpx;}
+swiper.read_swiper {
+  height: 180rpx;
+}
+
 .ceshi_swiper {
   width: 180rpx;
-  margin: 0rpx auto;
   position: relative;
 }
 
@@ -464,7 +471,7 @@ swiper.read_swiper{height: 180rpx;}
   width: 34rpx;
   height: 60rpx;
   position: absolute;
-  top: 60rpx;  
+  top: 60rpx;
   right: 0rpx;
   background-color: rgba(0, 0, 0, 0.5);
   border-top-left-radius: 80rpx;
@@ -473,16 +480,11 @@ swiper.read_swiper{height: 180rpx;}
 
 .ceshi_prew {
   width: 34rpx;
-height: 60rpx;
-position: absolute;
-top: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 60rpx;
   left: 0rpx;
   background-color: rgba(0, 0, 0, 0.5);
   border-top-right-radius: 80rpx;
   border-bottom-right-radius: 80rpx;
 }
- 
-
- 
-
- 

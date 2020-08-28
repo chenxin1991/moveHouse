@@ -37,19 +37,7 @@ Page({
     cart: [],
     carNum: 0,
     goodsNum: 0,
-    hide_good_box: true,
-    worksImgs:[],  //上传图片
-    swiperPoint:false,
-    swiper: {    
-      imgUrls: [],
-      indicatorDots: true,
-      autoplay: false,
-      circular:true,
-      interval: 5000,
-      duration: 1000,
-      current: 0,
-    },
-   
+    hide_good_box: true
   },
   /**
    * 生命周期函数--监听页面加载
@@ -103,67 +91,57 @@ Page({
   //上传图片
   chooseImage: function (e) {
     let that = this;
-    // let worksImgs = that.data.worksImgs;
-    // let len = that.data.worksImgs.length;
-
     let item = e.currentTarget.dataset.item;
-    let cart=that.data.cart;
-    console.log(item)
+    let cart = this.data.cart;
     wx.chooseImage({
-        count: 1, //默认选择1张
-        sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-        success: function (res) {
-            console.log(res);
-            // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-            if (res.tempFilePaths.count == 0) {
-                return;
-            }
-            let tempFilePaths = res.tempFilePaths[0]; //获取到的图片路径
-            console.log(tempFilePaths)
-            // let token = app.data.uptoken;
-            //上传图片 循环提交
-             cart.push({
-              id: item.id,
-              name: item.name,
-              price: item.price,
-              image_url: tempFilePaths,
-              num: 1
-            });
-            that.setData({
-              cart:cart,
-              goodsNum: that.data.goodsNum + 1
-            })
-            
-            wx.setStorageSync('cart', cart);
-            that.getTotalCost();
-          
-
+      count: 1, //默认选择1张
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        if (res.tempFilePaths.count == 0) {
+          return;
         }
+        let tempFilePaths = res.tempFilePaths[0]; //获取到的图片路径
+        //上传图片 循环提交
+        cart.push({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          image_url: tempFilePaths,
+          num: 1
+        });
+        that.setData({
+          cart: cart,
+          goodsNum: that.data.goodsNum + 1
+        });
+        wx.setStorageSync('cart', cart);
+        that.getTotalCost();
+      }
     })
-},
- //轮播箭头向左
- prevImg: function(e) {
-  let swiper = e.currentTarget.dataset.item;
-  // var swiper = this.data.swiper;
-  var current = swiper.current;
-  swiper.current = current > 0 ? current - 1 : swiper.imgUrls.length - 1;
-  this.setData({
-    swiper: swiper,
-  })
-},
-//轮播箭头向右
-nextImg: function(e) {
-  console.log(2);
-  let swiper = e.currentTarget.dataset.item;
- 
-  // var swiper = this.data.swiper;
-  var current = swiper.current;
-  swiper.current = current < (swiper.imgUrls.length - 1) ? current + 1 : 0;
-  this.setData({
-    swiper: swiper,
-  })
-},
+  },
+  //轮播箭头向左
+  prevImg: function (e) {
+    let swiper = e.currentTarget.dataset.item;
+    // var swiper = this.data.swiper;
+    var current = swiper.current;
+    swiper.current = current > 0 ? current - 1 : swiper.imgUrls.length - 1;
+    this.setData({
+      swiper: swiper,
+    })
+  },
+  //轮播箭头向右
+  nextImg: function (e) {
+    console.log(2);
+    let swiper = e.currentTarget.dataset.item;
+
+    // var swiper = this.data.swiper;
+    var current = swiper.current;
+    swiper.current = current < (swiper.imgUrls.length - 1) ? current + 1 : 0;
+    this.setData({
+      swiper: swiper,
+    })
+  },
   refreshCart: function (products, cart) {
     let cartLen = cart.length;
     let productsLen = products.length;
@@ -816,5 +794,10 @@ nextImg: function(e) {
         })
       }
     }, 20);
+  },
+  toOrder: function () {
+    wx.navigateTo({
+      url: '../order/order'
+    });
   }
 })
