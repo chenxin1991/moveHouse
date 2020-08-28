@@ -18,7 +18,7 @@ page {
 .productSort .aside .item {
   height: 80rpx;
   width: 100%;
-  font-size: 25rpx;
+  font-size: 26rpx;
   color: #424242;
   display: flex;
   flex-wrap: wrap;
@@ -299,8 +299,11 @@ page {
   line-height: 70rpx;
   margin-left: 22rpx;
   padding: 0;
-  /* background-color: #e93323 !important; */
   background-color: #B3B3B3;
+}
+
+.productSort .footer .balance.on {
+  background-color: #e93323 !important;
 }
 
 .goods-window {
