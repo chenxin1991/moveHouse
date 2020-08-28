@@ -8,7 +8,9 @@
     "pages/addressFrom/addressFrom",
     "pages/addressTo/addressTo",
     "pages/logs/logs",
-    "pages/about_us/about_us"
+    "pages/about_us/about_us",
+    "pages/orderList/index",
+    "pages/orderDetails/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",

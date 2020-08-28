@@ -1,0 +1,107 @@
+<view class="orderDetails">
+	<scroll-view scroll-y="true" class="orderDetails-main">
+		<view class="order-status">
+	  <text class="order-status-text1">订单关闭</text>
+		<text  class="order-status-text2">订单未付款，超时自动关闭</text>        
+   </view>
+ 
+		<view class="order-address">
+    <view catchtap='addFrom' data-url="pages/addressFrom/addressFrom">
+			<view style="display:flex;justify-content:space-between;align-items:center;padding:26rpx 20rpx;background: white;border-bottom: 2rpx solid #eee;">
+				<view style="display:flex;flex-direction:row;align-items:center;">
+					<image src='/images/qidian.png' style='width:45rpx;height:45rpx;'></image>
+					<block>
+						<view style="display:flex;flex-direction:column;">
+							<view style="display:flex;justify-content:flex-start;">
+              <text style="margin-left: 20rpx;font-weight: bold;">{{addressFrom.address.name}} {{addressFrom.room_number}}</text>
+              </view>
+							<view style="margin-left: 20rpx;padding-top:10rpx;">
+              <text>{{array1[addressFrom.stairs_or_elevators]}}：{{addressFrom.floor_num}}层</text>
+              <text style="padding-left:30rpx;">停车位距离：{{array2[addressFrom.parking_distance]}}</text>
+              </view>
+						</view>
+					</block>
+				 
+				</view>
+				<view style="display:flex;align-items:center;">
+					<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+				</view>
+			</view>
+		</view>
+		<view catchtap='addTo' data-url="pages/addressTo/addressTo">
+			<view style="display:flex;justify-content:space-between;align-items:center;padding:26rpx 20rpx;background: white;border-bottom: 2rpx solid #eee;">
+				<view style="display:flex;flex-direction:row;align-items:center;">
+					<image src='/images/zhongdian.png' style='width:45rpx;height:45rpx;'></image>
+					<block>
+						<view style="display:flex;flex-direction:column;">
+							<view style="display:flex;justify-content:flex-start;"><text style="margin-left: 20rpx;font-weight: bold;">{{addressTo.address.name}} {{addressTo.room_number}}</text></view>
+							<view style="margin-left: 20rpx;padding-top:10rpx;"><text>{{array1[addressTo.stairs_or_elevators]}}：{{addressTo.floor_num}}层</text><text style="padding-left:30rpx;">停车位距离：{{array2[addressTo.parking_distance]}}</text></view>
+						</view>
+					</block>
+				 
+				</view>
+				<view style="display:flex;align-items:center;">
+					<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+				</view>
+			</view>
+		</view>
+
+
+    <view class="order-address-text">
+     <text class="order-address-text2">行驶距离：</text>
+     <text class="mainColor">0公里</text>
+    </view>
+		</view>
+
+		<view class="order-goods">
+
+     <view class="orderDetails-goods-item">
+     <view class="orderDetails-image">
+    <image src="/images/complete.png"></image>
+     </view>
+     <view  class="orderDetails-text">
+     比赛中，明年再说明细项目V型没出息，从不非常
+     </view>
+     <view  class="orderDetails-price">
+      <text>￥99.00</text>
+       <text style="text-align: right;">x1</text>
+     </view>
+     </view>
+  <view class="order-goods-msg">
+  <text> 买家留言</text>
+ <text> 其他商品继续配送</text>
+  </view>
+    
+		</view>
+ 
+		<view class="order-number">
+  <view style="background:white;padding:10rpx 20rpx;font-size:30rpx;">
+		<view style="height:60rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:10rpx 0rpx;">
+			<text>用车、拆装、大件及材料费</text>
+			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{selectGoodsPrice}}</text></view>
+		</view>
+		<view style="height:60rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:10rpx 0rpx;">
+			<text>超公里数费</text>
+			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{distanceCost}}</text></view>
+		</view>
+		<view style="height:60rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:10rpx 0rpx;">
+			<text>楼层费</text>
+			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{floorCost}}</text></view>
+		</view>
+		<view style="height:60rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:10rpx 0rpx;">
+			<text>停车位距离费</text>
+			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{parkingCost}}</text></view>
+		</view>
+		<view style="height:60rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:10rpx 0rpx;">
+			<text>特殊时间段费</text>
+			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{specialTimeCost}}</text></view>
+		</view>
+	</view>
+		</view>
+	</scroll-view>
+
+	<view class="orderDetails-footer">
+		<view class="cancelBtn">取消订单</view>
+	</view>
+
+</view>

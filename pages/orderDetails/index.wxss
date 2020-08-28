@@ -1,0 +1,146 @@
+@import "../../iconfont/iconfont.wxss";
+.mainColor{
+  color: #ff5155;
+}
+.titleColor{
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+.textColor{
+  color: #666;
+}
+.textColor2{
+  color: #999;
+}
+.rightMargin{
+  margin: 0 20rpx;
+}
+
+.orderDetails{
+  width: 100%;
+  background: #f8f8f8;
+  position: relative;
+ display: flex;
+ flex-direction: column;
+}
+.orderDetails-main{
+  flex: 1;
+}
+/* 订单状态 */
+.order-status{
+  width: 100%;
+  height: 240rpx;
+  display: flex;
+  flex-direction: column;
+  background: #ff5155;
+  color: #fff;
+}
+.order-status text{
+  padding: 12rpx 40rpx;
+}
+.order-status-text1{
+ font-size: 32rpx;
+ font-weight: 600;
+ margin-top: 40rpx;
+}
+.order-status-text2{
+  font-size: 24rpx;
+}
+/* 收货地址 */
+.order-address{
+  width: 100%;
+  height: 500rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.order-address-text{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  align-items: center;
+}
+ 
+.order-address-text2{
+  margin: 0 20rpx;
+}
+/* 订单列表 */
+.order-goods{
+  display: block;
+  width: 100%;
+  min-height: 280rpx;
+  background: #fff;
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+.orderDetails-goods-item{
+  width: 94%;
+  height: 193rpx;
+  border: 1rpx solid #fff;
+  border-radius: 10rpx;
+  background: #f7f7f7;
+  margin: 30rpx auto;
+  margin-bottom: 0rpx;
+  padding: 20rpx;
+  display: flex;              
+  justify-content:flex-start;
+}
+.orderDetails-image{
+  width: 140rpx;
+  height: 140rpx;
+  border: 1rpx solid #fff;
+  border-radius: 8rpx;
+  background: #fff;
+  margin-right: 20rpx;
+}
+.orderDetails-image image{
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.orderDetails-price{
+  display: flex;
+  flex-direction: column;
+
+}
+.order-goods-msg{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40rpx;
+}
+/* 价格明细 */
+.order-number{
+  width: 100%;
+  min-height: 356rpx;
+  background: #fff;
+  margin-top: 20rpx;
+}
+/* 底部 */
+.orderDetails-footer{
+  width: 100%;
+  height: 80rpx;
+  background: #fff;
+  border: 2rpx solid #ededed;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  bottom: 0rpx;
+  z-index: 999;
+}
+.cancelBtn{
+  width: 150rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border:1rpx solid #ccc;
+ border-radius: 30rpx;
+ font-size: 28rpx;
+ margin-right: 20rpx;
+}

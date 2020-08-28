@@ -50,5 +50,13 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  //全部订单
+  allOrders: function(e){
+    // console.log(e)
+    wx.navigateTo({
+      url: '/pages/orderList/index',
+   
+    })
   }
 })

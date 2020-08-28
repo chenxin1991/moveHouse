@@ -1,0 +1,30 @@
+<!--pages/ordersTab/index.wxml-->
+<view class="tab">
+	<view data-i="{{0}}" bindtap="setTabIndex" class="{{activeIndex===0?'active':''}}">全部</view>
+	<view data-i="{{1}}" bindtap="setTabIndex" class="{{activeIndex===1?'active':''}}">待付款</view>
+	<view data-i="{{2}}" bindtap="setTabIndex" class="{{activeIndex===2?'active':''}}">待配送</view>
+	<view data-i="{{3}}" bindtap="setTabIndex" class="{{activeIndex===3?'active':''}}">待收货</view>
+	<view data-i="{{4}}" bindtap="setTabIndex" class="{{activeIndex===4?'active':''}}">待评价</view>
+</view>
+ 
+<view wx:if="{{activeIndex===0}}">
+
+
+ <!-- 引用组件的页面模板 -->
+<view>
+  <allGoodsList>
+    <!-- 这部分内容将被放置在组件 <slot> 的位置上 -->
+    <!-- <view>这里是插入到组件slot中的内容</view> -->
+  </allGoodsList>
+</view>
+</view>
+<view wx:if="{{activeIndex===1}}">
+222222</view>
+<view wx:if="{{activeIndex===2}}">
+3333333</view>
+<view wx:if="{{activeIndex===3}}">
+444444
+</view>
+<view wx:if="{{activeIndex===4}}">
+55555</view>
+ 
