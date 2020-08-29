@@ -9,20 +9,46 @@ Page({
    * 页面的初始数据
    */
   data: {
-    activeIndex:0
+    tabList:[
+      {
+        id:0,
+        title:"全部"
+      },
+      {
+        id:1,
+        title:"代付款"
+      },
+      {
+        id:2,
+        title:"待配送"
+      },
+      {
+        id:3,
+        title:"待收货"
+      },
+      {
+        id:4,
+        title:"待评价"
+      }
+    ],
+    activeIndex:0,
+    moduleId:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(option){
- 
+   console.log(this.data.tabList)
   },
   setTabIndex(e){
-    let activeIndex = $attr(e, 'i')
-    console.log(activeIndex)
+    let activeIndex = $attr(e, 'id')
+    let moduleId=$attr(e,'id')
+    // console.log(activeIndex)
+    console.log('moduleId',moduleId)
     this.setData({
-      activeIndex
+      activeIndex,
+      moduleId
     })
   },
   /**

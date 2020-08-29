@@ -1,22 +1,22 @@
 <!-- 组件模板 -->
 <view class="wrapper">
 
- <view class="orders-item">
+ <view class="orders-item" wx:for="{{orderList}}" wx:key="index">
   <view class="orders-item-content">
    <view class="orders-item-title">
-    <text class="titleColor">下单时间：2020-08-27</text>
-    <text class="mainColor">待派单</text>
+    <text class="titleColor">{{item.orderTime}}</text>
+    <text class="mainColor">{{item.orderStatus}}</text>
    </view>
 
     <view class="orders-item-goods" bindtap="orderDetails">
-     <view class="goods-image">
-    <image src="/images/complete.png"></image>
+     <view class="goods-image" wx:for="{{item.orderImage}}" >
+    <image src="{{item.imageUrl}}"></image>
      </view>
-     <text class="textColor">共2件</text>
+     <text class="textColor">共{{item.goodsNum}}件</text>
     </view>
 
     <view class="orders-item-total">
-     <view class="textColor">合计：<text class="priceColor">￥178.99</text></view>
+     <view class="textColor">合计：<text class="priceColor">￥{{item.allPrice}}</text></view>
    </view>
     </view>
      <view class="orders-item-footer">
