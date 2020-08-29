@@ -328,7 +328,7 @@ Page({
         this.setData({
           distanceCost: Math.round(distanceCost)
         });
-        return distanceCost;
+        return Math.round(distanceCost);
       }
     }
     return 0;
@@ -341,7 +341,7 @@ Page({
         floorCost += (address.floor_num - val.floor_standard + 1) * val.floor_price * val.num;
       });
     }
-    return floorCost;
+    return Math.round(floorCost);
   },
   getParkingCost: function (address) {
     let parkingCost = 0;
@@ -365,7 +365,26 @@ Page({
           break;
       }
     });
-    return parkingCost;
+    return Math.round(parkingCost);
+  },
+  getSpecialTimeCost: function () {
+    let specialTimeCost = 0;
+    let totalCost = this.data.totalCost - this.data.specialTimeCost;
+    let setting = this.data.setting;
+    if (this.data.timeArray.length > 0) {
+      let appointTime = this.data.timeArray[this.data.appointTime];
+      if (appointTime) {
+        if (appointTime >= '19:00' && appointTime <= '23:00') {
+          specialTimeCost = totalCost * (setting.add_ratio1 / 100);
+        } else if (appointTime > '23:00' || appointTime <= '07:00') {
+          specialTimeCost = totalCost * (setting.add_ratio2 / 100);
+        }
+        this.setData({
+          specialTimeCost: Math.round(specialTimeCost)
+        });
+      }
+    }
+    return Math.round(specialTimeCost);
   },
   getTotalCost: function () {
     let cart = this.data.cart;
@@ -374,7 +393,7 @@ Page({
     let distanceCost = 0;
     let floorCost = 0;
     let parkingCost = 0;
-    // let specialTimeCost = 0;
+    let specialTimeCost = 0;
     cart.forEach(function (val) {
       let cost = parseFloat(val.price) * parseInt(val.num);
       goodsCost += cost;
@@ -400,11 +419,14 @@ Page({
         totalCost += cost2;
       }
     }
+    specialTimeCost = this.getSpecialTimeCost();
+    totalCost += specialTimeCost;
     this.setData({
       goodsCost: goodsCost,
       distanceCost: distanceCost,
       floorCost: floorCost,
       parkingCost: parkingCost,
+      specialTimeCost: specialTimeCost,
       totalCost: totalCost
     });
   },
@@ -539,26 +561,15 @@ Page({
     this.isComplete();
   },
   bindPickerChange: function (e) {
-    let specialTimeCost = 0;
     this.setData({
       appointTime: e.detail.value
-    })
-    // if (this.data.timeArray.length > 0) {
-    //   let appointTime = this.data.timeArray[this.data.appointTime];
-    //   let totalCost = this.data.selectGoodsPrice + this.data.floorCost + this.data.parkingCost + this.data.distanceCost;
-    //   if (appointTime) {
-    //     if (appointTime >= '19:00' && appointTime <= '23:00') {
-    //       specialTimeCost = totalCost * (this.data.config.add_ratio1 / 100);
-    //     } else if (appointTime > '23:00' || appointTime <= '07:00') {
-    //       specialTimeCost = totalCost * (this.data.config.add_ratio2 / 100);
-    //     }
-    //     this.setData({
-    //       specialTimeCost: Math.round(specialTimeCost)
-    //     });
-
-    //   this.getTotalCost();
-    //   }
-    // }
+    });
+    if (this.data.timeArray.length > 0) {
+      let appointTime = this.data.timeArray[this.data.appointTime];
+      if (appointTime) {
+        this.getTotalCost();
+      }
+    }
     this.isComplete();
   },
   /**
@@ -610,13 +621,23 @@ Page({
     })
   },
   toOrder: function () {
-    if (this.data.carNum > 0 && this.data.appointDate && this.data.appointTime && JSON.stringify(this.data.addressFrom) !== "{}" && JSON.stringify(this.data.addressTo) !== "{}") {
+    if (this.data.is_complete) {
+      app.globalData.distance = this.data.distance;
+      app.globalData.goodsCost = this.data.goodsCost;
+      app.globalData.distanceCost = this.data.distanceCost;
+      app.globalData.floorCost = this.data.floorCost;
+      app.globalData.parkingCost = this.data.parkingCost;
+      app.globalData.specialTimeCost = this.data.specialTimeCost;
+      app.globalData.totalCost = this.data.totalCost;
+      app.globalData.appointDate = this.data.appointDate;
+      app.globalData.appointTime = this.data.timeArray[this.data.appointTime];
+      app.globalData.goodsNum = this.data.goodsNum;
       wx.navigateTo({
         url: '../order/order'
       });
     } else {
       wx.showToast({
-        title: '请选择用车、预约时间和起始地',
+        title: '用车、预约时间和起始地为必选项',
         icon: 'none',
         duration: 2000
       });

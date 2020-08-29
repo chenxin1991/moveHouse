@@ -80,6 +80,9 @@
 							<view class="result">
 								<text>停车位距离费：<text class="distance">￥{{parkingCost}}</text></text>
 							</view>
+							<view class="result">
+								<text>特殊时间段费：<text class="distance">￥{{specialTimeCost}}</text></text>
+							</view>
 						</view>
 					</block>
 					<view class='goodList'>

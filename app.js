@@ -104,7 +104,15 @@ App({
     userInfo: null,
     url: 'https://demo.wjdhbq.com/index.php',
     cars: [],
-    addressFrom: {},
-    addressTo: {}
+    distance: 0,
+    goodsCost: 0,
+    distanceCost: 0,
+    floorCost: 0,
+    parkingCost: 0,
+    specialTimeCost: 0,
+    totalCost: 0,
+    appointDate: '',
+    appointTime: '',
+    goodsNum: 0
   }
 })
