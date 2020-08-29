@@ -26,6 +26,7 @@
 }
 .orderDetails-main{
   flex: 1;
+  margin-bottom: 80rpx;
 }
 /* 订单状态 */
 .order-status{

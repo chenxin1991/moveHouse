@@ -9,7 +9,7 @@
 		<view style="margin-top:20rpx;"><text style="color:white;">绑定手机号 ></text></view>
 	</view>
 	<view class="order">
-		<view class="header" bindtap="allOrders">
+		<view class="header"  data-id="{{0}}" bindtap="allOrders">
 			<text style="font-weight: bold;">全部订单</text>
 			<view style="display:flex;align-items:center;">
 				<text style="margin-right:20rpx;color:#AAAAAA">查看全部订单</text>
@@ -17,21 +17,9 @@
 			</view>
 		</view>
 		<view class="content">
-			<view class="item">
-				<image src="/images/dispatch.png" style="width:64rpx;height:64rpx;"></image>
-				<text style="margin-top:10rpx;">待派单</text>
-			</view>
-			<view class="item">
-				<image src="/images/start.png" style="width:64rpx;height:64rpx;"></image>
-				<text style="margin-top:10rpx;">待开工</text>
-			</view>
-			<view class="item">
-				<image src="/images/complete.png" style="width:64rpx;height:64rpx;"></image>
-				<text style="margin-top:10rpx;">待完工</text>
-			</view>
-			<view class="item">
-				<image src="/images/comment.png" style="width:64rpx;height:64rpx;"></image>
-				<text style="margin-top:10rpx;">待评价</text>
+			<view class="item" wx:for="{{orderIcon}}" wx:key="index" data-id="{{item.id}}"  bindtap="allOrders">
+				<image src="{{item.iconUrl}}" style="width:64rpx;height:64rpx;"></image>
+				<text style="margin-top:10rpx;">{{item.iconTitle}}</text>
 			</view>
 		</view>
 	</view>

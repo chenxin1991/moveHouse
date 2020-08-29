@@ -2,7 +2,7 @@
 	<view wx:for="{{tabList}}" wx:key="index" data-id="{{item.id}}" bindtap="setTabIndex" class="{{activeIndex===item.id?'active':''}}">{{item.title}}</view>
 </view>
  
-<view wx:if="{{activeIndex===moduleId}}">
+<view wx:if="{{moduleId===activeIndex}}">
  <!-- 引用组件的页面模板 -->
   <allGoodsList>
     <!-- 这部分内容将被放置在组件 <slot> 的位置上 -->

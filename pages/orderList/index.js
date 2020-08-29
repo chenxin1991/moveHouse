@@ -16,15 +16,15 @@ Page({
       },
       {
         id:1,
-        title:"代付款"
+        title:"待派单"
       },
       {
         id:2,
-        title:"待配送"
+        title:"待开工"
       },
       {
         id:3,
-        title:"待收货"
+        title:"待完工"
       },
       {
         id:4,
@@ -32,21 +32,25 @@ Page({
       }
     ],
     activeIndex:0,
-    moduleId:0
+    moduleId:0,
+    ids:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(option){
-   console.log(this.data.tabList)
+    var _this=this;
+  //  console.log(this.data.tabList)
+  _this.ids=option.id
   },
   setTabIndex(e){
+    var _this=this;
     let activeIndex = $attr(e, 'id')
     let moduleId=$attr(e,'id')
-    // console.log(activeIndex)
+    console.log('1111',activeIndex)
     console.log('moduleId',moduleId)
-    this.setData({
+    _this.setData({
       activeIndex,
       moduleId
     })
@@ -62,7 +66,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let activeIndex = Number(this.ids)
+    console.log('2222',activeIndex)
+    this.setData({
+      activeIndex
+    })
   },
 
   /**

@@ -12,7 +12,7 @@ Component({
    */
   data: {
     orderList:[
-      {
+      {id:'0',
         orderTime:'下单时间：2020-08-27',
         orderStatus:'待派单',
         orderImage:[{
