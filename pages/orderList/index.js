@@ -55,6 +55,9 @@ Page({
       moduleId
     })
   },
+  onMyEvent: function(e){
+    e.detail // 自定义组件触发事件时提供的detail对象
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

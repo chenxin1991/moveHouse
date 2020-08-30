@@ -62,6 +62,7 @@
   border-radius: 8rpx;
   background: #fff;
   margin-left: 20rpx;
+  float: left;
 }
 .goods-image image{
   width: 120rpx;

@@ -469,6 +469,18 @@ Page({
         });
         wx.setStorageSync('cart', cart);
         that.getTotalCost();
+
+        // wx.uploadFile({
+        //   filePath: tempFilePaths,
+        //   name: 'name',
+        //   url: 'url',
+        //   success:res=>{
+        //     console.log(res.data)
+        //     this.setData({
+              
+        //     })
+        //   }
+        // })
       }
     })
   },
