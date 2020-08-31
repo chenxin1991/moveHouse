@@ -1,15 +1,21 @@
 <!--index.wxml-->
 <view class="container">
 	<view class="userinfo">
-		<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-		<block wx:else>
-			<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-			<text style="color: white;">{{userInfo.nickName}}</text>
-		</block>
-		<view style="margin-top:20rpx;"><text style="color:white;">绑定手机号 ></text></view>
+		<view wx:if="{{ isLogin }}" class="user-header-cont">
+			<view class="user-header-avatar">
+				<open-data class="" lang="zh_CN" type="userAvatarUrl"></open-data>
+			</view>
+			<open-data class="user-header-cont-name" lang="zh_CN" type="userNickName"></open-data>
+		</view>
+		<view wx:else class="user-header-cont" catchtap="onLogin">
+			<view class="user-header-avatar">
+				<image src="/images/default-avatar.jpg"></image>
+			</view>
+			<view class="user-header-cont-name">点击登录</view>
+		</view>
 	</view>
 	<view class="order">
-		<view class="header"  data-id="{{0}}" bindtap="allOrders">
+		<view class="header" data-id="{{0}}" bindtap="allOrders">
 			<text style="font-weight: bold;">全部订单</text>
 			<view style="display:flex;align-items:center;">
 				<text style="margin-right:20rpx;color:#AAAAAA">查看全部订单</text>
@@ -17,13 +23,13 @@
 			</view>
 		</view>
 		<view class="content">
-			<view class="item" wx:for="{{orderIcon}}" wx:key="index" data-id="{{item.id}}"  bindtap="allOrders">
+			<view class="item" wx:for="{{orderIcon}}" wx:key="index" data-id="{{item.id}}" bindtap="allOrders">
 				<image src="{{item.iconUrl}}" style="width:64rpx;height:64rpx;"></image>
 				<text style="margin-top:10rpx;">{{item.iconTitle}}</text>
 			</view>
 		</view>
 	</view>
-		<view class="order">
+	<view class="order">
 		<view class="header">
 			<text style="font-weight: bold;">我的服务</text>
 		</view>
