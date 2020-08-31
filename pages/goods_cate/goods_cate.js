@@ -2,6 +2,9 @@ import {
   getCategoryList
 } from '../../api/basic.js';
 
+function isNull( str ){
+  if ( str == "" || str==undefined || str==null) return true;
+  }
 const app = getApp();
 Page({
   /**
@@ -35,10 +38,38 @@ Page({
     totalCost: 0, //总报价
     setting: {},
     cart: [],
-    carNum: 0,
+    carNum:0,
     goodsNum: 0,
     hide_good_box: true,
-    is_complete: false
+    is_complete: false,
+    showModal:false,//遮罩层
+    showModalLarge:false,//上传其他大件弹出框
+    isPriceUp:false,//总价'起'
+    isParticulars:true,//总价明细
+    showParticulars:false,//总价明细弹框
+    particularsList:[
+      {
+        name:'大车',
+        price:222
+      },
+      {
+        name:'大沙发',
+        price:222
+      }, {
+        name:'冰箱洗衣机电饭锅',
+        price:222
+      }, {
+        name:'起始点全程电梯或楼梯1层',
+        price:222
+      }, {
+        name:'里程10公里',
+        price:222
+      }
+    ],
+    allPrice:555,
+    particulars_id:0,
+    particulars_name:'', 
+    particulars_pic:'/images/uploadPictures.png'
   },
   /**
    * 生命周期函数--监听页面加载
@@ -387,6 +418,7 @@ Page({
     return Math.round(specialTimeCost);
   },
   getTotalCost: function () {
+    let _this=this;
     let cart = this.data.cart;
     let totalCost = 0;
     let goodsCost = 0;
@@ -395,9 +427,19 @@ Page({
     let parkingCost = 0;
     let specialTimeCost = 0;
     cart.forEach(function (val) {
-      let cost = parseFloat(val.price) * parseInt(val.num);
-      goodsCost += cost;
-      totalCost += cost;
+     var r1= /^-?\d+$/　　　　//整数
+     var r2= /^\d+(\.\d+)?$/　　//非负浮点数（正浮点数 + 0）
+     
+      if(r1.test(val.price)||r2.test(val.price)){
+        let cost = parseFloat(val.price) * parseInt(val.num);
+        goodsCost += cost;
+        totalCost += cost;
+      } else{
+        _this.data.isPriceUp=true; 
+      }
+      _this.setData({
+        isPriceUp:_this.data.isPriceUp
+      })
     });
     distanceCost = this.getDistanceCost();
     totalCost += distanceCost;
@@ -440,6 +482,101 @@ Page({
       show: false
     });
   },
+  //上传其他大件弹框
+  uploadLarge:function () {
+
+    this.setData({
+      showModalLarge:true,
+      showModal:true,
+      particulars_name:'',
+      particulars_pic:'/images/uploadPictures.png'
+    })
+  },
+   //上传其他大件的输入框
+  bindKeyInput: function (e) {
+    // console.log( e.detail.value)
+    this.setData({
+      particulars_name: e.detail.value
+    })
+  },
+    //上传其他大件的上传图片功能
+  chooseImage2: function (e) {
+    let _this = this;
+    wx.chooseImage({
+      count: 1, //默认选择1张
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        if (res.tempFilePaths.count == 0) {
+          return;
+        }
+     let tempFilePaths = res.tempFilePaths[0]; //获取到的图片路径
+        console.log(  tempFilePaths)
+        _this.setData({
+          particulars_pic:tempFilePaths
+        })
+      }
+    })
+  },
+
+  //上传其他大件弹框确定
+  confirmModalLarge:function () {
+    let _this=this;
+    let cart = _this.data.cart;
+    _this.data.particulars_id++
+    //上传图片 循环提交
+   
+    if(isNull(_this.data.particulars_name)||isNull(_this.data.particulars_pic)){
+      wx.showToast({
+        title: '请上传需要的大件名称/图片',
+        icon: 'none',
+        duration: 2000
+      });
+      return false;
+    }else{
+     
+
+      cart.push({   
+        id:'other_'+ _this.data.particulars_id,   
+        name: _this.data.particulars_name,
+        image_url:  _this.data.particulars_pic,
+        num: 1,
+        price:'暂无报价'
+      });
+      _this.setData({
+        cart: cart,
+        goodsNum: _this.data.goodsNum + 1,
+        showModalLarge:false,
+        showModal:false,
+   
+      });
+      wx.setStorageSync('cart', cart);
+      _this.getTotalCost();
+    }
+   
+  },
+  //上传其他大件弹框取消
+  closeModalLarge(){
+    this.setData({
+      showModalLarge:false,
+      showModal:false 
+    })
+  },
+  //总价明细弹出框
+  getParticulars(){
+    this.setData({
+      showParticulars:true,
+      showModal:true
+    })
+  },  
+  //总价明细弹出框取消
+  closeParticulars () {
+      this.setData({
+        showParticulars:false,
+        showModal:false
+      })
+    },
   //上传图片
   chooseImage: function (e) {
     let that = this;

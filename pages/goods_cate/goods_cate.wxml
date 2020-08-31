@@ -85,6 +85,11 @@
 							</view>
 						</view>
 					</block>
+					<!-- 上传其他大件 -->
+					<block wx:if="{{product.name=='其他大件'}}">
+						<view bindtap="uploadLarge" class="btn">上传其他大件</view>
+					</block>
+
 					<view class='goodList'>
 						<block wx:for="{{product.goods}}" wx:for-index="idy" wx:key="index">
 							<view class='item'>
@@ -119,7 +124,7 @@
 								<view class='underline'>
 									<view class='text'>
 										<view class='title'>{{item.name}}</view>
-										<view wx:if="{{product.is_upload}}" class="upload_pictures" data-item="{{item}}" bindtap="chooseImage">上传图片</view>
+										<view wx:if="{{product.is_upload}}" class="upload-btn upload-pictures" data-item="{{item}}" bindtap="chooseImage">上传图片</view>
 										<view class="content">
 											<view class='money'>￥<text class='num'>{{item.price}}</text></view>
 											<view class="changeNum" wx:if="{{!product.is_free}}">
@@ -145,7 +150,9 @@
 				<image src="/images/cart.png" style='width:60rpx;height:60rpx;'></image>
 			</view>
 			<view style="margin-left:20rpx;">
-				<text class='money'>￥{{totalCost}}</text>
+				<text class='money'>￥{{totalCost}}</text> 
+				<text wx:if="{{isPriceUp}}" class="PriceUp">起</text>
+					<text wx:if="{{isParticulars}}"  bindtap="getParticulars" class="particulars">（明细）</text>
 			</view>
 		</view>
 		<view>
@@ -181,6 +188,44 @@
 		</view>
 	</scroll-view>
 </view>
+
 <view class='mask' catchtouchmove="true" hidden='{{show==false}}' bindtap='closeProduct'></view>
 <view class="good_box" hidden="{{hide_good_box}}" style="left: {{bus_x}}px; top: {{bus_y}}px;">
+</view>
+<!-- 上传其他大件弹框 -->
+<view class="modalDlg-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modalDlg" wx:if="{{showModalLarge}}">
+	<view class="page-body">
+		<form  bindsubmit="submit">
+			<view class="modalDlg-content"> 
+					<view class="modalDlg-text">大件名称：</view>
+					<view  class="modalDlg-other"><input  class="weui-input"  auto-focus placeholder="输入大件名称" bindinput="bindKeyInput" /></view>
+			</view>
+			<view class="modalDlg-content2">	 
+					<view  class="modalDlg-text">上传图片：</view>
+				<view class="modalDlg-other" >	<image src="{{particulars_pic}}"  bindtap="chooseImage2"></image></view>
+			</view>
+			<view class="modalDlg-footer">
+				<view bindtap="closeModalLarge" class="modalDlg-btn closeBtn">取消</view>
+				<view bindtap="confirmModalLarge" form-type="submit" class="modalDlg-btn confirmBtn">确定</view>
+			</view>
+		</form>
+	</view>
+</view>
+
+<view class="modalDlg" wx:if="{{showParticulars}}">
+	<view class="page-body">
+	<view class="particulars-item">
+	<view class="particulars-title">价格明细</view>
+	<image src="/images/close.png" bindtap="closeParticulars"></image>
+</view>
+<view class="particulars-item particulars-text" wx:for="{{particularsList}}">
+<view class="particulars-name">{{item.name}}</view>
+<view>￥{{item.price}}</view>
+</view>
+<view class="particulars-item particulars-allPrice">
+<view class="particulars-name">总计费用</view>
+<view>￥{{allPrice}}</view>
+</view>
+	</view>
 </view>

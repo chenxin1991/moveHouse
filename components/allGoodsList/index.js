@@ -13,6 +13,7 @@ Component({
   data: {
     orderList: [{
         id: '0',
+        status:'',
         orderTime: '2020-08-27',
         orderStatus: '已完成',
         orderImage: [{
