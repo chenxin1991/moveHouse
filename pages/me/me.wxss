@@ -1,10 +1,33 @@
 /**index.wxss**/
 .userinfo {
   display: flex;
-  flex-direction: column;
   align-items: center;
   background: #ff5155;
-  height: 300rpx;
+  height: 240rpx;
+  justify-content: center;
+}
+
+.userinfo .user-header-cont {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  align-items: center;
+}
+
+.userinfo .user-header-cont .user-header-avatar {
+  margin-right: 30rpx;
+}
+
+.userinfo .user-header-cont .user-header-avatar image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.userinfo .user-header-cont .user-header-cont-name {
+  font-size: 32rpx;
+  padding: 20rpx 0;
+  color: white;
 }
 
 .userinfo-avatar {
