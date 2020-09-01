@@ -34,7 +34,7 @@
 			<text style="font-weight: bold;">我的服务</text>
 		</view>
 		<view class="content">
-			<view class="item">
+			<view class="item" bindtap="coupon">
 				<image src="/images/coupon.png" style="width:64rpx;height:64rpx;"></image>
 				<text style="margin-top:10rpx;">优惠券</text>
 			</view>

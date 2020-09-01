@@ -79,7 +79,7 @@ Page({
   },
   init: function () {
     let that = this;
-    getCategoryList().then(res => {
+    app._get('category/index', {}, res => {
       let cart = wx.getStorageSync('cart');
       let goodsNum = 0;
       let carNum = 0;

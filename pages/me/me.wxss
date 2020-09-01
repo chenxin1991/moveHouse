@@ -15,7 +15,12 @@
 }
 
 .userinfo .user-header-cont .user-header-avatar {
+  display: block;
   margin-right: 30rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .userinfo .user-header-cont .user-header-avatar image {
