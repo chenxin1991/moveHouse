@@ -65,11 +65,11 @@ Page({
         name:'里程10公里',
         price:222
       }
-    ],
-    allPrice:555,
-    particulars_id:0,
-    particulars_name:'', 
-    particulars_pic:'/images/uploadPictures.png'
+    ],//明细列表
+    allPrice:555,//明细总价
+    particulars_id:0,//上传大件id
+    particulars_name:'', //上传大件名称
+    particulars_pic:'/images/uploadPictures.png'//上传大件图片
   },
   /**
    * 生命周期函数--监听页面加载
@@ -429,16 +429,16 @@ Page({
     cart.forEach(function (val) {
      var r1= /^-?\d+$/　　　　//整数
      var r2= /^\d+(\.\d+)?$/　　//非负浮点数（正浮点数 + 0）
-     
+     let flag = false; 
       if(r1.test(val.price)||r2.test(val.price)){
         let cost = parseFloat(val.price) * parseInt(val.num);
         goodsCost += cost;
         totalCost += cost;
       } else{
-        _this.data.isPriceUp=true; 
+        flag=true; 
       }
       _this.setData({
-        isPriceUp:_this.data.isPriceUp
+        isPriceUp:flag
       })
     });
     distanceCost = this.getDistanceCost();
@@ -529,7 +529,7 @@ Page({
    
     if(isNull(_this.data.particulars_name)||isNull(_this.data.particulars_pic)){
       wx.showToast({
-        title: '请上传需要的大件名称/图片',
+        title: '请上传需要的大件名称/物品图片',
         icon: 'none',
         duration: 2000
       });
