@@ -58,7 +58,7 @@ Page({
    */
   getUserDetail() {
     let _this = this;
-    App._get('user.index/detail', {}, result => {
+    App._get('user/detail', {}, result => {
       _this.setData(result.data);
     });
   },

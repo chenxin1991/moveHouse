@@ -169,7 +169,7 @@
 		<view style="padding:0rpx 30rpx;">
 			<view class="goodRow" wx:for="{{cart}}" wx:key="index">
 				<view class="left">
-					<image src='{{item.image_url}}' mode='aspectFill' style='width:120rpx;height:120rpx;'></image>
+					<image src='{{item.image_url}}' mode='aspectFill' style='width:120rpx;height:120rpx;' catchtap="previewImage" data-item="{{item}}"></image>
 				</view>
 				<view class="right">
 					<view><text class="name">{{item.name}}</text></view>

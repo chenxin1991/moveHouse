@@ -2,9 +2,9 @@ import {
   getCategoryList
 } from '../../api/basic.js';
 
-function isNull( str ){
-  if ( str == "" || str==undefined || str==null) return true;
-  }
+function isNull(str) {
+  if (str == "" || str == undefined || str == null) return true;
+}
 const app = getApp();
 Page({
   /**
@@ -38,38 +38,37 @@ Page({
     totalCost: 0, //总报价
     setting: {},
     cart: [],
-    carNum:0,
+    carNum: 0,
     goodsNum: 0,
     hide_good_box: true,
     is_complete: false,
-    showModal:false,//遮罩层
-    showModalLarge:false,//上传其他大件弹出框
-    isPriceUp:false,//总价'起'
-    isParticulars:true,//总价明细
-    showParticulars:false,//总价明细弹框
-    particularsList:[
-      {
-        name:'大车',
-        price:222
+    showModal: false, //遮罩层
+    showModalLarge: false, //上传其他大件弹出框
+    isPriceUp: false, //总价'起'
+    isParticulars: true, //总价明细
+    showParticulars: false, //总价明细弹框
+    particularsList: [{
+        name: '大车',
+        price: 222
       },
       {
-        name:'大沙发',
-        price:222
+        name: '大沙发',
+        price: 222
       }, {
-        name:'冰箱洗衣机电饭锅',
-        price:222
+        name: '冰箱洗衣机电饭锅',
+        price: 222
       }, {
-        name:'起始点全程电梯或楼梯1层',
-        price:222
+        name: '起始点全程电梯或楼梯1层',
+        price: 222
       }, {
-        name:'里程10公里',
-        price:222
+        name: '里程10公里',
+        price: 222
       }
-    ],//明细列表
-    allPrice:555,//明细总价
-    particulars_id:0,//上传大件id
-    particulars_name:'', //上传大件名称
-    particulars_pic:'/images/uploadPictures.png'//上传大件图片
+    ], //明细列表
+    allPrice: 555, //明细总价
+    particulars_id: 0, //上传大件id
+    particulars_name: '', //上传大件名称
+    particulars_pic: '/images/uploadPictures.png' //上传大件图片
   },
   /**
    * 生命周期函数--监听页面加载
@@ -398,9 +397,8 @@ Page({
     });
     return Math.round(parkingCost);
   },
-  getSpecialTimeCost: function () {
+  getSpecialTimeCost: function (totalCost) {
     let specialTimeCost = 0;
-    let totalCost = this.data.totalCost - this.data.specialTimeCost;
     let setting = this.data.setting;
     if (this.data.timeArray.length > 0) {
       let appointTime = this.data.timeArray[this.data.appointTime];
@@ -418,7 +416,7 @@ Page({
     return Math.round(specialTimeCost);
   },
   getTotalCost: function () {
-    let _this=this;
+    let _this = this;
     let cart = this.data.cart;
     let totalCost = 0;
     let goodsCost = 0;
@@ -426,19 +424,19 @@ Page({
     let floorCost = 0;
     let parkingCost = 0;
     let specialTimeCost = 0;
+    let flag = false;
     cart.forEach(function (val) {
-     var r1= /^-?\d+$/　　　　//整数
-     var r2= /^\d+(\.\d+)?$/　　//非负浮点数（正浮点数 + 0）
-     let flag = false; 
-      if(r1.test(val.price)||r2.test(val.price)){
+      var r1 = /^-?\d+$/ //整数
+      var r2 = /^\d+(\.\d+)?$/ //非负浮点数（正浮点数 + 0）
+      if (r1.test(val.price) || r2.test(val.price)) {
         let cost = parseFloat(val.price) * parseInt(val.num);
         goodsCost += cost;
         totalCost += cost;
-      } else{
-        flag=true; 
+      } else {
+        flag = true;
       }
       _this.setData({
-        isPriceUp:flag
+        isPriceUp: flag
       })
     });
     distanceCost = this.getDistanceCost();
@@ -461,7 +459,7 @@ Page({
         totalCost += cost2;
       }
     }
-    specialTimeCost = this.getSpecialTimeCost();
+    specialTimeCost = this.getSpecialTimeCost(totalCost);
     totalCost += specialTimeCost;
     this.setData({
       goodsCost: goodsCost,
@@ -483,23 +481,21 @@ Page({
     });
   },
   //上传其他大件弹框
-  uploadLarge:function () {
-
+  uploadLarge: function () {
     this.setData({
-      showModalLarge:true,
-      showModal:true,
-      particulars_name:'',
-      particulars_pic:'/images/uploadPictures.png'
+      showModalLarge: true,
+      showModal: true,
+      particulars_name: '',
+      particulars_pic: '/images/uploadPictures.png'
     })
   },
-   //上传其他大件的输入框
+  //上传其他大件的输入框
   bindKeyInput: function (e) {
-    // console.log( e.detail.value)
     this.setData({
       particulars_name: e.detail.value
     })
   },
-    //上传其他大件的上传图片功能
+  //上传其他大件的上传图片功能
   chooseImage2: function (e) {
     let _this = this;
     wx.chooseImage({
@@ -511,72 +507,66 @@ Page({
         if (res.tempFilePaths.count == 0) {
           return;
         }
-     let tempFilePaths = res.tempFilePaths[0]; //获取到的图片路径
-        console.log(  tempFilePaths)
+        let tempFilePaths = res.tempFilePaths[0]; //获取到的图片路径
+        console.log(tempFilePaths)
         _this.setData({
-          particulars_pic:tempFilePaths
+          particulars_pic: tempFilePaths
         })
       }
     })
   },
-
   //上传其他大件弹框确定
-  confirmModalLarge:function () {
-    let _this=this;
+  confirmModalLarge: function () {
+    let _this = this;
     let cart = _this.data.cart;
     _this.data.particulars_id++
     //上传图片 循环提交
-   
-    if(isNull(_this.data.particulars_name)||isNull(_this.data.particulars_pic)){
+    if (isNull(_this.data.particulars_name) || isNull(_this.data.particulars_pic)) {
       wx.showToast({
         title: '请上传需要的大件名称/物品图片',
         icon: 'none',
         duration: 2000
       });
       return false;
-    }else{
-     
-
-      cart.push({   
-        id:'other_'+ _this.data.particulars_id,   
+    } else {
+      cart.push({
+        id: 'other_' + _this.data.particulars_id,
         name: _this.data.particulars_name,
-        image_url:  _this.data.particulars_pic,
+        image_url: _this.data.particulars_pic,
         num: 1,
-        price:'暂无报价'
+        price: '暂无报价'
       });
       _this.setData({
         cart: cart,
         goodsNum: _this.data.goodsNum + 1,
-        showModalLarge:false,
-        showModal:false,
-   
+        showModalLarge: false,
+        showModal: false,
       });
       wx.setStorageSync('cart', cart);
       _this.getTotalCost();
     }
-   
   },
   //上传其他大件弹框取消
-  closeModalLarge(){
+  closeModalLarge() {
     this.setData({
-      showModalLarge:false,
-      showModal:false 
+      showModalLarge: false,
+      showModal: false
     })
   },
   //总价明细弹出框
-  getParticulars(){
+  getParticulars() {
     this.setData({
-      showParticulars:true,
-      showModal:true
+      showParticulars: true,
+      showModal: true
     })
-  },  
+  },
   //总价明细弹出框取消
-  closeParticulars () {
-      this.setData({
-        showParticulars:false,
-        showModal:false
-      })
-    },
+  closeParticulars() {
+    this.setData({
+      showParticulars: false,
+      showModal: false
+    })
+  },
   //上传图片
   chooseImage: function (e) {
     let that = this;
@@ -592,32 +582,41 @@ Page({
           return;
         }
         let tempFilePaths = res.tempFilePaths[0]; //获取到的图片路径
-        //上传图片 循环提交
-        cart.push({
-          id: item.id,
-          name: item.name,
-          price: item.price,
-          image_url: tempFilePaths,
-          num: 1
-        });
-        that.setData({
-          cart: cart,
-          goodsNum: that.data.goodsNum + 1
-        });
-        wx.setStorageSync('cart', cart);
-        that.getTotalCost();
-
-        // wx.uploadFile({
-        //   filePath: tempFilePaths,
-        //   name: 'name',
-        //   url: 'url',
-        //   success:res=>{
-        //     console.log(res.data)
-        //     this.setData({
-              
-        //     })
-        //   }
-        // })
+        //上传图片到后台
+        wx.uploadFile({
+          url: app.api_root + 'user/uploadImage', //仅为示例，非真实的接口地址
+          filePath: tempFilePaths,
+          name: 'file',
+          header: {
+            'content-type': 'application/json'
+          },
+          formData: {
+            'wxapp_id': 10001,
+            'token': wx.getStorageSync('token')
+          },
+          success(res) {
+            const data = JSON.parse(res.data);
+            if (data.code === -1) {
+              // 登录态失效, 重新登录
+              app.doLogin();
+            }
+            if (data.code == 1) {
+              cart.push({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                image_url: data.image_url,
+                num: 1
+              });
+              that.setData({
+                cart: cart,
+                goodsNum: that.data.goodsNum + 1
+              });
+              wx.setStorageSync('cart', cart);
+              that.getTotalCost();
+            }
+          }
+        })
       }
     })
   },
@@ -649,6 +648,7 @@ Page({
       products: products
     });
   },
+  //滑动图片触发
   changeImage: function (e) {
     let idx = e.currentTarget.dataset.idx;
     let idy = e.currentTarget.dataset.idy;
@@ -658,6 +658,13 @@ Page({
     this.setData({
       products: products
     });
+  },
+  previewImage: function (e) {
+    let item = e.currentTarget.dataset.item;
+    wx.previewImage({
+      current: item.image_url, // 当前显示图片的http链接
+      urls: [item.image_url] // 需要预览的图片http链接列表
+    })
   },
   getStartDate: function (h) {
     let todayTimeArray = [];
