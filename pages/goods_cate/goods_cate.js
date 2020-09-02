@@ -508,9 +508,30 @@ Page({
           return;
         }
         let tempFilePaths = res.tempFilePaths[0]; //获取到的图片路径
-        console.log(tempFilePaths)
-        _this.setData({
-          particulars_pic: tempFilePaths
+        //上传图片到后台
+        wx.uploadFile({
+          url: app.api_root + 'user/uploadImage', //仅为示例，非真实的接口地址
+          filePath: tempFilePaths,
+          name: 'file',
+          header: {
+            'content-type': 'application/json'
+          },
+          formData: {
+            'wxapp_id': 10001,
+            'token': wx.getStorageSync('token')
+          },
+          success(res) {
+            const data = JSON.parse(res.data);
+            if (data.code === -1) {
+              // 登录态失效, 重新登录
+              app.doLogin();
+            }
+            if (data.code == 1) {
+              _this.setData({
+                particulars_pic: data.image_url
+              })
+            }
+          }
         })
       }
     })
@@ -569,6 +590,10 @@ Page({
   },
   //上传图片
   chooseImage: function (e) {
+    if(!app.checkIsLogin()){
+      app.doLogin();
+      return false;
+    }
     let that = this;
     let item = e.currentTarget.dataset.item;
     let cart = this.data.cart;
@@ -873,7 +898,7 @@ Page({
       bezier_points = that.linePos['bezier_points'];
     this.setData({
       hide_good_box: false,
-      bus_x: that.finger['x'],
+      bus_x: app.globalData.ww - that.finger['x'],
       bus_y: that.finger['y']
     })
     this.timer = setInterval(function () {
