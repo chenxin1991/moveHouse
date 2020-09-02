@@ -90,8 +90,8 @@ App({
     appointTime: '',
     goodsNum: 0
   },
-  api_root: 'http://demo.tp6.cn/index.php/api/', 
-  // api_root: 'https://demo.wjdhbq.com/index.php/api/', 
+  // api_root: 'http://demo.tp6.cn/index.php/api/', 
+  api_root: 'https://demo.wjdhbq.com/index.php/api/', 
     /**
    * 执行用户登录
    */
