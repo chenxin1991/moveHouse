@@ -30,6 +30,7 @@ Page({
     show: false,
     distance: 0,
     cars: [], //用车
+    carCost: 0, //用车费用
     goodsCost: 0, //物品总价
     distanceCost: 0, //超公里数费
     floorCost: 0, //楼层费
@@ -103,7 +104,7 @@ Page({
       //初始化物品展示前端架构
       that.infoScroll();
       //初始化时间
-      let min_hour = 6;
+      let min_hour = 8;
       let max_month = 1;
       let startDate = this.getStartDate(min_hour);
       let endDate = this.getEndDate(max_month);
@@ -419,6 +420,7 @@ Page({
     let _this = this;
     let cart = this.data.cart;
     let totalCost = 0;
+    let carCost = 0;
     let goodsCost = 0;
     let distanceCost = 0;
     let floorCost = 0;
@@ -426,8 +428,12 @@ Page({
     let specialTimeCost = 0;
     let flag = false;
     cart.forEach(function (val) {
-      var r1 = /^-?\d+$/ //整数
-      var r2 = /^\d+(\.\d+)?$/ //非负浮点数（正浮点数 + 0）
+      let id = val.id.toString();
+      if (id.startsWith('car_')) {
+        carCost += parseFloat(val.price) * parseInt(val.num);
+      }
+      let r1 = /^-?\d+$/ //整数
+      let r2 = /^\d+(\.\d+)?$/ //非负浮点数（正浮点数 + 0）
       if (r1.test(val.price) || r2.test(val.price)) {
         let cost = parseFloat(val.price) * parseInt(val.num);
         goodsCost += cost;
@@ -435,10 +441,10 @@ Page({
       } else {
         flag = true;
       }
-      _this.setData({
-        isPriceUp: flag
-      })
     });
+    _this.setData({
+      isPriceUp: flag
+    })
     distanceCost = this.getDistanceCost();
     totalCost += distanceCost;
     if (this.data.carNum > 0) {
@@ -462,6 +468,7 @@ Page({
     specialTimeCost = this.getSpecialTimeCost(totalCost);
     totalCost += specialTimeCost;
     this.setData({
+      carCost: carCost,
       goodsCost: goodsCost,
       distanceCost: distanceCost,
       floorCost: floorCost,
@@ -590,7 +597,7 @@ Page({
   },
   //上传图片
   chooseImage: function (e) {
-    if(!app.checkIsLogin()){
+    if (!app.checkIsLogin()) {
       app.doLogin();
       return false;
     }
@@ -695,7 +702,12 @@ Page({
     let todayTimeArray = [];
     let d = new Date();
     let hh = d.getHours();
-    d.setHours(hh + h);
+    let dd = d.getDate();
+    let new_hh = hh + h;
+    if (new_hh >= 24) {
+      d.setDate(dd + 1);
+    }
+    d.setHours(new_hh);
     let hour = d.getHours();
     for (let i = hour; i <= 23; i++) {
       let t = i.toString();
@@ -804,6 +816,7 @@ Page({
   toOrder: function () {
     if (this.data.is_complete) {
       app.globalData.distance = this.data.distance;
+      app.globalData.carCost = this.data.carCost;
       app.globalData.goodsCost = this.data.goodsCost;
       app.globalData.distanceCost = this.data.distanceCost;
       app.globalData.floorCost = this.data.floorCost;
@@ -812,6 +825,7 @@ Page({
       app.globalData.totalCost = this.data.totalCost;
       app.globalData.appointDate = this.data.appointDate;
       app.globalData.appointTime = this.data.timeArray[this.data.appointTime];
+      app.globalData.carNum = this.data.carNum;
       app.globalData.goodsNum = this.data.goodsNum;
       wx.navigateTo({
         url: '../order/order'

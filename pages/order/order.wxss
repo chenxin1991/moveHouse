@@ -56,7 +56,7 @@
 }
 
 .product .time {
-  height: 100rpx;
+  height: 80rpx;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -69,6 +69,7 @@
   flex-direction: row;
   background: #f1f1f1;
   padding: 15rpx 15rpx;
+  margin-bottom: 20rpx;
 }
 
 .product .content .img {
@@ -88,11 +89,10 @@
 .product .words {
   display: flex;
   flex-direction: row;
-  padding: 20rpx 0rpx;
+  padding: 10rpx 0rpx;
 }
 
 .product .words .title {
-  margin-right: 20rpx;
   width: 20%;
   font-size: 30rpx;
 }
@@ -128,6 +128,45 @@
   font-size: 26rpx;
   font-weight: bold;
   color: #fc4141 !important;
+}
+
+.totalCost {
+  width: 100%;
+  height: 96rpx;
+  background-color: #fafafa;
+  position: fixed;
+  bottom: 0;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  border-top: 1rpx solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.totalCost .end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.totalCost .end .num {
+  font-weight: bold;
+  font-size: 35rpx;
+  color: #fc4141 !important;
+}
+
+.totalCost .end .submit {
+  color: #fff;
+  font-size: 30rpx;
+  width: 226rpx;
+  height: 70rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 70rpx;
+  margin-left: 22rpx;
+  padding: 0;
+  background-color: #e93323 !important;
 }
 
 .goods-window {
@@ -180,7 +219,7 @@
 
 .goods-window .good .left {
   height: 100%;
-  width: 80%;
+  width: 75%;
   display: flex;
   flex-direction: row;
 }
@@ -199,7 +238,7 @@
 .goods-window .good .right {
   display: flex;
   height: 100%;
-  width: 20%;
+  width: 25%;
   flex-direction: column;
   align-items: flex-end;
 }

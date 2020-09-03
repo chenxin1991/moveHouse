@@ -88,6 +88,7 @@ App({
     totalCost: 0,
     appointDate: '',
     appointTime: '',
+    carNum: 0,
     goodsNum: 0
   },
   // api_root: 'http://demo.tp6.cn/index.php/api/', 

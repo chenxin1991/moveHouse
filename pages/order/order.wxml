@@ -41,8 +41,12 @@
 			</view>
 		</view>
 		<view class="words">
-			<text class="title">客户留言</text>
-			<input style="width:80%;font-size:30rpx;" placeholder="点击可填写留言" />
+			<text class="title">手机号</text>
+			<input style="width:80%;font-size:30rpx;" placeholder="点击可填写手机号（必填）" bindinput='getMobile' />
+		</view>
+		<view class="words">
+			<text class="title">留言</text>
+			<input style="width:80%;font-size:30rpx;" placeholder="点击可填写留言" bindinput='getRemark' />
 		</view>
 	</view>
 	<view class="bill">
@@ -54,8 +58,12 @@
 	</view>
 	<view class="costList">
 		<view class="cost">
-			<text>用车、大件及材料费</text>
-			<view class="right">￥<text style="font-size: 30rpx;">{{goodsCost}}</text></view>
+			<text>用车<text style="font-size: 24rpx;">(小家具、小家电、杂物{{carNum}}车内免费)</text></text>
+			<view class="right">￥<text style="font-size: 30rpx;">{{carCost}}</text></view>
+		</view>
+		<view class="cost">
+			<text>大件及材料费</text>
+			<view class="right">￥<text style="font-size: 30rpx;">{{largeCost}}</text></view>
 		</view>
 		<view class="cost">
 			<text>超公里数费</text>
@@ -76,10 +84,10 @@
 	</view>
 
 	<view style='height:120rpx;'></view>
-	<view style="width: 100%;height: 96rpx;background-color: #fafafa;position: fixed;bottom: 0;padding: 0 30rpx;box-sizing: border-box;border-top: 1rpx solid #eee;display:flex;align-items: center;justify-content:flex-end;">
-		<view style="display:flex;flex-wrap:wrap;align-items:center;">
-			<text style="font-size:25rpx;">合计：</text><text style="font-weight: bold;font-size:35rpx;color: #fc4141 !important;">￥{{totalCost}}</text>
-			<button style="color: #fff;font-size: 30rpx;width: 226rpx;height: 70rpx;border-radius: 50rpx;text-align: center;line-height: 70rpx;margin-left: 22rpx;padding: 0;background-color: #e93323 !important;" catchtap="toOrder">提交订单</button>
+	<view class="totalCost">
+		<view class="end">
+			<text style="font-size:25rpx;">合计：</text><text class="num">￥{{totalCost}}</text>
+			<button class="submit" catchtap="toOrder">提交订单</button>
 		</view>
 	</view>
 </view>
