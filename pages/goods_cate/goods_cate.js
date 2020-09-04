@@ -46,27 +46,7 @@ Page({
     showModal: false, //遮罩层
     showModalLarge: false, //上传其他大件弹出框
     isPriceUp: false, //总价'起'
-    isParticulars: true, //总价明细
-    showParticulars: false, //总价明细弹框
-    particularsList: [{
-        name: '大车',
-        price: 222
-      },
-      {
-        name: '大沙发',
-        price: 222
-      }, {
-        name: '冰箱洗衣机电饭锅',
-        price: 222
-      }, {
-        name: '起始点全程电梯或楼梯1层',
-        price: 222
-      }, {
-        name: '里程10公里',
-        price: 222
-      }
-    ], //明细列表
-    allPrice: 555, //明细总价
+    isParticulars: true, //总价明细     
     particulars_id: 0, //上传大件id
     particulars_name: '', //上传大件名称
     particulars_pic: '/images/uploadPictures.png' //上传大件图片
@@ -583,16 +563,8 @@ Page({
   },
   //总价明细弹出框
   getParticulars() {
-    this.setData({
-      showParticulars: true,
-      showModal: true
-    })
-  },
-  //总价明细弹出框取消
-  closeParticulars() {
-    this.setData({
-      showParticulars: false,
-      showModal: false
+    wx.navigateTo({
+      url: '/pages/priceDetail/index',
     })
   },
   //上传图片
@@ -831,6 +803,9 @@ Page({
         url: '../order/order'
       });
     } else {
+      wx.navigateTo({
+        url: '/pages/topay/index',
+      })
       wx.showToast({
         title: '用车、预约时间和起始地为必选项',
         icon: 'none',

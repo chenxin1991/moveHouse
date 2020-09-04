@@ -16,18 +16,22 @@ Page({
       },
       {
         id:1,
-        title:"待派单"
+        title:"待确认"
       },
       {
         id:2,
-        title:"待开工"
+        title:"待派单"
       },
       {
         id:3,
-        title:"待完工"
+        title:"待开工"
       },
       {
         id:4,
+        title:"待完工"
+      },
+      {
+        id:5,
         title:"待评价"
       }
     ],
@@ -48,8 +52,8 @@ Page({
     var _this=this;
     let activeIndex = $attr(e, 'id')
     let moduleId=$attr(e,'id')
-    console.log('1111',activeIndex)
-    console.log('moduleId',moduleId)
+    // console.log('1111',activeIndex)
+    // console.log('moduleId',moduleId)
     _this.setData({
       activeIndex,
       moduleId

@@ -1,0 +1,43 @@
+.priceDetail-wrapper{
+  background: #f4f4f4;
+  width: 100%;
+  min-height: 100vh;
+}
+.priceDetail-wrapper .page-body{
+  width: 90%;
+  height: auto;
+  margin: 40rpx auto;
+  background: #fff;
+  border: 2rpx solid #fff;
+  border-radius: 20rpx;
+}
+.priceDetail-wrapper .price-item {
+  width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 0 20rpx;
+ }
+ .priceDetail-wrapper  .item1 {
+  height: 80rpx;
+ }
+ .priceDetail-wrapper  .item2 {
+  height: 50rpx;
+ }
+ .price-text{
+ font-size: 24rpx;
+ }
+.price-title{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.price-name{
+  color: #777;
+}
+.price-allPrice{
+  border-top: 1rpx dashed #ededed;
+}
+.priceDetail-wrapper .price-item .allPrice{
+  font-size: 36rpx;
+  font-weight: bold;
+}

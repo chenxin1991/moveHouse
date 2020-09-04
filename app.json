@@ -10,7 +10,10 @@
     "pages/logs/logs",
     "pages/about_us/about_us",
     "pages/orderList/index",
-    "pages/orderDetails/index"
+    "pages/orderDetails/index",
+    "pages/priceDetail/index",
+    "pages/myOrder/index",
+    "pages/topay/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",

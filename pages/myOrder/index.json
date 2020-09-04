@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "allGoodsList":"../../components/allGoodsList/index"
+  },
+  "navigationBarTitleText":"我的订单",
+  "enablePullDownRefresh": false
+}

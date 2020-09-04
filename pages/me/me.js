@@ -13,28 +13,8 @@ Page({
     orderCount: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    orderIcon: [{
-        id: '1',
-        iconUrl: '/images/dispatch.png',
-        iconTitle: '待派单'
-      },
-      {
-        id: '2',
-        iconUrl: '/images/start.png',
-        iconTitle: '待开工'
-      },
-      {
-        id: '3',
-        iconUrl: '/images/complete.png',
-        iconTitle: '待完工'
-      },
-      {
-        id: '4',
-        iconUrl: '/images/comment.png',
-        iconTitle: '待评价'
-      }
-    ],
-    id: 0
+    id: 0,
+    num:3
   },
   /**
    * 生命周期函数--监听页面加载
@@ -79,6 +59,12 @@ Page({
     console.log(id)
     wx.navigateTo({
       url: '/pages/orderList/index?id=' + id,
+    })
+  },
+  //我的订单
+  myOrder(){
+    wx.navigateTo({
+      url: '/pages/myOrder/index',
     })
   },
   coupon: function () {

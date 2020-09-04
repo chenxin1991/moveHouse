@@ -603,38 +603,4 @@ swiper.read_swiper {
   background:#fc4141;
   color: #fff;
 }
- /* 总价明细 */
- .particulars-item {
-  width: 100%;
-  height: 70rpx;
- display: flex;
- align-items: center;
- justify-content: space-between;
- padding: 0 20rpx;
- }
- .particulars-text{
- font-size: 24rpx;
- }
- .particulars-item image{
-  width: 35rpx;
-  height: 35rpx;  
-}
-.particulars-title{
-  font-size: 30rpx;
-  font-weight: bold;
-}
-.particulars-name{
-  color: #777;
-}
-.particulars-allPrice{
-  border-top: 1rpx dashed #ededed;
-}
- /* .particulars-item2{
-   width: 100%;
-   height: 70rpx;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20rpx;
- } */
-
+  

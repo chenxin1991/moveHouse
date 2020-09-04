@@ -1,5 +1,7 @@
 <view class="tab">
-	<view wx:for="{{tabList}}" wx:key="index" data-id="{{item.id}}" bindtap="setTabIndex" class="{{activeIndex===item.id?'active':''}}">{{item.title}}</view>
+<block  wx:for="{{tabList}}" wx:key="index">
+<view data-id="{{item.id}}" bindtap="setTabIndex" class="{{activeIndex===item.id?'active':''}}">{{item.title}}</view>
+</block>
 </view>
  
 <view >
@@ -9,13 +11,3 @@
     <!-- <view>这里是插入到组件slot中的内容</view> -->
   </allGoodsList>
 </view>
-<!-- <view wx:if="{{activeIndex===1}}">
-222222</view>
-<view wx:if="{{activeIndex===2}}">
-3333333</view>
-<view wx:if="{{activeIndex===3}}">
-444444
-</view>
-<view wx:if="{{activeIndex===4}}">
-55555</view> -->
- 

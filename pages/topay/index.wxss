@@ -1,0 +1,88 @@
+.topay-wrapper {
+  background: #f4f4f4;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topay-wrapper .topay-content {
+  width: 90%;
+  height: auto;
+  border: 2rpx solid #fff;
+  background: #fff;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.topay-wrapper .topay-content .topay-icon {
+  width: 100%;
+  height: 62rpx;
+}
+
+.topay-wrapper .topay-content .topay-icon image {
+  width: 90rpx;
+  height: 90rpx;
+  position: absolute;
+  top: -44rpx;
+  left: 42%;
+}
+
+.topay-wrapper .topay-content .topay-title {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.topay-wrapper .topay-content .topay-title .title-text {
+  height: 56rpx;
+  line-height: 56rpx;
+}
+
+.topay-wrapper .topay-content .topay-item {
+  width: 90%;
+  border-top: 2rpx dashed #ededed;
+  border-bottom: 2rpx dashed #ededed;
+  margin: 0 auto;
+}
+
+.topay-wrapper .topay-content .topay-item .item-content {
+  width: 100%;
+  height: 56rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topay-wrapper .topay-content .topay-footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.topay-wrapper .topay-content .topay-footer .topay-btn {
+  width: 90%;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 40rpx;
+  display: flex;
+  flex-direction: column;
+  margin: 10rpx auto;
+}
+
+.topay-wrapper .topay-content .topay-footer .confirmBtn {
+  background: #fc4141;
+  color: #fff;
+  margin-top: 40rpx;
+}
+
+.topay-wrapper .topay-content .topay-footer .closeBtn {
+  background: #fff;
+  color: #fc4141;
+  border: 1rpx solid #fc4141;
+  margin-bottom: 40rpx;
+}

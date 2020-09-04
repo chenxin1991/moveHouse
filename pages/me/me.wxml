@@ -1,4 +1,3 @@
-<!--index.wxml-->
 <view class="container">
 	<view class="userinfo">
 		<view wx:if="{{ isLogin }}" class="user-header-cont">
@@ -14,6 +13,7 @@
 			<view class="user-header-cont-name">点击登录</view>
 		</view>
 	</view>
+	<!-- 全部订单 -->
 	<view class="order">
 		<view class="header" data-id="{{0}}" bindtap="allOrders">
 			<text style="font-weight: bold;">全部订单</text>
@@ -23,12 +23,44 @@
 			</view>
 		</view>
 		<view class="content">
-			<view class="item" wx:for="{{orderIcon}}" wx:key="index" data-id="{{item.id}}" bindtap="allOrders">
-				<image src="{{item.iconUrl}}" style="width:64rpx;height:64rpx;"></image>
-				<text style="margin-top:10rpx;">{{item.iconTitle}}</text>
+			<view class="item">
+				<view class="icon-item" data-id="{{1}}" bindtap="allOrders">
+				<image src="/images/confirmed.png" style="width:72rpx;height:72rpx;"></image>			
+				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
+			 <view class="icon-text"><text>待确认</text></view>
+			</view>
+			</view>
+			<view class="item">
+				<view class="icon-item"  data-id="{{2}}" bindtap="allOrders">
+				<image src="/images/dispatch.png" style="width:72rpx;height:72rpx;"></image>			
+				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
+			 <view class="icon-text"><text>待派单</text></view>
+			</view>
+			</view>
+						<view class="item">
+				<view class="icon-item"  data-id="{{3}}" bindtap="allOrders">
+				<image src="/images/start.png" style="width:72rpx;height:72rpx;"></image>			
+				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
+			 <view class="icon-text"><text>待开工</text></view>
+			</view>
+			</view>
+						<view class="item">
+				<view class="icon-item"  data-id="{{4}}" bindtap="allOrders">
+				<image src="/images/complete.png" style="width:72rpx;height:72rpx;"></image>			
+				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
+			 <view class="icon-text"><text>待完工</text></view>
+			</view>
+			</view>
+			<view class="item">
+				<view class="icon-item"  data-id="{{5}}" bindtap="allOrders">
+				<image src="/images/comment.png" style="width:72rpx;height:72rpx;"></image>			
+				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
+			 <view class="icon-text"><text>待评价</text></view>
+			</view>
 			</view>
 		</view>
 	</view>
+	<!-- 我的服务 -->
 	<view class="order">
 		<view class="header">
 			<text style="font-weight: bold;">我的服务</text>
@@ -45,3 +77,15 @@
 		</view>
 	</view>
 </view>
+ 	<!-- 司机端 -->
+	 <view class="order">
+		<view class="header">
+			<text style="font-weight: bold;">司机端</text>
+		</view>
+	 <view class="content">
+	 <view class="item" bindtap="myOrder">
+	 <image src="/images/worker.png" style="width:64rpx;height:64rpx;"></image>
+   <text style="margin-top:10rpx;">我的订单</text>
+	 </view>
+	 </view>
+	 </view>
