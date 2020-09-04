@@ -99,19 +99,22 @@ Page({
         products: res.data.category,
         goodsNum: goodsNum,
         carNum: carNum,
-        setting: res.data.setting
+        setting: res.data.setting,
+        startDate: res.data.date.startDate,
+        endDate: res.data.date.endDate,
+        todayTimeArray: res.data.date.todayTimeArray
       });
       //初始化物品展示前端架构
       that.infoScroll();
       //初始化时间
-      let min_hour = 8;
-      let max_month = 1;
-      let startDate = this.getStartDate(min_hour);
-      let endDate = this.getEndDate(max_month);
-      this.setData({
-        startDate: startDate,
-        endDate: endDate,
-      });
+      // let min_hour = 8;
+      // let max_month = 1;
+      // let startDate = this.getStartDate(min_hour);
+      // let endDate = this.getEndDate(max_month);
+      // this.setData({
+      //   startDate: startDate,
+      //   endDate: endDate,
+      // });
       //初始化购物篮位置（反向）
       this.busPos = {};
       this.busPos['x'] = app.globalData.ww * 0.9;
@@ -697,45 +700,6 @@ Page({
       current: item.image_url, // 当前显示图片的http链接
       urls: [item.image_url] // 需要预览的图片http链接列表
     })
-  },
-  getStartDate: function (h) {
-    let todayTimeArray = [];
-    let d = new Date();
-    let hh = d.getHours();
-    let dd = d.getDate();
-    let new_hh = hh + h;
-    if (new_hh >= 24) {
-      d.setDate(dd + 1);
-    }
-    d.setHours(new_hh);
-    let hour = d.getHours();
-    for (let i = hour; i <= 23; i++) {
-      let t = i.toString();
-      t = t[1] ? t : '0' + t;
-      todayTimeArray.push(t + ':00');
-    }
-    this.setData({
-      todayTimeArray: todayTimeArray
-    });
-    let y = d.getFullYear();
-    let m = d.getMonth() * 1 + 1;
-    let to = d.getDate();
-    return ([y, m, to]).map(function (n) {
-      n = n.toString()
-      return n[1] ? n : '0' + n
-    }).join('-')
-  },
-  getEndDate: function (n) {
-    let d = new Date();
-    let mm = d.getMonth();
-    d.setMonth(mm + n);
-    let y = d.getFullYear();
-    let m = d.getMonth() * 1 + 1;
-    let to = d.getDate();
-    return ([y, m, to]).map(function (n) {
-      n = n.toString()
-      return n[1] ? n : '0' + n
-    }).join('-')
   },
   bindDateChange: function (e) {
     if (e.detail.value > this.data.startDate) {
