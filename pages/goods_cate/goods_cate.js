@@ -86,15 +86,6 @@ Page({
       });
       //初始化物品展示前端架构
       that.infoScroll();
-      //初始化时间
-      // let min_hour = 8;
-      // let max_month = 1;
-      // let startDate = this.getStartDate(min_hour);
-      // let endDate = this.getEndDate(max_month);
-      // this.setData({
-      //   startDate: startDate,
-      //   endDate: endDate,
-      // });
       //初始化购物篮位置（反向）
       this.busPos = {};
       this.busPos['x'] = app.globalData.ww * 0.9;
@@ -751,6 +742,7 @@ Page({
   },
   toOrder: function () {
     if (this.data.is_complete) {
+      app.globalData.cars = this.data.cars;
       app.globalData.distance = this.data.distance;
       app.globalData.carCost = this.data.carCost;
       app.globalData.goodsCost = this.data.goodsCost;

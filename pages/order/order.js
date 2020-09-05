@@ -12,6 +12,7 @@ Page({
     array1: ['电梯', '楼梯'],
     array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入'],
     show: false,
+    cars: [],
     cart: [],
     distance: 0,
     carCost: 0,
@@ -40,6 +41,7 @@ Page({
       distance: app.globalData.distance,
       appointDate: app.globalData.appointDate,
       appointTime: app.globalData.appointTime,
+      cars: app.globalData.cars,
       cart: cart,
       carNum: app.globalData.carNum,
       goodsNum: app.globalData.goodsNum,
@@ -89,10 +91,11 @@ Page({
     app._post_form('ResidentOrder/add', {
       appointDate: this.data.appointDate,
       appointTime: this.data.appointTime,
-      addressFrom: this.data.addressFrom,
-      addressTo: this.data.addressTo,
+      addressFrom: JSON.stringify(this.data.addressFrom),
+      addressTo: JSON.stringify(this.data.addressTo),
       distance: this.data.distance,
-      cart: this.data.cart,
+      cars: JSON.stringify(this.data.cars),
+      cart: JSON.stringify(this.data.cart),
       mobile: this.data.mobile,
       carCost: this.data.carCost,
       largeCost: this.data.largeCost,
@@ -100,7 +103,7 @@ Page({
       floorCost: this.data.floorCost,
       parkingCost: this.data.parkingCost,
       specialTimeCost: this.data.specialTimeCost,
-      totalCost: this.data.totalCost,
+      totalCost: this.data.totalCost
     }, result => {
       console.log(result);
     });
