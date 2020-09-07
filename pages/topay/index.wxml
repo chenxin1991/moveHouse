@@ -1,26 +1,30 @@
 <view class="topay-wrapper">
-<view class="topay-content">
-  <view class="topay-icon">
-  <image  wx:if="{{isFailure}}" src="/images/failure.png" style="width:90rpx;height:90rpx;"></image>
- <image   wx:if="{{!isFailure}}"  src="/images/success2.png" style="width:90rpx;height:90rpx;"></image>
-  </view>
+	<view class="topay-content">
+		<view class="topay-icon">
+			<image wx:if="{{status}}" src="/images/success2.png" style="width:90rpx;height:90rpx;"></image>
+			<image wx:if="{{!status}}" src="/images/failure.png" style="width:90rpx;height:90rpx;"></image>
+		</view>
 
-  <view class="topay-title">  
-  <view class="title-text"  wx:if="{{isFailure}}">订单支付失败</view>
-   <view class="title-text"  wx:if="{{!isFailure}}">订单支付成功</view>
-   <view class="title-text">(请现场工作人员查看支付情况)</view>
-  </view>
+		<view class="topay-title">
+			<view class="title-text" wx:if="{{status}}">预约成功</view>
+			<view class="title-text" wx:if="{{!status}}">预约失败</view>
+			<view class="title-text" wx:if="{{status}}">(请耐心等待客服确认订单)</view>
+		</view>
 
-   <view class="topay-item">
-    <view class="item-content" wx:for="{{payList}}" wx:key="index">
-   <text>{{item.name}}</text>
-    <text>{{item.num}}</text>
-   </view>
-   </view>
+		<view class="topay-item">
+			<view class="item-content">
+				<text>订单编号</text>
+				<text>{{number}}</text>
+			</view>
+			<view class="item-content">
+				<text>下单时间</text>
+				<text>{{create_time}}</text>
+			</view>
+		</view>
 
-   <view class="topay-footer">
-   <view class="topay-btn confirmBtn" bindtap="checkOrder">查看订单</view>
-   <view class="topay-btn closeBtn" bindtap="backHome">返回首页</view>
-   </view>
-</view>
+		<view class="topay-footer">
+			<view class="topay-btn confirmBtn" bindtap="checkOrder">查看订单</view>
+			<view class="topay-btn closeBtn" bindtap="backHome">返回首页</view>
+		</view>
+	</view>
 </view>

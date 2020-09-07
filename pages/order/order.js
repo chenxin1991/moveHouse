@@ -106,6 +106,11 @@ Page({
       totalCost: this.data.totalCost
     }, result => {
       console.log(result);
+      if (result.code === 1) {
+        wx.navigateTo({
+          url: '/pages/topay/index?status=1&id=' + result.data.id + '&number=' + result.data.number + '&create_time=' + result.data.create_time
+        })
+      }
     });
   },
   /**

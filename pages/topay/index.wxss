@@ -48,11 +48,13 @@
   border-top: 2rpx dashed #ededed;
   border-bottom: 2rpx dashed #ededed;
   margin: 0 auto;
+  margin-top: 40rpx;
+  padding: 20rpx 0rpx;
 }
 
 .topay-wrapper .topay-content .topay-item .item-content {
   width: 100%;
-  height: 56rpx;
+  height: 80rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;

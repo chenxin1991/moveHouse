@@ -759,9 +759,6 @@ Page({
         url: '../order/order'
       });
     } else {
-      wx.navigateTo({
-        url: '/pages/topay/index',
-      })
       wx.showToast({
         title: '用车、预约时间和起始地为必选项',
         icon: 'none',

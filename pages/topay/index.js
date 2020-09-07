@@ -5,48 +5,40 @@ Page({
    * 页面的初始数据
    */
   data: {
-    payList:[
-      {
-        name:'订单编号',
-        num:'415341324554'
-      },
-      {
-        name:'订单编号',
-        num:'415341324554'
-      },
-      {
-        name:'订单编号',
-        num:'415341324554'
-      },{
-        name:'订单编号',
-        num:'415341324554'
-      },{
-        name:'订单编号',
-        num:'415341324554'
-      },{
-        name:'订单编号',
-        num:'415341324554'
-      } 
-    ],
-    isFailure:false
+    status: 1,
+    id: '',
+    number: '',
+    create_time: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: '当前页面'
+    this.setData({
+      status: options.status,
+      id: options.id,
+      number: options.number,
+      create_time: options.create_time
     })
+    if (this.data.status) {
+      wx.setNavigationBarTitle({
+        title: '预约成功'
+      })
+    } else {
+      wx.setNavigationBarTitle({
+        title: '预约失败'
+      })
+    }
   },
   //查看订单
-  checkOrder(){
+  checkOrder() {
     wx.navigateTo({
       url: '/pages/orderDetails/index',
     })
   },
   //返回首页
-  backHome(){
+  backHome() {
     wx.switchTab({
       url: '/pages/index/index',
     })
