@@ -10,7 +10,7 @@
 
     <view class="orders-item-goods" bindtap="orderDetails">
     <view>
-     <view class="goods-image" wx:for="{{item.orderImage}}" wx:if="{{index<4}}">
+     <view class="goods-image" wx:for="{{item.orderImage}}" wx:key="index" wx:if="{{index<4}}">
     <image src="{{item.imageUrl}}"></image>
      </view>
     </view>

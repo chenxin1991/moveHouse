@@ -1,33 +1,34 @@
 .topay-wrapper {
   background: #f4f4f4;
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 }
 
 .topay-wrapper .topay-content {
   width: 90%;
-  height: auto;
+  /* height: 69%; */
   border: 2rpx solid #fff;
   background: #fff;
   border-radius: 10rpx;
   display: flex;
   flex-direction: column;
   position: relative;
+  top: 15vh;
 }
 
 .topay-wrapper .topay-content .topay-icon {
   width: 100%;
-  height: 62rpx;
+  height: 50rpx;
 }
 
 .topay-wrapper .topay-content .topay-icon image {
   width: 90rpx;
   height: 90rpx;
   position: absolute;
-  top: -44rpx;
+  top: -45rpx;
   left: 42%;
 }
 
@@ -64,8 +65,8 @@
 
 .topay-wrapper .topay-content .topay-footer .topay-btn {
   width: 90%;
-  height: 70rpx;
-  line-height: 70rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   text-align: center;
   font-size: 28rpx;
   border-radius: 40rpx;

@@ -152,6 +152,13 @@
 					"id": -1,
 					"name": "pages/topay/index",
 					"pathName": "pages/topay/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
 					"scene": null
 				}
 			]

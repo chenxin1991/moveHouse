@@ -14,7 +14,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     id: 0,
-    num:3
+    num:0
   },
   /**
    * 生命周期函数--监听页面加载

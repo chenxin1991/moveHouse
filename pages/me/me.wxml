@@ -25,35 +25,35 @@
 		<view class="content">
 			<view class="item">
 				<view class="icon-item" data-id="{{1}}" bindtap="allOrders">
-				<image src="/images/confirmed.png" style="width:72rpx;height:72rpx;"></image>			
+				<image src="/images/me-icon/confirmed.png" style="width:72rpx;height:72rpx;"></image>			
 				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
 			 <view class="icon-text"><text>待确认</text></view>
 			</view>
 			</view>
 			<view class="item">
 				<view class="icon-item"  data-id="{{2}}" bindtap="allOrders">
-				<image src="/images/dispatch.png" style="width:72rpx;height:72rpx;"></image>			
+				<image src="/images/me-icon/dispatch2.png" style="width:72rpx;height:72rpx;"></image>			
 				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
 			 <view class="icon-text"><text>待派单</text></view>
 			</view>
 			</view>
 						<view class="item">
 				<view class="icon-item"  data-id="{{3}}" bindtap="allOrders">
-				<image src="/images/start.png" style="width:72rpx;height:72rpx;"></image>			
+				<image src="/images/me-icon/start.png" style="width:72rpx;height:72rpx;"></image>			
 				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
 			 <view class="icon-text"><text>待开工</text></view>
 			</view>
 			</view>
 						<view class="item">
 				<view class="icon-item"  data-id="{{4}}" bindtap="allOrders">
-				<image src="/images/complete.png" style="width:72rpx;height:72rpx;"></image>			
+				<image src="/images/me-icon/complete.png" style="width:72rpx;height:72rpx;"></image>			
 				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
 			 <view class="icon-text"><text>待完工</text></view>
 			</view>
 			</view>
 			<view class="item">
 				<view class="icon-item"  data-id="{{5}}" bindtap="allOrders">
-				<image src="/images/comment.png" style="width:72rpx;height:72rpx;"></image>			
+				<image src="/images/me-icon/comment2.png" style="width:72rpx;height:72rpx;"></image>			
 				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
 			 <view class="icon-text"><text>待评价</text></view>
 			</view>
@@ -67,11 +67,11 @@
 		</view>
 		<view class="content">
 			<view class="item" bindtap="coupon">
-				<image src="/images/coupon.png" style="width:64rpx;height:64rpx;"></image>
+				<image src="/images/me-icon/coupon2.png" style="width:64rpx;height:64rpx;"></image>
 				<text style="margin-top:10rpx;">优惠券</text>
 			</view>
 			<navigator url="/pages/about_us/about_us" class="item">
-				<image src="/images/about.png" style="width:64rpx;height:64rpx;"></image>
+				<image src="/images/me-icon/about.png" style="width:64rpx;height:64rpx;"></image>
 				<text style="margin-top:10rpx;">关于我们</text>
 			</navigator>
 		</view>
@@ -84,7 +84,7 @@
 		</view>
 	 <view class="content">
 	 <view class="item" bindtap="myOrder">
-	 <image src="/images/worker.png" style="width:64rpx;height:64rpx;"></image>
+	 <image src="/images/me-icon/worker.png" style="width:64rpx;height:64rpx;"></image>
    <text style="margin-top:10rpx;">我的订单</text>
 	 </view>
 	 </view>

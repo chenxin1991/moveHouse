@@ -31,22 +31,22 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "images/1-001.png",
-        "selectedIconPath": "images/1-002.png",
+        "iconPath": "images/tabar-icon/home-icon1.png",
+        "selectedIconPath": "images/tabar-icon/home-icon2.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/goods_cate/goods_cate",
-        "iconPath": "images/2-001.png",
-        "selectedIconPath": "images/2-002.png",
+        "iconPath": "images/tabar-icon/banjia-icon1.png",
+        "selectedIconPath": "images/tabar-icon/banjia-icon2.png",
         "text": "居民搬家"
       },
       {
         "pagePath": "pages/me/me",
-        "iconPath": "images/4-001.png",
-        "selectedIconPath": "images/4-002.png",
+        "iconPath": "images/tabar-icon/me-icon1.png",
+        "selectedIconPath": "images/tabar-icon/me-icon2.png",
         "text": "我的"
-      }
+      }   
     ]
   },
   "permission": {

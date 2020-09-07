@@ -26,8 +26,9 @@ Page({
       },{
         name:'订单编号',
         num:'415341324554'
-      }
-    ]
+      } 
+    ],
+    isFailure:false
   },
 
   /**
@@ -38,7 +39,18 @@ Page({
       title: '当前页面'
     })
   },
-
+  //查看订单
+  checkOrder(){
+    wx.navigateTo({
+      url: '/pages/orderDetails/index',
+    })
+  },
+  //返回首页
+  backHome(){
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
