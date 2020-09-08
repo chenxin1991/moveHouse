@@ -159,6 +159,20 @@
 					"id": -1,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/priceDetail/index",
+					"pathName": "pages/priceDetail/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/scheduleFee/index",
+					"pathName": "pages/scheduleFee/index",
 					"scene": null
 				}
 			]

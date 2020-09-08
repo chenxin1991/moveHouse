@@ -13,7 +13,8 @@
     "pages/orderDetails/index",
     "pages/priceDetail/index",
     "pages/myOrder/index",
-    "pages/topay/index"
+    "pages/topay/index",
+    "pages/scheduleFee/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -46,7 +47,7 @@
         "iconPath": "images/tabar-icon/me-icon1.png",
         "selectedIconPath": "images/tabar-icon/me-icon2.png",
         "text": "我的"
-      }   
+      }
     ]
   },
   "permission": {

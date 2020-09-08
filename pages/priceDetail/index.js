@@ -25,6 +25,23 @@ Page({
       }
     ], //明细列表
     allPrice: 555, //明细总价
+    PackageFee:333,//套餐费用
+    vehicleType:[
+      {
+        name:'货车1',
+        distance:'33',
+        price:'66'
+      },
+      {
+        name:'货车2',
+        distance:'33',
+        price:'66'
+      }, {
+        name:'货车3',
+        distance:'33',
+        price:'66'
+      }
+    ]
   },
 
   /**
@@ -33,7 +50,11 @@ Page({
   onLoad: function (options) {
 
   },
-
+  toSchedule(){
+    wx.navigateTo({
+      url: '/pages/scheduleFee/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

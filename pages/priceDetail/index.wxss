@@ -1,3 +1,4 @@
+ 
 .priceDetail-wrapper{
   background: #f4f4f4;
   width: 100%;
@@ -6,7 +7,7 @@
 .priceDetail-wrapper .page-body{
   width: 90%;
   height: auto;
-  margin: 40rpx auto;
+  margin: 70rpx auto;
   background: #fff;
   border: 2rpx solid #fff;
   border-radius: 20rpx;
@@ -18,6 +19,13 @@
  justify-content: space-between;
  padding: 0 20rpx;
  }
+ .priceDetail-wrapper .price-item2 {
+  width: 100%;
+ display: flex;
+ align-items: center;
+ flex-direction: row;
+ padding: 0 20rpx;
+ }
  .priceDetail-wrapper  .item1 {
   height: 80rpx;
  }
@@ -25,7 +33,7 @@
   height: 50rpx;
  }
  .price-text{
- font-size: 24rpx;
+ font-size: 26rpx;
  }
 .price-title{
   font-size: 30rpx;
@@ -33,6 +41,11 @@
 }
 .price-name{
   color: #777;
+  margin: 0 10rpx 0 20rpx;
+}
+.priceDetail-wrapper .price-item2 image{
+  width: 40rpx;
+  height: 40rpx;
 }
 .price-allPrice{
   border-top: 1rpx dashed #ededed;
@@ -41,3 +54,4 @@
   font-size: 36rpx;
   font-weight: bold;
 }
+
