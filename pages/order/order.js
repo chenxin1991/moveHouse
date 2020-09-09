@@ -105,11 +105,18 @@ Page({
       specialTimeCost: this.data.specialTimeCost,
       totalCost: this.data.totalCost
     }, result => {
-      console.log(result);
       if (result.code === 1) {
-        wx.navigateTo({
-          url: '/pages/topay/index?status=1&id=' + result.data.id + '&number=' + result.data.number + '&create_time=' + result.data.create_time
-        })
+        try {
+          wx.removeStorageSync('cart');
+          wx.removeStorageSync('addressFrom');
+          wx.removeStorageSync('addressTo');
+          wx.navigateTo({
+            url: '/pages/topay/index?status=1&id=' + result.data.id + '&number=' + result.data.number + '&create_time=' + result.data.create_time
+          })
+        } catch (e) {
+          // Do something when catch error
+        }
+
       }
     });
   },

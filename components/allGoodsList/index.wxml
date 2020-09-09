@@ -1,30 +1,27 @@
 <!-- 组件模板 -->
 <view class="wrapper">
+	<view class="orders-item" wx:for="{{orderList}}" wx:key="index">
+		<view class="orders-item-content">
+			<view class="orders-item-title">
+				<text class="titleColor">下单时间：{{item.orderTime}}</text>
+				<text class="mainColor">{{item.orderStatus}}</text>
+			</view>
 
- <view class="orders-item" wx:for="{{orderList}}" wx:key="index">
-  <view class="orders-item-content">
-   <view class="orders-item-title">
-    <text class="titleColor">下单时间：{{item.orderTime}}</text>
-    <text class="mainColor">{{item.orderStatus}}</text>
-   </view>
+			<view class="orders-item-goods" bindtap="orderDetails">
+				<view>
+					<view class="goods-image" wx:for="{{item.orderImage}}" wx:key="index" wx:if="{{index<4}}">
+						<image src="{{item.imageUrl}}"></image>
+					</view>
+				</view>
+				<text class="textColor">共{{item.goodsNum}}件</text>
+			</view>
 
-    <view class="orders-item-goods" bindtap="orderDetails">
-    <view>
-     <view class="goods-image" wx:for="{{item.orderImage}}" wx:key="index" wx:if="{{index<4}}">
-    <image src="{{item.imageUrl}}"></image>
-     </view>
-    </view>
-     <text class="textColor">共{{item.goodsNum}}件</text>
-    </view>
-
-    <view class="orders-item-total">
-     <view class="textColor">合计：<text class="priceColor">￥{{item.allPrice}}</text></view>
-   </view>
-    </view>
-     <view class="orders-item-footer">
-      <view class="cancelBtn">取消订单</view>
-     </view>
- </view>
-
-  <!-- <slot></slot> -->
+			<view class="orders-item-total">
+				<view class="textColor">合计：<text class="priceColor">￥{{item.allPrice}}</text></view>
+			</view>
+		</view>
+		<view class="orders-item-footer">
+			<view class="cancelBtn">取消订单</view>
+		</view>
+	</view>
 </view>

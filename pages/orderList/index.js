@@ -1,66 +1,66 @@
 // pages/ordersTab/index.js
-
-function $attr(e, key) {
-  return e.currentTarget.dataset[key]
-}
+const App = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tabList:[
-      {
-        id:0,
-        title:"全部"
+    tabList: [{
+        type: 'all',
+        title: "全部"
       },
       {
-        id:1,
-        title:"待确认"
+        type: 'confirmed',
+        title: "待确认"
       },
       {
-        id:2,
-        title:"待派单"
+        type: 'dispatch',
+        title: "待派单"
       },
       {
-        id:3,
-        title:"待开工"
+        type: 'start',
+        title: "待开工"
       },
       {
-        id:4,
-        title:"待完工"
+        type: 'complete',
+        title: "待完工"
       },
       {
-        id:5,
-        title:"待评价"
+        type: 'comment',
+        title: "待评价"
       }
     ],
-    activeIndex:0,
-    moduleId:0,
-    ids:''
+    list: [],
+    type: 'all'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(option){
-    var _this=this;
-  //  console.log(this.data.tabList)
-  _this.ids=option.id
+  onLoad: function (option) {
+    this.setData({
+      type: option.type
+    });
   },
-  setTabIndex(e){
-    var _this=this;
-    let activeIndex = $attr(e, 'id')
-    let moduleId=$attr(e,'id')
-    // console.log('1111',activeIndex)
-    // console.log('moduleId',moduleId)
-    _this.setData({
-      activeIndex,
-      moduleId
-    })
+  setTabIndex(e) {
+    this.setData({
+      type: e.currentTarget.dataset.type
+    });
+    // 获取订单列表
+    this.getOrderList(e.target.dataset.type);
   },
-  onMyEvent: function(e){
-    e.detail // 自定义组件触发事件时提供的detail对象
+  /**
+   * 获取订单列表
+   */
+  getOrderList: function (type) {
+    let _this = this;
+    App._get('user/order/list/' + type,{}, function (result) {
+      _this.setData(result.data);
+      result.data.list.length && wx.pageScrollTo({
+        scrollTop: 0
+      });
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -73,11 +73,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let activeIndex = Number(this.ids)
-    console.log('2222',activeIndex)
-    this.setData({
-      activeIndex
-    })
+    // 获取订单列表
+    this.getOrderList(this.data.type);
   },
 
   /**

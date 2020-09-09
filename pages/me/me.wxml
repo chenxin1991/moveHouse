@@ -15,7 +15,7 @@
 	</view>
 	<!-- 全部订单 -->
 	<view class="order">
-		<view class="header" data-id="{{0}}" bindtap="allOrders">
+		<view class="header" data-type="all" bindtap="allOrders">
 			<text style="font-weight: bold;">全部订单</text>
 			<view style="display:flex;align-items:center;">
 				<text style="margin-right:20rpx;color:#AAAAAA">查看全部订单</text>
@@ -24,39 +24,39 @@
 		</view>
 		<view class="content">
 			<view class="item">
-				<view class="icon-item" data-id="{{1}}" bindtap="allOrders">
-				<image src="/images/me-icon/confirmed.png" style="width:72rpx;height:72rpx;"></image>			
-				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
-			 <view class="icon-text"><text>待确认</text></view>
-			</view>
-			</view>
-			<view class="item">
-				<view class="icon-item"  data-id="{{2}}" bindtap="allOrders">
-				<image src="/images/me-icon/dispatch2.png" style="width:72rpx;height:72rpx;"></image>			
-				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
-			 <view class="icon-text"><text>待派单</text></view>
-			</view>
-			</view>
-						<view class="item">
-				<view class="icon-item"  data-id="{{3}}" bindtap="allOrders">
-				<image src="/images/me-icon/start.png" style="width:72rpx;height:72rpx;"></image>			
-				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
-			 <view class="icon-text"><text>待开工</text></view>
-			</view>
-			</view>
-						<view class="item">
-				<view class="icon-item"  data-id="{{4}}" bindtap="allOrders">
-				<image src="/images/me-icon/complete.png" style="width:72rpx;height:72rpx;"></image>			
-				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
-			 <view class="icon-text"><text>待完工</text></view>
-			</view>
+				<view class="icon-item" data-type="confirmed" bindtap="allOrders">
+					<image src="/images/me-icon/confirmed.png" style="width:72rpx;height:72rpx;"></image>
+					<view class="icon-num" wx:if="{{orderCount.confirmed>0}}"><text>{{orderCount.confirmed}}</text></view>
+					<view class="icon-text"><text>待确认</text></view>
+				</view>
 			</view>
 			<view class="item">
-				<view class="icon-item"  data-id="{{5}}" bindtap="allOrders">
-				<image src="/images/me-icon/comment2.png" style="width:72rpx;height:72rpx;"></image>			
-				<view class="icon-num" wx:if="{{num>0}}"><text>{{num}}</text></view> 
-			 <view class="icon-text"><text>待评价</text></view>
+				<view class="icon-item" data-type="dispatch" bindtap="allOrders">
+					<image src="/images/me-icon/dispatch2.png" style="width:72rpx;height:72rpx;"></image>
+					<view class="icon-num" wx:if="{{orderCount.dispatch>0}}"><text>{{orderCount.dispatch}}</text></view>
+					<view class="icon-text"><text>待派单</text></view>
+				</view>
 			</view>
+			<view class="item">
+				<view class="icon-item" data-type="start" bindtap="allOrders">
+					<image src="/images/me-icon/start.png" style="width:72rpx;height:72rpx;"></image>
+					<view class="icon-num" wx:if="{{orderCount.start>0}}"><text>{{orderCount.start}}</text></view>
+					<view class="icon-text"><text>待开工</text></view>
+				</view>
+			</view>
+			<view class="item">
+				<view class="icon-item" data-type="complete" bindtap="allOrders">
+					<image src="/images/me-icon/complete.png" style="width:72rpx;height:72rpx;"></image>
+					<view class="icon-num" wx:if="{{orderCount.complete>0}}"><text>{{orderCount.complete}}</text></view>
+					<view class="icon-text"><text>待完工</text></view>
+				</view>
+			</view>
+			<view class="item">
+				<view class="icon-item" data-type="comment" bindtap="allOrders">
+					<image src="/images/me-icon/comment2.png" style="width:72rpx;height:72rpx;"></image>
+					<view class="icon-num" wx:if="{{orderCount.comment>0}}"><text>{{orderCount.comment}}</text></view>
+					<view class="icon-text"><text>待评价</text></view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -77,15 +77,15 @@
 		</view>
 	</view>
 </view>
- 	<!-- 司机端 -->
-	 <view class="order">
-		<view class="header">
-			<text style="font-weight: bold;">司机端</text>
+<!-- 司机端 -->
+<view class="order">
+	<view class="header">
+		<text style="font-weight: bold;">司机端</text>
+	</view>
+	<view class="content">
+		<view class="item" bindtap="myOrder">
+			<image src="/images/me-icon/worker.png" style="width:64rpx;height:64rpx;"></image>
+			<text style="margin-top:10rpx;">我的订单</text>
 		</view>
-	 <view class="content">
-	 <view class="item" bindtap="myOrder">
-	 <image src="/images/me-icon/worker.png" style="width:64rpx;height:64rpx;"></image>
-   <text style="margin-top:10rpx;">我的订单</text>
-	 </view>
-	 </view>
-	 </view>
+	</view>
+</view>

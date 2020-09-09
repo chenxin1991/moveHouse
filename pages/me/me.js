@@ -1,20 +1,14 @@
 //index.js
 //获取应用实例
-const App = getApp()
+const App = getApp();
 
-function $attr(e, key) {
-  return e.currentTarget.dataset[key]
-}
 Page({
   data: {
     isLogin: false,
-    motto: 'Hello World',
     userInfo: {},
     orderCount: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     id: 0,
-    num:0
+    num: 0
   },
   /**
    * 生命周期函数--监听页面加载
@@ -55,14 +49,12 @@ Page({
     if (!this.onCheckLogin()) {
       return false;
     }
-    let id = $attr(e, 'id');
-    console.log(id)
     wx.navigateTo({
-      url: '/pages/orderList/index?id=' + id,
+      url: '/pages/orderList/index?type=' + e.currentTarget.dataset.type,
     })
   },
   //我的订单
-  myOrder(){
+  myOrder() {
     wx.navigateTo({
       url: '/pages/myOrder/index',
     })

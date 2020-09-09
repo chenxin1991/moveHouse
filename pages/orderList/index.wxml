@@ -1,13 +1,33 @@
 <view class="tab">
-<block  wx:for="{{tabList}}" wx:key="index">
-<view data-id="{{item.id}}" bindtap="setTabIndex" class="{{activeIndex===item.id?'active':''}}">{{item.title}}</view>
-</block>
+	<block wx:for="{{tabList}}" wx:key="index">
+		<view data-type="{{item.type}}" bindtap="setTabIndex" class="{{type===item.type?'active':''}}">{{item.title}}</view>
+	</block>
 </view>
- 
-<view >
- <!-- 引用组件的页面模板 -->
-  <allGoodsList bind:myevent="onMyEvent">
-    <!-- 这部分内容将被放置在组件 <slot> 的位置上 -->
-    <!-- <view>这里是插入到组件slot中的内容</view> -->
-  </allGoodsList>
+
+<view class="wrapper">
+	<view class="orders-item" wx:for="{{list}}" wx:key="index">
+		<view class="orders-item-content">
+			<view class="orders-item-title">
+				<text class="titleColor">下单时间：{{item.create_time}}</text>
+				<text class="mainColor">{{item.orderStatus}}</text>
+			</view>
+
+			<view class="orders-item-goods" bindtap="orderDetails">
+				<view>
+				
+					<view class="goods-image" wx:for="{{item.carsAndGoods}}" wx:key="index" wx:if="{{index<4}}">
+						<image src="{{item.image_url}}"></image>
+					</view>
+				</view>
+				<text class="textColor">共{{item.goods.length}}件</text>
+			</view>
+
+			<view class="orders-item-total">
+				<view class="textColor">合计：<text class="priceColor">￥{{item.totalCost}}</text></view>
+			</view>
+		</view>
+		<view class="orders-item-footer">
+			<view class="cancelBtn">取消订单</view>
+		</view>
+	</view>
 </view>

@@ -55,11 +55,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (res) {
-    this.init();
+    // this.init();
   },
   init: function () {
     let that = this;
-    app._get('category/index', {}, res => {
+    app._get('category', {}, res => {
       let cart = wx.getStorageSync('cart');
       let goodsNum = 0;
       let carNum = 0;
@@ -93,6 +93,7 @@ Page({
       //获取缓存起始地
       this.initAddress();
       this.isComplete();
+      this.getTotalCost();
     });
   },
   refreshCart: function (products, cart) {
@@ -143,6 +144,11 @@ Page({
         addressFrom: addressFrom,
         flagFrom: true
       });
+    } else {
+      this.setData({
+        addressFrom: {},
+        flagFrom: false
+      });
     }
     let addressTo = wx.getStorageSync('addressTo');
     if (addressTo) {
@@ -156,6 +162,11 @@ Page({
       this.setData({
         addressTo: addressTo,
         flagTo: true
+      });
+    } else {
+      this.setData({
+        addressTo: {},
+        flagTo: false
       });
     }
     //如果地址发生改变，需要重新计算距离
@@ -491,7 +502,7 @@ Page({
         let tempFilePaths = res.tempFilePaths[0]; //获取到的图片路径
         //上传图片到后台
         wx.uploadFile({
-          url: app.api_root + 'user/uploadImage', //仅为示例，非真实的接口地址
+          url: app.api_root + 'category/uploadImage', //仅为示例，非真实的接口地址
           filePath: tempFilePaths,
           name: 'file',
           header: {
@@ -582,7 +593,7 @@ Page({
         let tempFilePaths = res.tempFilePaths[0]; //获取到的图片路径
         //上传图片到后台
         wx.uploadFile({
-          url: app.api_root + 'user/uploadImage', //仅为示例，非真实的接口地址
+          url: app.api_root + 'category/uploadImage', //仅为示例，非真实的接口地址
           filePath: tempFilePaths,
           name: 'file',
           header: {
@@ -700,12 +711,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //获取缓存起始地
-    this.initAddress();
-    if (this.data.cart && this.data.cart.length > 0) {
-      this.getTotalCost();
-    }
-    this.isComplete();
+    this.init();
   },
   /**
    * 生命周期函数--监听页面隐藏
