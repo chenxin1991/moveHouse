@@ -6,7 +6,7 @@
 		</view>
 		<view style="display:flex;flex-direction:row;justify-content:center;align-items:center;height:100rpx;" bindtap='call' data-phone='400-700-8942'>
           <image src='/images/about_us.png' class='mr2' style='width:50rpx;height:50rpx;'></image>
-      <text class='color6'>400-700-8942</text>
+      <text class='color6' style="margin-left:20rpx;">400-700-8942</text>
 		</view>
 	</view>
 </view>

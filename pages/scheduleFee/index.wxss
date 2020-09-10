@@ -34,7 +34,9 @@ border-left: 1rpx solid #ededed;
  .expense-tabe{
    width: 96%;
    height: auto;
-  border: 2rpx solid #ededed;
+  border-top: 2rpx solid #ededed;
+  border-left: 2rpx solid #ededed;
+  border-right: 2rpx solid #ededed;
 margin: 20rpx auto;
  }
  .expense-tabe .expense-header{

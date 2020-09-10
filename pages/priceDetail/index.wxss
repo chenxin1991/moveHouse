@@ -30,7 +30,7 @@
   height: 80rpx;
  }
  .priceDetail-wrapper  .item2 {
-  height: 50rpx;
+  height: 60rpx;
  }
  .price-text{
  font-size: 26rpx;

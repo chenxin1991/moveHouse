@@ -5,7 +5,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orderList: [{
+      id: '0',
+      status: '',
+      orderTime: '2020-08-27',
+      orderStatus: '已完成',
+      orderImage: [{
+          imageUrl: '/images/tabar-icon/banjia-icon1.png'
+        },
+        {
+          imageUrl: '/images/tabar-icon/banjia-icon1.png'
+        },
+        {
+          imageUrl: '/images/tabar-icon/banjia-icon1.png'
+        },
+        {
+          imageUrl: '/images/tabar-icon/banjia-icon1.png'
+        },
+        {
+          imageUrl: '/images/tabar-icon/banjia-icon1.png'
+        },
+        {
+          imageUrl: '/images/tabar-icon/banjia-icon1.png'
+        },
+      ],
+      goodsNum: '2',
+      allPrice: '178.99'
+    } ]
   },
 
   /**

@@ -42,11 +42,11 @@
 		</view>
 		<view class="words">
 			<text class="title">手机号</text>
-			<input style="width:80%;font-size:30rpx;" placeholder="点击可填写手机号（必填）" bindinput='getMobile' />
+			<input style="width:80%;font-size:30rpx;" placeholder="填写手机号（必填）" bindinput='getMobile' />
 		</view>
 		<view class="words">
 			<text class="title">留言</text>
-			<input style="width:80%;font-size:30rpx;" placeholder="点击可填写留言" bindinput='getRemark' />
+			<input style="width:80%;font-size:30rpx;" placeholder="填写留言" bindinput='getRemark' />
 		</view>
 	</view>
 	<view class="bill">

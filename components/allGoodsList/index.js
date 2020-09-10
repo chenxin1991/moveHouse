@@ -17,22 +17,22 @@ Component({
       orderTime: '2020-08-27',
       orderStatus: '已完成',
       orderImage: [{
-          imageUrl: '/images/complete.png'
+          imageUrl: '/images/tabar-icon/banjia-icon1.png'
         },
         {
-          imageUrl: '/images/complete.png'
+          imageUrl: '/images/tabar-icon/banjia-icon1.png'
         },
         {
-          imageUrl: '/images/complete.png'
+          imageUrl: '/images/tabar-icon/banjia-icon1.png'
         },
         {
-          imageUrl: '/images/complete.png'
+          imageUrl: '/images/tabar-icon/banjia-icon1.png'
         },
         {
-          imageUrl: '/images/complete.png'
+          imageUrl: '/images/tabar-icon/banjia-icon1.png'
         },
         {
-          imageUrl: '/images/complete.png'
+          imageUrl: '/images/tabar-icon/banjia-icon1.png'
         },
       ],
       goodsNum: '2',

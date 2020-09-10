@@ -14,7 +14,8 @@
     "pages/priceDetail/index",
     "pages/myOrder/index",
     "pages/topay/index",
-    "pages/scheduleFee/index"
+    "pages/scheduleFee/index",
+    "pages/evaluate/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",

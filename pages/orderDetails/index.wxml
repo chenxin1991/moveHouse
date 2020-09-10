@@ -1,102 +1,103 @@
 <view class="orderDetails">
 	<scroll-view scroll-y="true" class="orderDetails-main">
+		<!-- 订单状态 -->
 		<view class="order-status">
-	  <text class="order-status-text1">订单关闭</text>
-		<text  class="order-status-text2">订单未付款，超时自动关闭</text>        
-   </view>
- 
-		<view class="order-address">
-    <view catchtap='addFrom' data-url="pages/addressFrom/addressFrom">
-			<view style="display:flex;justify-content:space-between;align-items:center;padding:26rpx 20rpx;background: white;border-bottom: 2rpx solid #eee;">
-				<view style="display:flex;flex-direction:row;align-items:center;">
-					<image src='/images/qidian.png' style='width:45rpx;height:45rpx;'></image>
-					<block>
-						<view style="display:flex;flex-direction:column;">
-							<view style="display:flex;justify-content:flex-start;">
-              <text style="margin-left: 20rpx;font-weight: bold;">{{addressFrom.address.name}} {{addressFrom.room_number}}</text>
-              </view>
-							<view style="margin-left: 20rpx;padding-top:10rpx;">
-              <text>{{array1[addressFrom.stairs_or_elevators]}}：{{addressFrom.floor_num}}层</text>
-              <text style="padding-left:30rpx;">停车位距离：{{array2[addressFrom.parking_distance]}}</text>
-              </view>
+			<text>{{order.orderStatus}}</text>
+		</view>
+
+		<view>
+			<!-- 地址 -->
+			<view class="address">
+				<view class="addressRow">
+					<view class="content">
+						<image src='/images/qidian.png' style='width:45rpx;height:45rpx;'></image>
+						<view class="detail">
+							<view class="name"><text>{{order.routes[0].title}} {{order.routes[0].room_number}}号</text></view>
+							<view class="other"><text>{{array1[order.routes[0].stairs_or_elevators]}}：{{order.routes[0].floor_num}}层</text><text style="padding-left:30rpx;">停车位距离：{{array2[order.routes[0].parking_distance]}}</text></view>
 						</view>
-					</block>
-				 
+					</view>
 				</view>
-				<view style="display:flex;align-items:center;">
-					<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+				<view class="addressRow">
+					<view class="content">
+						<image src='/images/zhongdian.png' style='width:45rpx;height:45rpx;'></image>
+						<view class="detail">
+							<view class="name"><text>{{order.routes[1].title}} {{order.routes[1].room_number}}号</text></view>
+							<view class="other"><text>{{array1[order.routes[1].stairs_or_elevators]}}：{{order.routes[1].floor_num}}层</text><text style="padding-left:30rpx;">停车位距离：{{array2[order.routes[1].parking_distance]}}</text></view>
+						</view>
+					</view>
+				</view>
+				<view class="distance">
+					行驶距离：<text class="num">{{order.distance}}公里</text>
 				</view>
 			</view>
-		</view>
-		<view catchtap='addTo' data-url="pages/addressTo/addressTo">
-			<view style="display:flex;justify-content:space-between;align-items:center;padding:26rpx 20rpx;background: white;border-bottom: 2rpx solid #eee;">
-				<view style="display:flex;flex-direction:row;align-items:center;">
-					<image src='/images/zhongdian.png' style='width:45rpx;height:45rpx;'></image>
-					<block>
-						<view style="display:flex;flex-direction:column;">
-							<view style="display:flex;justify-content:flex-start;"><text style="margin-left: 20rpx;font-weight: bold;">{{addressTo.address.name}} {{addressTo.room_number}}</text></view>
-							<view style="margin-left: 20rpx;padding-top:10rpx;"><text>{{array1[addressTo.stairs_or_elevators]}}：{{addressTo.floor_num}}层</text><text style="padding-left:30rpx;">停车位距离：{{array2[addressTo.parking_distance]}}</text></view>
-						</view>
-					</block>
-				 
+			<!-- 物品 -->
+			<view class="product">
+				<view class="time">
+					<text style="margin-right:10rpx;font-size: 30rpx;">预约时间：</text>
+					<text>{{order.appointDate}} {{order.appointTime}}</text>
 				</view>
-				<view style="display:flex;align-items:center;">
-					<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+				<view class="product-item" wx:for="{{order.carsAndGoods}}" wx:key='index'>
+					<view class="product-item-img">
+						<image src='{{item.image_url}}'></image>
+					</view>
+					<view class="product-item-title">
+						{{item.name}}
+					</view>
+					<view class="product-item-text">
+						<text>{{item.price}}</text>
+						<text>	x{{item.num}}</text>
+					</view>
+				</view>
+				<view class="product-words">
+					<text>客户留言</text>
+					<view class="product-words-content">
+						精装修会出现MV不明显女明星昵称充满着精装修会出现MV不明显女明星昵称充满着
+					</view>
 				</view>
 			</view>
+			<!-- 明细 -->
+			<view class="costList">
+				<view class="cost">
+					<text>用车<text style="font-size: 24rpx;">(小家具、小家电、杂物{{carNum}}车内免费)</text></text>
+					<view class="right">￥<text style="font-size: 30rpx;">{{order.carCost}}</text></view>
+				</view>
+				<view class="cost">
+					<text>大件及材料费</text>
+					<view class="right">￥<text style="font-size: 30rpx;">{{order.goodsCost}}</text></view>
+				</view>
+				<view class="cost">
+					<text>超公里数费</text>
+					<view class="right">￥<text style="font-size: 30rpx;">{{order.distanceCost}}</text></view>
+				</view>
+				<view class="cost">
+					<text>楼层费</text>
+					<view class="right">￥<text style="font-size: 30rpx;">{{order.floorCost}}</text></view>
+				</view>
+				<view class="cost">
+					<text>停车位距离费</text>
+					<view class="right">￥<text style="font-size: 30rpx;">{{order.parkingCost}}</text></view>
+				</view>
+				<view class="cost">
+					<text>特殊时间段费</text>
+					<view class="right">￥<text style="font-size: 30rpx;">{{order.specialTimeCost}}</text></view>
+				</view>
+			</view>
+     <!-- 订单号 -->
+		<view class="orderNumber">
+		<view class="orderNumber-item">
+		<text>订单编号</text>
+		<text>12265533352555</text>
+		</view>
+			<view class="orderNumber-item">
+		<text>下单时间</text>
+		<text>12265533352555</text>
+		</view>
+			<view class="orderNumber-item">
+		<text>取消时间</text>
+		<text>12265533352555</text>
+		</view>
 		</view>
 
-
-    <view class="order-address-text">
-     <text class="order-address-text2">行驶距离：</text>
-     <text class="mainColor">0公里</text>
-    </view>
-		</view>
-
-		<view class="order-goods">
-
-     <view class="orderDetails-goods-item">
-     <view class="orderDetails-image">
-    <image src="/images/complete.png"></image>
-     </view>
-     <view  class="orderDetails-text">
-     比赛中，明年再说明细项目V型没出息，从不非常
-     </view>
-     <view  class="orderDetails-price">
-      <text>￥99.00</text>
-       <text style="text-align: right;">x1</text>
-     </view>
-     </view>
-  <view class="order-goods-msg">
-  <text> 买家留言</text>
- <text> 其他商品继续配送</text>
-  </view>
-    
-		</view>
- 
-		<view class="order-number">
-  <view style="background:white;padding:10rpx 20rpx;font-size:30rpx;">
-		<view style="height:60rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:10rpx 0rpx;">
-			<text>用车、拆装、大件及材料费</text>
-			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{selectGoodsPrice}}</text></view>
-		</view>
-		<view style="height:60rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:10rpx 0rpx;">
-			<text>超公里数费</text>
-			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{distanceCost}}</text></view>
-		</view>
-		<view style="height:60rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:10rpx 0rpx;">
-			<text>楼层费</text>
-			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{floorCost}}</text></view>
-		</view>
-		<view style="height:60rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:10rpx 0rpx;">
-			<text>停车位距离费</text>
-			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{parkingCost}}</text></view>
-		</view>
-		<view style="height:60rpx;display:flex;flex-direction: row;justify-content:space-between;align-items:center;padding:10rpx 0rpx;">
-			<text>特殊时间段费</text>
-			<view style="font-size: 26rpx;font-weight: bold;color: #fc4141 !important;">￥<text style="font-size: 30rpx;">{{specialTimeCost}}</text></view>
-		</view>
-	</view>
 		</view>
 	</scroll-view>
 

@@ -173,6 +173,21 @@
 					"id": -1,
 					"name": "pages/scheduleFee/index",
 					"pathName": "pages/scheduleFee/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/myOrder/index",
+					"pathName": "pages/myOrder/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/evaluate/index",
+					"pathName": "pages/evaluate/index",
+					"query": "",
 					"scene": null
 				}
 			]

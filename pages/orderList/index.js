@@ -62,6 +62,20 @@ Page({
       });
     });
   },
+  //订单详情
+  orderDetails(e){
+   console.log('sss',e.target.dataset.id);
+   let ids=e.target.dataset.id
+    wx.navigateTo({
+      url: '/pages/orderDetails/index?id='+ids,
+    })
+  },
+  //去评价
+  toEvaluate(){
+    wx.navigateTo({
+      url: '/pages/evaluate/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
