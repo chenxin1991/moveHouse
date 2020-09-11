@@ -11,7 +11,7 @@
 			<view class="title-text" wx:if="{{status}}">(请耐心等待客服确认订单)</view>
 		</view>
 
-		<view class="topay-item">
+		<view class="topay-item" wx:if="{{status}}">
 			<view class="item-content">
 				<text>订单编号</text>
 				<text>{{number}}</text>
@@ -23,7 +23,7 @@
 		</view>
 
 		<view class="topay-footer">
-			<view class="topay-btn confirmBtn" bindtap="checkOrder">查看订单</view>
+			<view class="topay-btn confirmBtn" bindtap="checkOrder" data-id="{{id}}">查看订单</view>
 			<view class="topay-btn closeBtn" bindtap="backHome">返回首页</view>
 		</view>
 	</view>

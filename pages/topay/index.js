@@ -32,9 +32,9 @@ Page({
     }
   },
   //查看订单
-  checkOrder() {
+  checkOrder(e) {
     wx.navigateTo({
-      url: '/pages/orderDetails/index',
+      url: '/pages/orderDetails/index?id=' + e.currentTarget.dataset.id,
     })
   },
   //返回首页

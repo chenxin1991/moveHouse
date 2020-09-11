@@ -55,9 +55,7 @@ Page({
    */
   getOrderList: function (type) {
     let _this = this;
-    App._get('user/order/list/' + type,{}, function (result) {
-      // console.log(result.data)
-      // _this.cancelOrder(result.data.list)
+    App._get('user/order/list/' + type, {}, function (result) {
       _this.setData(result.data);
       result.data.list.length && wx.pageScrollTo({
         scrollTop: 0
@@ -65,11 +63,9 @@ Page({
     });
   },
   //订单详情
-  orderDetails(e){
-  //  console.log('sss',e.target.dataset.id);
-   let ids=e.target.dataset.id
+  orderDetails: function (e) {
     wx.navigateTo({
-      url: '/pages/orderDetails/index?id='+ids,
+      url: '/pages/orderDetails/index?id=' + e.currentTarget.dataset.id,
     })
   },
   //取消订单
@@ -81,7 +77,7 @@ Page({
   console.log(this.data.list)
   },
   //去评价
-  toEvaluate(){
+  toEvaluate() {
     wx.navigateTo({
       url: '/pages/evaluate/index',
     })

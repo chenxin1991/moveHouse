@@ -7,7 +7,6 @@
     "pages/me/me",
     "pages/addressFrom/addressFrom",
     "pages/addressTo/addressTo",
-    "pages/logs/logs",
     "pages/about_us/about_us",
     "pages/orderList/index",
     "pages/orderDetails/index",

@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    order:{},
+    order: {},
     array1: ['电梯', '楼梯'],
     array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入'],
   },
@@ -15,22 +15,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  console.log(options.id);
-  this.getOrderDetail(options.id)
+    this.getOrderDetail(options.id)
   },
-    getOrderDetail: function (id) {
-    console.log(id);
-    // return;
-    let ids=parseInt(id);
-    console.log('ids',ids)
-        let _this = this;
-        App._get('user/order/detail/' + ids,{}, function (result) {
-      console.log(result.data)
-          _this.setData(result.data);
-    console.log('order',_this.data.order);
-        });
-   
-      },
+  getOrderDetail: function (id) {
+    let _this = this;
+    App._get('user/order/detail/' + id, {}, function (result) {
+      _this.setData(result.data);
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
