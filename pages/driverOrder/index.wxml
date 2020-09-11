@@ -1,5 +1,4 @@
- 
-<!-- 组件模板 -->
+ <!-- 司机端 -->
 <view class="myOrder-wrapper">
 	<view class="orders-item" wx:for="{{orderList}}" wx:key="index">
 		<view class="orders-item-content">

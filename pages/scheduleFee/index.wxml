@@ -1,150 +1,54 @@
+<!-- 费用标准 -->
 <view class="scheduleFee-wrapper">
 	<view class="page-body">
-  
-		<!-- 货车1 -->
-		<view class="expense-tabe-title">货车1</view>
-		<view class="expense-tabe">
-			<view class="expense-header">
-				<view class="width30 headers">费用项</view>
-				<view class="width40 borderBoth headers">细分</view>
-				<view class="width30 headers">价格</view>
-			</view>
-			<view class="expense-main">
-				<view class="main-content1 width30">超里程费</view>
-				<view class="main-content2 width40 borderBoth">
-					<view class="content-text">22公里</view>
-					<view class="content-text">56公里</view>
-					<view class="content-text">3公里</view>
-				</view>
-				<view class="main-content2 width30">
-					<view class="content-text">12元/km</view>
-					<view class="content-text">212元/km</view>
-					<view class="content-text">312元/km</view>
-				</view>
-			</view>
-			<view class="expense-main">
-				<view class="main-content1 width30">楼层搬运</view>
-				<view class="main-content2 width40 borderBoth">
-					<view class="content-text">3楼及以上</view>
-				</view>
-				<view class="main-content2 width30">
-					<view class="content-text">30元/层</view>
-				</view>
-			</view>
-			<view class="expense-main">
-				<view class="main-content1 width30">停车位距离</view>
-				<view class="main-content2 width40 borderBoth">
-					<view class="content-text">低于30米</view>
-					<view class="content-text">30-50米</view>
-					<view class="content-text">50-100米</view>
-					<view class="content-text">100米以上</view>
-					<view class="content-text">地下室出入</view>
-				</view>
-				<view class="main-content2 width30">
-					<view class="content-text">30元/车</view>
-					<view class="content-text">30元/车</view>
-					<view class="content-text">30元/车</view>
-					<view class="content-text">30元/车</view>
-					<view class="content-text">30元/车</view>
-				</view>
-			</view>
-		</view>
-    	<!-- 货车2 -->
-		<view class="expense-tabe-title">货车2</view>
-		<view class="expense-tabe">
-			<view class="expense-header">
-				<view class="width30 headers">费用项</view>
-				<view class="width40 borderBoth headers">细分</view>
-				<view class="width30 headers">价格</view>
-			</view>
-			<view class="expense-main">
-				<view class="main-content1 width30">超里程费</view>
-				<view class="main-content2 width40 borderBoth">
-					<view class="content-text">22公里</view>
-					<view class="content-text">56公里</view>
-					<view class="content-text">3公里</view>
-				</view>
-				<view class="main-content2 width30">
-					<view class="content-text">12元/km</view>
-					<view class="content-text">212元/km</view>
-					<view class="content-text">312元/km</view>
-				</view>
-			</view>
-			<view class="expense-main">
-				<view class="main-content1 width30">楼层搬运</view>
-				<view class="main-content2 width40 borderBoth">
-					<view class="content-text">3楼及以上</view>
-				</view>
-				<view class="main-content2 width30">
-					<view class="content-text">30元/层</view>
-				</view>
-			</view>
-			<view class="expense-main">
-				<view class="main-content1 width30">停车位距离</view>
-				<view class="main-content2 width40 borderBoth">
-					<view class="content-text">低于30米</view>
-					<view class="content-text">30-50米</view>
-					<view class="content-text">50-100米</view>
-					<view class="content-text">100米以上</view>
-					<view class="content-text">地下室出入</view>
-				</view>
-				<view class="main-content2 width30">
-					<view class="content-text">30元/车</view>
-					<view class="content-text">30元/车</view>
-					<view class="content-text">30元/车</view>
-					<view class="content-text">30元/车</view>
-					<view class="content-text">30元/车</view>
-				</view>
-			</view>
-		</view>
-    	<!-- 货车3 -->
-		<view class="expense-tabe-title">货车3</view>
-		<view class="expense-tabe">
-			<view class="expense-header">
-				<view class="width30 headers">费用项</view>
-				<view class="width40 borderBoth headers">细分</view>
-				<view class="width30 headers">价格</view>
-			</view>
-			<view class="expense-main">
-				<view class="main-content1 width30">超里程费</view>
-				<view class="main-content2 width40 borderBoth">
-					<view class="content-text">22公里</view>
-					<view class="content-text">56公里</view>
-					<view class="content-text">3公里</view>
-				</view>
-				<view class="main-content2 width30">
-					<view class="content-text">12元/km</view>
-					<view class="content-text">212元/km</view>
-					<view class="content-text">312元/km</view>
-				</view>
-			</view>
-			<view class="expense-main">
-				<view class="main-content1 width30">楼层搬运</view>
-				<view class="main-content2 width40 borderBoth">
-					<view class="content-text">3楼及以上</view>
-				</view>
-				<view class="main-content2 width30">
-					<view class="content-text">30元/层</view>
-				</view>
-			</view>
-			<view class="expense-main">
-				<view class="main-content1 width30">停车位距离</view>
-				<view class="main-content2 width40 borderBoth">
-					<view class="content-text">低于30米</view>
-					<view class="content-text">30-50米</view>
-					<view class="content-text">50-100米</view>
-					<view class="content-text">100米以上</view>
-					<view class="content-text">地下室出入</view>
-				</view>
-				<view class="main-content2 width30">
-					<view class="content-text">30元/车</view>
-					<view class="content-text">30元/车</view>
-					<view class="content-text">30元/车</view>
-					<view class="content-text">30元/车</view>
-					<view class="content-text">30元/车</view>
-				</view>
-			</view>
-		</view>
 
+   <block wx:for="{{cars}}" wx:key="index">
+		<!-- 货车1 -->
+		<view class="expense-tabe-title">{{item.name}}</view>
+		<view class="expense-tabe">
+			<view class="expense-header">
+				<view class="width30 headers">费用项</view>
+				<view class="width40 borderBoth headers">细分</view>
+				<view class="width30 headers">价格</view>
+			</view>
+			<view class="expense-main">
+				<view class="main-content1 width30">超里程费</view>
+				<view class="main-content2 width40 borderBoth">
+					<view class="content-text">{{item.km_standard}}公里以上</view>
+ 
+				</view>
+				<view class="main-content2 width30">
+					<view class="content-text">{{item.km_price}}元/公里</view>
+				</view>
+			</view>
+			<view class="expense-main">
+				<view class="main-content1 width30">楼梯搬运</view>
+				<view class="main-content2 width40 borderBoth">
+					<view class="content-text">3楼及以上</view>
+				</view>
+				<view class="main-content2 width30">
+					<view class="content-text">{{item.floor_price}}元/层</view>
+				</view>
+			</view>
+			<view class="expense-main">
+				<view class="main-content1 width30">停车位距离</view>
+				<view class="main-content2 width40 borderBoth">
+					<view class="content-text">低于30米</view>
+					<view class="content-text">30-50米</view>
+					<view class="content-text">50-100米</view>
+					<view class="content-text">100米以上</view>
+					<view class="content-text">地下室出入</view>
+				</view>
+				<view class="main-content2 width30">
+					<view class="content-text">{{item.distance1}}元/车</view>
+					<view class="content-text">{{item.distance2}}元/车</view>
+					<view class="content-text">{{item.distance3}}元/车</view>
+					<view class="content-text">{{item.distance4}}元/车</view>
+					<view class="content-text">{{item.distance4}}元/车</view>
+				</view>
+			</view>
+		</view>
+     	 </block>
+     
 	</view>
 </view>

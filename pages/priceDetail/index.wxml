@@ -1,31 +1,69 @@
+<!-- 价格明细 -->
 <view class="priceDetail-wrapper">
 	<view class="page-body">
 		<!-- 套餐费用 -->
 		<view class="price-item item1">
-			<view class="price-title">套餐费用</view>
-			<view>￥{{PackageFee}}</view>
+			<view class="price-title">基础费用</view>
+			<view>￥{{goodsCost}}</view>
 		</view>
-		<view class="price-item item2 price-text" wx:for="{{priceList}}">
-			<view class="price-name">{{index+1}}. {{item.name}}</view>
+		<view class="price-item item2 price-text">
+			<view class="price-name">车辆</view>
 		</view>
+
+		<view class="car-reminder">
+			<view class="car-reminder-content" wx:for="{{cars}}" wx:key="index">
+				<view class="price-item item2 price-text">
+					<view class="price-name"> {{index+1}}.{{item.name}}</view>
+					<text wx:if="{{item.num>1}}">x{{item.num}}</text>
+				</view>
+				<view class="price-item price-text">
+					<view class="price-name carReminder-text">(1.小家具、小家电和杂物;{{item.num}}车内免费；2.{{item.km_standard}}公里内免费；3.电梯免费，{{item.floor_standard}}层楼梯以下免费；4.停车位距离30米以内免费。)</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="price-item item2 price-text">
+			<view class="price-name">物品</view>
+		</view>
+		<view class="car-reminder">
+			<view class="car-reminder-content" wx:for="{{goods}}" wx:key="index">
+				<view class="price-item item2 price-text">
+					<view class="price-name">{{index+1}}.{{item.name}}</view>
+					<text>x{{item.num}}</text>
+				</view>
+			</view>
+		</view>
+
 		<!-- 额外费用 -->
 		<view class="price-item item1">
 			<view class="price-title">额外费用</view>
 		</view>
-		<view class="price-item item2 price-text" wx:for="{{priceList}}">
-			<view class="price-name">{{item.name}}</view>
-			<view>￥{{item.price}}</view>
+		<view class="price-item item2 price-text">
+			<view class="price-name">超公里数费</view>
+			<view>￥{{distanceCost}}</view>
+		</view>
+		<view class="price-item item2 price-text">
+			<view class="price-name">楼层费</view>
+			<view>￥{{floorCost}}</view>
+		</view>
+		<view class="price-item item2 price-text">
+			<view class="price-name">停车位距离费</view>
+			<view>￥{{parkingCost}}</view>
+		</view>
+		<view class="price-item item2 price-text">
+			<view class="price-name">特殊时间段费</view>
+			<view>￥{{specialTimeCost}}</view>
 		</view>
 		<!-- 总计费用 -->
 		<view class="price-item item1 price-allPrice">
 			<view class="price-name">总计费用</view>
-			<view class="allPrice">￥{{allPrice}}</view>
+			<view class="allPrice">￥{{totalCost}}</view>
 		</view>
 		<!-- 费用标准 -->
 		<view class="price-item2 item1 price-allPrice">
-		<image src="/images/scheduleFee.png"></image>
-		<text class="price-name" bindtap="toSchedule">费用标准</text> 
-		<text style="color:#777;">></text>
+			<image src="/images/scheduleFee.png"></image>
+			<text class="price-name" bindtap="toSchedule">费用标准</text>
+			<text style="color:#777;">></text>
 		</view>
 	</view>
 </view>

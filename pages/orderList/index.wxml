@@ -6,36 +6,37 @@
 </view>
 
 <view class="wrapper">
-<!-- 订单列表 -->
- <block  wx:if="{{list.length>0}}">
-	<view class="orders-item" wx:for="{{list}}" wx:key="index">
-		<view class="orders-item-content">
-			<view class="orders-item-title">
-				<text class="titleColor">下单时间：{{item.create_time}}</text>
-				<text class="mainColor">{{item.orderStatus}}</text>
-			</view>
-
-			<view class="orders-item-goods" data-id="{{item.id}}" bindtap="orderDetails">
-				<view>		
-					<view class="goods-image" wx:for="{{item.carsAndGoods}}" wx:key="index" wx:if="{{index<4}}">
-						<image src="{{item.image_url}}"></image>
-					</view>
+	<!-- 订单列表 -->
+	<block wx:if="{{list.length>0}}">
+		<view class="orders-item" wx:for="{{list}}" wx:key="index">
+			<view class="orders-item-content">
+				<view class="orders-item-title">
+					<text class="titleColor">下单时间：{{item.create_time}}</text>
+					<text class="mainColor">{{item.orderStatus}}</text>
 				</view>
-				<text class="textColor">共{{item.goods.length}}件</text>
-			</view>
 
-			<view class="orders-item-total">
-				<view class="textColor">合计：<text class="priceColor">￥{{item.totalCost}}</text></view>
+				<view class="orders-item-goods" data-id="{{item.id}}" bindtap="orderDetails">
+					<view>
+						<view class="goods-image" wx:for="{{item.carsAndGoods}}" wx:key="index" wx:if="{{index<4}}">
+							<image src="{{item.image_url}}"></image>
+						</view>
+					</view>
+					<text class="textColor">共{{item.goods.length}}件</text>
+				</view>
+
+				<view class="orders-item-total">
+					<view class="textColor">合计：<text class="priceColor">￥{{item.totalCost}}</text></view>
+				</view>
+			</view>
+			<view class="orders-item-footer">
+				<view class="cancelBtn" bindtap="cancelOrder" data-index="{{index}}">取消订单</view>
+				<view class="cancelBtn" bindtap="toEvaluate" wx:if="{{item.orderStatus =='待评价'}}">评价</view>
 			</view>
 		</view>
-		<view class="orders-item-footer">
-			<view class="cancelBtn" bindtap="toEvaluate">取消订单</view>
-		</view>
-	</view>
 	</block>
 	<!-- 无订单 -->
 	<view class="no-order" wx:else>
-  <image class="no-order-img" src="/images/me-icon/noOrder.png"></image>
-	<text class="no-order-text">当前暂无订单~</text>
+		<image class="no-order-img" src="/images/me-icon/noOrder.png"></image>
+		<text class="no-order-text">当前暂无订单~</text>
 	</view>
 </view>

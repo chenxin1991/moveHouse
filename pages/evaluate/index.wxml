@@ -19,10 +19,10 @@
     </view>
     <view class='right'>
       <text bindtap='label' class="{{attitude===true ? 'labelColor':''}}" data-index="{{attitude}}">服务态度好</text>
-      <text bindtap='label1' class="{{time===false? 'labelColor':''}}" data-index="{{time}}">等待时间短</text>
+      <text bindtap='label1' class="{{time===false? 'labelColor':''}}" data-index="{{time}}">货品完好</text>
       <text bindtap='label2' class="{{efficiency===false?'labelColor':''}}" data-index="{{efficiency}}">效率高</text>
-      <text bindtap='label3' class="{{environment===false?'labelColor':''}}" data-index="{{environment}}">车内环境好</text>
-      <text bindtap='label4' class="{{professional===false?'labelColor':''}}" data-index="{{professional}}">很专业</text>
+      <text bindtap='label3' class="{{environment===false?'labelColor':''}}" data-index="{{environment}}">风雨无阻</text>
+      <text bindtap='label4' class="{{professional===false?'labelColor':''}}" data-index="{{professional}}">快速准时</text>
     </view>
   </view>
   <!--图片-->

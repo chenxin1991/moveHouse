@@ -568,8 +568,18 @@ Page({
   },
   //总价明细弹出框
   getParticulars() {
+ 
+    let distanceCost=this.data.distanceCost//超公里数费
+    let floorCost=this.data.floorCost//楼层费
+    let parkingCost=this.data.parkingCost//停车位距离费
+    let specialTimeCost=this.data.specialTimeCost //特殊时间段费
+    let  goodsCost=this.data.goodsCost//物品总价
+    let totalCost=this.data.totalCost //总报价
+   
+ 
+   let cars=JSON.stringify(this.data.cars) ;
     wx.navigateTo({
-      url: '/pages/priceDetail/index',
+      url: '/pages/priceDetail/index?distanceCost='+distanceCost+'&floorCost='+floorCost+'&parkingCost='+parkingCost+'&specialTimeCost='+specialTimeCost+'&goodsCost='+goodsCost+'&totalCost='+totalCost+'&cars='+cars,
     })
   },
   //上传图片

@@ -83,7 +83,7 @@
 		<text style="font-weight: bold;">司机端</text>
 	</view>
 	<view class="content">
-		<view class="item" bindtap="myOrder">
+		<view class="item" bindtap="driverOrder">
 			<image src="/images/me-icon/worker.png" style="width:64rpx;height:64rpx;"></image>
 			<text style="margin-top:10rpx;">我的订单</text>
 		</view>

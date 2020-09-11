@@ -1,20 +1,28 @@
 // pages/scheduleFee/index.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    cars:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
-
+ getData(){
+  app._get('carCategory', {}, res => {
+    //  console.log(res)
+     let cars=res.data.carCategory  
+     this.setData({
+      cars
+     })
+  })
+ },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -26,7 +34,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getData()
   },
 
   /**

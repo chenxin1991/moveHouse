@@ -1,3 +1,5 @@
+// const { delete } = require("request")
+
 // pages/priceDetail/index.js
 Page({
 
@@ -6,53 +8,60 @@ Page({
    */
   data: {
     showParticulars: false, //总价明细弹框
-    priceList: [{
-        name: '大车',
-        price: 222
-      },
-      {
-        name: '大沙发',
-        price: 222
-      }, {
-        name: '冰箱洗衣机电饭锅',
-        price: 222
-      }, {
-        name: '起始点全程电梯或楼梯1层',
-        price: 222
-      }, {
-        name: '里程10公里',
-        price: 222
-      }
-    ], //明细列表
-    allPrice: 555, //明细总价
-    PackageFee:333,//套餐费用
-    vehicleType:[
-      {
-        name:'货车1',
-        distance:'33',
-        price:'66'
-      },
-      {
-        name:'货车2',
-        distance:'33',
-        price:'66'
-      }, {
-        name:'货车3',
-        distance:'33',
-        price:'66'
-      }
-    ]
+    totalCost: 555, //明细总价
+    goodsCost:333,//套餐费用
+    distanceCost: 0, //超公里数费
+    floorCost: 0, //楼层费
+    parkingCost: 0, //停车位距离费
+    specialTimeCost: 0, //特殊时间段费
+    cart: [], //明细列表
+    cars:[],//用车
+    goods:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // console.log(options);
+    // console.log(options.parkingCost)
+    let distanceCost=options.distanceCost
+    let floorCost=options.floorCost
+    let parkingCost=options.parkingCost
+    let specialTimeCost=options.specialTimeCost
+    let goodsCost=options.goodsCost
+    let totalCost=options.totalCost
+    let cars=JSON.parse(options.cars)
+    let cart = wx.getStorageSync('cart');
+    let goods=this.data.goods
+    // console.log(cars)
+    // console.log(cart)
+    
+    cart.find(function (ele) {
+      let id = ele.id.toString();  
+      if (!id.startsWith('car_')) {
+        goods.push(ele);
+      }
+    })
 
+    // console.log(goods);
+
+    this.setData({
+      cart,
+      distanceCost,
+      floorCost,
+      parkingCost,
+      specialTimeCost,
+      goodsCost,
+      totalCost ,
+      cars,
+      goods
+    })
   },
   toSchedule(){
+ 
     wx.navigateTo({
-      url: '/pages/scheduleFee/index',
+      url: '/pages/scheduleFee/index?',
     })
   },
   /**

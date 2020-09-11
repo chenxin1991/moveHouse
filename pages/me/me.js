@@ -54,9 +54,9 @@ Page({
     })
   },
   //我的订单
-  myOrder() {
+  driverOrder() {
     wx.navigateTo({
-      url: '/pages/myOrder/index',
+      url: '/pages/driverOrder/index',
     })
   },
   coupon: function () {
