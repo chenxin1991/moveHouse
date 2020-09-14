@@ -1,3 +1,4 @@
+<!-- 确认订单 -->
 <view>
 	<view class="address">
 		<view class="addressRow">
@@ -29,7 +30,7 @@
 		</view>
 		<view class="content" catchtap='showProduct'>
 			<view style="height:100%;width:80%;">
-				<block wx:for="{{cart}}">
+				<block wx:for="{{cart}}" wx:key="index">
 					<block wx:if="{{index<4}}">
 						<image src='{{item.image_url}}' mode='aspectFill' class="img"></image>
 					</block>
@@ -63,7 +64,9 @@
 		</view>
 		<view class="cost">
 			<text>大件及材料费</text>
-			<view class="right">￥<text style="font-size: 30rpx;">{{largeCost}}</text></view>
+			<view class="right">￥<text style="font-size: 30rpx;">{{largeCost}}</text> 
+			<text wx:if="{{isOrigin}}" style="font-size: 24rpx;color: #fc4141;margin-left:10rpx;">起</text>
+			</view>
 		</view>
 		<view class="cost">
 			<text>超公里数费</text>
@@ -87,6 +90,7 @@
 	<view class="totalCost">
 		<view class="end">
 			<text style="font-size:25rpx;">合计：</text><text class="num">￥{{totalCost}}</text>
+			<text wx:if="{{isOrigin}}" style="font-size: 24rpx;color: #fc4141;margin-left:10rpx;">起</text>
 			<button class="submit" catchtap="toOrder">提交订单</button>
 		</view>
 	</view>
@@ -98,7 +102,7 @@
 	</view>
 	<view class="num"><text>共{{goodsNum}}件物品</text></view>
 	<scroll-view scroll-y="true" style="max-height: 800rpx;">
-		<view wx:for="{{cart}}" style="padding:0rpx 30rpx;">
+		<view wx:for="{{cart}}" wx:key="index" style="padding:0rpx 30rpx;">
 			<view class="good">
 				<view class="left">
 					<view>

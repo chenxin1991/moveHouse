@@ -45,7 +45,7 @@ Page({
     is_complete: false,
     showModal: false, //遮罩层
     showModalLarge: false, //上传其他大件弹出框
-    isPriceUp: false, //总价'起'
+    isOrigin: false, //总价'起'
     isParticulars: true, //总价明细     
     particulars_id: 0, //上传大件id
     particulars_name: '', //上传大件名称
@@ -428,7 +428,7 @@ Page({
       }
     });
     _this.setData({
-      isPriceUp: flag
+      isOrigin: flag
     })
     distanceCost = this.getDistanceCost();
     totalCost += distanceCost;
@@ -536,7 +536,7 @@ Page({
     //上传图片 循环提交
     if (isNull(_this.data.particulars_name) || isNull(_this.data.particulars_pic)) {
       wx.showToast({
-        title: '请上传需要的大件名称/物品图片',
+        title: '请上传所需大件名称/物品图片',
         icon: 'none',
         duration: 2000
       });
@@ -771,6 +771,7 @@ Page({
       app.globalData.appointTime = this.data.timeArray[this.data.appointTime];
       app.globalData.carNum = this.data.carNum;
       app.globalData.goodsNum = this.data.goodsNum;
+      app.globalData.isOrigin=this.data.isOrigin;
       wx.navigateTo({
         url: '../order/order'
       });

@@ -116,12 +116,11 @@
 }
 
 .cost {
-  height: 60rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10rpx 0rpx;
+  padding: 14rpx 0rpx;
 }
 
 .cost .right {
@@ -242,3 +241,5 @@
   flex-direction: column;
   align-items: flex-end;
 }
+
+ 

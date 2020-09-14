@@ -45,8 +45,8 @@
 
 .topay-wrapper .topay-content .topay-item {
   width: 90%;
-  border-top: 2rpx dashed #ededed;
-  border-bottom: 2rpx dashed #ededed;
+  border-top: 2rpx dashed #cdcdcd;
+  border-bottom: 2rpx dashed #cdcdcd;
   margin: 0 auto;
   margin-top: 40rpx;
   padding: 20rpx 0rpx;

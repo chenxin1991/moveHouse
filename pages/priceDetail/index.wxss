@@ -1,73 +1,92 @@
- 
-.priceDetail-wrapper{
-  background: #f4f4f4;
-  width: 100%;
-  min-height: 100vh;
-}
-.priceDetail-wrapper .page-body{
-  width: 90%;
-  height: auto;
-  margin: 60rpx auto;
-  background: #fff;
-  border: 2rpx solid #fff;
-  border-radius: 20rpx;
-}
-.car-reminder{
- width: 94%;
+ .priceDetail-wrapper {
+   background: #f4f4f4;
+   width: 100%;
+   min-height: 100vh;
+ }
+
+ .priceDetail-wrapper .page-body {
+   width: 90%;
+   height: auto;
+   margin: 60rpx auto;
+   background: #fff;
+   border: 2rpx solid #fff;
+   border-radius: 20rpx;
+ }
+
+ .car-reminder {
+   width: 94%;
+   border: 2rpx solid #ededed;
+   margin: 10rpx auto;
+ }
+ .car-reminder2 {
+  width: 94%;
   border: 2rpx solid #ededed;
   margin: 10rpx auto;
- 
-}
-.car-reminder .car-reminder-content{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.carReminder-text{
-  font-size: 24rpx;
-  margin-bottom: 12rpx;
-}
-.priceDetail-wrapper .price-item {
-  width: 100%;
- display: flex;
- align-items: center;
- justify-content: space-between;
- padding: 0 20rpx;
- }
- .priceDetail-wrapper .price-item2 {
-  width: 100%;
- display: flex;
- align-items: center;
- flex-direction: row;
- padding: 0 20rpx;
- }
- .priceDetail-wrapper  .item1 {
-  height: 80rpx;
- }
- .priceDetail-wrapper  .item2 {
-  height: 60rpx;
- }
- .price-text{
- font-size: 26rpx;
- }
-.price-title{
-  font-size: 30rpx;
-  font-weight: bold;
-}
-.price-name{
+  /* padding: 20rpx 0; */
   color: #777;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.priceDetail-wrapper .price-item2 image{
-  width: 40rpx;
-  height: 40rpx;
-}
-.price-allPrice{
-  border-top: 1rpx dashed #ededed;
-}
-.priceDetail-wrapper .price-item .allPrice{
-  font-size: 36rpx;
-  font-weight: bold;
-}
+ .car-reminder .car-reminder-content {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+ }
 
- 
+ .carReminder-text {
+   font-size: 24rpx;
+   margin-bottom: 12rpx;
+ }
+
+ .priceDetail-wrapper .price-item {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 0 20rpx;
+ }
+
+ .priceDetail-wrapper .price-item2 {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   flex-direction: row;
+   padding: 0 20rpx;
+ }
+
+ .priceDetail-wrapper .item1 {
+   height: 80rpx;
+ }
+
+ .priceDetail-wrapper .item2 {
+   height: 60rpx;
+ }
+
+ .price-text {
+   font-size: 26rpx;
+ }
+
+ .price-title {
+   font-size: 30rpx;
+   font-weight: bold;
+ }
+
+ .price-name {
+   color: #777;
+ }
+
+ .priceDetail-wrapper .price-item2 image {
+   width: 40rpx;
+   height: 40rpx;
+ }
+
+ .price-allPrice {
+   border-top: 2rpx dashed #cdcdcd;
+ }
+
+ .priceDetail-wrapper .price-item .allPrice {
+   font-size: 36rpx;
+   font-weight: bold;
+ }

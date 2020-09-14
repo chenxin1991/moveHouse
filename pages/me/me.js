@@ -44,6 +44,12 @@ Page({
       url: '../login/login',
     });
   },
+  //我的账号
+  toMyAccount(){
+    wx.navigateTo({
+      url: '/pages/myAccount/index',
+    })
+  },
   //全部订单
   allOrders: function (e) {
     if (!this.onCheckLogin()) {

@@ -26,7 +26,8 @@ Page({
     carNum: 0,
     goodsNum: 0,
     mobile: '',
-    remark: ''
+    remark: '',
+    isOrigin:false//价格'起'
   },
   /**
    * 生命周期函数--监听页面加载
@@ -52,7 +53,8 @@ Page({
       floorCost: app.globalData.floorCost,
       parkingCost: app.globalData.parkingCost,
       specialTimeCost: app.globalData.specialTimeCost,
-      totalCost: app.globalData.totalCost
+      totalCost: app.globalData.totalCost,
+      isOrigin:app.globalData.isOrigin
     });
   },
   getMobile: function (e) {

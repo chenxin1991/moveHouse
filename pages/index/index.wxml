@@ -33,7 +33,7 @@
 </view>
 <view class='title'>战略合作伙伴</view>
 <view class='bottom'>
-  <!-- <view wx:for="{{logoList}}" bindtap='toEnter' data-id='{{item.id}}'>
+  <!-- <view wx:for="{{logoList}}" wx:key="index" bindtap='toEnter' data-id='{{item.id}}'>
     <view class="tu">
         <image src='{{item.logo}}'></image>
         <view class='{{item.id == -999 ? "aaa" : ""}}'>{{item.company_name}}</view>

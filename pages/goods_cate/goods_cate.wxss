@@ -16,7 +16,7 @@ page {
 }
 
 .productSort .aside .item {
-  height: 80rpx;
+  /* height: 80rpx; */
   width: 100%;
   font-size: 26rpx;
   color: #424242;
@@ -25,6 +25,7 @@ page {
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 20rpx 0;
 }
 
 .productSort .aside .item.on {
@@ -45,10 +46,11 @@ page {
 }
 
 .productSort .conter .listw .title {
-  height: 60rpx;
+  /* height: 60rpx; */
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  padding: 10rpx 0;
 }
 
 .productSort .conter .listw .title .name {
@@ -76,6 +78,8 @@ page {
 }
 
 .goodList .item .underline {
+  display: flex;
+  align-items: center;
   padding-left: 20rpx;
 }
 
@@ -89,14 +93,17 @@ page {
   font-size: 26rpx;
   color: #333;
   font-weight: bold;
-  height: 80rpx;
+  /* height: 80rpx; */
+  display: flex;
+  padding: 10rpx 0;
 }
 
 .goodList .item .text .content {
-  height: 60rpx;
+  /* height: 60rpx; */
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  padding: 10rpx 0;
 }
 
 .goodList .item .text .content .changeNum {
@@ -123,16 +130,19 @@ page {
   display: flex;
   align-items: center;
 }
+
 .footer .PriceUp {
   font-size: 22rpx;
   color: #fc4141 !important;
   margin-left: 10rpx;
 }
+
 .footer .particulars {
   font-size: 28rpx;
   color: #999 !important;
   margin-left: 22rpx;
 }
+
 .goodList .item .text .money .num {
   font-size: 30rpx;
 }
@@ -410,19 +420,20 @@ page {
 
 /* 上传图片 */
 .upload-btn {
-  height: 60rpx;
-  line-height: 60rpx;
+  display: flex;
+  padding: 10rpx 16rpx;
   border: 1px solid #ddd;
-  border-radius: 10rpx;
+  border-radius: 28rpx;
   font-size: 26rpx;
-  padding: 0 10rpx;
   color: #999;
 }
+
 .upload-pictures {
-  width: 137rpx;
+  width: 143rpx;
 }
+
 /* 上传其他大件 */
-.upload-large{
+.upload-large {
   width: 200rpx;
   margin-left: 27rpx;
 }
@@ -499,108 +510,119 @@ swiper.read_swiper {
 
 
 /* 上传其他大件弹框 */
-.page-body{
+.page-body {
   width: 100%;
 }
+
 /* 外面的按钮 */
-.btn{
-  width:120px;
-  height:35px;
-  background:#fc4141;
-  line-height:35px;
-  text-align:center;
-  color:#fff;
-  font-size:15px;
-  margin:20px auto;
-  border-radius:100px;
-}
- 
-/* 遮罩层 */
-.modalDlg-mask{
-    width:100%;
-    height:100%;
-    position:fixed;
-    top:0;
-    left:0;
-    background:#000;
-    z-index:9000;
-    opacity:0.5;
-}
-  
-/* 弹出层 */
-.modalDlg{
-    width:70%;
-    position:fixed;
-    top:25%;
-    left:0;
-    right:0;
-    z-index:9999;
-    margin:0 auto;
-    background-color:#fff;
-    border-radius:5px;
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-}
- .modalDlg-content{
-   width: 100%;
-   height: 140rpx;
-   display: flex;
-   align-items: center;
+.uploadLarge-btn {
+  width:240rpx;
+  display: flex;
+  padding: 18rpx 22rpx;
   justify-content: center;
- }
- .modalDlg-content2{
+  align-items: center;
+  background: #fc4141;
+  color: #fff;
+  font-size: 32rpx;
+  margin: 50rpx auto;
+  border-radius: 116rpx;  
+}
+
+/* 遮罩层 */
+.modalDlg-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: 9000;
+  opacity: 0.5;
+}
+
+/* 弹出层 */
+.modalDlg {
+  width: 70%;
+  position: fixed;
+  top: 25%;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modalDlg-content {
+  width: 100%;
+  height: 140rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalDlg-content2 {
   width: 100%;
   height: 166rpx;
   display: flex;
   justify-content: center;
 }
- .modalDlg-text{
-   width: 144rpx;
-   margin-left: 40rpx;
- }
- .modalDlg-other{
-   flex: 1;
- }
- .modalDlg-footer{
-   width: 100%;
-   height: 100rpx;
-   border-top: 1rpx solid #ededed;
-   display: flex;
-   align-items: center;
+
+.modalDlg-text {
+  width: 144rpx;
+  margin-left: 40rpx;
+}
+
+.modalDlg-other {
+  flex: 1;
+}
+
+.modalDlg-footer {
+  width: 100%;
+  height: 100rpx;
+  border-top: 1rpx solid #ededed;
+  display: flex;
+  align-items: center;
   flex-wrap: nowrap;
   justify-content: space-between;
- }
+}
+
 /* 弹出层里面的图片 */
-.modalDlg  .modalDlg-content2 .modalDlg-other image{
+.modalDlg .modalDlg-content2 .modalDlg-other image {
   width: 150rpx;
   height: 150rpx;
-  
+
 }
- /* 弹出层里面的文字 */
- .modalDlg  .modalDlg-content text{
-  text-align:justify;
-  font-size:28rpx;
-  color:#666;
-  margin-left:10px;
+
+/* 弹出层里面的文字 */
+.modalDlg .modalDlg-content text {
+  text-align: justify;
+  font-size: 28rpx;
+  color: #666;
+  margin-left: 10px;
 }
+
 /* 弹出层里面的按钮 */
-.modalDlg-btn{
-  width:80px;
-  height:70rpx;
-  line-height:70rpx;
-  text-align:center;
-  font-size:28rpx;
-  border-radius:40rpx;
+.modalDlg-btn {
+  width: 80px;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 40rpx;
   margin: 0 auto;
 }
-.modalDlg .modalDlg-footer .closeBtn{
-  background:#fff;
+
+.modalDlg .modalDlg-footer .closeBtn {
+  background: #fff;
   color: #fc4141;
   border: 1rpx solid #fc4141;
 }
-.modalDlg .modalDlg-footer .confirmBtn{
-  background:#fc4141;
+
+.modalDlg .modalDlg-footer .confirmBtn {
+  background: #fc4141;
   color: #fff;
 }
-  

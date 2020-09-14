@@ -1,17 +1,23 @@
+<!-- 我的 -->
 <view class="container">
 	<view class="userinfo">
 		<view wx:if="{{ isLogin }}" class="user-header-cont">
-			<view class="user-header-avatar">
+			<view class="user-header-avatar" bindtap="toMyAccount">
 				<open-data class="" lang="zh_CN" type="userAvatarUrl"></open-data>
 			</view>
+	  	<view class="user-header-text">
 			<open-data class="user-header-cont-name" lang="zh_CN" type="userNickName"></open-data>
+			<text>绑定手机号></text>
 		</view>
+		</view>
+
 		<view wx:else class="user-header-cont" catchtap="onLogin">
 			<view class="user-header-avatar">
 				<image src="/images/default-avatar.jpg"></image>
 			</view>
 			<view class="user-header-cont-name">点击登录</view>
 		</view>
+
 	</view>
 	<!-- 全部订单 -->
 	<view class="order">
@@ -32,14 +38,14 @@
 			</view>
 			<view class="item">
 				<view class="icon-item" data-type="dispatch" bindtap="allOrders">
-					<image src="/images/me-icon/dispatch2.png" style="width:72rpx;height:72rpx;"></image>
+					<image src="/images/me-icon/dispatch.png" style="width:72rpx;height:72rpx;"></image>
 					<view class="icon-num" wx:if="{{orderCount.dispatch>0}}"><text>{{orderCount.dispatch}}</text></view>
 					<view class="icon-text"><text>待派单</text></view>
 				</view>
 			</view>
 			<view class="item">
 				<view class="icon-item" data-type="start" bindtap="allOrders">
-					<image src="/images/me-icon/start.png" style="width:72rpx;height:72rpx;"></image>
+					<image src="/images/me-icon/start2.png" style="width:72rpx;height:72rpx;"></image>
 					<view class="icon-num" wx:if="{{orderCount.start>0}}"><text>{{orderCount.start}}</text></view>
 					<view class="icon-text"><text>待开工</text></view>
 				</view>
@@ -53,7 +59,7 @@
 			</view>
 			<view class="item">
 				<view class="icon-item" data-type="comment" bindtap="allOrders">
-					<image src="/images/me-icon/comment2.png" style="width:72rpx;height:72rpx;"></image>
+					<image src="/images/me-icon/comment.png" style="width:72rpx;height:72rpx;"></image>
 					<view class="icon-num" wx:if="{{orderCount.comment>0}}"><text>{{orderCount.comment}}</text></view>
 					<view class="icon-text"><text>待评价</text></view>
 				</view>
@@ -67,7 +73,7 @@
 		</view>
 		<view class="content">
 			<view class="item" bindtap="coupon">
-				<image src="/images/me-icon/coupon2.png" style="width:64rpx;height:64rpx;"></image>
+				<image src="/images/me-icon/coupon.png" style="width:64rpx;height:64rpx;"></image>
 				<text style="margin-top:10rpx;">优惠券</text>
 			</view>
 			<navigator url="/pages/about_us/about_us" class="item">

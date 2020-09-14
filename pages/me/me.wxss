@@ -22,7 +22,11 @@
   border-radius: 50%;
   overflow: hidden;
 }
-
+.userinfo .user-header-cont .user-header-text{
+display: flex;
+flex-direction: column;
+color: #fff;
+}
 .userinfo .user-header-cont .user-header-avatar image {
   width: 120rpx;
   height: 120rpx;
@@ -31,7 +35,7 @@
 
 .userinfo .user-header-cont .user-header-cont-name {
   font-size: 32rpx;
-  padding: 20rpx 0;
+  padding: 10rpx 0;
   color: white;
 }
 

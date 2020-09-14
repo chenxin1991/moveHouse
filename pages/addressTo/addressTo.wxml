@@ -14,7 +14,7 @@
 		<view class="from">
 			<view class="left"><text>楼梯类型</text></view>
 			<view class="right stairs_or_elevators">
-				<view class="item {{index === stairs_or_elevators?'active':''}}" wx:for="{{array1}}" wx:for-item="item" catchtap='setType' data-index='{{index}}'>{{item}}</view>
+				<view class="item {{index === stairs_or_elevators?'active':''}}" wx:for="{{array1}}" wx:for-item="item" wx:key="index" catchtap='setType' data-index='{{index}}'>{{item}}</view>
 			</view>
 		</view>
 		<view class="from">
@@ -24,7 +24,7 @@
 		<view class="from" style="height:160rpx;">
 			<view class="left"><text>停车位距离</text></view>
 			<view class="right parking_distance">
-				<view class="item {{index === parking_distance?'active':''}}" wx:for="{{array2}}" wx:for-item="item" catchtap='setType2' data-index='{{index}}'>{{item}}</view>
+				<view class="item {{index === parking_distance?'active':''}}" wx:for="{{array2}}" wx:for-item="item" wx:key="index" catchtap='setType2' data-index='{{index}}'>{{item}}</view>
 			</view>
 		</view>
 		<view style="display:flex;flex-direction:column;align-items:flex-end;padding:20rpx 30rpx 20rpx 0rpx;">

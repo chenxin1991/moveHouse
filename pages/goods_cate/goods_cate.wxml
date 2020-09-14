@@ -87,7 +87,9 @@
 					</block>
 					<!-- 上传其他大件 -->
 					<block wx:if="{{product.name=='其他大件'}}">
-						<view bindtap="uploadLarge" class="btn">上传其他大件</view>
+						<view bindtap="uploadLarge" class="uploadLarge-btn">
+						<text>上传其他大件</text>
+						</view>
 					</block>
 
 					<view class='goodList'>
@@ -151,7 +153,7 @@
 			</view>
 			<view style="margin-left:20rpx;">
 				<text class='money'>￥{{totalCost}}</text> 
-				<text wx:if="{{isPriceUp}}" class="PriceUp">起</text>
+				<text wx:if="{{isOrigin}}" class="PriceUp">起</text>
 					<text wx:if="{{isParticulars}}"  bindtap="getParticulars" class="particulars">（明细）</text>
 			</view>
 		</view>

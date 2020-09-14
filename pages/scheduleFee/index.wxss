@@ -1,96 +1,101 @@
-.scheduleFee-wrapper{
+.scheduleFee-wrapper {
   background: #f4f4f4;
   width: 100%;
   min-height: 100vh;
 }
-.scheduleFee-wrapper .page-body{
+
+.scheduleFee-wrapper .page-body {
   width: 90%;
   height: auto;
   margin: 40rpx auto;
   background: #fff;
   border: 2rpx solid #fff;
   border-radius: 20rpx;
+  padding-bottom: 30rpx;
 }
+
 /* 费用标准 */
-.borderBoth{
+.borderBoth {
   border-right: 1rpx solid #ededed;
-border-left: 1rpx solid #ededed;
+  border-left: 1rpx solid #ededed;
 }
-.borderBottom{
+
+.borderBottom {
   border-bottom: 1rpx solid #ededed;
 }
-.width30{
+
+.width30 {
   width: 30%;
 }
-.width40{
+
+.width40 {
   width: 40%;
 }
-.priceDetail-title{
-  width: 100%;
-  height: 80rpx;
- line-height: 80rpx;
- padding: 0 40rpx;
-}
- .expense-tabe{
-   width: 96%;
-   height: auto;
+
+.expense-tabe {
+  width: 96%;
+  height: auto;
   border-top: 2rpx solid #ededed;
   border-left: 2rpx solid #ededed;
   border-right: 2rpx solid #ededed;
-margin: 20rpx auto;
- }
- .expense-tabe .expense-header{
-   width: 100%;
-   background: #f1f1f1;
-   display: flex;
-   align-items: center;
-   flex-direction: row;
+  margin: 0rpx auto;
 }
-.expense-tabe .expense-header .headers{
+
+.expense-tabe .expense-header {
+  width: 100%;
+  background: #f1f1f1;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.expense-tabe .expense-header .headers {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10rpx;
 }
- 
-.expense-main-car{
+
+.expense-main-car {
   width: 100%;
   display: flex;
   flex-direction: row;
 }
-.car-content{
+
+.car-content {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10rpx;
 }
-.expense-tabe .expense-main{
+
+.expense-tabe .expense-main {
   display: flex;
   flex-direction: row;
 }
-.expense-tabe-title{
-  line-height: 70rpx;
- padding: 0 20rpx;
- font-weight: bold;
+
+.expense-tabe-title {
+  padding: 26rpx 20rpx;
+  font-weight: bold;
 }
-.expense-tabe .expense-main .main-content1{
+
+.expense-tabe .expense-main .main-content1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom:2rpx solid #ededed;
+  border-bottom: 2rpx solid #ededed;
 }
 
-.expense-tabe .expense-main .main-content2{
+.expense-tabe .expense-main .main-content2 {
   display: flex;
   flex-direction: column;
- }
- 
- .expense-tabe .expense-main .main-content2 .content-text{
- width: 100%;
- display: flex;
- align-items: center;
- justify-content: center;
- padding: 10rpx;
- border-bottom:2rpx solid #ededed;
- }
- 
+}
+
+.expense-tabe .expense-main .main-content2 .content-text {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx;
+  border-bottom: 2rpx solid #ededed;
+}
