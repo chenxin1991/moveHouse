@@ -91,9 +91,9 @@ App({
     carNum: 0,
     goodsNum: 0
   },
-  // api_root: 'http://demo.tp6.cn/index.php/api/', 
-  api_root: 'https://demo.wjdhbq.com/index.php/api/', 
-    /**
+  // api_root: 'http://demo.tp6.cn/index.php/api/',
+  api_root: 'https://demo.wjdhbq.com/index.php/api/',
+  /**
    * 执行用户登录
    */
   doLogin() {
@@ -109,7 +109,19 @@ App({
       url: "/pages/login/login"
     });
   },
-
+  getMobile() {
+    // 保存当前页面
+    let pages = getCurrentPages();
+    if (pages.length) {
+      let currentPage = pages[pages.length - 1];
+      "pages/getPhoneNumber/index" != currentPage.route &&
+        wx.setStorageSync("currentPage", currentPage);
+    }
+    // 跳转授权页面
+    wx.navigateTo({
+      url: "/pages/getPhoneNumber/index"
+    });
+  },
   /**
    * 当前用户id
    */
@@ -147,7 +159,7 @@ App({
       }
     });
   },
-/**
+  /**
    * get请求
    */
   _get(url, data, success, fail, complete, check_login) {
@@ -182,6 +194,9 @@ App({
             // 登录态失效, 重新登录
             wx.hideNavigationBarLoading();
             App.doLogin();
+          }else if(res.data.code===-2){
+            wx.hideNavigationBarLoading();
+            App.getMobile();
           } else if (res.data.code === 0) {
             App.showError(res.data.msg);
             return false;
@@ -255,15 +270,6 @@ App({
       }
     });
   },
-
-  /**
-   * 验证是否存在user_info
-   */
-  validateUserInfo() {
-    let user_info = wx.getStorageSync('user_info');
-    return !!wx.getStorageSync('user_info');
-  },
-
   /**
    * 验证登录
    */

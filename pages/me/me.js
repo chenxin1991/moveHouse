@@ -18,13 +18,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    let _this = this;
-    _this.setData({
+    this.setData({
       isLogin: App.checkIsLogin()
     });
-    if (_this.data.isLogin) {
+    if (this.data.isLogin) {
       // 获取当前用户信息
-      _this.getUserDetail();
+      this.getUserDetail();
     }
   },
   /**

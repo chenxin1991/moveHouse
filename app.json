@@ -15,7 +15,8 @@
     "pages/topay/index",
     "pages/scheduleFee/index",
     "pages/evaluate/index",
-    "pages/myAccount/index"
+    "pages/myAccount/index",
+    "pages/getPhoneNumber/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",
