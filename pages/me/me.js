@@ -1,14 +1,18 @@
 //index.js
 //获取应用实例
 const App = getApp();
-
+var toHide = function(array) {
+  var mphone = array.substring(0, 3) + '****' + array.substring(7);
+  return mphone;
+}
 Page({
   data: {
     isLogin: false,
     userInfo: {},
     orderCount: {},
     id: 0,
-    num: 0
+    num: 0,
+    mobile:''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -18,8 +22,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    
     this.setData({
-      isLogin: App.checkIsLogin()
+      isLogin: App.checkIsLogin() 
     });
     if (this.data.isLogin) {
       // 获取当前用户信息
@@ -33,6 +38,10 @@ Page({
     let _this = this;
     App._get('user/detail', {}, result => {
       _this.setData(result.data);
+   let mobile=toHide(_this.data.userInfo.mobile)
+      this.setData({
+        mobile
+      })
     });
   },
   /**
@@ -47,7 +56,7 @@ Page({
   toMyAccount() {
     if (this.data.userInfo.mobile) {
       wx.navigateTo({
-        url: '/pages/myAccount/index?mobile=' + this.data.userInfo.mobile,
+        url: '/pages/myAccount/index?mobile=' + this.data.mobile,
       })
     }
   },

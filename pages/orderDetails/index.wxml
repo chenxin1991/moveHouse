@@ -1,3 +1,4 @@
+<!-- 订单列表-订单详情 -->
 <view class="orderDetails">
 	<scroll-view scroll-y="true" class="orderDetails-main">
 		<!-- 订单状态 -->
@@ -51,7 +52,7 @@
 				<view class="product-words">
 					<text>客户留言</text>
 					<view class="product-words-content">
-						精装修会出现MV不明显女明星昵称充满着精装修会出现MV不明显女明星昵称充满着
+					{{customerMsg}}
 					</view>
 				</view>
 			</view>
@@ -86,15 +87,19 @@
 		<view class="orderNumber">
 		<view class="orderNumber-item">
 		<text>订单编号</text>
-		<text>12265533352555</text>
+		<view>
+		<text>{{orderNumber}}</text>
+			<text style="color:#666;margin-left:10rpx;"  bindtap="copywxtap">复制</text>
+		</view>
+
 		</view>
 			<view class="orderNumber-item">
 		<text>下单时间</text>
-		<text>12265533352555</text>
+		<text>{{orderTime}}</text>
 		</view>
 			<view class="orderNumber-item">
 		<text>取消时间</text>
-		<text>12265533352555</text>
+		<text>{{cancelTime}}</text>
 		</view>
 		</view>
 

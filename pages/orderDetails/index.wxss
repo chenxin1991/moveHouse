@@ -150,15 +150,15 @@
 }
 
 .product-item .product-item-text {
-  width: 140rpx;
-  height: 140rpx;
+  width: 152rpx;
   display: flex;
   flex-direction: column;
-  text-align: right;
+justify-content: center;
 }
 
 .product-item .product-item-text text {
-  height: 60rpx;
+  padding: 10rpx 0rpx;
+  text-align: right;
 }
 
 .product .product-words {

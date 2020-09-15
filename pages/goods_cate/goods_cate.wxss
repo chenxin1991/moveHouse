@@ -309,19 +309,21 @@ page {
 }
 
 .productSort .footer .balance {
+  width: 146rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1rpx solid #B3B3B3 ;
+  border-radius: 50rpx;
   color: #fff;
   font-size: 30rpx;
-  width: 226rpx;
-  height: 70rpx;
-  border-radius: 50rpx;
-  text-align: center;
-  line-height: 70rpx;
   margin-left: 22rpx;
-  padding: 0;
+  padding: 14rpx 10rpx;
   background-color: #B3B3B3;
 }
 
 .productSort .footer .balance.on {
+  border: 1rpx solid #e93323;
   background-color: #e93323 !important;
 }
 

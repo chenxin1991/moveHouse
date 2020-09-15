@@ -9,6 +9,10 @@ Page({
     order: {},
     array1: ['电梯', '楼梯'],
     array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入'],
+    customerMsg:'',//客户留言
+    orderNumber:'123456789',//订单编号
+    orderTime:'2020.09.15 18:03:23',//下单时间
+    cancelTime:'2020.09.18 18:03:54'//取消时间
   },
 
   /**
@@ -22,6 +26,23 @@ Page({
     App._get('user/order/detail/' + id, {}, function (result) {
       _this.setData(result.data);
     });
+  },
+  //复制订单号
+  copywxtap: function () {
+    wx.showToast({
+      title: '复制成功',
+    })
+    wx.setClipboardData({
+      data: this.data.orderNumber,
+      success: function (res) {
+        wx.getClipboardData({
+          //这个api是把拿到的数据放到电脑系统中的
+          success: function (res) {
+            // console.log(res.data) // data
+          }
+        })
+      }
+    })
   },
 
   /**

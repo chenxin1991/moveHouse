@@ -1,4 +1,6 @@
 // pages/MyAccount/index.js
+
+ 
 Page({
 
   /**
@@ -13,8 +15,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      mobile: options.mobile
-    });
+      mobile:options.mobile
+    })
   },
   //解绑手机号
   unbindPhone() {
@@ -48,7 +50,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+  
   },
 
   /**

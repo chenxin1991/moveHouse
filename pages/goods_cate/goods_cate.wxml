@@ -158,7 +158,7 @@
 			</view>
 		</view>
 		<view>
-			<button class="balance {{is_complete==true?'on':''}}" catchtap="toOrder">去结算</button>
+		<text class="balance {{is_complete==true?'on':''}}" catchtap="toOrder">去结算</text>
 		</view>
 	</view>
 </view>

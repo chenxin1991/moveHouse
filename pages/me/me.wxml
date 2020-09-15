@@ -1,5 +1,6 @@
 <!-- 我的 -->
 <view class="container">
+<!-- 用户信息 -->
 	<view class="userinfo">
 		<view wx:if="{{ isLogin }}" class="user-header-cont">
 			<view class="user-header-avatar" bindtap="toMyAccount">
@@ -7,7 +8,7 @@
 			</view>
 	  	<view class="user-header-text">
 			<open-data class="user-header-cont-name" lang="zh_CN" type="userNickName"></open-data>
-			<text wx:if="{{userInfo.mobile}}">{{userInfo.mobile}}</text>
+			<text wx:if="{{userInfo.mobile}}">{{mobile}}</text>
 			<text wx:if="{{!userInfo.mobile}}">绑定手机号></text>
 		</view>
 		</view>
@@ -48,7 +49,7 @@
 			</view>
 			<view class="item">
 				<view class="icon-item" data-type="start" bindtap="allOrders">
-					<image src="/images/me-icon/start2.png" style="width:72rpx;height:72rpx;"></image>
+					<image src="/images/me-icon/start.png" style="width:72rpx;height:72rpx;"></image>
 					<view class="icon-num" wx:if="{{orderCount.start>0}}"><text>{{orderCount.start}}</text></view>
 					<view class="icon-text"><text>待开工</text></view>
 				</view>
