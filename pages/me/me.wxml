@@ -15,7 +15,9 @@
 			<view class="user-header-avatar">
 				<image src="/images/default-avatar.jpg"></image>
 			</view>
-			<view class="user-header-cont-name">点击登录</view>
+			<view class="user-header-text">
+				<view class="user-header-cont-name">点击登录</view>
+			</view>	
 		</view>
 
 	</view>

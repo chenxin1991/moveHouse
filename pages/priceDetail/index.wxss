@@ -83,7 +83,7 @@
  }
 
  .price-allPrice {
-   border-top: 2rpx dashed #cdcdcd;
+   border-top: 2rpx dashed #ededed;
  }
 
  .priceDetail-wrapper .price-item .allPrice {
