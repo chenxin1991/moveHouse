@@ -7,7 +7,8 @@
 			</view>
 	  	<view class="user-header-text">
 			<open-data class="user-header-cont-name" lang="zh_CN" type="userNickName"></open-data>
-			<text>绑定手机号></text>
+			<text wx:if="{{userInfo.mobile}}">{{userInfo.mobile}}</text>
+			<text wx:if="{{!userInfo.mobile}}">绑定手机号></text>
 		</view>
 		</view>
 

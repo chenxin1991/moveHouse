@@ -44,10 +44,12 @@ Page({
     });
   },
   //我的账号
-  toMyAccount(){
-    wx.navigateTo({
-      url: '/pages/myAccount/index',
-    })
+  toMyAccount() {
+    if (this.data.userInfo.mobile) {
+      wx.navigateTo({
+        url: '/pages/myAccount/index?mobile=' + this.data.userInfo.mobile,
+      })
+    }
   },
   //全部订单
   allOrders: function (e) {

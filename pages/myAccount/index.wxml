@@ -7,7 +7,7 @@
 <view class="MyAccount-main-name">
 	<open-data class="user-header-cont-name" lang="zh_CN" type="userNickName"></open-data>
 </view>
-<view class="MyAccount-main-name">12253654565</view>
+<view class="MyAccount-main-name">{{mobile}}</view>
 </view>
 <view  class="MyAccount-footer" bindtap="unbindPhone">
 <text>解绑手机号</text>
