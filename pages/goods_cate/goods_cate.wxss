@@ -93,13 +93,15 @@ page {
   font-size: 26rpx;
   color: #333;
   font-weight: bold;
-  /* height: 80rpx; */
   display: flex;
   padding: 10rpx 0;
 }
-
+.goodList .item .text .car-description{
+  display: flex;
+  flex-direction: column;
+  font-size: 24rpx;
+}
 .goodList .item .text .content {
-  /* height: 60rpx; */
   display: flex;
   align-items: flex-end;
   justify-content: space-between;

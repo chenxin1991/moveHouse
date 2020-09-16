@@ -15,6 +15,7 @@
 					<view class='title'>
 						<view class='name'>{{product.name}}</view>
 					</view>
+
 					<block wx:if="{{idx == 1}}">
 						<view class="special">
 							<view class="appoint">
@@ -88,7 +89,7 @@
 					<!-- 上传其他大件 -->
 					<block wx:if="{{product.name=='其他大件'}}">
 						<view bindtap="uploadLarge" class="uploadLarge-btn">
-						<text>上传其他大件</text>
+							<text>上传其他大件</text>
 						</view>
 					</block>
 
@@ -98,6 +99,7 @@
 								<view class='pictrue' wx:if="{{idx==0}}">
 									<image src='{{item.image_url}}' mode='aspectFill'></image>
 								</view>
+							
 								<block wx:if="{{idx!=0}}">
 									<block wx:if="{{item.images.length==1}}">
 										<view class='pictrue'>
@@ -126,6 +128,14 @@
 								<view class='underline'>
 									<view class='text'>
 										<view class='title'>{{item.name}}</view>
+											<!-- 车辆描述 -->
+								<view class="car-description" wx:if="{{idx==0}}">
+									<text><text style="color:#999;margin-right:10rpx;">载重</text> 1000kg</text>
+									<text><text style="color:#999;margin-right:10rpx;">长宽高</text>  2.5*1.5*1.5米</text>
+									<text><text style="color:#999;margin-right:10rpx;">体积</text>  5.6 m³  </text>
+									<text> <text style="color:#999;margin-right:10rpx;">配备</text> 2-3名工人</text>
+								</view>
+
 										<view wx:if="{{product.is_upload}}" class="upload-btn upload-pictures" data-item="{{item}}" bindtap="chooseImage">上传图片</view>
 										<view class="content">
 											<view class='money'>￥<text class='num'>{{item.price}}</text></view>
@@ -152,13 +162,13 @@
 				<image src="/images/cart.png" style='width:60rpx;height:60rpx;'></image>
 			</view>
 			<view style="margin-left:20rpx;">
-				<text class='money'>￥{{totalCost}}</text> 
+				<text class='money'>￥{{totalCost}}</text>
 				<text wx:if="{{isOrigin}}" class="PriceUp">起</text>
-					<text wx:if="{{isParticulars}}"  bindtap="getParticulars" class="particulars">（明细）</text>
+				<text wx:if="{{isParticulars}}"  bindtap="getParticulars" class="particulars">（明细）</text>
 			</view>
 		</view>
 		<view>
-		<text class="balance {{is_complete==true?'on':''}}" catchtap="toOrder">去结算</text>
+			<text class="balance {{is_complete==true?'on':''}}" catchtap="toOrder">去结算</text>
 		</view>
 	</view>
 </view>
@@ -198,14 +208,16 @@
 <view class="modalDlg-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 <view class="modalDlg" wx:if="{{showModalLarge}}">
 	<view class="page-body">
-		<form  bindsubmit="submit">
-			<view class="modalDlg-content"> 
-					<view class="modalDlg-text">大件名称：</view>
-					<view  class="modalDlg-other"><input  class="weui-input"  auto-focus placeholder="输入大件名称" bindinput="bindKeyInput" /></view>
+		<form bindsubmit="submit">
+			<view class="modalDlg-content">
+				<view class="modalDlg-text">大件名称：</view>
+				<view class="modalDlg-other"><input class="weui-input" auto-focus placeholder="输入大件名称" bindinput="bindKeyInput" /></view>
 			</view>
-			<view class="modalDlg-content2">	 
-					<view  class="modalDlg-text">上传图片：</view>
-				<view class="modalDlg-other" >	<image src="{{particulars_pic}}"  bindtap="chooseImage2"></image></view>
+			<view class="modalDlg-content2">
+				<view class="modalDlg-text">上传图片：</view>
+				<view class="modalDlg-other">
+					<image src="{{particulars_pic}}" bindtap="chooseImage2"></image>
+				</view>
 			</view>
 			<view class="modalDlg-footer">
 				<view bindtap="closeModalLarge" class="modalDlg-btn closeBtn">取消</view>
@@ -214,5 +226,3 @@
 		</form>
 	</view>
 </view>
-
- 
