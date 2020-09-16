@@ -156,7 +156,7 @@
 }
 
 .totalCost .end .submit {
-  width: 182rpx;
+  width: 152rpx;
   display: flex;
   align-items: center;
   justify-content: center;

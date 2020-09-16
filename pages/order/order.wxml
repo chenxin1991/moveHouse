@@ -90,8 +90,8 @@
 	<view class="totalCost">
 		<view class="end">
 			<text style="font-size:25rpx;">合计：</text><text class="num">￥{{totalCost}}</text>
-			<text wx:if="{{isOtherLarge}}" style="font-size: 24rpx;color: #fc4141;margin-left:10rpx;">起</text>
-			<button class="submit" catchtap="toOrder">提交订单</button>
+			<text wx:if="{{isOtherLarge}}" style="font-size: 24rpx;color: #fc4141;margin-left:10rpx;">起</text>	 
+			<text class="submit" catchtap="toOrder">提交订单</text>
 		</view>
 	</view>
 </view>
