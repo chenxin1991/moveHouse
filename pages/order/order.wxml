@@ -43,7 +43,7 @@
 		</view>
 		<view class="words">
 			<text class="title">手机号</text>
-			<input style="width:80%;font-size:30rpx;" placeholder="填写手机号（必填）" bindinput='getMobile' />
+			<input style="width:80%;font-size:30rpx;" placeholder="填写手机号（必填）" bindinput='getMobile' value="{{mobile}}"/>
 		</view>
 		<view class="words">
 			<text class="title">留言</text>

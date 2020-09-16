@@ -9,7 +9,7 @@
 	  	<view class="user-header-text">
 			<open-data class="user-header-cont-name" lang="zh_CN" type="userNickName"></open-data>
 			<text wx:if="{{userInfo.mobile}}">{{mobile}}</text>
-			<text wx:if="{{!userInfo.mobile}}">绑定手机号></text>
+			<text wx:if="{{!userInfo.mobile}}" catchtap="bindPhone">绑定手机号></text>
 		</view>
 		</view>
 
@@ -88,7 +88,7 @@
 	</view>
 </view>
 <!-- 司机端 -->
-<view class="order">
+<view class="order" wx:if="{{isDriver}}">
 	<view class="header">
 		<text style="font-weight: bold;">司机端</text>
 	</view>

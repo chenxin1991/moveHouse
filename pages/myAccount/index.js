@@ -1,6 +1,10 @@
 // pages/MyAccount/index.js
+<<<<<<< Updated upstream
 
  
+=======
+const App = getApp();
+>>>>>>> Stashed changes
 Page({
 
   /**
@@ -25,15 +29,19 @@ Page({
       content: '是否解绑手机号',
       success: function (res) {
         if (res.confirm) { //这里是点击了确定以后
-          console.log('用户点击确定')
+          App._post_form('user/unbindPhone', {}, result => {
+            wx.showToast({
+              title: '解绑成功',
+              icon: 'success',
+              duration: 1000,
+              complete: function () {
+                setTimeout(function () {
+                  wx.removeStorageSync('mobile');
+                  wx.navigateBack();
+                }, 1000);
+              }
+            })
 
-          wx.showToast({
-            title: '解绑成功',
-            icon: 'success',
-            duration: 2000 //持续的时间 
-          })
-          wx.switchTab({
-            url: '/pages/me/me',
           })
         } else {}
       }

@@ -97,27 +97,13 @@ App({
    * 执行用户登录
    */
   doLogin() {
-    // 保存当前页面
-    let pages = getCurrentPages();
-    if (pages.length) {
-      let currentPage = pages[pages.length - 1];
-      "pages/login/login" != currentPage.route &&
-        wx.setStorageSync("currentPage", currentPage);
-    }
     // 跳转授权页面
     wx.navigateTo({
       url: "/pages/login/login"
     });
   },
   getMobile() {
-    // 保存当前页面
-    let pages = getCurrentPages();
-    if (pages.length) {
-      let currentPage = pages[pages.length - 1];
-      "pages/getPhoneNumber/index" != currentPage.route &&
-        wx.setStorageSync("currentPage", currentPage);
-    }
-    // 跳转授权页面
+    // 跳转获取手机号页面
     wx.navigateTo({
       url: "/pages/getPhoneNumber/index"
     });
@@ -194,7 +180,7 @@ App({
             // 登录态失效, 重新登录
             wx.hideNavigationBarLoading();
             App.doLogin();
-          }else if(res.data.code===-2){
+          } else if (res.data.code === -2) {
             wx.hideNavigationBarLoading();
             App.getMobile();
           } else if (res.data.code === 0) {
@@ -249,6 +235,10 @@ App({
             App._post_form(url, data, success, fail);
           });
           return false;
+        } else if (res.data.code === -2) {
+          wx.hideNavigationBarLoading();
+          App.getMobile();
+          return false;
         } else if (res.data.code === 0) {
           App.showError(res.data.msg, () => {
             fail && fail(res);
@@ -276,6 +266,9 @@ App({
   checkIsLogin() {
     return wx.getStorageSync('token') != '' && wx.getStorageSync('user_id') != '';
   },
+  checkIsMobile() {
+    return wx.getStorageSync('mobile') != '';
+  },
   /**
    * 授权登录
    */
@@ -302,6 +295,9 @@ App({
           // 记录token user_id
           wx.setStorageSync('token', result.data.token);
           wx.setStorageSync('user_id', result.data.user_id);
+          if (result.data.mobile) {
+            wx.setStorageSync('mobile', result.data.mobile);
+          }
           // 执行回调函数
           callback && callback();
         }, false, () => {

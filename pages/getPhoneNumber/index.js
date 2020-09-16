@@ -17,26 +17,23 @@ Page({
   },
 
   getPhoneNumber(e) {
-    // console.log(e.detail.errMsg)
-    // console.log(e.detail.iv)
-    // console.log(e.detail.encryptedData)
     wx.checkSession({
       success() {
         let that = this;
         if (e.detail.errMsg == "getPhoneNumber:ok") {
-          console.log('进来了');
-          App._get('user/decodePhone', {
+          App._post_form('user/bindPhone', {
             encryptedData: e.detail.encryptedData,
             iv: e.detail.iv
           }, result => {
-            wx.navigateBack();
+            if (result.code === 1) {
+              wx.setStorageSync('mobile', result.data.mobile);
+              wx.navigateBack();
+            }
           })
         }
       },
       fail() {
-        App.getUserInfo(e, () => {
-          _this.onNavigateBack();
-        });
+        wx.login();
       }
     })
 

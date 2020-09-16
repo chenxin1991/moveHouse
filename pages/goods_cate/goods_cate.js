@@ -489,6 +489,14 @@ Page({
   },
   //上传其他大件的上传图片功能
   chooseImage2: function (e) {
+    if (!app.checkIsLogin()) {
+      app.doLogin();
+      return false;
+    }
+    if (!app.checkIsMobile()) {
+      app.getMobile();
+      return false;
+    }
     let _this = this;
     wx.chooseImage({
       count: 1, //默认选择1张
@@ -517,6 +525,9 @@ Page({
             if (data.code === -1) {
               // 登录态失效, 重新登录
               app.doLogin();
+            }
+            if (data.code === -2) {
+              app.getMobile();
             }
             if (data.code == 1) {
               _this.setData({
@@ -568,24 +579,25 @@ Page({
   },
   //总价明细弹出框
   getParticulars() {
- 
-    let distanceCost=this.data.distanceCost//超公里数费
-    let floorCost=this.data.floorCost//楼层费
-    let parkingCost=this.data.parkingCost//停车位距离费
-    let specialTimeCost=this.data.specialTimeCost //特殊时间段费
-    let  goodsCost=this.data.goodsCost//物品总价
-    let totalCost=this.data.totalCost //总报价
-   
- 
-   let cars=JSON.stringify(this.data.cars) ;
+    let distanceCost = this.data.distanceCost //超公里数费
+    let floorCost = this.data.floorCost //楼层费
+    let parkingCost = this.data.parkingCost //停车位距离费
+    let specialTimeCost = this.data.specialTimeCost //特殊时间段费
+    let goodsCost = this.data.goodsCost //物品总价
+    let totalCost = this.data.totalCost //总报价
+    let cars = JSON.stringify(this.data.cars);
     wx.navigateTo({
-      url: '/pages/priceDetail/index?distanceCost='+distanceCost+'&floorCost='+floorCost+'&parkingCost='+parkingCost+'&specialTimeCost='+specialTimeCost+'&goodsCost='+goodsCost+'&totalCost='+totalCost+'&cars='+cars,
+      url: '/pages/priceDetail/index?distanceCost=' + distanceCost + '&floorCost=' + floorCost + '&parkingCost=' + parkingCost + '&specialTimeCost=' + specialTimeCost + '&goodsCost=' + goodsCost + '&totalCost=' + totalCost + '&cars=' + cars,
     })
   },
   //上传图片
   chooseImage: function (e) {
     if (!app.checkIsLogin()) {
       app.doLogin();
+      return false;
+    }
+    if (!app.checkIsMobile()) {
+      app.getMobile();
       return false;
     }
     let that = this;
@@ -618,6 +630,9 @@ Page({
             if (data.code === -1) {
               // 登录态失效, 重新登录
               app.doLogin();
+            }
+            if (data.code === -2) {
+              app.getMobile();
             }
             if (data.code == 1) {
               cart.push({
@@ -757,6 +772,14 @@ Page({
     })
   },
   toOrder: function () {
+    if (!app.checkIsLogin()) {
+      app.doLogin();
+      return false;
+    }
+    if (!app.checkIsMobile()) {
+      app.getMobile();
+      return false;
+    }
     if (this.data.is_complete) {
       app.globalData.cars = this.data.cars;
       app.globalData.distance = this.data.distance;
@@ -771,7 +794,7 @@ Page({
       app.globalData.appointTime = this.data.timeArray[this.data.appointTime];
       app.globalData.carNum = this.data.carNum;
       app.globalData.goodsNum = this.data.goodsNum;
-      app.globalData.isOrigin=this.data.isOrigin;
+      app.globalData.isOrigin = this.data.isOrigin;
       wx.navigateTo({
         url: '../order/order'
       });

@@ -10,6 +10,7 @@ Page({
     isLogin: false,
     userInfo: {},
     orderCount: {},
+    isDriver: false,
     id: 0,
     num: 0,
     mobile:''
@@ -50,6 +51,12 @@ Page({
   onLogin() {
     wx.navigateTo({
       url: '../login/login',
+    });
+  },
+  //跳转到绑定手机号页面
+  bindPhone(){
+    wx.navigateTo({
+      url: '../getPhoneNumber/index',
     });
   },
   //我的账号
