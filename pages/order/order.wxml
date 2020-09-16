@@ -65,7 +65,7 @@
 		<view class="cost">
 			<text>大件及材料费</text>
 			<view class="right">￥<text style="font-size: 30rpx;">{{largeCost}}</text> 
-			<text wx:if="{{isOrigin}}" style="font-size: 24rpx;color: #fc4141;margin-left:10rpx;">起</text>
+			<text wx:if="{{isOtherLarge}}" style="font-size: 24rpx;color: #fc4141;margin-left:10rpx;">起</text>
 			</view>
 		</view>
 		<view class="cost">
@@ -90,8 +90,8 @@
 	<view class="totalCost">
 		<view class="end">
 			<text style="font-size:25rpx;">合计：</text><text class="num">￥{{totalCost}}</text>
-			<text wx:if="{{isOrigin}}" style="font-size: 24rpx;color: #fc4141;margin-left:10rpx;">起</text>
-			<view class="submit" catchtap="toOrder">提交订单</view>  
+			<text wx:if="{{isOtherLarge}}" style="font-size: 24rpx;color: #fc4141;margin-left:10rpx;">起</text>
+			<button class="submit" catchtap="toOrder">提交订单</button>
 		</view>
 	</view>
 </view>

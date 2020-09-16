@@ -99,7 +99,7 @@
 								<view class='pictrue' wx:if="{{idx==0}}">
 									<image src='{{item.image_url}}' mode='aspectFill'></image>
 								</view>
-							
+
 								<block wx:if="{{idx!=0}}">
 									<block wx:if="{{item.images.length==1}}">
 										<view class='pictrue'>
@@ -128,13 +128,13 @@
 								<view class='underline'>
 									<view class='text'>
 										<view class='title'>{{item.name}}</view>
-											<!-- 车辆描述 -->
-								<view class="car-description" wx:if="{{idx==0}}">
-									<text><text style="color:#999;margin-right:10rpx;">载重</text> 1000kg</text>
-									<text><text style="color:#999;margin-right:10rpx;">长宽高</text>  2.5*1.5*1.5米</text>
-									<text><text style="color:#999;margin-right:10rpx;">体积</text>  5.6 m³  </text>
-									<text> <text style="color:#999;margin-right:10rpx;">配备</text> 2-3名工人</text>
-								</view>
+										<!-- 车辆描述 -->
+										<view class="car-description" wx:if="{{idx==0}}">
+											<text><text style="color:#999;margin-right:10rpx;">载重</text> 1000kg</text>
+											<text><text style="color:#999;margin-right:10rpx;">长宽高</text> 2.5*1.5*1.5米</text>
+											<text><text style="color:#999;margin-right:10rpx;">体积</text> 5.6 m³ </text>
+											<text> <text style="color:#999;margin-right:10rpx;">配备</text> 2-3名工人</text>
+										</view>
 
 										<view wx:if="{{product.is_upload}}" class="upload-btn upload-pictures" data-item="{{item}}" bindtap="chooseImage">上传图片</view>
 										<view class="content">
@@ -163,7 +163,7 @@
 			</view>
 			<view style="margin-left:20rpx;">
 				<text class='money'>￥{{totalCost}}</text>
-				<text wx:if="{{isOrigin}}" class="PriceUp">起</text>
+				<text wx:if="{{isOtherLarge}}" class="PriceUp">起</text>
 				<text wx:if="{{isParticulars}}"  bindtap="getParticulars" class="particulars">（明细）</text>
 			</view>
 		</view>

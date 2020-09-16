@@ -42,11 +42,10 @@ Page({
     carNum: 0,
     goodsNum: 0,
     hide_good_box: true,
-    is_complete: false,
+    is_complete: false,//必选项是否填写完
     showModal: false, //遮罩层
     showModalLarge: false, //上传其他大件弹出框
-    isOrigin: false, //总价'起'
-    isParticulars: true, //总价明细     
+    isOtherLarge: false, //是否选择了其他大件
     particulars_id: 0, //上传大件id
     particulars_name: '', //上传大件名称
     particulars_pic: '/images/uploadPictures.png' //上传大件图片
@@ -402,7 +401,6 @@ Page({
     return Math.round(specialTimeCost);
   },
   getTotalCost: function () {
-    let _this = this;
     let cart = this.data.cart;
     let totalCost = 0;
     let carCost = 0;
@@ -411,7 +409,7 @@ Page({
     let floorCost = 0;
     let parkingCost = 0;
     let specialTimeCost = 0;
-    let flag = false;
+    let isOtherLarge = false;
     cart.forEach(function (val) {
       let id = val.id.toString();
       if (id.startsWith('car_')) {
@@ -424,12 +422,9 @@ Page({
         goodsCost += cost;
         totalCost += cost;
       } else {
-        flag = true;
+        isOtherLarge = true;
       }
     });
-    _this.setData({
-      isOrigin: flag
-    })
     distanceCost = this.getDistanceCost();
     totalCost += distanceCost;
     if (this.data.carNum > 0) {
@@ -459,7 +454,8 @@ Page({
       floorCost: floorCost,
       parkingCost: parkingCost,
       specialTimeCost: specialTimeCost,
-      totalCost: totalCost
+      totalCost: totalCost,
+      isOtherLarge: isOtherLarge
     });
   },
   showProduct: function () {
@@ -794,7 +790,7 @@ Page({
       app.globalData.appointTime = this.data.timeArray[this.data.appointTime];
       app.globalData.carNum = this.data.carNum;
       app.globalData.goodsNum = this.data.goodsNum;
-      app.globalData.isOrigin = this.data.isOrigin;
+      app.globalData.isOtherLarge = this.data.isOtherLarge;
       wx.navigateTo({
         url: '../order/order'
       });

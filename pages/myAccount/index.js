@@ -1,10 +1,5 @@
 // pages/MyAccount/index.js
-<<<<<<< Updated upstream
-
- 
-=======
 const App = getApp();
->>>>>>> Stashed changes
 Page({
 
   /**
