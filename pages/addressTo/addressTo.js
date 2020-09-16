@@ -180,7 +180,9 @@ Page({
     let floor_num = this.data.floor_num;
     if (this.data.stairs_or_elevators == '1' && floor_num > 0) {
       cars.forEach(function (val) {
-        floorCost += (floor_num - val.floor_standard + 1) * val.floor_price * val.num
+        if (floor_num >= val.floor_standard) {
+          floorCost += (floor_num - val.floor_standard + 1) * val.floor_price * val.num
+        }
       });
     }
     this.setData({

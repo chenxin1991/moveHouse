@@ -60,6 +60,7 @@ Page({
     let that = this;
     app._get('category', {}, res => {
       let cart = wx.getStorageSync('cart');
+      console.log('333',cart);
       let goodsNum = 0;
       let carNum = 0;
       //如果存在缓存
@@ -73,6 +74,10 @@ Page({
             carNum += ele.num;
           }
         })
+      }else{
+        this.setData({
+          cart: []
+        });
       }
       this.setData({
         products: res.data.category,

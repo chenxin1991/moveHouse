@@ -164,7 +164,7 @@
 			<view style="margin-left:20rpx;">
 				<text class='money'>￥{{totalCost}}</text>
 				<text wx:if="{{isOtherLarge}}" class="PriceUp">起</text>
-				<text wx:if="{{isParticulars}}"  bindtap="getParticulars" class="particulars">（明细）</text>
+				<text bindtap="getParticulars" class="particulars">（明细）</text>
 			</view>
 		</view>
 		<view>
