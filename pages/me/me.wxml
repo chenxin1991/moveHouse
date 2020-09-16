@@ -4,7 +4,7 @@
 	<view class="userinfo">
 		<view wx:if="{{ isLogin }}" class="user-header-cont">
 			<view class="user-header-avatar" bindtap="toMyAccount">
-				<open-data class="" lang="zh_CN" type="userAvatarUrl"></open-data>
+				<open-data lang="zh_CN" type="userAvatarUrl"></open-data>
 			</view>
 	  	<view class="user-header-text">
 			<open-data class="user-header-cont-name" lang="zh_CN" type="userNickName"></open-data>
