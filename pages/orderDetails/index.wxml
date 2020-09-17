@@ -5,7 +5,6 @@
 		<view class="order-status">
 			<text>{{order.orderStatus}}</text>
 		</view>
-
 		<view>
 			<!-- 地址 -->
 			<view class="address">
@@ -52,7 +51,7 @@
 				<view class="product-words">
 					<text>客户留言</text>
 					<view class="product-words-content">
-					{{customerMsg}}
+						{{order.remark}}
 					</view>
 				</view>
 			</view>
@@ -83,26 +82,24 @@
 					<view class="right">￥<text style="font-size: 30rpx;">{{order.specialTimeCost}}</text></view>
 				</view>
 			</view>
-     <!-- 订单号 -->
-		<view class="orderNumber">
-		<view class="orderNumber-item">
-		<text>订单编号</text>
-		<view>
-		<text>{{orderNumber}}</text>
-			<text style="color:#666;margin-left:10rpx;"  bindtap="copywxtap">复制</text>
-		</view>
-
-		</view>
-			<view class="orderNumber-item">
-		<text>下单时间</text>
-		<text>{{orderTime}}</text>
-		</view>
-			<view class="orderNumber-item">
-		<text>取消时间</text>
-		<text>{{cancelTime}}</text>
-		</view>
-		</view>
-
+			<!-- 订单号 -->
+			<view class="orderNumber">
+				<view class="orderNumber-item">
+					<text>订单编号</text>
+					<view>
+						<text>{{order.number}}</text>
+						<text style="color:#666;margin-left:10rpx;"  bindtap="copywxtap">复制</text>
+					</view>
+				</view>
+				<view class="orderNumber-item">
+					<text>下单时间</text>
+					<text>{{order.create_time}}</text>
+				</view>
+				<view class="orderNumber-item">
+					<text>取消时间</text>
+					<text>{{cancelTime}}</text>
+				</view>
+			</view>
 		</view>
 	</scroll-view>
 

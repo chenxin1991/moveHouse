@@ -1,16 +1,16 @@
 <!-- 我的 -->
 <view class="container">
-<!-- 用户信息 -->
+	<!-- 用户信息 -->
 	<view class="userinfo">
 		<view wx:if="{{ isLogin }}" class="user-header-cont">
 			<view class="user-header-avatar" bindtap="toMyAccount">
 				<open-data lang="zh_CN" type="userAvatarUrl"></open-data>
 			</view>
-	  	<view class="user-header-text">
-			<open-data class="user-header-cont-name" lang="zh_CN" type="userNickName"></open-data>
-			<text wx:if="{{userInfo.mobile}}">{{mobile}}</text>
-			<text wx:if="{{!userInfo.mobile}}" catchtap="bindPhone">绑定手机号></text>
-		</view>
+			<view class="user-header-text">
+				<open-data class="user-header-cont-name" lang="zh_CN" type="userNickName"></open-data>
+				<text wx:if="{{userInfo.mobile}}">{{mobile}}</text>
+				<text wx:if="{{!userInfo.mobile}}" catchtap="bindPhone">绑定手机号></text>
+			</view>
 		</view>
 
 		<view wx:else class="user-header-cont" catchtap="onLogin">
@@ -19,7 +19,7 @@
 			</view>
 			<view class="user-header-text">
 				<view class="user-header-cont-name">点击登录</view>
-			</view>	
+			</view>
 		</view>
 
 	</view>
@@ -92,27 +92,27 @@
 <!-- 司机端 -->
 <view class="order" wx:if="{{isDriver}}">
 	<view class="header" data-type="driverAll" bindtap="driverOrder">
-			<text style="font-weight: bold;">司机端</text>
-			<view style="display:flex;align-items:center;">
-				<text style="margin-right:20rpx;color:#AAAAAA">查看全部订单</text>
-				<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+		<text style="font-weight: bold;">司机端</text>
+		<view style="display:flex;align-items:center;">
+			<text style="margin-right:20rpx;color:#AAAAAA">查看全部订单</text>
+			<image src='/images/dayu.png' style='width:16rpx;height:26rpx;'></image>
+		</view>
+	</view>
+	<view class="content">
+		<view class="item">
+			<view class="icon-item" data-type="driverStart" bindtap="driverOrder">
+				<image src="/images/me-icon/driver_start.png" style="width:72rpx;height:72rpx;"></image>
+				<view class="icon-num" wx:if="{{orderCount.start>0}}"><text>{{orderCount.start}}</text></view>
+				<view class="icon-text"><text>待开工</text></view>
 			</view>
 		</view>
-	<view class="content">
-			<view class="item">
-				<view class="icon-item" data-type="driverStart" bindtap="driverOrder">
-					<image src="/images/me-icon/driver_start.png" style="width:72rpx;height:72rpx;"></image>
-					<view class="icon-num" wx:if="{{orderCount.start>0}}"><text>{{orderCount.start}}</text></view>
-					<view class="icon-text"><text>待开工</text></view>
-				</view>
+		<view class="item">
+			<view class="icon-item" data-type="driverComplete" bindtap="driverOrder">
+				<image src="/images/me-icon/driver_complete.png" style="width:72rpx;height:72rpx;"></image>
+				<view class="icon-num" wx:if="{{orderCount.complete>0}}"><text>{{orderCount.complete}}</text></view>
+				<view class="icon-text"><text>待完工</text></view>
 			</view>
-			<view class="item">
-				<view class="icon-item" data-type="driverComplete" bindtap="driverOrder">
-					<image src="/images/me-icon/driver_complete.png" style="width:72rpx;height:72rpx;"></image>
-					<view class="icon-num" wx:if="{{orderCount.complete>0}}"><text>{{orderCount.complete}}</text></view>
-					<view class="icon-text"><text>待完工</text></view>
-				</view>
-			</view>
+		</view>
 	</view>
 
 </view>

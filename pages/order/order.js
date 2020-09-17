@@ -111,7 +111,8 @@ Page({
       specialTimeCost: this.data.specialTimeCost,
       totalCost: this.data.totalCost,
       isOtherLarge: this.data.isOtherLarge ? 1 : 0,
-      userMobile: this.data.userMobile
+      userMobile: this.data.userMobile,
+      remark: this.data.remark
     }, result => {
       if (result.code === 1) {
         try {

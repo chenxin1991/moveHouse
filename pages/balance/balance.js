@@ -315,7 +315,6 @@ Page({
   onShow: function () {
     let that = this;
     let cartList = wx.getStorageSync('cart');
-    console.log(cartList);
     let len = cartList.length;
     if (len > 0) {
       getCategoryList().then(res => {

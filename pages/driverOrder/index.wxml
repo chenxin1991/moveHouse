@@ -1,12 +1,4 @@
-<!-- 司机端 -->
-<!-- tab切换 -->
-<view class="tab">
-	<block wx:for="{{tabList}}" wx:key="index">
-		<view data-type="{{item.type}}" bindtap="setTabIndex" class="{{type===item.type?'active':''}}">{{item.title}}</view>
-	</block>
-</view>
-
- <!--订单列表 -->
+ <!-- 司机端-我的订单 -->
 <view class="driverOrder-wrapper">
 	<view class="orders-item" wx:for="{{orderList}}" wx:key="index">
 		<view class="orders-item-content">
@@ -28,8 +20,8 @@
 				<view class="textColor">合计：<text class="priceColor">￥{{item.allPrice}}</text></view>
 			</view>
 		</view>
-		<!-- <view class="orders-item-footer">
+		<view class="orders-item-footer">
 			<view class="cancelBtn">取消订单</view>
-		</view> -->
+		</view>
 	</view>
 </view>
