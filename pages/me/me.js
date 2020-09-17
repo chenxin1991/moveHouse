@@ -76,10 +76,14 @@ Page({
       url: '/pages/orderList/index?type=' + e.currentTarget.dataset.type,
     })
   },
-  //我的订单
-  driverOrder() {
+  //司机端-我的订单
+  driverOrder(e) {
+    if (!this.onCheckLogin()) {
+      return false;
+    }
+ 
     wx.navigateTo({
-      url: '/pages/driverOrder/index',
+      url: '/pages/driverOrder/index?type=' + e.currentTarget.dataset.type,
     })
   },
   coupon: function () {

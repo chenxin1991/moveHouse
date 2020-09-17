@@ -1,46 +1,57 @@
 // pages/myOrder/index.js
+const App = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orderList: [{
-      id: '0',
-      status: '',
-      orderTime: '2020-08-27',
-      orderStatus: '已完成',
-      orderImage: [{
-          imageUrl: '/images/tabar-icon/banjia-icon1.png'
-        },
-        {
-          imageUrl: '/images/tabar-icon/banjia-icon1.png'
-        },
-        {
-          imageUrl: '/images/tabar-icon/banjia-icon1.png'
-        },
-        {
-          imageUrl: '/images/tabar-icon/banjia-icon1.png'
-        },
-        {
-          imageUrl: '/images/tabar-icon/banjia-icon1.png'
-        },
-        {
-          imageUrl: '/images/tabar-icon/banjia-icon1.png'
-        },
-      ],
-      goodsNum: '2',
-      allPrice: '178.99'
-    } ]
+    tabList: [{
+      type: 'driverAll',
+      title: "全部"
+    },    
+    {
+      type: 'driverStart',
+      title: "待开工"
+    },
+    {
+      type: 'driverComplete',
+      title: "待完工"
+    } 
+  ],
+  list: [],
+  type: 'driverAll'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+  
+    this.setData({
+      type: options.type
+    });
   },
-
+  //tab切换
+  setTabIndex(e) {
+    this.setData({
+      type: e.currentTarget.dataset.type
+    });
+    // 获取订单列表
+    this.getOrderList(e.target.dataset.type);
+  },
+    /**
+   * 获取订单列表
+   */
+  getOrderList: function (type) {
+    let _this = this;
+    App._get('user/order/list/' + type, {}, function (result) {
+      _this.setData(result.data);
+      result.data.list.length && wx.pageScrollTo({
+        scrollTop: 0
+      });
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -52,7 +63,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getOrderList(this.data.type);
   },
 
   /**
