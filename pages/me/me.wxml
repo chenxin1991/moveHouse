@@ -100,16 +100,16 @@
 	</view>
 	<view class="content">
 		<view class="item">
-			<view class="icon-item" data-type="driverStart" bindtap="driverOrder">
+			<view class="icon-item" data-type="start" bindtap="driverOrder">
 				<image src="/images/me-icon/driver_start.png" style="width:72rpx;height:72rpx;"></image>
-				<view class="icon-num" wx:if="{{orderCount.start>0}}"><text>{{orderCount.start}}</text></view>
+				<view class="icon-num" wx:if="{{driverOrderCount.start>0}}"><text>{{driverOrderCount.start}}</text></view>
 				<view class="icon-text"><text>待开工</text></view>
 			</view>
 		</view>
 		<view class="item">
-			<view class="icon-item" data-type="driverComplete" bindtap="driverOrder">
+			<view class="icon-item" data-type="complete" bindtap="driverOrder">
 				<image src="/images/me-icon/driver_complete.png" style="width:72rpx;height:72rpx;"></image>
-				<view class="icon-num" wx:if="{{orderCount.complete>0}}"><text>{{orderCount.complete}}</text></view>
+				<view class="icon-num" wx:if="{{driverOrderCount.complete>0}}"><text>{{driverOrderCount.complete}}</text></view>
 				<view class="icon-text"><text>待完工</text></view>
 			</view>
 		</view>

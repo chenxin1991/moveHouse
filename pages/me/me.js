@@ -10,6 +10,7 @@ Page({
     isLogin: false,
     userInfo: {},
     orderCount: {},
+    driverOrderCount:{},
     isDriver: false,
     id: 0,
     num: 0,
@@ -81,7 +82,6 @@ Page({
     if (!this.onCheckLogin()) {
       return false;
     }
- 
     wx.navigateTo({
       url: '/pages/driverOrder/index?type=' + e.currentTarget.dataset.type,
     })

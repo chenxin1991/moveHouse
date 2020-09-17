@@ -7,51 +7,59 @@ Page({
    */
   data: {
     tabList: [{
-      type: 'driverAll',
+      type: 'all',
       title: "全部"
     },    
     {
-      type: 'driverStart',
+      type: 'start',
       title: "待开工"
     },
     {
-      type: 'driverComplete',
+      type: 'complete',
       title: "待完工"
     } 
   ],
   list: [],
-  type: 'driverAll'
+  type: 'all'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
     this.setData({
       type: options.type
     });
   },
   //tab切换
   setTabIndex(e) {
+    let type=e.currentTarget.dataset.type
+    // console.log(type)
     this.setData({
-      type: e.currentTarget.dataset.type
+      type 
     });
     // 获取订单列表
-    this.getOrderList(e.target.dataset.type);
+    this.getOrderList(type);
   },
     /**
    * 获取订单列表
    */
   getOrderList: function (type) {
     let _this = this;
-    App._get('user/order/list/' + type, {}, function (result) {
+    App._get('driver/order/list/' + type, {}, function (result) {
       _this.setData(result.data);
       result.data.list.length && wx.pageScrollTo({
         scrollTop: 0
       });
     });
   },
+    //订单详情
+    orderDetails: function (e) {
+      // console.log(e.currentTarget.dataset.id)
+      wx.navigateTo({
+        url: '/pages/driverDetails/index?id=' + e.currentTarget.dataset.id,
+      })
+    },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,4 +1,4 @@
-<!-- 订单列表-订单详情 -->
+<!-- 司机端-订单列表-订单详情 -->
 <view class="orderDetails">
 	<scroll-view scroll-y="true" class="orderDetails-main">
 		<!-- 订单状态 -->
@@ -96,15 +96,10 @@
 					<text>{{order.create_time}}</text>
 				</view>
 				<view class="orderNumber-item">
-					<text>取消时间</text>
-					<text>{{cancelTime}}</text>
+					<text>签到时间</text>
+					<text>{{signTime}}</text>
 				</view>
 			</view>
 		</view>
 	</scroll-view>
-
-	<view class="orderDetails-footer">
-		<view class="cancelBtn">取消订单</view>
-	</view>
-
 </view>

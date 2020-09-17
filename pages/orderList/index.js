@@ -32,7 +32,14 @@ Page({
       }
     ],
     list: [],
-    type: 'all'
+    type: 'all',
+    showModal:false,//取消订单弹框
+    isChecked:false,//是否选中
+    items: [
+      {value: '价格太贵', name: '价格太贵'},
+      {value: '客户预定时间排不下', name: '客户预定时间排不下'} 
+    ],
+    moreValue:''
   },
 
   /**
@@ -48,7 +55,7 @@ Page({
       type: e.currentTarget.dataset.type
     });
     // 获取订单列表
-    this.getOrderList(e.target.dataset.type);
+    this.getOrderList(e.currentTarget.dataset.type);
   },
   /**
    * 获取订单列表
@@ -68,14 +75,69 @@ Page({
       url: '/pages/orderDetails/index?id=' + e.currentTarget.dataset.id,
     })
   },
-  //取消订单
+  //取消订单弹框
   cancelOrder(e){
+  //  console.log(22222)
+    // let list=this.data.list;
+    // let ids=e.currentTarget.dataset.index;
+    // list.splice(ids,1)
  
-    let list=this.data.list;
-    let ids=e.currentTarget.dataset.index;
-    list.splice(ids,1)
-  console.log(this.data.list)
+   this.setData({
+    showModal:true
+   })
+  // console.log(this.data.list)
   },
+
+  //取消订单原因
+  radioChange(e) {
+    let values=e.detail.value
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    const items = this.data.items
+    for (let i = 0, len = items.length; i < len; ++i) {
+      items[i].checked = items[i].value === e.detail.value
+    }
+
+    this.setData({
+      items
+    })
+    if(values===''){
+      wx.showToast({
+        title: '请选择取消订单原因',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+    //取消订单原因-文本框
+  bindTextAreaBlur: function(e) {
+
+    // console.log(e.detail.value)
+    let moreValue=e.detail.value
+    if(moreValue===''){
+      wx.showToast({
+        title: '请输入/选择取消订单原因',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+    //取消订单弹框-确定
+    confirmModal(){
+      wx.showToast({
+        title: '取消订单成功',
+        icon: 'none',
+        duration: 2000
+      })
+      this.setData({
+        showModal:false
+       })
+    },
+    //取消订单弹框-取消
+    closeModal(){
+      this.setData({
+        showModal:false
+       })
+    },
   //去评价
   toEvaluate() {
     wx.navigateTo({

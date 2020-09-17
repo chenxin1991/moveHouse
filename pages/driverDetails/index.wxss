@@ -1,0 +1,262 @@
+@import "../../iconfont/iconfont.wxss";
+
+.mainColor {
+  color: #ff5155;
+}
+
+.titleColor {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.textColor {
+  color: #666;
+}
+
+.textColor2 {
+  color: #999;
+}
+
+.rightMargin {
+  margin: 0 20rpx;
+}
+
+.orderDetails {
+  width: 100%;
+  background: #f8f8f8;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.orderDetails-main {
+  flex: 1;
+}
+
+/* 订单状态 */
+.order-status {
+  width: 100%;
+  height: 140rpx;
+  display: flex;
+  flex-direction: column;
+  background: #ff5155;
+  color: #fff;
+}
+
+.order-status text {
+  padding: 12rpx 40rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-top: 40rpx;
+}
+
+
+/* 内容 */
+/* 地址 */
+.address {
+  margin-bottom: 20rpx;
+}
+
+.addressRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26rpx 20rpx;
+  background: #fff;
+  border-bottom: 2rpx solid #eee;
+}
+
+.addressRow .content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.addressRow .detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.addressRow .detail .name {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20rpx;
+  font-weight: bold;
+}
+
+.addressRow .detail .other {
+  margin-left: 20rpx;
+  padding-top: 10rpx;
+}
+
+.address .distance {
+  height: 80rpx;
+  padding: 0rpx 20rpx;
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+
+.address .distance .num {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fc4141 !important;
+}
+
+/* 物品 */
+.product {
+  background: white;
+  margin-bottom: 16rpx;
+  padding: 0rpx 20rpx;
+}
+
+.product .time {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.product-item {
+  height: 180rpx;
+  padding: 15rpx 15rpx;
+  margin-bottom: 20rpx;
+  background: #f8f8f8;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: #f8f8f8;
+  border-radius: 10rpx;
+}
+
+.product-item .product-item-img {
+  width: 130rpx;
+  height: 130rpx;
+  background: #fff;
+}
+
+.product-item .product-item-img image {
+  width: 130rpx;
+  height: 130rpx;
+}
+
+.product-item .product-item-title {
+  width: 50%;
+  height: 120rpx;
+  margin: 0 20rpx;
+  display: flex;
+}
+
+.product-item .product-item-text {
+  width: 152rpx;
+  display: flex;
+  flex-direction: column;
+justify-content: center;
+}
+
+.product-item .product-item-text text {
+  padding: 10rpx 0rpx;
+  text-align: right;
+}
+
+.product .product-words {
+  display: flex;
+  flex-direction: row;
+  padding: 10rpx 0rpx;
+}
+
+.product .product-words text {
+  width: 140rpx;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  color: #999;
+}
+
+.product-words-content {
+  display: flex;
+  flex: 1;
+  line-height: 60rpx;
+}
+
+/* 明细 */
+.costList {
+  background: white;
+  padding: 20rpx 20rpx;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.cost {
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 0rpx;
+}
+
+.cost .right {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #fc4141 !important;
+}
+
+.totalCost {
+  width: 100%;
+  height: 96rpx;
+  background-color: #fafafa;
+  position: fixed;
+  bottom: 0;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  border-top: 1rpx solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.totalCost .end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.totalCost .end .num {
+  font-weight: bold;
+  font-size: 35rpx;
+  color: #fc4141 !important;
+}
+
+.totalCost .end .submit {
+  color: #fff;
+  font-size: 30rpx;
+  width: 226rpx;
+  height: 70rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 70rpx;
+  margin-left: 22rpx;
+  padding: 0;
+  background-color: #e93323 !important;
+}
+/* 订单号 */
+.orderNumber{
+  width: 100%;
+  height: 220rpx;
+  background: #fff;
+  margin: 20rpx 0;
+  padding: 20rpx 0;
+}
+.orderNumber .orderNumber-item{
+width: 100%;
+height: 60rpx;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20rpx;
+ }
+ .orderNumber .orderNumber-item text{
+   color: #999;
+ }
+ 

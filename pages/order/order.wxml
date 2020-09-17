@@ -46,8 +46,8 @@
 			<input style="width:80%;font-size:30rpx;" placeholder="填写手机号（必填）" bindinput='getMobile' value="{{mobile}}"/>
 		</view>
 		<view class="words">
-			<text class="title">留言</text>
-			<input style="width:80%;font-size:30rpx;" placeholder="填写留言" bindinput='getRemark' />
+			<text class="title">备注</text>
+			<input style="width:80%;font-size:30rpx;" placeholder="填写备注" bindinput='getRemark' />
 		</view>
 	</view>
 	<view class="bill">
