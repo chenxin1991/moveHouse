@@ -31,7 +31,7 @@
 				</view>
 			</view>
 			<view class="orders-item-footer" wx:if="{{item.orderStatus==='待确认'|| item.orderStatus==='待派单'}}">
-				<view class="cancelBtn" bindtap="cancelOrder" data-id="{{item.id}}">取消订单</view>
+				<view class="cancelBtn" bindtap="cancelOrder" data-id="{{item.id}}" data-type="{{type}}">取消订单</view>
 			</view>
 			<view class="orders-item-footer" wx:if="{{item.orderStatus==='待评价'}}">
 				<view class="cancelBtn" bindtap="toEvaluate">评价</view>

@@ -95,7 +95,8 @@ Page({
       showModal: true,
       moreValue: '',
       checkValue: '',
-      id: e.currentTarget.dataset.id
+      id: e.currentTarget.dataset.id,
+      type: e.currentTarget.dataset.type
     })
   },
 
@@ -158,6 +159,7 @@ Page({
         _this.setData({
           showModal: false
         });
+        _this.getOrderList(_this.data.type);
       }
     });
   },

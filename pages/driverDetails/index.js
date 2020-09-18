@@ -42,7 +42,38 @@ Page({
   },
   //点击签到
   clickSign() {
-
+    let that = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        let from = that.data.order.routes[0].location;
+        let url = 'https://apis.map.qq.com/ws/direction/v1/driving/?from=' + res.latitude + ',' + res.longitude + '&to=' + from.lat + ',' + from.lng + '&output=json&key=OI7BZ-EGOWU-H5YVZ-4HLVW-MDUUQ-ZCFGJ';
+        wx.request({
+          url: url,
+          method: "GET",
+          success: res => {
+            let distance = res.data.result.routes[0].distance;
+            if (distance > 100) {
+              wx.showToast({
+                title: '请到起点附近签到',
+                icon: 'none',
+                duration: 2000
+              });
+            } else {
+              App._post_form('user/order/signIn/' + that.data.order.id, {}, result => {
+                if (result.code === 1) {
+                  wx.showToast({
+                    title: '签到成功',
+                    icon: 'none',
+                    duration: 2000
+                  });
+                }
+              });
+            }
+          }
+        });
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -55,29 +86,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let that = this;
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        let from = that.data.order.routes[0].location;
-        let url = 'https://apis.map.qq.com/ws/direction/v1/driving/?from=' + res.latitude + ',' + res.longitude + '&to=' + from.lat + ',' + from.lng + '&output=json&key=OI7BZ-EGOWU-H5YVZ-4HLVW-MDUUQ-ZCFGJ';
-        wx.request({
-          url: url,
-          method: "GET",
-          success: res => {
-            let distance = Math.round(res.data.result.routes[0].distance / 1000);
-            wx.showToast({
-              title: '距离为' + distance,
-              icon: 'none',
-              duration: 2000
-            });
-            // that.setData({
-            //   distance: Math.round(res.data.result.routes[0].distance / 1000)
-            // });
-          }
-        });
-      }
-    })
+
   },
 
   /**
