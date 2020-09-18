@@ -1,11 +1,13 @@
 <!-- 司机端-我的订单 -->
 <!-- tab切换 -->
 <view class="tab">
+<view class="tab-content">
 	<block wx:for="{{tabList}}" wx:key="index">
-		<view data-type="{{item.type}}" bindtap="setTabIndex" >
-		<text class="{{type===item.type?'active':''}}">{{item.title}}</text>
+		<view  data-type="{{item.type}}" bindtap="setTabIndex" class="{{type===item.type?'active':''}}">
+			<text class="{{type===item.type?'active':''}}">{{item.title}}</text>
 		</view>
 	</block>
+</view>
 </view>
 
 <view class="driverOrder-wrapper">
