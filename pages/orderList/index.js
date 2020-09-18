@@ -135,7 +135,7 @@ Page({
     }
     if (checkValue === '3' && isNull(moreValue)) {
       wx.showToast({
-        title: '请选择/输入取消订单原因',
+        title: '请输入取消订单原因',
         icon: 'none',
         duration: 2000
       });

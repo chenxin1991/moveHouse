@@ -1,6 +1,6 @@
 <!-- 订单列表-订单详情 -->
 <view class="orderDetails">
-	<scroll-view scroll-y="true" class="orderDetails-main">
+	<scroll-view scroll-y="true"   class="{{order.orderStatus==='待确认'|| order.orderStatus==='待派单'?'marginBottom':''}}  orderDetails-main">
 		<!-- 订单状态 -->
 		<view class="order-status">
 			<text>{{order.orderStatus}}</text>
@@ -103,8 +103,37 @@
 		</view>
 	</scroll-view>
 
-	<view class="orderDetails-footer">
-		<view class="cancelBtn">取消订单</view>
+	<view class="orderDetails-footer" wx:if="{{order.orderStatus==='待确认'|| order.orderStatus==='待派单'}}">
+		<view class="cancelBtn" bindtap="cancelOrder" data-id="{{order.id}}">取消订单</view>
 	</view>
+</view>
 
+<!-- 取消订单弹框 -->
+<view class="modalDlg-mask" wx:if="{{showModal}}"></view>
+<view class="modalDlg" wx:if="{{showModal}}">
+	<view class="page-body">
+		<form bindsubmit="submit">
+			<view class="modalDlg-title">
+				<text>取消订单原因</text>
+			</view>
+			<view class="modalDlg-content">
+				<view class="modalDlg-content-item">
+					<radio-group bindchange="radioChange">
+						<label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="index">
+							<view class="weui-cell__hd">
+								<radio value="{{item.value}}" color="#ff5155" />
+							</view>
+							<view wx:if="{{item.value!=='3'}}" class="weui-cell__bd">{{item.name}}</view>
+							<text wx:if="{{item.value==='3'}}" style="width:150rpx;">{{item.name}}</text>
+							<textarea wx:if="{{item.value==='3'}}" bindinput="bindTextArea" auto-height="true" placeholder="请输入其他原因"></textarea>
+						</label>
+					</radio-group>
+				</view>
+			</view>
+			<view class="modalDlg-footer">
+				<view bindtap="closeModal" class="modalDlg-btn closeBtn">取消</view>
+				<view bindtap="confirmModal" form-type="submit" class="modalDlg-btn confirmBtn">确定</view>
+			</view>
+		</form>
+	</view>
 </view>
