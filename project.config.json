@@ -168,6 +168,13 @@
 					"pathName": "pages/myAccount/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/driverOrder/index",
+					"pathName": "pages/driverOrder/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

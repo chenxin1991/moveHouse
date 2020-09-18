@@ -3,7 +3,10 @@
 	<scroll-view scroll-y="true" class="orderDetails-main">
 		<!-- 订单状态 -->
 		<view class="order-status">
-			<text>{{order.orderStatus}}</text>
+			<text  class="order-status-text">{{order.orderStatus}}</text>
+			<view class="order-sign" wx:if="{{order.orderStatus==='待开工'}}" bindtap="clickSign">
+			<text>点击签到</text>
+			</view>
 		</view>
 		<view>
 			<!-- 地址 -->

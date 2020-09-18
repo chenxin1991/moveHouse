@@ -39,18 +39,31 @@
   width: 100%;
   height: 140rpx;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   background: #ff5155;
   color: #fff;
 }
 
-.order-status text {
+.order-status .order-status-text{
+  width: 30%;
   padding: 12rpx 40rpx;
   font-size: 32rpx;
   font-weight: 600;
-  margin-top: 40rpx;
 }
-
+.order-status .order-sign{
+  width: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 20rpx;
+  color: #fff;
+  border: 2rpx solid #fff;
+  border-radius: 40rpx;
+  background: #ff5155;
+  margin-right: 40rpx;
+  font-weight: bold;
+ }
 
 /* 内容 */
 /* 地址 */
