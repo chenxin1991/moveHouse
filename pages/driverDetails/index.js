@@ -52,7 +52,29 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        let from = that.data.order.routes[0].location;
+        let url = 'https://apis.map.qq.com/ws/direction/v1/driving/?from=' + res.latitude + ',' + res.longitude + '&to=' + from.lat + ',' + from.lng + '&output=json&key=OI7BZ-EGOWU-H5YVZ-4HLVW-MDUUQ-ZCFGJ';
+        wx.request({
+          url: url,
+          method: "GET",
+          success: res => {
+            let distance = Math.round(res.data.result.routes[0].distance / 1000);
+            wx.showToast({
+              title: '距离为' + distance,
+              icon: 'none',
+              duration: 2000
+            });
+            // that.setData({
+            //   distance: Math.round(res.data.result.routes[0].distance / 1000)
+            // });
+          }
+        });
+      }
+    })
   },
 
   /**

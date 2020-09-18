@@ -1,14 +1,13 @@
 <!-- tab切换 -->
 <view class="tab">
-<view class="tab-content">
-	<block wx:for="{{tabList}}" wx:key="index">
-		<view  data-type="{{item.type}}" bindtap="setTabIndex" class="{{type===item.type?'active':''}}">
-			<text class="{{type===item.type?'active':''}}">{{item.title}}</text>
-		</view>
-	</block>
+	<view class="tab-content">
+		<block wx:for="{{tabList}}" wx:key="index">
+			<view data-type="{{item.type}}" bindtap="setTabIndex" class="{{type===item.type?'active':''}}">
+				<text class="{{type===item.type?'active':''}}">{{item.title}}</text>
+			</view>
+		</block>
+	</view>
 </view>
-</view>
-
 
 <view class="wrapper">
 	<!-- 订单列表 -->
@@ -32,7 +31,7 @@
 				</view>
 			</view>
 			<view class="orders-item-footer" wx:if="{{item.orderStatus==='待确认'|| item.orderStatus==='待派单'}}">
-				<view class="cancelBtn" bindtap="cancelOrder">取消订单</view>
+				<view class="cancelBtn" bindtap="cancelOrder" data-id="{{item.id}}">取消订单</view>
 			</view>
 			<view class="orders-item-footer" wx:if="{{item.orderStatus==='待评价'}}">
 				<view class="cancelBtn" bindtap="toEvaluate">评价</view>
@@ -54,7 +53,6 @@
 			<view class="modalDlg-title">
 				<text>取消订单原因</text>
 			</view>
-
 			<view class="modalDlg-content">
 				<view class="modalDlg-content-item">
 					<radio-group bindchange="radioChange">
@@ -64,12 +62,11 @@
 							</view>
 							<view wx:if="{{item.value!=='3'}}" class="weui-cell__bd">{{item.name}}</view>
 							<text wx:if="{{item.value==='3'}}" style="width:150rpx;">{{item.name}}</text>
-							<textarea wx:if="{{item.value==='3'}}" bindinput="bindTextArea" auto-height="true" placeholder="请输入其他原因" />
-							</label>
+							<textarea wx:if="{{item.value==='3'}}" bindinput="bindTextArea" auto-height="true" placeholder="请输入其他原因"></textarea>
+						</label>
 					</radio-group>
 				</view>
-</view>
-
+			</view>
 			<view class="modalDlg-footer">
 				<view bindtap="closeModal" class="modalDlg-btn closeBtn">取消</view>
 				<view bindtap="confirmModal" form-type="submit" class="modalDlg-btn confirmBtn">确定</view>
