@@ -28,7 +28,7 @@ Page({
     mobile: '',
     userMobile: '',
     remark: '',
-    isOtherLarge: false //价格'起'
+    isOtherLarge: false, //价格'起'
   },
   /**
    * 生命周期函数--监听页面加载
@@ -66,9 +66,11 @@ Page({
       mobile: e.detail.value
     })
   },
-  getRemark: function (e) {
+   //备注文本框内容
+   bindTextArea: function (e) {
+    let remark = e.detail.value
     this.setData({
-      remark: e.detail.value
+      remark
     })
   },
   showProduct: function () {

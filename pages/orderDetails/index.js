@@ -41,6 +41,7 @@ Page({
   getOrderDetail: function (id) {
     let _this = this;
     App._get('user/order/detail/' + id, {}, function (result) {
+      console.log(result.data)
       _this.setData(result.data);
     });
   },
@@ -145,6 +146,8 @@ closeModal() {
     checkValue: ''
   })
 },
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

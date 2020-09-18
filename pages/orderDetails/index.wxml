@@ -2,7 +2,7 @@
 <view class="orderDetails">
 	<scroll-view scroll-y="true"   class="{{order.orderStatus==='待确认'|| order.orderStatus==='待派单'?'marginBottom':''}}  orderDetails-main">
 		<!-- 订单状态 -->
-		<view class="order-status">
+		<view class="order-status" >
 			<text>{{order.orderStatus}}</text>
 		</view>
 		<view>
@@ -97,7 +97,7 @@
 				</view>
 				<view class="orderNumber-item">
 					<text>取消时间</text>
-					<text>{{cancelTime}}</text>
+					<text>{{order.cancelTime}}</text>
 				</view>
 			</view>
 		</view>

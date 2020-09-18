@@ -8,7 +8,8 @@ Page({
   data: {
     order: {},
     array1: ['电梯', '楼梯'],
-    array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入']
+    array2: ['低于30米', '30-50米', '50-100米', '100米以上', '地下室出入'],
+    signText:false
   },
 
   /**
@@ -40,6 +41,18 @@ Page({
       }
     })
   },
+    //提示司机未签到
+ botSign(){
+   let _this=this
+  let order=_this.data.order
+   if(order.orderStatus==='待开工'){
+    wx.showToast({
+      title: '检测到你还未签到，请点击签到',
+      icon: 'none',
+      duration: 2000
+    });
+   }
+ },
   //点击签到
   clickSign() {
     let that = this;
@@ -67,6 +80,10 @@ Page({
                     icon: 'none',
                     duration: 2000
                   });
+                  
+                  this.setData({
+                    signText:true
+                  })
                 }
               });
             }
@@ -75,6 +92,7 @@ Page({
       }
     })
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -86,7 +104,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+  this.botSign()
   },
 
   /**

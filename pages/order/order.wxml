@@ -1,4 +1,4 @@
-<!-- 确认订单 -->
+<!--去结算-确认订单 -->
 <view>
 	<view class="address">
 		<view class="addressRow">
@@ -47,7 +47,7 @@
 		</view>
 		<view class="words">
 			<text class="title">备注</text>
-			<input style="width:80%;font-size:30rpx;" placeholder="填写备注" bindinput='getRemark' />
+			<textarea  bindinput="bindTextArea" auto-height="true" placeholder="填写备注"></textarea>
 		</view>
 	</view>
 	<view class="bill">
