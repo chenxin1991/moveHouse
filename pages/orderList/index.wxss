@@ -203,22 +203,21 @@ display: flex;
 align-items: center;
 justify-content: space-between;
  }
- .modalDlg-content .content-item2{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16rpx 20rpx;
-   }
+
  .modalDlg-content .modalDlg-content-item radio-group{
    width: 100%;
    color: #666;
  }
  .modalDlg-content .modalDlg-content-item .weui-check__label{
 display: flex;
-justify-content: space-between;
 }
+.modalDlg-content .modalDlg-content-item .weui-cell__bd{
+  line-height: 48rpx;
+  }
 .modalDlg-content .modalDlg-content-item .weui-cell{
-  margin: 20rpx;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: row;
 }
 
 .modalDlg-footer {

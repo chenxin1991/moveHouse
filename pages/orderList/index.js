@@ -1,5 +1,9 @@
 // pages/ordersTab/index.js
 const App = getApp();
+
+function isNull(str) {
+  if (str == "" || str == undefined || str == null) return true;
+}
 Page({
 
   /**
@@ -34,11 +38,12 @@ Page({
     list: [],
     type: 'all',
     showModal:false,//取消订单弹框
-    isChecked:false,//是否选中
     items: [
       {value: '价格太贵', name: '价格太贵'},
-      {value: '客户预定时间排不下', name: '客户预定时间排不下'} 
+      {value: '客户预定时间排不下', name: '客户预定时间排不下'},
+      {value:'3',name:'其他'} 
     ],
+    checkValue:'',
     moreValue:''
   },
 
@@ -77,65 +82,77 @@ Page({
   },
   //取消订单弹框
   cancelOrder(e){
-  //  console.log(22222)
-    // let list=this.data.list;
-    // let ids=e.currentTarget.dataset.index;
-    // list.splice(ids,1)
- 
    this.setData({
-    showModal:true
+    showModal:true,
+    moreValue:'',
+    checkValue:''
    })
-  // console.log(this.data.list)
   },
 
   //取消订单原因
   radioChange(e) {
+    let _this=this
     let values=e.detail.value
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
-    const items = this.data.items
+    // console.log('radio发生change事件，携带value值为：', values)
+    const items = _this.data.items
     for (let i = 0, len = items.length; i < len; ++i) {
-      items[i].checked = items[i].value === e.detail.value
+      items[i].checked = items[i].value === values
     }
-
-    this.setData({
-      items
-    })
-    if(values===''){
-      wx.showToast({
-        title: '请选择取消订单原因',
-        icon: 'none',
-        duration: 2000
+      _this.setData({
+        checkValue:values
       })
-    }
   },
-    //取消订单原因-文本框
-  bindTextAreaBlur: function(e) {
-
+    //取消订单原因-文本框内容
+    bindTextArea: function(e) {
     // console.log(e.detail.value)
     let moreValue=e.detail.value
-    if(moreValue===''){
-      wx.showToast({
-        title: '请输入/选择取消订单原因',
-        icon: 'none',
-        duration: 2000
+      this.setData({
+        moreValue
       })
-    }
   },
     //取消订单弹框-确定
     confirmModal(){
-      wx.showToast({
-        title: '取消订单成功',
-        icon: 'none',
-        duration: 2000
-      })
-      this.setData({
-        showModal:false
-       })
+      let _this=this
+      let moreValue=_this.data.moreValue
+      let checkValue=_this.data.checkValue
+      // console.log(moreValue)
+      // console.log(checkValue)
+      if(isNull(checkValue)){
+        wx.showToast({
+          title: '请选择/输入取消订单原因',
+          icon: 'none',
+          duration: 2000
+        });
+        return false;
+      }
+      if(checkValue==='3' && isNull(moreValue)){
+        wx.showToast({
+          title: '请选择/输入取消订单原因',
+          icon: 'none',
+          duration: 2000
+        });
+        return false;
+      }
+    
+        wx.showToast({
+          title: '取消订单成功',
+          icon: 'none',
+          duration: 2000
+        })
+        _this.setData({
+          showModal:false,
+          moreValue,
+          checkValue 
+         })
+      
     },
     //取消订单弹框-取消
     closeModal(){
-      this.setData({
-        showModal:false
+      let _this=this
+      _this.setData({
+        showModal:false,
+        moreValue:'',
+        checkValue:''
        })
     },
   //去评价

@@ -8,66 +8,63 @@
 </view>
 
 <view class="wrapper">
-<!-- 订单列表 -->
- <block  wx:if="{{list.length>0}}">
-	<view class="orders-item" wx:for="{{list}}" wx:key="index">
-		<view class="orders-item-content">
-			<view class="orders-item-title">
-				<text class="titleColor">下单时间：{{item.create_time}}</text>
-				<text class="mainColor">{{item.orderStatus}}</text>
-			</view>
-			<view class="orders-item-goods" data-id="{{item.id}}" bindtap="orderDetails">
-				<view>		
-					<view class="goods-image" wx:for="{{item.carsAndGoods}}" wx:key="index" wx:if="{{index<4}}">
-						<image mode="aspectFill" src="{{item.image_url}}"></image>
-					</view>
+	<!-- 订单列表 -->
+	<block wx:if="{{list.length>0}}">
+		<view class="orders-item" wx:for="{{list}}" wx:key="index">
+			<view class="orders-item-content">
+				<view class="orders-item-title">
+					<text class="titleColor">下单时间：{{item.create_time}}</text>
+					<text class="mainColor">{{item.orderStatus}}</text>
 				</view>
-				<text class="textColor">共{{item.carsAndGoods.length}}件</text>
+				<view class="orders-item-goods" data-id="{{item.id}}" bindtap="orderDetails">
+					<view>
+						<view class="goods-image" wx:for="{{item.carsAndGoods}}" wx:key="index" wx:if="{{index<4}}">
+							<image mode="aspectFill" src="{{item.image_url}}"></image>
+						</view>
+					</view>
+					<text class="textColor">共{{item.carsAndGoods.length}}件</text>
+				</view>
+				<view class="orders-item-total">
+					<view class="textColor">合计：<text class="priceColor">￥{{item.totalCost}}</text></view>
+				</view>
 			</view>
-			<view class="orders-item-total">
-				<view class="textColor">合计：<text class="priceColor">￥{{item.totalCost}}</text></view>
+			<view class="orders-item-footer" wx:if="{{item.orderStatus==='待确认'|| item.orderStatus==='待派单'}}">
+				<view class="cancelBtn" bindtap="cancelOrder">取消订单</view>
 			</view>
-		</view>
-		<view class="orders-item-footer" wx:if="{{item.orderStatus==='待确认'|| item.orderStatus==='待派单'}}">
-			<view class="cancelBtn" bindtap="cancelOrder">取消订单</view>
-		</view>
 			<view class="orders-item-footer" wx:if="{{item.orderStatus==='待评价'}}">
-			<view class="cancelBtn" bindtap="toEvaluate">评价</view>
+				<view class="cancelBtn" bindtap="toEvaluate">评价</view>
+			</view>
 		</view>
-	</view>
 	</block>
 	<!-- 无订单 -->
 	<view class="no-order" wx:else>
-  <image class="no-order-img" src="/images/me-icon/noOrder.png"></image>
-	<text class="no-order-text">当前暂无订单~</text>
+		<image class="no-order-img" src="/images/me-icon/noOrder.png"></image>
+		<text class="no-order-text">当前暂无订单~</text>
 	</view>
 </view>
 
 <!-- 取消订单弹框 -->
-<view class="modalDlg-mask"   wx:if="{{showModal}}"></view>
+<view class="modalDlg-mask" wx:if="{{showModal}}"></view>
 <view class="modalDlg" wx:if="{{showModal}}">
 	<view class="page-body">
 		<form bindsubmit="submit">
-		<view class="modalDlg-title">
-		<text>取消订单原因</text>
-		</view>
- 
-<view class="modalDlg-content">
-  <view  class="modalDlg-content-item">
-	<radio-group bindchange="radioChange">
-        <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="index">
-          <view class="weui-cell__hd">
-            <radio value="{{item.value}}" color="#ff5155" checked="true"/>
-          </view>
-          <view class="weui-cell__bd">{{item.name}}</view>
-        </label>
-      </radio-group>
-	</view>
- 
- <view class="modalDlg-content-item content-item2">
- 	<text style="width:150rpx;">其他：</text>
-	  <textarea bindblur="bindTextAreaBlur" auto-height="true" placeholder="请输入其他原因" />
- </view>
+			<view class="modalDlg-title">
+				<text>取消订单原因</text>
+			</view>
+
+			<view class="modalDlg-content">
+				<view class="modalDlg-content-item">
+					<radio-group bindchange="radioChange">
+						<label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="index">
+							<view class="weui-cell__hd">
+								<radio value="{{item.value}}" color="#ff5155" />
+							</view>
+							<view wx:if="{{item.value!=='3'}}" class="weui-cell__bd">{{item.name}}</view>
+							<text wx:if="{{item.value==='3'}}" style="width:150rpx;">{{item.name}}</text>
+							<textarea wx:if="{{item.value==='3'}}" bindinput="bindTextArea" auto-height="true" placeholder="请输入其他原因" />
+							</label>
+					</radio-group>
+				</view>
 </view>
 
 			<view class="modalDlg-footer">

@@ -58,7 +58,7 @@
 			<!-- 明细 -->
 			<view class="costList">
 				<view class="cost">
-					<text>用车<text style="font-size: 24rpx;">(小家具、小家电、杂物{{carNum}}车内免费)</text></text>
+					<text>用车<text style="font-size: 24rpx;">(小家具、小家电、杂物{{order.carNum}}车内免费)</text></text>
 					<view class="right">￥<text style="font-size: 30rpx;">{{order.carCost}}</text></view>
 				</view>
 				<view class="cost">

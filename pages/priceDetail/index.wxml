@@ -24,7 +24,7 @@
 		<!-- 暂无数据 -->
   <view  class="car-reminder2" wx:else>
 	<image style="width:100rpx;height:100rpx;" src="/images/nodata2.png"></image>
-	<text>暂无数据，请选择车辆</text>
+	<text>暂无数据</text>
 	</view>
 
 		<view class="price-item item2 price-text">
@@ -41,7 +41,7 @@
 	<!-- 暂无数据 -->
   <view  class="car-reminder2" wx:else>
 	<image style="width:100rpx;height:100rpx;" src="/images/nodata2.png"></image>
-	<text>暂无数据，请选择物品</text>
+	<text>暂无数据</text>
 	</view>
 		<!-- 额外费用 -->
 		<view class="price-item item1">

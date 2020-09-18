@@ -91,7 +91,7 @@
 </view>
 <!-- 司机端 -->
 <view class="order" wx:if="{{isDriver}}">
-	<view class="header" data-type="driverAll" bindtap="driverOrder">
+	<view class="header" data-type="all" bindtap="driverOrder">
 		<text style="font-weight: bold;">司机端</text>
 		<view style="display:flex;align-items:center;">
 			<text style="margin-right:20rpx;color:#AAAAAA">查看全部订单</text>
