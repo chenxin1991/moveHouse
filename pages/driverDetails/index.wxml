@@ -99,9 +99,25 @@
 					<text>下单时间</text>
 					<text>{{order.create_time}}</text>
 				</view>
-				<view class="orderNumber-item">
-					<text>签到时间</text>
+				<view class="orderNumber-item" wx:if="{{order.confirmTime!=='0000-00-00 00:00:00'}}">
+					<text>确认时间</text>
+					<text>{{order.confirmTime}}</text>
+				</view>
+				<view class="orderNumber-item" wx:if="{{order.dispatchTime!=='0000-00-00 00:00:00'}}">
+					<text>派单时间</text>
+					<text>{{order.dispatchTime}}</text>
+				</view>
+				<view class="orderNumber-item" wx:if="{{order.signTime!=='0000-00-00 00:00:00'}}">
+					<text>开工时间</text>
 					<text>{{order.signTime}}</text>
+				</view>
+				<view class="orderNumber-item" wx:if="{{order.finishTime!=='0000-00-00 00:00:00'}}">
+					<text>完工时间</text>
+					<text>{{order.finishTime}}</text>
+				</view>
+				<view class="orderNumber-item" wx:if="{{order.cancelTime!=='0000-00-00 00:00:00'}}">
+					<text>取消时间</text>
+					<text>{{order.cancelTime}}</text>
 				</view>
 			</view>
 		</view>
