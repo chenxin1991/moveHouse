@@ -34,7 +34,7 @@
 				<view class="cancelBtn" bindtap="cancelOrder" data-id="{{item.id}}" data-type="{{type}}">取消订单</view>
 			</view>
 			<view class="orders-item-footer" wx:if="{{item.orderStatus==='待完工'}}">
-				<view class="cancelBtn" bindtap="modifyTotalAmount" data-item="{{item}}" data-amountid="{{item.id}}">修改总金额</view>
+				<view class="cancelBtn" bindtap="modifyTotalAmount" data-item="{{item}}" data-type="{{type}}" data-amountid="{{item.id}}">修改总金额</view>
 			</view>
 			<view class="orders-item-footer" wx:if="{{item.orderStatus==='待评价'}}">
 				<view class="cancelBtn" bindtap="toEvaluate">评价</view>

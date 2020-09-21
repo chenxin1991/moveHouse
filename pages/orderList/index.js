@@ -194,7 +194,8 @@ Page({
       isReduction:false,
       remarkReason:'',
       AmountItem:e.currentTarget.dataset.item,
-      amountid: e.currentTarget.dataset.amountid
+      amountid: e.currentTarget.dataset.amountid,
+      type: e.currentTarget.dataset.type
      })
   },
      //修改总金额-输入框
@@ -289,6 +290,7 @@ Page({
           actuallyAmount,
           remarkReason
          })      
+         _this.getOrderList(_this.data.amounttype);//刷新数据
       }
     });
   },
