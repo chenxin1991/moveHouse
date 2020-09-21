@@ -80,9 +80,10 @@ Page({
                     icon: 'none',
                     duration: 2000
                   });
-                  
+                  let signText=that.data.signText
+                  signText=true
                   this.setData({
-                    signText:true
+                    signText 
                   })
                 }
               });

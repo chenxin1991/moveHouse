@@ -54,24 +54,21 @@
   min-height: 100vh;
   background: #f8f8f8;
 }
-.orders-item{
+.orders-item {
   width: 100%;
-  min-height: 332rpx;
   display: flex;
   flex-direction: column;
   background: #fff;
   margin-top: 20rpx;
-  position: relative;
 }
-.orders-item-content{
+
+.orders-item-content {
   width: 100%;
   height: 332rpx;
   border-bottom: 4rpx solid #f8f8f8;
-  position: absolute;
-  top: 0rpx;
-
 }
-.orders-item-title{
+
+.orders-item-title {
   width: 94%;
   height: 80rpx;
   margin: 0 auto;
@@ -79,33 +76,39 @@
   justify-content: space-between;
   align-items: center;
 }
-.orders-item-goods{
+
+.orders-item-goods {
   width: 94%;
   height: 170rpx;
   margin: 0 auto;
   background: #f7f7f7;
   border: 1rpx solid #f7f7f7;
   border-radius: 8rpx;
- display: flex;
- justify-content: space-between;
- align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.goods-image{
+
+.goods-image {
   width: 120rpx;
   height: 120rpx;
   border: 1rpx solid #fff;
+  border-radius: 8rpx;
   background: #fff;
   margin-left: 20rpx;
   float: left;
 }
-.goods-image image{
+
+.goods-image image {
   width: 120rpx;
   height: 120rpx;
 }
-.orders-item-goods text{
+
+.orders-item-goods text {
   margin: 0 10rpx;
 }
-.orders-item-total{
+
+.orders-item-total {
   width: 94%;
   height: 80rpx;
   margin: 0 auto;
@@ -113,6 +116,26 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+.orders-item-footer {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.cancelBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 20rpx;
+  border: 1rpx solid #ccc;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+}
+
 /* 没有订单 */
 .no-order{
   width: 60%;

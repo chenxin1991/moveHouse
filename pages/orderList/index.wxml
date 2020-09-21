@@ -34,7 +34,7 @@
 				<view class="cancelBtn" bindtap="cancelOrder" data-id="{{item.id}}" data-type="{{type}}">取消订单</view>
 			</view>
 			<view class="orders-item-footer" wx:if="{{item.orderStatus==='待完工'}}">
-				<view class="cancelBtn2" bindtap="modifyTotalOrder" data-id="{{item.id}}" data-type="{{type}}">修改总金额</view>
+				<view class="cancelBtn" bindtap="modifyTotalAmount" data-item="{{item}}" data-amountid="{{item.id}}">修改总金额</view>
 			</view>
 			<view class="orders-item-footer" wx:if="{{item.orderStatus==='待评价'}}">
 				<view class="cancelBtn" bindtap="toEvaluate">评价</view>
@@ -73,6 +73,40 @@
 			<view class="modalDlg-footer">
 				<view bindtap="closeModal" class="modalDlg-btn closeBtn">取消</view>
 				<view bindtap="confirmModal" form-type="submit" class="modalDlg-btn confirmBtn">确定</view>
+			</view>
+		</form>
+	</view>
+</view>
+
+<!-- 修改总金额弹框 -->
+<view class="modalDlg-mask" wx:if="{{AmountModal}}"></view>
+<view class="modalDlg" wx:if="{{AmountModal}}">
+	<view class="page-body">
+		<form bindsubmit="submit">
+			<view class="modalDlg-title">
+				<text>修改总金额</text>
+			</view>
+			<view class="modalDlg-content">
+				<view class="modalDlg-content-item2 item-input">
+				   <text>实付金额：</text>
+				   <input class="weui-input" type="number" focus="true"  value="{{actuallyAmount}}" bindinput="actuallyInput" placeholder="请输入金额" />
+				</view>
+					<view class="modalDlg-content-item2 item-input" wx:if="{{isAdditional}}">
+				   <text>额外增加：</text>
+					 <text>￥{{addAmount}}</text>
+				</view>
+					<view class="modalDlg-content-item2 item-input" wx:if="{{isReduction}}">
+				   <text>额外减少：</text>
+					 <text>￥{{reduceAmount}}</text>
+				</view>
+						<view class="modalDlg-content-item2 item-input">
+				   <text style="width:150rpx;">备注：</text>
+				  	<textarea bindinput="AmountTextArea" value="{{remarkReason}}" auto-height="true" placeholder="请填写备注"></textarea>
+				</view>
+			</view>
+			<view class="modalDlg-footer">
+				<view bindtap="closeAmountModal" class="modalDlg-btn closeBtn">取消</view>
+				<view bindtap="confirmAmountModal" form-type="submit" class="modalDlg-btn confirmBtn">确定</view>
 			</view>
 		</form>
 	</view>

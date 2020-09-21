@@ -6,7 +6,7 @@
 			<text  class="order-status-text">{{order.orderStatus}}</text>
 			<view class="order-sign" wx:if="{{order.orderStatus==='待开工'}}" bindtap="clickSign">
 				<text>点击签到</text>
-			</view>
+			</view> 
 		 <text  wx:if="{{signText}}" style="font-weight: bold;margin-right:20rpx;">签到成功！</text>
 		</view>
 		<view>
