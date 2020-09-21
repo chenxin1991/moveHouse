@@ -88,15 +88,15 @@
 			</view>
 			<view class="modalDlg-content">
 				<view class="modalDlg-content-item2 item-input">
-				   <text>实付金额：</text>
+				   <text  style="width:150rpx;">实付金额：</text>
 				   <input class="weui-input" type="number" focus="true"  value="{{actuallyAmount}}" bindinput="actuallyInput" placeholder="请输入金额" />
 				</view>
 					<view class="modalDlg-content-item2 item-input" wx:if="{{isAdditional}}">
-				   <text>额外增加：</text>
+				   <text  style="width:150rpx;">额外增加：</text>
 					 <text>￥{{addAmount}}</text>
 				</view>
 					<view class="modalDlg-content-item2 item-input" wx:if="{{isReduction}}">
-				   <text>额外减少：</text>
+				   <text  style="width:150rpx;">额外减少：</text>
 					 <text>￥{{reduceAmount}}</text>
 				</view>
 						<view class="modalDlg-content-item2 item-input">
