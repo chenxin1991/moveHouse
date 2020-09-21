@@ -42,7 +42,7 @@ Page({
     carNum: 0,
     goodsNum: 0,
     hide_good_box: true,
-    is_complete: false,//必选项是否填写完
+    is_complete: false, //必选项是否填写完
     showModal: false, //遮罩层
     showModalLarge: false, //上传其他大件弹出框
     isOtherLarge: false, //是否选择了其他大件
@@ -73,7 +73,7 @@ Page({
             carNum += ele.num;
           }
         })
-      }else{
+      } else {
         this.setData({
           cart: []
         });
@@ -357,7 +357,9 @@ Page({
     let cars = this.data.cars;
     if (address.stairs_or_elevators == '1' && address.floor_num > 0) {
       cars.forEach(function (val) {
-        floorCost += (address.floor_num - val.floor_standard + 1) * val.floor_price * val.num;
+        if (address.floor_num >= val.floor_standard) {
+          floorCost += (address.floor_num - val.floor_standard + 1) * val.floor_price * val.num;
+        }
       });
     }
     return Math.round(floorCost);
