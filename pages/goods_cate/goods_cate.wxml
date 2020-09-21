@@ -130,10 +130,10 @@
 										<view class='title'>{{item.name}}</view>
 										<!-- 车辆描述 -->
 										<view class="car-description" wx:if="{{idx==0}}">
-											<text><text style="color:#999;margin-right:10rpx;">载重</text> 1000kg</text>
-											<text><text style="color:#999;margin-right:10rpx;">长宽高</text> 2.5*1.5*1.5米</text>
-											<text><text style="color:#999;margin-right:10rpx;">体积</text> 5.6 m³ </text>
-											<text> <text style="color:#999;margin-right:10rpx;">配备</text> 2-3名工人</text>
+											<text><text style="color:#999;margin-right:10rpx;">载重</text>{{item.loadSize}}</text>
+											<text><text style="color:#999;margin-right:10rpx;">长宽高</text>{{item.lwh}}</text>
+											<text><text style="color:#999;margin-right:10rpx;">体积</text>{{item.volume}}</text>
+											<text> <text style="color:#999;margin-right:10rpx;">配备</text>{{item.manning}}</text>
 										</view>
 
 										<view wx:if="{{product.is_upload}}" class="upload-btn upload-pictures" data-item="{{item}}" bindtap="chooseImage">上传图片</view>
