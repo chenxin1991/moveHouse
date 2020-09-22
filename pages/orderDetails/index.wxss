@@ -185,7 +185,7 @@ justify-content: center;
 /* 明细 */
 .costList {
   background: white;
-  padding: 20rpx 20rpx;
+  padding: 20rpx;
   font-size: 30rpx;
   margin-bottom: 20rpx;
 }
@@ -201,9 +201,8 @@ justify-content: center;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  padding: 14rpx 0rpx;
+  padding: 24rpx 0rpx 0rpx;
   border-top: 2rpx dashed #ededed;
-  margin-top:14rpx ;
 }
 .cost2 .cost2-content{
   display: flex;

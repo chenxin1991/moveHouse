@@ -184,14 +184,12 @@ Page({
   },
   //修改总金额弹框
   modifyTotalAmount(e){
-    console.log(e.currentTarget.dataset.amountid)
+ 
      this.setData({
       AmountModal:true,
       actuallyAmount:'',
       addAmount:0,
       reduceAmount:0,
-      isAdditional:false,
-      isReduction:false,
       remarkReason:'',
       AmountItem:e.currentTarget.dataset.item,
       amountid: e.currentTarget.dataset.amountid,
@@ -290,7 +288,7 @@ Page({
           actuallyAmount,
           remarkReason
          })      
-         _this.getOrderList(_this.data.amounttype);//刷新数据
+         _this.getOrderList(_this.data.type);//刷新数据
       }
     });
   },
