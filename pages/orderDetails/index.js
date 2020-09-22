@@ -41,7 +41,7 @@ Page({
   getOrderDetail: function (id) {
     let _this = this;
     App._get('user/order/detail/' + id, {}, function (result) {
-      console.log(result.data)
+      // console.log(result.data)
       _this.setData(result.data);
     });
   },

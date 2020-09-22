@@ -32,7 +32,7 @@
 				</view>					
 			</view>
      	<view class="orders-item-footer" wx:if="{{item.orderStatus=== '待完工'}}">
-				<view class="cancelBtn" bindtap="cancelOrder" data-id="{{item.id}}" data-type="{{type}}">支付二维码</view>
+				<view class="cancelBtn" bindtap="cancelOrder" data-id="{{item.id}}" data-type="{{type}}">生成收款码</view>
 			</view>
 		</view>
 	</block>

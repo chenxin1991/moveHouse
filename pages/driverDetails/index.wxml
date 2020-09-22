@@ -85,6 +85,14 @@
 					<text>特殊时间段费</text>
 					<view class="right">￥<text style="font-size: 30rpx;">{{order.specialTimeCost}}</text></view>
 				</view>
+					<view class="cost2">
+					<view class="cost2-content">
+						<text style="margin-right:20rpx;">合计</text>
+						<view class="right">￥<text style="font-size: 30rpx;">{{order.totalCost}}</text>
+							<text wx:if="{{order.isOtherLarge===1}}" style="font-size: 24rpx;margin-left:10rpx;">起</text>	 
+							</view>
+					</view>
+				</view>
 			</view>
 			<!-- 订单号 -->
 			<view class="orderNumber">

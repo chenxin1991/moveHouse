@@ -191,20 +191,33 @@ justify-content: center;
 }
 
 .cost {
-  height: 60rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 10rpx 0rpx;
 }
-
+.cost2 {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 14rpx 0rpx;
+  border-top: 2rpx dashed #ededed;
+  margin-top:14rpx ;
+}
+.cost2 .cost2-content{
+  display: flex;
+ }
 .cost .right {
   font-size: 26rpx;
   font-weight: bold;
   color: #fc4141 !important;
 }
-
+.cost2 .right {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #fc4141 !important;
+}
 .totalCost {
   width: 100%;
   height: 96rpx;

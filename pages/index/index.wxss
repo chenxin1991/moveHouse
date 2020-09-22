@@ -2,13 +2,12 @@ page{
   background: #fff
 }
 .item {
+  width: 92%;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding: 15rpx;
-  margin-left: 16rpx;
+  margin: 0 auto;
   box-sizing: border-box;
-
 }
 
 .item .child {
@@ -20,7 +19,6 @@ page{
   line-height: 1;
   border-radius: 10rpx;
   position: relative;
-  /* margin-bottom: 15rpx; */
 }
 
 
@@ -82,38 +80,30 @@ page{
   font-size: 36rpx;
   color: #000;
 }
-.bottom{
-  /* width: 750rpx; */
+/* 战略合作伙伴 */
+.teamwork{
   display: flex;
+  justify-content: center;
   flex-wrap:wrap;
   margin-bottom: 15rpx;
-  /* justify-content: space-between;  */
 }
-.bottom .tu{
-  /* color: #7D7D7D; */
-  width: 186rpx;
-  height:192rpx;
-  border: 1rpx solid #E2E2E2;
-  margin-left: -1rpx;
-  margin-top: -1rpx;
-
-  display: flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-}
-
-.bottom image{
-  /* width: 100%; */
-  width: 74rpx;
-  height: 72rpx;
-  box-sizing: border-box;
-  margin: 24rpx;
-}
-.bottom .tu view{
-  font-size: 24rpx;
-  text-align: center
-}
-.aaa{
-  color: #7D7D7D;
-}
+.teamwork .teamwork-item{
+   width: 23%;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   padding: 20rpx;
+   border-top: 2rpx solid #ededed;
+   border-bottom: 2rpx solid #ededed;
+   border-right: 2rpx solid #ededed;
+ }
+ .teamwork .teamwork-item-rows{
+   border-left:  2rpx solid #ededed;
+ }
+ .teamwork .teamwork-item image{
+  width:90rpx;
+  height:90rpx;
+ }
+ .teamwork .teamwork-item text{
+   margin-top: 20rpx;
+ }
