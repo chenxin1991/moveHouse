@@ -18,7 +18,7 @@ Page({
     flagFrom: false,
     flagTo: false,
     appointDate: '',
-    appointTime: '',
+    appointTime: '', 
     startDate: '',
     endDate: '',
     timeArray: [],
@@ -49,8 +49,7 @@ Page({
     particulars_id: 0, //上传大件id
     particulars_name: '', //上传大件名称
     particulars_pic: '/images/uploadPictures.png', //上传大件图片
-    todaytime:'9:09',
-    todaydate:'12-08'
+  
   },
   /**
    * 生命周期函数--监听页面加载
@@ -58,18 +57,7 @@ Page({
   onLoad: function (res) {
     // this.init();
   },
-  bindDateChange3: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      todaydate: e.detail.value
-    })
-  },
-  bindTimeChange3: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      todaytime: e.detail.value
-    })
-  },
+
   init: function () {
     let that = this;
     app._get('category', {}, res => {
@@ -753,6 +741,7 @@ Page({
    */
   onShow: function () {
     this.init();
+ 
   },
   /**
    * 生命周期函数--监听页面隐藏

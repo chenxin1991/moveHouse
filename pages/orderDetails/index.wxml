@@ -149,7 +149,7 @@
 							</view>
 							<view wx:if="{{item.value!=='3'}}" class="weui-cell__bd">{{item.name}}</view>
 							<text wx:if="{{item.value==='3'}}" style="width:150rpx;">{{item.name}}</text>
-							<textarea wx:if="{{item.value==='3'}}" bindinput="bindTextArea" auto-height="true" placeholder="请输入其他原因"></textarea>
+							<textarea wx:if="{{item.value==='3'}}" bindinput="bindTextArea"   auto-height="true" placeholder="请输入其他原因"></textarea>
 						</label>
 					</radio-group>
 				</view>
