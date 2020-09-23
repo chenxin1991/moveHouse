@@ -13,7 +13,7 @@
 		<view class="car-reminder" wx:if="{{cars.length>0}}">
 			<view class="car-reminder-content" wx:for="{{cars}}" wx:key="index">
 				<view class="price-item item2 price-text">
-					<view class="price-name"> {{index+1}}.{{item.name}}</view>
+					<view class="price-name"> {{index+1}}.{{item.name}}({{item.manning}})</view>
 					<text wx:if="{{item.num>1}}">x{{item.num}}</text>
 				</view>
 				<view class="price-item price-text">

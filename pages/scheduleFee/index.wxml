@@ -4,7 +4,7 @@
 
 		<block wx:for="{{cars}}" wx:key="index">
 			<!-- 货车 -->
-			<view class="expense-tabe-title">{{item.name}} </view>
+			<view class="expense-tabe-title">{{item.name}}({{item.manning}}) </view>
 			<view class="expense-tabe">
 				<view class="expense-header">
 					<view class="width30 headers">费用项</view>

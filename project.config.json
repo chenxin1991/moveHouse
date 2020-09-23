@@ -179,6 +179,12 @@
 					"pathName": "pages/driverOrder/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/paymentCode/index",
+					"pathName": "pages/paymentCode/index",
+					"scene": null
 				}
 			]
 		}

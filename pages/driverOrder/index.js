@@ -60,11 +60,20 @@ Page({
         url: '/pages/driverDetails/index?id=' + e.currentTarget.dataset.id,
       })
     },
+    //生成收款码
+    paymentCode(e){
+          App._get('driver/order/payUrl/' + e.currentTarget.dataset.id, {}, function (result) {
+        let code_url=encodeURIComponent(result.data.code_url)
+              wx.navigateTo({
+                url: '/pages/paymentCode/index?code_url=' + `${code_url}`,
+              });
+            });
+    },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+  
   },
 
   /**

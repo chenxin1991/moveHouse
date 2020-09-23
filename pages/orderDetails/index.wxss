@@ -134,14 +134,14 @@
 }
 
 .product-item .product-item-img {
-  width: 130rpx;
-  height: 130rpx;
+  width: 140rpx;
+height: 140rpx;
   background: #fff;
 }
 
 .product-item .product-item-img image {
-  width: 130rpx;
-  height: 130rpx;
+  width: 140rpx;
+  height: 140rpx;  
 }
 
 .product-item .product-item-title {

@@ -79,23 +79,23 @@
 
 .orders-item-goods {
   width: 94%;
-  height: 170rpx;
   margin: 0 auto;
+  padding: 20rpx 0;
   background: #f7f7f7;
   border: 1rpx solid #f7f7f7;
   border-radius: 8rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 .goods-image {
   width: 120rpx;
   height: 120rpx;
-  border: 1rpx solid #fff;
-  border-radius: 8rpx;
+  border: 2rpx solid #fff;
   background: #fff;
-  margin-left: 20rpx;
+  margin-left: 12rpx;
   float: left;
 }
 
@@ -203,9 +203,11 @@
   justify-content: center;
   padding: 20rpx 0rpx;
 }
-.modalDlg-title text{
+
+.modalDlg-title text {
   font-size: 32rpx;
 }
+
 .modalDlg-content {
   width: 100%;
   display: flex;
@@ -249,14 +251,17 @@
   flex-wrap: nowrap;
   justify-content: space-between;
 }
+
 /* 修改总金额 */
-.modalDlg-content .item-input{
+.modalDlg-content .item-input {
   padding: 20rpx;
 }
+
 .modalDlg-content .modalDlg-content-item2 {
   display: flex;
   align-items: center;
 }
+
 /* 弹出层里面的文字 */
 .modalDlg .modalDlg-content text {
   text-align: justify;

@@ -21,7 +21,7 @@
 				<view class="orders-item-goods" data-id="{{item.id}}" bindtap="orderDetails">
 					<view>
 						<view class="goods-image" wx:for="{{item.carsAndGoods}}" wx:key="index" wx:if="{{index<4}}">
-							<image mode="aspectFill" src="{{item.image_url}}"></image>
+							<image  mode='aspectFill' src="{{item.image_url}}"></image>
 						</view>
 					</view>
 					<text class="textColor">共{{item.carsAndGoods.length}}件</text>

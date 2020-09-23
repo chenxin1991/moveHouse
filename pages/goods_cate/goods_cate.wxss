@@ -234,6 +234,7 @@ page {
 .special .address .right {
   display: flex;
   align-items: center;
+  margin-left: 10rpx;
 }
 
 .special .address .right .dayu {

@@ -114,7 +114,7 @@
 											<swiper class='read_swiper' circular="true" indicator-dots="true" data-idx="{{idx}}" data-idy="{{idy}}" current="{{item.current}}" bindchange="changeImage">
 												<block wx:for="{{item.images}}" wx:key="index">
 													<swiper-item>
-														<image src="{{item.url}}" class="slide-image"></image>
+														<image src="{{item.url}}" mode='aspectFill'  class="slide-image"></image>
 													</swiper-item>
 												</block>
 											</swiper>

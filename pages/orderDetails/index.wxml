@@ -38,7 +38,7 @@
 				</view>
 				<view class="product-item" wx:for="{{order.carsAndGoods}}" wx:key='index'>
 					<view class="product-item-img">
-						<image mode="aspectFill" src='{{item.image_url}}'></image>
+						<image  mode="aspectFill" src='{{item.image_url}}'></image>
 					</view>
 					<view class="product-item-title">
 						{{item.name}}
