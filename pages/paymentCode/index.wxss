@@ -9,7 +9,7 @@
 
 .paymentCode-wrapper .paymentCode-content {
   width: 84%;
-  height: 774rpx;
+  height: 790rpx;
   padding: 40rpx;
   display: flex;
   align-items: center;
@@ -21,8 +21,8 @@
 }
 
 .paymentCode-wrapper .paymentCode-content image {
-  width: 480rpx;
-  height: 480rpx;
+  width: 520rpx;
+  height: 520rpx;
 }
 
 .paymentCode-wrapper .paymentCode-content .paymentCode-content-text {
@@ -34,4 +34,3 @@
   font-size: 32rpx;
   font-weight: bold;
 }
-

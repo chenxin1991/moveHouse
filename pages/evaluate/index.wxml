@@ -35,15 +35,18 @@
        <image src="{{pics[index]}}" class="According" data-index="{{index}}" mode="aspectFill" bindtap="previewImg"></image>
        <image src="/images/failure.png" class='deleteimg' catchtap="deleteImg" data-index="{{index}}"></image>
        </view>
-      <image src='/images/uploadPictures.png' class='add' bindtap='choose'></image>
+      <image wx:if="{{pics.length<5}}" src='/images/uploadPictures.png' class='add' bindtap='choose'></image>
     </view>
   </view>
 </view>
-<!--textarea-->
+<!--评价-->
 <view class="conts">
     <textarea class="areas" placeholder='更多评价请写在这里（最多300字）' minlength="{{min}}" maxlength="{{max}}" bindinput="inputs">
         <!-- <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text> -->
     </textarea>
 </view>
 <!--提交评价-->
-<button class='btn'>提交评价</button>
+<view class='btn'>
+<text>提交评价</text>
+</view>
+ 
