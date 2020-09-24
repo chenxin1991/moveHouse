@@ -35,7 +35,7 @@ navigationBarAndStatusBarHeight:
   methods: {
     toGoods(){
       wx.reLaunch({
-        url: '/pages/goods_cate/goods_cate',
+        url: '/pages/index/index',
       })
     }
   }

@@ -43,7 +43,7 @@ Page({
   },
   //返回首页
   backHome() {
-    wx.switchTab({
+    wx.reLaunch({
       url: '/pages/index/index',
     })
   },

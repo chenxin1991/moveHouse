@@ -5,7 +5,7 @@
     <!--自定义导航栏-->
     <view class="navigation-bar" style="{{'height:' + navigationBarHeight}}">
         <view class="navigation-buttons" style="{{'height:' + menuButtonHeight}}">
-         <view class="iconfont icon-zuojiantou" bindtap="toGoods"></view>
+         <view class="navigation-buttons-text iconfont icon-zuojiantou" bindtap="toGoods"></view>
         </view> 
         <view class="navigation-title" style="{{'line-height:' + navigationBarHeight}}">{{title}}</view>
     </view>    
