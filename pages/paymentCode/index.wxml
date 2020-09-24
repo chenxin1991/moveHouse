@@ -5,6 +5,6 @@
 <image  mode='aspectFill'  src="/images/me-icon/weixin.png" style="width:60rpx;height:60rpx;"></image>
 <text  style="margin-left:20rpx;">微信扫码支付</text>
 </view>
-<image src="{{code_url}}"></image>
+<image  mode='aspectFill' src="{{code_url}}" style="width: 540rpx;height: 540rpx;"></image>
 </view>
 </view>

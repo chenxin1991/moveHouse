@@ -4,7 +4,6 @@
   background: #ff5155;
   display: flex;
   justify-content: center;
-
 }
 
 .paymentCode-wrapper .paymentCode-content {
@@ -20,17 +19,12 @@
   margin-top: 190rpx;
 }
 
-.paymentCode-wrapper .paymentCode-content image {
-  width: 520rpx;
-  height: 520rpx;
-}
-
 .paymentCode-wrapper .paymentCode-content .paymentCode-content-text {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40rpx 0;
+  padding: 30rpx 0;
   font-size: 32rpx;
   font-weight: bold;
 }
