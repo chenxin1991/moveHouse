@@ -190,6 +190,9 @@ Page({
         }
       });
     } else {
+      that.setData({
+        distance: 0
+      });
       //初始化总报价
       if (cart && cart.length > 0) {
         this.getTotalCost();
