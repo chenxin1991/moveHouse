@@ -21,7 +21,7 @@
 				<view class="orders-item-goods" data-id="{{item.id}}" bindtap="orderDetails">
 					<view>
 						<view class="goods-image" wx:for="{{item.carsAndGoods}}" wx:key="index" wx:if="{{index<4}}">
-							<image  mode='aspectFill' src="{{item.image_url}}"></image>
+							<image mode='aspectFill' src="{{item.image_url}}"></image>
 						</view>
 					</view>
 					<text class="textColor">共{{item.carsAndGoods.length}}件</text>
@@ -37,7 +37,7 @@
 				<view class="cancelBtn" bindtap="modifyTotalAmount" data-item="{{item}}" data-type="{{type}}" data-amountid="{{item.id}}">修改总金额</view>
 			</view>
 			<view class="orders-item-footer" wx:if="{{item.orderStatus==='待评价'}}">
-				<view class="cancelBtn" bindtap="toEvaluate">去评价</view>
+				<view class="cancelBtn" style="width:156rpx;" bindtap="toEvaluate">去评价</view>
 			</view>
 		</view>
 	</block>
@@ -88,20 +88,20 @@
 			</view>
 			<view class="modalDlg-content">
 				<view class="modalDlg-content-item2 item-input">
-				   <text  style="width:150rpx;">实付金额：</text>
-				   <input class="weui-input" type="number" focus="true"  value="{{actuallyAmount}}" bindinput="actuallyInput" placeholder="请输入金额" />
+					<text  style="width:150rpx;">实付金额：</text>
+					<input class="weui-input" type="number" focus="true" value="{{actuallyAmount}}" bindinput="actuallyInput" placeholder="请输入金额" />
 				</view>
-					<view class="modalDlg-content-item2 item-input" wx:if="{{isAdditional}}">
-				   <text  style="width:150rpx;">额外增加：</text>
-					 <text>￥{{addAmount}}</text>
+				<view class="modalDlg-content-item2 item-input" wx:if="{{isAdditional}}">
+					<text  style="width:150rpx;">额外增加：</text>
+					<text>￥{{addAmount}}</text>
 				</view>
-					<view class="modalDlg-content-item2 item-input" wx:if="{{isReduction}}">
-				   <text  style="width:150rpx;">额外减少：</text>
-					 <text>￥{{reduceAmount}}</text>
+				<view class="modalDlg-content-item2 item-input" wx:if="{{isReduction}}">
+					<text  style="width:150rpx;">额外减少：</text>
+					<text>￥{{reduceAmount}}</text>
 				</view>
-						<view class="modalDlg-content-item2 item-input">
-				   <text style="width:150rpx;">备注：</text>
-				  	<textarea bindinput="AmountTextArea" value="{{remarkReason}}" auto-height="true" placeholder="请填写备注"></textarea>
+				<view class="modalDlg-content-item2 item-input">
+					<text style="width:150rpx;">备注：</text>
+					<textarea bindinput="AmountTextArea" value="{{remarkReason}}" auto-height="true" placeholder="请填写备注"></textarea>
 				</view>
 			</view>
 			<view class="modalDlg-footer">

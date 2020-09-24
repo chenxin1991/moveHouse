@@ -91,8 +91,8 @@ justify-content: center;
   position: absolute;
   top: 0rpx;
   right: 0rpx;
-  width: 32rpx;
-  height: 32rpx;
+  width: 34rpx;
+  height: 34rpx;  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,7 +100,6 @@ justify-content: center;
   border-radius: 50%;
   font-size: 22rpx;
   color: #fff;
-  
 }
 .order .content .item  .icon-item .icon-text{
   display: flex;
