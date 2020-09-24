@@ -1,3 +1,5 @@
+<mp-navigation-bar   show="{{show}}"   title="{{navTitle}}"  ></mp-navigation-bar>
+
 <!--去结算-支付状态 -->
 <view class="topay-wrapper">
 	<view class="topay-content">

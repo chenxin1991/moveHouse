@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    show: true,
+    navTitle:'订单状态',
     status: 1,
     id: '',
     number: '',
@@ -21,14 +23,16 @@ Page({
       number: options.number,
       create_time: options.create_time
     })
-    if (this.data.status) {
-      wx.setNavigationBarTitle({
-        title: '预约成功'
-      })
+
+    if (this.data.status==='1') {
+     this.setData({
+      navTitle:'预约成功'
+     })
     } else {
-      wx.setNavigationBarTitle({
-        title: '预约失败'
-      })
+      this.setData({
+        navTitle:'预约失败'
+       })
+    
     }
   },
   //查看订单
@@ -47,14 +51,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+     
   },
 
   /**

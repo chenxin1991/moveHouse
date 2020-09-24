@@ -1,5 +1,9 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText":"支付",
-  "enablePullDownRefresh": false
+ 
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "mp-navigation-bar": "/components/navigationBar/index"
+},
+"navigationStyle": "custom",
+"navigationBarTitleText": "订单状态"
 }

@@ -17,7 +17,7 @@
     "pages/evaluate/index",
     "pages/myAccount/index",
     "pages/getPhoneNumber/index",
-    "pages/paymentCode/index"
+    "pages/paymentCode/index" 
   ],
   "window": {
     "backgroundTextStyle": "dark",
