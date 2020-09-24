@@ -4,7 +4,7 @@ const App = getApp();
 function isNull(str) {
   if (str == "" || str == undefined || str == null) return true;
 }
- 
+
 Page({
 
   /**
@@ -55,15 +55,15 @@ Page({
     checkValue: '',
     moreValue: '',
     id: 0,
-    AmountModal:false,//修改总金额弹框
-    actuallyAmount:'',//实付金额
-    addAmount:0,//额外增加
-    reduceAmount:0,//额外减少
-    isAdditional:false,
-    isReduction:false,
-    remarkReason:'',//修改金额备注
-    AmountItem:'',
-    amountid:0
+    AmountModal: false, //修改总金额弹框
+    actuallyAmount: '', //实付金额
+    addAmount: 0, //额外增加
+    reduceAmount: 0, //额外减少
+    isAdditional: false,
+    isReduction: false,
+    remarkReason: '', //修改金额备注
+    AmountItem: '',
+    amountid: 0
   },
 
   /**
@@ -183,99 +183,99 @@ Page({
     })
   },
   //修改总金额弹框
-  modifyTotalAmount(e){
- 
-     this.setData({
-      AmountModal:true,
-      actuallyAmount:'',
-      addAmount:0,
-      reduceAmount:0,
-      remarkReason:'',
-      AmountItem:e.currentTarget.dataset.item,
+  modifyTotalAmount(e) {
+
+    this.setData({
+      AmountModal: true,
+      actuallyAmount: '',
+      addAmount: 0,
+      reduceAmount: 0,
+      remarkReason: '',
+      AmountItem: e.currentTarget.dataset.item,
       amountid: e.currentTarget.dataset.amountid,
       type: e.currentTarget.dataset.type
-     })
+    })
   },
-     //修改总金额-输入框
-     actuallyInput: function (e) {
-      let _this=this
-       let actuallyAmount=parseFloat(e.detail.value) //实付
-       let totalCost=parseFloat(_this.data.AmountItem.totalCost)//总价
+  //修改总金额-输入框
+  actuallyInput: function (e) {
+    let _this = this
+    let actuallyAmount = parseFloat(e.detail.value) //实付
+    let totalCost = parseFloat(_this.data.AmountItem.totalCost) //总价
 
-      if(actuallyAmount<=0 || isNaN(actuallyAmount)){
-        wx.showToast({
-          title: '请输入实付金额',
-          icon: 'none',
-          duration: 2000
-        });
-        _this.setData({
-          isAdditional:false,
-          isReduction:false ,       
-          actuallyAmount
-        })
-      }
+    if (actuallyAmount <= 0 || isNaN(actuallyAmount)) {
+      wx.showToast({
+        title: '请输入实付金额',
+        icon: 'none',
+        duration: 2000
+      });
+      _this.setData({
+        isAdditional: false,
+        isReduction: false,
+        actuallyAmount
+      })
+    }
 
-   if(actuallyAmount>totalCost){
+    if (actuallyAmount > totalCost) {
+      _this.setData({
+        isAdditional: true,
+        isReduction: false,
+        addAmount: actuallyAmount - totalCost
+      })
+    } else if (actuallyAmount < totalCost) {
+      _this.setData({
+        isReduction: true,
+        isAdditional: false,
+        reduceAmount: totalCost - actuallyAmount
+      })
+    }
+
     _this.setData({
-      isAdditional:true,
-      isReduction:false,
-      addAmount:actuallyAmount-totalCost
+      actuallyAmount
     })
-   }else if(actuallyAmount<totalCost){
-    _this.setData({
-      isReduction:true,
-      isAdditional:false,
-      reduceAmount:totalCost-actuallyAmount
-    })
-   }
-
-       _this.setData({
-        actuallyAmount 
-       })
-      },
-      //修改总金额备注-文本框
-      AmountTextArea(e){      
-       this.setData({
-        remarkReason:e.detail.value
-       })
-      },
-   //修改总金额弹框-取消
-  closeAmountModal(){
+  },
+  //修改总金额备注-文本框
+  AmountTextArea(e) {
     this.setData({
-      AmountModal:false,
-      actuallyAmount:'',
-      addAmount:0,
-      reduceAmount:0,
-      isAdditional:false,
-      isReduction:false,
-      remarkReason:''
-     })
+      remarkReason: e.detail.value
+    })
+  },
+  //修改总金额弹框-取消
+  closeAmountModal() {
+    this.setData({
+      AmountModal: false,
+      actuallyAmount: '',
+      addAmount: 0,
+      reduceAmount: 0,
+      isAdditional: false,
+      isReduction: false,
+      remarkReason: ''
+    })
   },
   //修改总金额弹框-确定
-  confirmAmountModal(){
-  let _this=this
-  let actuallyAmount=_this.data.actuallyAmount
-  let remarkReason=_this.data.remarkReason
+  confirmAmountModal() {
+    let _this = this
+    let actuallyAmount = _this.data.actuallyAmount
+    let remarkReason = _this.data.remarkReason
 
-  if(isNull(actuallyAmount)||isNaN(actuallyAmount)){
-    wx.showToast({
-      title: '请输入实付金额',
-      icon: 'none',
-      duration: 2000
-    });
-    return false;
-  }else if(isNull(remarkReason)){
-    wx.showToast({
-      title: '请填写备注',
-      icon: 'none',
-      duration: 2000
-    });
-    return false;
-  }
+    if (isNull(actuallyAmount) || isNaN(actuallyAmount)) {
+      wx.showToast({
+        title: '请输入实付金额',
+        icon: 'none',
+        duration: 2000
+      });
+      return false;
+    } else if (isNull(remarkReason)) {
+      wx.showToast({
+        title: '请填写备注',
+        icon: 'none',
+        duration: 2000
+      });
+      return false;
+    }
 
-     App._post_form('user/order/modifyTotalCost/' + _this.data.amountid, {
+    App._post_form('user/order/modifyTotalCost/' + _this.data.amountid, {
       costChangeRemark: remarkReason,
-      newTotalCost:actuallyAmount
+      newTotalCost: actuallyAmount
     }, result => {
       if (result.code === 1) {
         wx.showToast({
@@ -284,19 +284,19 @@ Page({
           duration: 2000
         });
         _this.setData({
-          AmountModal:false,
+          AmountModal: false,
           actuallyAmount,
           remarkReason
-         })      
-         _this.getOrderList(_this.data.type);//刷新数据
+        })
+        _this.getOrderList(_this.data.type); //刷新数据
       }
     });
   },
 
   //去评价
-  toEvaluate() {
+  toEvaluate(e) {
     wx.navigateTo({
-      url: '/pages/evaluate/index',
+      url: '/pages/evaluate/index?id=' + e.currentTarget.dataset.id,
     })
   },
   /**

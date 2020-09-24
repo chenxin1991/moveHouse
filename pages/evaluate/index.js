@@ -1,13 +1,12 @@
 const app = getApp();
 Page({
   data: {
-    staticImg: app.globalData.staticImg,
-    current:0,
-    attitude:true,
-    time: true,
-    efficiency: true,
-    environment:true,
-    professional:true,
+    current: 0,
+    attitude: false, //服务态度好
+    time: false, //快速准时
+    efficiency: false, //效率高
+    environment: false, //风雨无阻
+    professional: false, //货品完好
     userStars: [
       "/images/me-icon/rwjx.png",
       "/images/me-icon/rwjx.png",
@@ -15,11 +14,13 @@ Page({
       "/images/me-icon/rwjx.png",
       "/images/me-icon/rwjx.png"
     ],
-    wjxScore:5,
+    wjxScore: 5,
     // textarea
-    min: 5,//最少字数
+    min: 5, //最少字数
     max: 300, //最多字数 (根据自己需求改变)
-    pics:[],
+    remark: '',
+    imageUrls: [],
+    id: 0
   },
   // 星星点击事件
   starTap: function (e) {
@@ -31,7 +32,7 @@ Page({
       if (i <= index) { // 小于等于index的是满心
         tempUserStars[i] = "/images/me-icon/rwjx.png";
         that.setData({
-          wjxScore:i+1,
+          wjxScore: i + 1,
         })
       } else { // 其他是空心
         tempUserStars[i] = "/images/me-icon/wjx.png"
@@ -43,98 +44,108 @@ Page({
     })
   },
   // 标签
-  label:function(e){
-    console.log(e)
+  label: function (e) {
     var that = this;
     that.setData({
-      attitude:!e.currentTarget.dataset.index
+      attitude: !e.currentTarget.dataset.index
     })
   },
-   label1: function (e) {
-    console.log(e)
+  label1: function (e) {
+    var that = this;
+    that.setData({
+      professional: !e.currentTarget.dataset.index
+    })
+  },
+  label2: function (e) {
+    var that = this;
+    that.setData({
+      efficiency: !e.currentTarget.dataset.index
+    })
+  },
+  label3: function (e) {
+    var that = this;
+    that.setData({
+      environment: !e.currentTarget.dataset.index
+    })
+  },
+  label4: function (e) {
     var that = this;
     that.setData({
       time: !e.currentTarget.dataset.index
     })
   },
-   label2: function (e) {
-     console.log(e)
-     var that = this;
-     that.setData({
-       efficiency: !e.currentTarget.dataset.index
-     })
-   },
-    label3: function (e) {
-     console.log(e)
-     var that = this;
-     that.setData({
-       environment: !e.currentTarget.dataset.index
-     })
-   },
-    label4: function (e) {
-      console.log(e.currentTarget.dataset.index)
-      var that = this;
-      that.setData({
-        professional: !e.currentTarget.dataset.index
-      })
-    },
-    // 留言
-    //字数限制
+  // 留言
+  //字数限制
   inputs: function (e) {
-      // 获取输入框的内容
-      var value = e.detail.value;
-      // 获取输入框内容的长度
-      var len = parseInt(value.length);
-      //最多字数限制
-      if (len > this.data.max) return;
-      // 当输入框内容的长度大于最大长度限制（max)时，终止setData()的执行
-      this.setData({
-        currentWordNumber: len //当前字数
-      });
-    },
-    // 图片
-    choose: function (e) {//这里是选取图片的方法
-    var that = this;
-    var pics = that.data.pics;
-
-    wx.chooseImage({
-      count: 5,//最多5张
-      sizeType: ['original', 'compressed'],
-      sourceType: ['album', 'camera'],
-      success (res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-    
-        var  tempFilePath = res.tempFilePaths;
-        pics = pics.concat( tempFilePath);
-        // console.log(pics);
-        // console.log(tempFilePath);
-        that.setData({
-          pics: pics,
-          // console.log(pics),
-        });
-      }
-    })
-    
-
-  },
-  uploadimg: function () {//这里触发图片上传的方法
-    var pics = this.data.pics;
-    console.log(pics);
-    app.uploadimg({
-      url: 'https://........',//这里是你图片上传的接口
-      path: pics//这里是选取的图片的地址数组
+    // 获取输入框的内容
+    var value = e.detail.value;
+    // 获取输入框内容的长度
+    var len = parseInt(value.length);
+    //最多字数限制
+    if (len > this.data.max) return;
+    // 当输入框内容的长度大于最大长度限制（max)时，终止setData()的执行
+    this.setData({
+      currentWordNumber: len,
+      remark: value
     });
   },
+  // 图片
+  choose: function (e) { //这里是选取图片的方法
+    var that = this;
+    var imageUrls = that.data.imageUrls;
+    wx.chooseImage({
+      count: 5 - imageUrls.length, //最多5张
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePath = res.tempFilePaths;
+        for (let i = 0; i < tempFilePath.length; i++) {
+          wx.uploadFile({
+            url: app.api_root + 'category/uploadImage', //仅为示例，非真实的接口地址
+            filePath: tempFilePath[i],
+            name: 'file',
+            header: {
+              'content-type': 'application/json'
+            },
+            formData: {
+              'wxapp_id': 10001,
+              'token': wx.getStorageSync('token')
+            },
+            success(res) {
+              const data = JSON.parse(res.data);
+              if (data.code === -1) {
+                // 登录态失效, 重新登录
+                app.doLogin();
+              }
+              if (data.code === -2) {
+                app.getMobile();
+              }
+              if (data.code == 1) {
+                let imageUrls = that.data.imageUrls;
+                imageUrls.push(data.image_url);
+                that.setData({
+                  imageUrls: imageUrls
+                })
+              }
+            }
+          });
+        }
+      }
+    })
+  },
   onLoad: function (options) {
-
+    this.setData({
+      id: options.id
+    });
   },
   // 删除图片
   deleteImg: function (e) {
-    var pics = this.data.pics;
+    var imageUrls = this.data.imageUrls;
     var index = e.currentTarget.dataset.index;
-    pics.splice(index, 1);
+    imageUrls.splice(index, 1);
     this.setData({
-      pics: pics
+      imageUrls: imageUrls
     });
   },
   // 预览图片
@@ -142,12 +153,44 @@ Page({
     //获取当前图片的下标
     var index = e.currentTarget.dataset.index;
     //所有图片
-    var pics = this.data.pics;
+    var imageUrls = this.data.imageUrls;
     wx.previewImage({
       //当前显示图片
-      current: pics[index],
+      current: imageUrls[index],
       //所有图片
-      urls: pics
+      urls: imageUrls
     })
   },
+  submitComment() {
+    let that = this;
+    let comment = {
+      score: this.data.wjxScore,
+      content: {
+        attitude: this.data.attitude,
+        professional: this.data.professional,
+        efficiency: this.data.efficiency,
+        environment: this.data.environment,
+        time: this.data.time
+      },
+      imageUrls: this.data.imageUrls,
+      remark: this.data.remark
+    };
+    app._post_form('user/order/comment/' + that.data.id, {
+      comment: JSON.stringify(comment)
+    }, result => {
+      if (result.code === 1) {
+        wx.showToast({
+          title: '评价成功',
+          icon: 'success',
+          duration: 2000,
+          complete: function () {
+            setTimeout(function () {
+              wx.navigateBack();
+            }, 2000);
+          }
+        })
+      }
+    });
+
+  }
 })
