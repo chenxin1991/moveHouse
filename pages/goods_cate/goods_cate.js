@@ -152,6 +152,7 @@ Page({
     } else {
       this.setData({
         addressFrom: {},
+        distance: 0,
         flagFrom: false
       });
     }
@@ -171,6 +172,7 @@ Page({
     } else {
       this.setData({
         addressTo: {},
+        distance: 0,
         flagTo: false
       });
     }
@@ -190,9 +192,6 @@ Page({
         }
       });
     } else {
-      that.setData({
-        distance: 0
-      });
       //初始化总报价
       if (cart && cart.length > 0) {
         this.getTotalCost();

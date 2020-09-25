@@ -3,7 +3,8 @@
 		<block wx:for="{{products}}" wx:for-item="item" wx:key="index">
 			<view class='item {{index==navActive?"on":""}}' data-index='{{index}}' data-id='b{{index}}' bindtap='tap'>
 				<text>{{item.name}}
-				<text style="font-size: 20rpx;" wx:if="{{item.is_free && index!=1 && item.name!='其他大件' && carNum>0}}">（{{carNum}}车内免费）</text>
+					<text style="font-size: 20rpx;"
+						wx:if="{{item.is_free && index!=1 && item.name!='其他大件' && carNum>0}}">（{{carNum}}车内免费）</text>
 				</text>
 			</view>
 		</block>
@@ -12,7 +13,8 @@
 
 
 	<view class='conter'>
-		<scroll-view scroll-y="true" scroll-into-view="{{toView}}" style='height:{{height}}rpx;' bindscroll="scroll" scroll-with-animation='true'>
+		<scroll-view scroll-y="true" scroll-into-view="{{toView}}" style='height:{{height}}rpx;' bindscroll="scroll"
+			scroll-with-animation='true'>
 			<block wx:for="{{products}}" wx:for-item="product" wx:for-index="idx" wx:key="index">
 				<view class='listw' id="b{{idx}}">
 					<view class='title'>
@@ -22,7 +24,8 @@
 						<view class="special">
 							<view class="appoint">
 								<text>预约时间</text>
-								<picker mode="date" value="{{appointDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+								<picker mode="date" value="{{appointDate}}" start="{{startDate}}" end="{{endDate}}"
+									bindchange="bindDateChange">
 									<input class="date" disabled="true" placeholder="请选择日期" value="{{appointDate}}" />
 								</picker>
 								<picker bindchange="bindPickerChange" value="{{appointTime}}" range="{{timeArray}}">
@@ -37,8 +40,11 @@
 										</view>
 										<block wx:if="{{flagFrom}}">
 											<view class="detail">
-												<view class="detail1"><text class="name">{{addressFrom.address.name}} {{addressFrom.room_number}}</text></view>
-												<view class="detail2"><text>{{array1[addressFrom.stairs_or_elevators]}}：{{addressFrom.floor_num}}层</text><text class="pl30">停车位距离：{{array2[addressFrom.parking_distance]}}</text></view>
+												<view class="detail1"><text class="name">{{addressFrom.address.name}}
+														{{addressFrom.room_number}}</text></view>
+												<view class="detail2">
+													<text>{{array1[addressFrom.stairs_or_elevators]}}：{{addressFrom.floor_num}}层</text><text
+														class="pl30">停车位距离：{{array2[addressFrom.parking_distance]}}</text></view>
 											</view>
 										</block>
 										<block wx:else>
@@ -58,8 +64,11 @@
 										</view>
 										<block wx:if="{{flagTo}}">
 											<view class="detail">
-												<view class="detail1"><text class="name">{{addressTo.address.name}} {{addressTo.room_number}}</text></view>
-												<view class="detail2"><text>{{array1[addressTo.stairs_or_elevators]}}：{{addressTo.floor_num}}层</text><text class="pl30">停车位距离：{{array2[addressTo.parking_distance]}}</text></view>
+												<view class="detail1"><text class="name">{{addressTo.address.name}}
+														{{addressTo.room_number}}</text></view>
+												<view class="detail2">
+													<text>{{array1[addressTo.stairs_or_elevators]}}：{{addressTo.floor_num}}层</text><text
+														class="pl30">停车位距离：{{array2[addressTo.parking_distance]}}</text></view>
 											</view>
 										</block>
 										<block wx:else>
@@ -111,10 +120,11 @@
 									<!-- 轮播 -->
 									<block wx:else>
 										<view class='ceshi_swiper pictrue'>
-											<swiper class='read_swiper' circular="true" indicator-dots="true" data-idx="{{idx}}" data-idy="{{idy}}" current="{{item.current}}" bindchange="changeImage">
+											<swiper class='read_swiper' circular="true" indicator-dots="true" data-idx="{{idx}}"
+												data-idy="{{idy}}" current="{{item.current}}" bindchange="changeImage">
 												<block wx:for="{{item.images}}" wx:key="index">
 													<swiper-item>
-														<image src="{{item.url}}" mode='aspectFill'  class="slide-image"></image>
+														<image src="{{item.url}}" mode='aspectFill' class="slide-image"></image>
 													</swiper-item>
 												</block>
 											</swiper>
@@ -135,14 +145,15 @@
 											<text><text style="color:#999;margin-right:10rpx;">载重</text>{{item.loadSize}}</text>
 											<text><text style="color:#999;margin-right:10rpx;">长宽高</text>{{item.lwh}}</text>
 											<text><text style="color:#999;margin-right:10rpx;">体积</text>{{item.volume}}</text>
-											<text> <text style="color:#999;margin-right:10rpx;">配备</text>{{item.manning}}</text>
+											<text><text style="color:#999;margin-right:10rpx;">配备</text>{{item.manning}}</text>
 										</view>
-
-										<view wx:if="{{product.is_upload}}" class="upload-btn upload-pictures" data-item="{{item}}" bindtap="chooseImage">上传图片</view>
+										<view wx:if="{{product.is_upload}}" class="upload-btn upload-pictures" data-item="{{item}}"
+											bindtap="chooseImage">上传图片</view>
 										<view class="content">
 											<view class='money'>￥<text class='num'>{{item.price}}</text></view>
 											<view class="changeNum" wx:if="{{!product.is_free}}">
-												<image catchtap='addCart' data-item="{{item}}" data-source='product' src='/images/add.png' class="icon"></image>
+												<image catchtap='addCart' data-item="{{item}}" data-source='product' src='/images/add.png'
+													class="icon"></image>
 											</view>
 										</view>
 									</view>
@@ -183,7 +194,8 @@
 		<view style="padding:0rpx 30rpx;">
 			<view class="goodRow" wx:for="{{cart}}" wx:key="index">
 				<view class="left">
-					<image src='{{item.image_url}}' mode='aspectFill' style='width:120rpx;height:120rpx;' catchtap="previewImage" data-item="{{item}}"></image>
+					<image src='{{item.image_url}}' mode='aspectFill' style='width:120rpx;height:120rpx;' catchtap="previewImage"
+						data-item="{{item}}"></image>
 				</view>
 				<view class="right">
 					<view><text class="name">{{item.name}}</text></view>
@@ -192,9 +204,11 @@
 							<text>￥{{item.price}}</text>
 						</view>
 						<view class="changeNum">
-							<image catchtap='reduceCart' data-item='{{item}}' src='/images/reduce.png' style="width: 45rpx;height: 45rpx;"></image>
+							<image catchtap='reduceCart' data-item='{{item}}' src='/images/reduce.png'
+								style="width: 45rpx;height: 45rpx;"></image>
 							<span style="width: 60rpx;text-align: center;">{{item.num}}</span>
-							<image catchtap='addCart' data-item="{{item}}" data-source='cart' src='/images/add.png' style="width: 45rpx;height: 45rpx;"></image>
+							<image catchtap='addCart' data-item="{{item}}" data-source='cart' src='/images/add.png'
+								style="width: 45rpx;height: 45rpx;"></image>
 						</view>
 					</view>
 				</view>
@@ -213,7 +227,8 @@
 		<form bindsubmit="submit">
 			<view class="modalDlg-content">
 				<view class="modalDlg-text">大件名称：</view>
-				<view class="modalDlg-other"><input class="weui-input" auto-focus placeholder="输入大件名称" bindinput="bindKeyInput" /></view>
+				<view class="modalDlg-other"><input class="weui-input" auto-focus placeholder="输入大件名称"
+						bindinput="bindKeyInput" /></view>
 			</view>
 			<view class="modalDlg-content2">
 				<view class="modalDlg-text">上传图片：</view>
