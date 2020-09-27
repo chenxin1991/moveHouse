@@ -5,7 +5,7 @@
 }
 
 .scheduleFee-wrapper .page-body {
-  width: 96%;
+  width: 94%;
   height: auto;
   margin: 30rpx auto;
   background: #fff;

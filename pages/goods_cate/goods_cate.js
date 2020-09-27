@@ -43,7 +43,6 @@ Page({
     goodsNum: 0,
     hide_good_box: true,
     is_complete: false, //必选项是否填写完
-    showModal: false, //遮罩层
     showModalLarge: false, //上传其他大件弹出框
     isOtherLarge: false, //是否选择了其他大件
     particulars_id: 0, //上传大件id
@@ -255,6 +254,7 @@ Page({
     this.getTotalCost();
     this.isComplete();
   },
+  //购物车减少数量
   reduceCart: function (res) {
     let item = res.currentTarget.dataset.item;
     let cart = this.data.cart;
@@ -482,7 +482,6 @@ Page({
   uploadLarge: function () {
     this.setData({
       showModalLarge: true,
-      showModal: true,
       particulars_name: '',
       particulars_pic: '/images/uploadPictures.png'
     })
@@ -569,8 +568,7 @@ Page({
       _this.setData({
         cart: cart,
         goodsNum: _this.data.goodsNum + 1,
-        showModalLarge: false,
-        showModal: false,
+        showModalLarge: false
       });
       wx.setStorageSync('cart', cart);
       _this.getTotalCost();
@@ -579,8 +577,7 @@ Page({
   //上传其他大件弹框取消
   closeModalLarge() {
     this.setData({
-      showModalLarge: false,
-      showModal: false
+      showModalLarge: false
     })
   },
   //总价明细弹出框

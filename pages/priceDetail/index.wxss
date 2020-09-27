@@ -5,9 +5,9 @@
  }
 
  .priceDetail-wrapper .page-body {
-   width: 90%;
-   height: auto;
-   margin: 60rpx auto;
+  width: 94%;
+  height: auto;
+  margin: 30rpx auto;  
    background: #fff;
    border: 2rpx solid #fff;
    border-radius: 20rpx;
