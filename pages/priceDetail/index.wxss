@@ -37,6 +37,9 @@
  .carReminder-text {
    font-size: 24rpx;
    margin-bottom: 12rpx;
+   display: flex;
+   flex-direction: column;
+  
  }
 
  .priceDetail-wrapper .price-item {
@@ -73,7 +76,7 @@
  }
 
  .price-name {
-   color: #777;
+   color: #666;
  }
 
  .priceDetail-wrapper .price-item2 image {

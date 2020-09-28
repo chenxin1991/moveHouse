@@ -13,19 +13,25 @@
 		<view class="car-reminder" wx:if="{{cars.length>0}}">
 			<view class="car-reminder-content" wx:for="{{cars}}" wx:key="index">
 				<view class="price-item item2 price-text">
-					<view class="price-name"> {{index+1}}.{{item.name}}({{item.manning}})</view>
-					<text wx:if="{{item.num>1}}">x{{item.num}}</text>
+					<view class="price-name">{{item.name}}</view>
+					<text >x{{item.num}}</text>
 				</view>
 				<view class="price-item price-text">
-					<view class="price-name carReminder-text">(1.小家具、小家电和杂物;{{item.num}}车内免费；2.{{item.km_standard}}公里内免费；3.电梯免费，{{item.floor_standard}}层楼梯以下免费；4.停车位距离30米以内免费。)</view>
+					<view class="price-name carReminder-text">
+						<text><text style="margin-right:8rpx;">1)</text>小家具、小家电和杂物（{{item.num}}车内免费）</text>
+						<text><text style="margin-right:8rpx;">2)</text> {{item.km_standard}}公里内免费</text>
+						<text><text style="margin-right:8rpx;">3)</text> 电梯免费，{{item.floor_standard}}层楼梯以下免费</text>
+						<text><text style="margin-right:8rpx;">4)</text> 停车位距离30米以内免费</text>
+						<text><text style="margin-right:8rpx;">5)</text> 配备：{{item.manning}}</text>
+					</view>
 				</view>
 			</view>
 		</view>
 		<!-- 暂无数据 -->
-  <view  class="car-reminder2" wx:else>
-	<image style="width:100rpx;height:100rpx;" src="/images/nodata2.png"></image>
-	<text>暂无数据</text>
-	</view>
+		<view class="car-reminder2" wx:else>
+			<image style="width:100rpx;height:100rpx;" src="/images/nodata2.png"></image>
+			<text>暂无数据</text>
+		</view>
 
 		<view class="price-item item2 price-text">
 			<view class="price-name">物品</view>
@@ -33,16 +39,16 @@
 		<view class="car-reminder" wx:if="{{goods.length>0}}">
 			<view class="car-reminder-content" wx:for="{{goods}}" wx:key="index">
 				<view class="price-item item2 price-text">
-					<view class="price-name">{{index+1}}.{{item.name}}</view>
+					<view class="price-name"><text style="margin-right:8rpx;">{{index+1}}.</text>{{item.name}}</view>
 					<text>x{{item.num}}</text>
 				</view>
 			</view>
 		</view>
-	<!-- 暂无数据 -->
-  <view  class="car-reminder2" wx:else>
-	<image style="width:100rpx;height:100rpx;" src="/images/nodata2.png"></image>
-	<text>暂无数据</text>
-	</view>
+		<!-- 暂无数据 -->
+		<view class="car-reminder2" wx:else>
+			<image style="width:100rpx;height:100rpx;" src="/images/nodata2.png"></image>
+			<text>暂无数据</text>
+		</view>
 		<!-- 额外费用 -->
 		<view class="price-item item1">
 			<view class="price-title">额外费用</view>

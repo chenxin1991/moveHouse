@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarTitleText":"万家灯火搬家公司",
+  "enablePullDownRefresh": false
 }

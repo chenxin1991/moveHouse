@@ -54,7 +54,7 @@ Page({
     });
   },
     //订单详情
-    orderDetails: function (e) {
+    driverDetails: function (e) {
       // console.log(e.currentTarget.dataset.id)
       wx.navigateTo({
         url: '/pages/driverDetails/index?id=' + e.currentTarget.dataset.id,

@@ -4,7 +4,7 @@
 
 		<block wx:for="{{cars}}" wx:key="index">
 			<!-- 货车 -->
-			<view class="expense-tabe-title">{{item.name}}({{item.manning}}) </view>
+			<view class="expense-tabe-title">{{item.name}}(配备：{{item.manning}}) </view>
 			<view class="expense-tabe">
 				<view class="expense-header">
 					<view class="width30 headers">费用项</view>
@@ -48,6 +48,36 @@
 				</view>
 			</view>
 		</block>
+		<view class="expense-tabe-title">报价设置</view>
+		<view class="expense-tabe">
+			<view class="expense-header">
+				<view class="width30 headers">费用项</view>
+				<view class="width40 borderBoth headers">细分</view>
+				<view class="width30 headers">价格</view>
+			</view>
+			<view class="expense-main">
+				<view class="main-content1 width30">折扣</view>
+				<view class="main-content2 width40 borderBoth">
+					<view class="content-text">300-500公里</view>
+					<view class="content-text">500公里以上</view>
+				</view>
+				<view class="main-content2 width30">
+					<view class="content-text">{{setting.discount1}}折</view>
+					<view class="content-text">{{setting.discount2}}折</view>
+				</view>
+			</view>
+			<view class="expense-main">
+				<view class="main-content1 width30">加收比例</view>
+				<view class="main-content2 width40 borderBoth">
+					<view class="content-text">19:00-23:00</view>
+					<view class="content-text">23:00-07:00</view>
+				</view>
+				<view class="main-content2 width30">
+					<view class="content-text">{{setting.add_ratio1}}%</view>
+					<view class="content-text">{{setting.add_ratio2}}%</view>
+				</view>
+			</view>
+		</view>
 
 	</view>
 </view>

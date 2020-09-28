@@ -12,6 +12,7 @@
     "pages/orderDetails/index",
     "pages/priceDetail/index",
     "pages/driverOrder/index",
+    "pages/driverDetails/index",
     "pages/topay/index",
     "pages/scheduleFee/index",
     "pages/evaluate/index",

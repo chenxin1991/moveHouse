@@ -10,7 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cars:[] 
+    cars:[] ,
+    setting:{}
   },
 
   /**
@@ -21,14 +22,16 @@ Page({
  getData(){
   app._get('carCategory', {}, res => {
      let cars=res.data.carCategory  
-    //  console.log(cars)
+     let setting=res.data.setting
+    //  console.log(res.data)
     //  cars.forEach((item,index)=>{
     //   //  console.log(item.price)
     //   let price= clearFloat(item.price)
     //   console.log(price)
     //  })
      this.setData({
-      cars
+      cars,
+      setting
      })
   })
  },

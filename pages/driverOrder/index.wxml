@@ -19,7 +19,7 @@
 					<text class="titleColor">下单时间：{{item.create_time}}</text>
 					<text class="mainColor">{{item.orderStatus}}</text>
 				</view>
-				<view class="orders-item-goods" data-id="{{item.id}}" bindtap="orderDetails">
+				<view class="orders-item-goods" data-id="{{item.id}}" bindtap="driverDetails">
 					<view>
 						<view class="goods-image" wx:for="{{item.carsAndGoods}}" wx:key="index" wx:if="{{index<4}}">
 							<image  mode="aspectFill" src="{{item.image_url}}"></image>
