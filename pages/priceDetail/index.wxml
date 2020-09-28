@@ -18,11 +18,11 @@
 				</view>
 				<view class="price-item price-text">
 					<view class="price-name carReminder-text">
-						<text><text style="margin-right:8rpx;">1)</text>小家具、小家电和杂物（{{item.num}}车内免费）</text>
-						<text><text style="margin-right:8rpx;">2)</text> {{item.km_standard}}公里内免费</text>
-						<text><text style="margin-right:8rpx;">3)</text> 电梯免费，{{item.floor_standard}}层楼梯以下免费</text>
-						<text><text style="margin-right:8rpx;">4)</text> 停车位距离30米以内免费</text>
-						<text><text style="margin-right:8rpx;">5)</text> 配备：{{item.manning}}</text>
+						<text> 1）小家具、小家电和杂物（{{item.num}}车内免费）</text>
+						<text> 2）{{item.km_standard}}公里内免费</text>
+						<text> 3）电梯免费，{{item.floor_standard}}层楼梯以下免费</text>
+						<text> 4）停车位距离30米以内免费</text>
+						<text> 5）配备：{{item.manning}}</text>
 					</view>
 				</view>
 			</view>
