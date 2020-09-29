@@ -13,10 +13,9 @@
 		</view>
 	</view>
 	<view id='right'>
-		<view class='pg2 child'>
+		<view class='pg2 child' bindtap="toCompany">
 			<image src='/images/lou.png'></image>
 			<view>单位企业搬迁</view>
-			<navigator url="project_remove/project_remove"></navigator>
 		</view>
 		<view class='pg3 child'>
 			<image src='/images/plane.png'></image>

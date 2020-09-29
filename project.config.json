@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"packNpmManually": false,
 		"packNpmRelationList": [],
@@ -184,6 +184,13 @@
 					"id": -1,
 					"name": "pages/paymentCode/index",
 					"pathName": "pages/paymentCode/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/company/index",
+					"pathName": "pages/company/index",
 					"scene": null
 				}
 			]

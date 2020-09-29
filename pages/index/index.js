@@ -13,7 +13,11 @@ Page({
   onLoad: function (options) {
 
   },
- 
+  toCompany(){
+    wx.navigateTo({
+      url: '/pages/company/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

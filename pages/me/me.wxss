@@ -1,4 +1,8 @@
-/**index.wxss**/
+.container{
+  width: 100%;
+  min-height: 100vh;
+  background: #f4f4f4;
+}
 .userinfo {
   display: flex;
   align-items: center;

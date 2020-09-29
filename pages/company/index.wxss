@@ -1,0 +1,110 @@
+ .companyWrapper {
+   width: 100%;
+  height: 100%;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 0rpx ;
+ }
+
+ .companyWrapper-content {
+   width: 94%;
+   background: #fff;
+   border: 2rpx solid #fff;
+   border-radius: 20rpx;
+ }
+
+ .companyWrapper-logo {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: relative;
+   top: 60rpx;
+   background: #fff;
+ }
+
+ .baojia {
+   margin: 15rpx 24rpx;
+   height: 100rpx;
+ }
+
+ .image {
+   width: 302rpx;
+   height: 208rpx;
+   display: block;
+ }
+
+ .danwei {
+   text-align: center;
+   color: #f18519;
+   font-size: 30rpx;
+   font-weight: bold;
+   padding: 20rpx;
+ }
+
+ .callbox {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   padding: 70rpx 0rpx 40rpx;
+   font-size: 28rpx;
+   color: #333;
+ }
+
+ .callbox .listItem {
+   display: flex;
+   align-items: center;
+   flex-direction: row;
+   padding: 20rpx;
+ }
+
+ .callbox .listItem view {
+   width: 160rpx;
+   text-align: justify;
+   text-align-last: justify;
+ }
+
+ .callbox .listItem input {
+   border: 1px solid #ddd;
+   flex: 1;
+   border-radius: 4rpx;
+   padding: 10rpx 10rpx;
+ }
+
+ .callbox .listItem textarea {
+  border: 1px solid #ddd;
+   flex: 1;
+   border-radius: 4rpx;
+   padding: 10rpx 10rpx;
+ }
+
+
+
+ .listItem .weui-btn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 14rpx 20rpx;
+   border-radius: 80rpx;
+   background: #ff5155;
+   font-size: 28rpx;
+   color: #fff;
+ }
+
+
+ .redTips {
+   font-size: 30rpx;
+   color: #ff5155;
+   padding: 10rpx 20rpx;
+   font-weight: bold;
+ }
+
+ .tips {
+   font-size: 24rpx;
+   padding:0rpx  20rpx 26rpx;
+   color: #999;
+   display: flex;
+   flex-direction: column;
+   line-height: 54rpx;
+ }
