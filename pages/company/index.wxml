@@ -20,7 +20,7 @@
   </view>
   <view class='listItem'>
     <view>需求描述：</view>
-    <textarea   bindinput="getValue" auto-height="true" placeholder="请输入需求描述" id='remark'/>
+    <textarea   bindinput="getValue" auto-height="true" maxlength="300" placeholder="请输入需求描述" id='remark'/>
   </view>
   <view class='listItem'>
     <view></view>
@@ -29,24 +29,15 @@
 </view>
 
 <!-- 介绍 -->
+<view class="companyWrapper-introduce">
 <view class='redTips'>业务转介绍可领取3%信息费或者5%-8%业务费</view>
 <view class='tips'>
   <view>项目搬迁服务包含：</view>
   <view>大型厂矿搬迁、央企国企搬迁、政府机关单位搬迁、大中专院校搬迁、医疗医院机构搬迁、银行证券公司搬迁、档案馆及图书馆大型搬迁、机器设备吊装、市政工程吊装搬迁、供电局物资搬迁等搬迁服务
   ......</view>
 </view>
+</view>
+
 
 </view>
 </view>
-
-<!-- 授权窗口  -->
-<!-- <view class='loginBox' wx:if='{{shouquan}}'>
-  <view class=''>
-    <view class='topTitle'>微信授权</view>
-    <view class='centerContent'>获取您的公开信息(昵称头像等）</view>
-    <view class='buttonGroup'>
-      <button class='weui-btn btn' bindtap='cancel' type='danger'>取消</button>
-      <button type='primary' open-type='getUserInfo' bindgetuserinfo='getInfo' class='confirm'>授权</button>
-    </view>
-  </view>
-</view> -->
