@@ -1,27 +1,27 @@
 <view class="companyWrapper">
-<view class="companyWrapper-content">
-<view class="companyWrapper-logo">
-<image class='image' src='/images/home/company.png'>
-</image>
-<view class='danwei'>单位企业搬迁</view>
-</view>
-<view class='callbox'>
-  <view class='listItem'>
-    <view>单位名称：</view>
-    <input type='text' id='firm_name' bindinput='getValue' placeholder='请输入单位名称'></input>
-  </view>
-  <view class='listItem'>
-    <view>联系人：</view>
-    <input type='text' id='name' bindinput='getValue' placeholder='请输入联系人'></input>
-  </view>
-  <view class='listItem'>
-    <view>联系电话：</view>
-    <input type='number' maxlength='11' id='phone' bindinput='getValue' placeholder='请输入联系电话'></input>
-  </view>
-  <view class='listItem'>
-    <view>需求描述：</view>
-    <textarea   bindinput="getValue" auto-height="true" maxlength="300" placeholder="请输入需求描述" id='remark'/>
-  </view>
+  <view class="companyWrapper-content">
+    <view class="companyWrapper-logo">
+      <image class='image' src='/images/home/company.png'>
+      </image>
+      <view class='danwei'>单位企业搬迁</view>
+    </view>
+    <view class='callbox'>
+      <view class='listItem'>
+        <view>单位名称：</view>
+        <input type='text' id='name' bindinput='getValue' placeholder='请输入单位名称'></input>
+      </view>
+      <view class='listItem'>
+        <view>联系人：</view>
+        <input type='text' id='customer' bindinput='getValue' placeholder='请输入联系人'></input>
+      </view>
+      <view class='listItem'>
+        <view>联系电话：</view>
+        <input type='number' maxlength='11' id='phone' bindinput='getValue' placeholder='请输入联系电话'></input>
+      </view>
+      <view class='listItem'>
+        <view>需求描述：</view>
+        <textarea bindinput="getValue" auto-height="true" maxlength="300" placeholder="请输入需求描述" id='description' />
+        </view>
   <view class='listItem'>
     <view></view>
     <view  class="weui-btn" bindtap='submit'>提交</view> 
