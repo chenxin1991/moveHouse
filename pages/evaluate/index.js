@@ -1,4 +1,8 @@
+import {
+ alert
+} from '../../utils/util.js'
 const app = getApp();
+
 Page({
   data: {
     current: 0,
@@ -179,16 +183,12 @@ Page({
       comment: JSON.stringify(comment)
     }, result => {
       if (result.code === 1) {
-        wx.showToast({
-          title: '评价成功',
-          icon: 'success',
-          duration: 2000,
-          complete: function () {
-            setTimeout(function () {
-              wx.navigateBack();
-            }, 2000);
-          }
+        alert('评价成功', '', result => {
+          wx.navigateBack({
+            delta: 1,
+          })
         })
+ 
       }
     });
 

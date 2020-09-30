@@ -20,7 +20,23 @@ const showToast=val=>{
     duration: 2000
   });
 }
+// 弹窗
+function alert(content, title, cb) {
+  content = content ? (content + '') : "";
+  title = title ? title : "";
+  wx.showModal({
+    title: title,
+    mask: true,
+    content: content,
+    confirmColor: "#ff3b2f",
+    showCancel: false,
+    success: function() {
+      cb && (typeof cb == 'function') && cb();
+    }
+  })
+}
 module.exports = {
   formatTime: formatTime,
-  showToast
+  showToast,
+  alert
 }

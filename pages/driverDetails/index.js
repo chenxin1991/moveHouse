@@ -1,4 +1,6 @@
-// pages/orderDetails/index.js
+import {
+ alert
+} from '../../utils/util.js'
 const App = getApp();
 Page({
 
@@ -42,14 +44,12 @@ Page({
         } else {
           App._post_form('user/order/signIn/' + that.data.order.id, {}, result => {
             if (result.code === 1) {
-              wx.showToast({
-                title: '签到成功',
-                icon: 'none',
-                duration: 2000
-              });
-              that.setData({
-                signSuccess:true
+              alert('签到成功', '', result => {
+                that.setData({
+                  signSuccess:true
+                })
               })
+             
             }  
           });
         }

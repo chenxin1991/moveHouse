@@ -1,5 +1,6 @@
 import {
-  showToast
+  showToast,
+  alert
 } from '../../utils/util.js'
 var reg = /^1[3456789]\d{9}$/
 const app = getApp();
@@ -23,15 +24,10 @@ Page({
     this.data.submitData.userMobile = userMobile;
     app._post_form('CompanyOrder/add', this.data.submitData, result => {
       if (result.code === 1) {
-        wx.showToast({
-          title: '提交成功',
-          icon: 'success',
-          duration: 2000,
-          complete: function () {
-            setTimeout(function () {
-              wx.navigateBack();
-            }, 2000);
-          }
+        alert('添加成功', '', result => {
+          wx.navigateBack({
+            delta: 1,
+          })
         })
       }
     });
