@@ -19,6 +19,21 @@
 					<view class='title'>
 						<view class='name'>{{product.name}}</view>
 					</view>
+					<view wx:if="{{idx==2}}" class="title-menu">
+						<view class="title-menu-item active"> 全部 </view>
+						<view class="title-menu-item">书柜</view>
+						<view class="title-menu-item">桌</view>
+						<view class="title-menu-item">床</view>
+						<view class="title-menu-item">沙发</view>
+						<view class="title-menu-item">书柜</view>
+						<view class="title-menu-item">桌</view>
+						<view class="title-menu-item">床</view>
+						<view class="title-menu-item">沙发</view>
+						<view class="title-menu-item">书柜</view>
+						<view class="title-menu-item">桌</view>
+						<view class="title-menu-item">床</view>
+						<view class="title-menu-item">沙发</view>
+					</view>
 					<block wx:if="{{idx == 1}}">
 						<view class="special">
 							<view class="appoint">
@@ -107,19 +122,25 @@
 
 					<view class='goodList'>
 						<block wx:for="{{product.goods}}" wx:for-index="idy" wx:key="index">
+
 							<view class='item'>
-								<view class='pictrue' wx:if="{{idx==0}}">
-									<image src='{{item.image_url}}' mode='aspectFill'></image>
+								<view class="pictrue-warpper">
+									<view class='pictrue' wx:if="{{idx==0}}">
+										<image src='{{item.image_url}}' mode='aspectFill'></image>
+									</view>
 								</view>
 
+
 								<block wx:if="{{idx!=0}}">
-									<block wx:if="{{item.images.length==1}}">
+
+									<block>
 										<view class='pictrue'>
 											<image src='{{item.images[0].url}}' mode='aspectFill'></image>
 										</view>
 									</block>
+
 									<!-- 轮播 -->
-									<block wx:else>
+									<!-- <block wx:else>
 										<view class='ceshi_swiper pictrue'>
 											<swiper class='read_swiper' circular="true" indicator-dots="true" data-idx="{{idx}}" data-idy="{{idy}}" current="{{item.current}}" bindchange="changeImage">
 												<block wx:for="{{item.images}}" wx:key="index">
@@ -135,12 +156,14 @@
 												<text class='icon iconfont icon-zuojiantou1'></text>
 											</view>
 										</view>
-									</block>
+									</block> -->
 
 								</block>
+
 								<view class='underline'>
-									<view class='text'>
+									<view class='text car-text'>
 										<view class='title'>{{item.name}}</view>
+
 										<!-- 车辆描述 -->
 										<view class="car-description" wx:if="{{idx==0}}">
 											<text><text style="color:#999;margin-right:10rpx;">载重</text>{{item.loadSize}}</text>
@@ -148,7 +171,7 @@
 											<text><text style="color:#999;margin-right:10rpx;">体积</text>{{item.volume}}</text>
 											<text><text style="color:#999;margin-right:10rpx;">配备</text>{{item.manning}}</text>
 										</view>
-										<view wx:if="{{product.is_upload}}" class="upload-btn upload-pictures" data-item="{{item}}" bindtap="chooseImage">上传图片</view>
+										<view wx:if="{{product.is_upload}}" class="upload-pictures" data-item="{{item}}" bindtap="chooseImage">上传图片</view>
 										<view class="content">
 											<view class='money'>￥<text class='num'>{{item.price}}</text></view>
 											<!-- 物品加减 -->

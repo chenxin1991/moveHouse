@@ -59,36 +59,68 @@ page {
   margin: 0 30rpx;
   font-weight: bold;
 }
-
-.goodList .item {
-  padding: 15rpx 0rpx 15rpx 30rpx;
+.goodList{
   display: flex;
   flex-wrap: wrap;
 }
+.goodList .item {
+  width: 264rpx;
+  height: auto;
+  padding: 10rpx 40rpx;
+}
+/* 二级分类 */
+ .title-menu{
+  display: flex;
+  font-size: 15px;
+  width: 100%;
+  overflow-y: scroll;
+  white-space: nowrap; 
+  align-items: center;
+ }
+ .title-menu  .title-menu-item{
+  display: block;
+  width: 80px;
+  margin:20rpx;
+  border-radius: 10rpx;
+  padding: 8rpx 20rpx;
+  background: #f5f5f5;
+  }
+ 
+  .title-menu  .active{
+    color: #fff;
+    background:#ff5155;
+  }
 
+  /* 物品 */
 .goodList .item .pictrue {
   width: 180rpx;
   height: 180rpx;
+  margin: 0 auto;
 }
 
 .goodList .item .pictrue image {
   border-radius: 6rpx;
-  width: 100%;
-  height: 100%;
+  width: 180rpx;
+  height: 180rpx;
 }
 
 .goodList .item .underline {
   display: flex;
   align-items: center;
-  padding-left: 20rpx;
+  /* padding-left: 20rpx; */
 }
 
 .goodList .item .text {
   font-size: 30rpx;
   color: #222;
-  width: 310rpx;
+  /* width: 310rpx; */
+  width: 200rpx;
 }
-
+.goodList .item .car-text{
+  font-size: 30rpx;
+  color: #222;
+  width: 246rpx;
+}
 .goodList .item .text .title {
   font-size: 26rpx;
   color: #333;
@@ -111,8 +143,9 @@ page {
 .goodList .item .text .content .changeNum {
   width: 160rpx;
   display: flex;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
   align-items: center;
+  margin-left: 10rpx;
 }
 
 .goodList .item .text .content .changeNum .num {
@@ -424,17 +457,18 @@ page {
 }
 
 /* 上传图片 */
-.upload-btn {
-  display: flex;
-  padding: 10rpx 16rpx;
-  border: 1px solid #ddd;
-  border-radius: 28rpx;
-  font-size: 26rpx;
-  color: #999;
-}
+ 
 
 .upload-pictures {
-  width: 143rpx;
+width: 143rpx;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 6rpx 10rpx;
+border: 1px solid #ddd;
+border-radius: 28rpx;
+color: #999;
+font-size: 26rpx;
 }
 
 /* 上传其他大件 */
