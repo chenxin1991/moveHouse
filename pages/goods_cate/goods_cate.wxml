@@ -171,7 +171,7 @@
 											<text><text style="color:#999;margin-right:10rpx;">体积</text>{{item.volume}}</text>
 											<text><text style="color:#999;margin-right:10rpx;">配备</text>{{item.manning}}</text>
 										</view>
-										<view wx:if="{{product.is_upload}}" class="upload-pictures" data-item="{{item}}" bindtap="chooseImage">上传图片</view>
+										<!-- <view wx:if="{{product.is_upload}}" class="upload-pictures" data-item="{{item}}" bindtap="chooseImage">上传图片</view> -->
 										<view class="content">
 											<view class='money'>￥<text class='num'>{{item.price}}</text></view>
 											<!-- 物品加减 -->
