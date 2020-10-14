@@ -108,10 +108,11 @@ page {
 .goodList .item .underline {
   display: flex;
   align-items: center;
-  width: 200rpx;
   margin: 0 auto;
 }
-
+.underlineWidth{
+  width: 200rpx;
+}
 .goodList .item .text {
   font-size: 30rpx;
   color: #222;
@@ -123,7 +124,6 @@ page {
   color: #222;
   /* width: 246rpx; */
   width: 100%;
- 
 }
 .goodList .item .text .title {
   font-size: 26rpx;

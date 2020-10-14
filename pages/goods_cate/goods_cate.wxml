@@ -160,10 +160,10 @@
 
 								</block>
 
-								<view class='underline'>
+								<view class="{{idx==0?'':'underlineWidth'}}   underline">
 									<view class='text car-text'>
 										<view class='title'>{{item.name}}</view>
-
+										
 										<!-- 车辆描述 -->
 										<view class="car-description" wx:if="{{idx==0}}">
 											<text><text style="color:#999;margin-right:10rpx;">载重</text>{{item.loadSize}}</text>
