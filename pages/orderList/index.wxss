@@ -23,7 +23,7 @@
 .tab text.active {
   border-bottom: 4rpx solid #ff5155;
   color: #ff5155;
-  padding: 20rpx 0;
+  padding: 21rpx 0;
 }
 
 /* 全部订单 */

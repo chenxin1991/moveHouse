@@ -94,15 +94,15 @@ page {
 
   /* 物品 */
 .goodList .item .pictrue {
-  width: 200rpx;
-  height: 200rpx;  
+  width: 230rpx;
+  height: 230rpx;
   margin: 0 auto;
 }
 
 .goodList .item .pictrue image {
   border-radius: 6rpx;
-  width: 200rpx;
-  height: 200rpx;
+  width: 230rpx;
+  height: 230rpx;
 }
 
 .goodList .item .underline {
@@ -110,9 +110,9 @@ page {
   align-items: center;
   margin: 0 auto;
 }
-.underlineWidth{
+/* .underlineWidth{
   width: 200rpx;
-}
+} */
 .goodList .item .text {
   font-size: 30rpx;
   color: #222;
